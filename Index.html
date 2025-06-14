@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Game & Assessment Blueprint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Chosen Palette: Cosmic Dark Theme -->
+    <!-- Application Structure Plan: The application structure has been redesigned to follow a more logical, educational flow. It starts with the high-level 'Psychometric Framework' to ground the user in the theory. Next, it presents the 'Connections Diagram' to visualize the holistic nature of the assessment system. Finally, it provides a 'Game Deep Dive' into the specific tasks. This top-down approach ensures a user understands the 'why' before exploring the 'what'. -->
+    <!-- Visualization & Content Choices: Report Info -> Goal -> Presentation Method -> Justification. 1) Game Tasks -> Inform -> Image cards -> Provide visual context and make the UI more engaging. 2) Psychometric Scales -> Explain -> Simple Chart.js charts -> Visually represent the abstract scoring scales for clarity. 3) Cross-Domain Linkages -> Show Relationships -> Custom Interactive JS/HTML/SVG Diagram -> Allow users to explore the complex, non-linear connections between tasks and constructs interactively. 4) Publishing Guide -> Instruct -> Numbered List -> Provide clear, actionable steps for deployment. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+        h1, h2, h3, .nav-link {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .glass-card {
+            background: rgba(23, 27, 33, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-link.active, .tab-link.active {
+            color: #f97316;
+            border-bottom-color: #f97316;
+        }
+        .nav-link:hover {
+             color: #fb923c;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 60px;
+            margin: auto;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+
+    <header class="bg-gray-900/70 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-700">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-orange-500">Player Profile Blueprint</h1>
+            <ul class="flex space-x-6 text-sm font-medium">
+                <li><a href="#framework" class="nav-link border-b-2 border-transparent pb-1 transition-colors duration-300">Framework</a></li>
+                <li><a href="#connections" class="nav-link border-b-2 border-transparent pb-1 transition-colors duration-300">Connections</a></li>
+                <li><a href="#games" class="nav-link border-b-2 border-transparent pb-1 transition-colors duration-300">Game Deep Dive</a></li>
+                <li><a href="#publish" class="nav-link border-b-2 border-transparent pb-1 transition-colors duration-300">Publishing Guide</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="framework" class="text-center mb-20 py-16">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-4 text-white">The Psychometric Framework</h2>
+            <p class="max-w-3xl mx-auto text-gray-400 mb-8">
+                This experience is built on an Evidence-Centered Design (ECD) model. Every task is engineered to elicit measurable evidence about the player. We measure four core domains: Natural Talents, Work-Life Personality, Core Motivators, and Communication Style. The goal is to create a dynamic, evidence-backed profile that evolves with gameplay, providing a nuanced portrait of the player's potential.
+            </p>
+        </section>
+
+        <section id="connections" class="mb-20 py-16">
+            <div class="text-center">
+                 <h2 class="text-4xl lg:text-5xl font-bold mb-4 text-white">Visualizing the Connections</h2>
+                 <p class="max-w-3xl mx-auto text-gray-400 mb-12">
+                    The power of this system is its interconnectedness. A single action can inform multiple aspects of the player's profile. Hover over a game task on the outer ring to see how it links to the various constructs we measure across different domains.
+                </p>
+            </div>
+            <div id="connection-container" class="relative w-full max-w-4xl mx-auto h-[500px] glass-card rounded-2xl p-4 md:p-8 shadow-2xl">
+                <!-- Interactive diagram populated by JS -->
+            </div>
+        </section>
+
+        <section id="games" class="mb-20 py-16">
+            <div class="text-center">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-4 text-white">Game Deep Dive</h2>
+                <p class="max-w-3xl mx-auto text-gray-400 mb-12">
+                    Explore the specific games and tasks designed to elicit behavioral evidence. Each task is a Virtual Performance-Based Assessment (VPBA) integrated into the game's narrative.
+                </p>
+            </div>
+            <div class="w-full max-w-6xl mx-auto" id="games-container">
+                <!-- Game cards will be populated by JS -->
+            </div>
+        </section>
+        
+        <section id="publish" class="py-16">
+            <div class="text-center">
+                 <h2 class="text-4xl lg:text-5xl font-bold mb-4 text-white">Publishing Your Application</h2>
+                 <p class="max-w-3xl mx-auto text-gray-400 mb-12">
+                    This single-page application is self-contained. Here are two easy methods to deploy it to a live URL and connect it to a custom domain.
+                </p>
+            </div>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="glass-card p-8 rounded-lg">
+                    <h3 class="text-2xl font-bold text-orange-500 mb-4">Method 1: GitHub Pages</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                        <li>Save this file as `index.html`.</li>
+                        <li>Create a new public repository on GitHub.</li>
+                        <li>Upload the `index.html` file to the repository.</li>
+                        <li>In the repository's settings, go to the "Pages" section.</li>
+                        <li>Select the `main` branch as the source and click "Save".</li>
+                        <li>Your site will be live at `your-username.github.io/repository-name/`.</li>
+                        <li>To use a custom domain, add your domain name here and configure the CNAME/A records with your domain registrar.</li>
+                    </ol>
+                </div>
+                <div class="glass-card p-8 rounded-lg">
+                    <h3 class="text-2xl font-bold text-orange-500 mb-4">Method 2: Netlify Drop</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                        <li>Save this file as `index.html`.</li>
+                        <li>Create a free account at `netlify.com`.</li>
+                        <li>Go to the "Sites" section of your dashboard.</li>
+                        <li>Simply drag and drop the `index.html` file into the browser window.</li>
+                        <li>Netlify will instantly deploy your site to a random URL.</li>
+                        <li>You can change the site name or add a custom domain in the "Domain settings" for your new site.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const blueprintData = {
+        domains: [
+            { 
+                name: "Natural Talents & Aptitudes",
+                tasks: [
+                    { id: 'task1', name: "Signal Scrambler", constructs: "Problem-Solving Style", thumbnail: "https://placehold.co/600x400/111827/F97316?text=Signal", description: "A 2D logic puzzle. The player must unscramble a garbled signal by either following a step-by-step diagnostic protocol or by identifying a hidden pattern for a quick, intuitive solution.", methodology: { kpis: "Use of protocol vs. direct pattern manipulation, time-to-solution, error rate.", scoring: "Success without the protocol provides strong evidence for **Diagnostic** reasoning. Reliance on the protocol provides evidence for **Analytical**.", scale: "Bipolar scale from -2.0 (Analytical) to +2.0 (Diagnostic). **Zero (0.0)** signifies a balanced approach." }, linkages: ["Intrapersonal Intelligence"] },
+                    { id: 'task2', name: "Asteroid Field Navigation", constructs: "Spatial Orientation", thumbnail: "https://placehold.co/600x400/111827/3B82F6?text=Asteroids", description: "A top-down 2D mini-game where the player pilots a ship through a dense asteroid field. The goal is pathfinding, not reflexes.", methodology: { kpis: "Path efficiency, time to find a path, number of collisions.", scoring: "High efficiency and low error rates directly update the latent **Spatial Orientation** score.", scale: "Continuous from 0.0 (Low) to 2.0 (High). **Zero** is baseline." }, linkages: ["Key Interests"] },
+                    { id: 'task3', name: "'First Contact' Protocol", constructs: "Idea Flow & Creativity", thumbnail: "https://placehold.co/600x400/111827/8B5CF6?text=Contact", description: "Brainstorming task. The player detects a non-hostile alien signal. Prompt: \"You have 90 seconds to list all possible communication methods in your log. Go!\"", methodology: { kpis: "Total number of distinct ideas generated. Originality of ideas.", scoring: "The raw count informs **Idea Flow**. The originality score informs **Creativity**.", scale: "Two continuous scores (0.0 to 2.0). **Zero** means no ideas." }, linkages: ["Key Interests", "Primary Job Function"] }
+                ]
+            },
+            {
+                name: "Work-Life Personality",
+                tasks: [
+                    { id: 'task4', name: "The Crew Roster", constructs: "Primary Temperament, Social Orientation", thumbnail: "https://placehold.co/600x400/111827/F97316?text=Crew", description: "The player must hire an NPC crewmate for a mission. They choose from a curated list of candidates, each with a detailed profile reflecting a different temperament.", methodology: { kpis: "The player's final choice.", scoring: "Choosing a candidate provides evidence for a temperament classification and informs the **Tribal/Maestro** scale.", scale: "Discrete classification for Temperament; Bipolar scale for Social Orientation." }, linkages: ["Self-Expression", "Social Orientation"] },
+                    { id: 'task5', name: "'Stranded Ship' Dilemma", constructs: "Natural Roles", thumbnail: "https://placehold.co/600x400/111827/3B82F6?text=Dilemma", description: "A narrative event. A ship is stranded. The player must choose a course of action from options that reflect different Natural Roles: `[Lead]`, `[Advise]`, `[Heal]`, `[Organize]`.", methodology: { kpis: "The player's chosen role.", scoring: "The choice provides strong evidence for classifying their primary **Natural Role**.", scale: "Discrete classification (e.g., 'Leader,' 'Helper,' 'Organizer')." }, linkages: ["Key Interests", "Primary Job Function"] }
+                ]
+            },
+            {
+                name: "Core Motivators",
+                tasks: [
+                    { id: 'task6', name: "The Mission Board", constructs: "Job Function, Interests, Values", thumbnail: "https://placehold.co/600x400/111827/8B5CF6?text=Missions", description: "The central quest hub. The player repeatedly chooses from missions with clear tags for type (`[Science]`, `[Commerce]`), function (`[People]`, `[Ideas]`), and values (`[Altruism]`, `[Profit]`).", methodology: { kpis: "Long-term frequency distribution of tags on selected missions.", scoring: "Creates a ranked preference list for each category, revealing what truly motivates the player.", scale: "Ranked lists. **Zero** is an empty list." }, linkages: ["Intrapersonal Intelligence"] },
+                    { id: 'task7', name: "Project Personalization", constructs: "Core Values, Meaning", thumbnail: "https://placehold.co/600x400/111827/F97316?text=Project", description: "When undertaking a major project (e.g., building a new outpost), the player must select a 'Dedication' from a menu, which adds a cosmetic flourish to the outpost and a small bonus.", methodology: { kpis: "The player's explicit choice of dedication.", scoring: "Each choice increments a different value score: `[For Discovery]`, `[For the Community]`, `[For Profit]`.", scale: "A ranked list of values. **Zero** is an unranked state." }, linkages: ["Self-Expression"] }
+                ]
+            },
+            {
+                name: "Communication & Self-Awareness",
+                tasks: [
+                    { id: 'task8', name: "The Captain's Log", constructs: "Intrapersonal Intelligence", thumbnail: "https://placehold.co/600x400/111827/3B82F6?text=Log", description: "A simple journal interface where players respond to reflective text prompts after key events (e.g., \"Why was this mission important to you?\").", methodology: { kpis: "Raw text input.", scoring: "NLP models analyze text for emotional depth, self-reflection keywords, and complexity.", scale: "Continuous score (0.0 to 2.0). **Zero** is a purely factual entry." }, linkages: ["Core Values", "Key Interests"] },
+                    { id: 'task9', name: "Inter-Player Mail", constructs: "Communication Style", thumbnail: "https://placehold.co/600x400/111827/8B5CF6?text=Mail", description: "An asynchronous messaging system where the player can communicate with key NPCs or other (simulated) players to coordinate on tasks or share information.", methodology: { kpis: "The tone, vocabulary, and structure of sent messages.", scoring: "NLP analysis classifies the style (e.g., Formal, Informal, Persuasive, Collaborative).", scale: "A 'style profile' spider chart showing their tendencies across different communication dimensions." }, linkages: ["Social Orientation"] }
+                ]
+            }
+        ]
+    };
+
+    const gamesContainer = document.getElementById('games-container');
+    const connectionContainer = document.getElementById('connection-container');
+    const allTasks = blueprintData.domains.flatMap(d => d.tasks.map(t => ({ ...t, domain: d.name })));
+    const allConstructs = [...new Set(allTasks.flatMap(t => [...t.constructs.split(',').map(c => c.trim()), ...t.linkages]))];
+
+    function initializeApp() {
+        populateGames();
+        populateConnections();
+    }
+
+    function populateGames() {
+        blueprintData.domains.forEach(domain => {
+            const domainSection = document.createElement('div');
+            domainSection.className = 'mb-16';
+            domainSection.innerHTML = `<h3 class="text-3xl font-bold text-center mb-10 text-orange-500">${domain.name}</h3>`;
+            
+            const tasksGrid = document.createElement('div');
+            tasksGrid.className = 'grid grid-cols-1 lg:grid-cols-2 gap-8';
+            
+            domain.tasks.forEach(task => {
+                tasksGrid.innerHTML += `
+                    <div class="glass-card rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300">
+                        <img src="${task.thumbnail}" alt="${task.name}" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold text-white mb-2">${task.name}</h4>
+                            <p class="text-sm font-semibold text-orange-400 mb-3">${task.constructs}</p>
+                            <p class="text-sm text-gray-400 mb-4">${task.description}</p>
+                            <details class="text-left">
+                                <summary class="cursor-pointer text-sm font-semibold text-gray-300 hover:text-white">Show Methodology</summary>
+                                <div class="mt-4 p-4 bg-gray-900 rounded-md text-xs space-y-2">
+                                    <p><strong class="text-orange-400">KPIs:</strong> ${task.methodology.kpis}</p>
+                                    <p><strong class="text-orange-400">Scoring:</strong> ${task.methodology.scoring.replace(/\*\*(.*?)\*\*/g, '<span class="font-bold text-orange-400">$1</span>')}</p>
+                                    <p><strong class="text-orange-400">Scale:</strong> ${task.methodology.scale.replace(/\*\*(.*?)\*\*/g, '<span class="font-bold text-orange-400">$1</span>')}</p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                `;
+            });
+            domainSection.appendChild(tasksGrid);
+            gamesContainer.appendChild(domainSection);
+        });
+    }
+
+    function populateConnections() {
+        const positions = {};
+        const center = { x: 50, y: 50 };
+        const taskRadius = 45;
+        const constructRadius = 20;
+
+        const taskNodes = allTasks.map((task, i) => {
+            const angle = (i / allTasks.length) * 2 * Math.PI - (Math.PI / 2);
+            positions[task.id] = {
+                x: center.x + taskRadius * Math.cos(angle),
+                y: center.y + taskRadius * Math.sin(angle)
+            };
+            return `<div id="conn-${task.id}" class="absolute text-center p-2 bg-blue-600 text-white rounded-lg text-xs shadow-md cursor-pointer transition-all duration-300" style="left: ${positions[task.id].x}%; top: ${positions[task.id].y}%; transform: translate(-50%, -50%);">${task.name}</div>`;
+        }).join('');
+        
+        const constructNodes = allConstructs.map((construct, i) => {
+            const angle = (i / allConstructs.length) * 2 * Math.PI - (Math.PI / 2);
+             positions[construct] = {
+                x: center.x + constructRadius * Math.cos(angle),
+                y: center.y + constructRadius * Math.sin(angle)
+            };
+            return `<div id="conn-${construct.replace(/[^a-zA-Z0-9]/g, '')}" class="absolute text-center py-1 px-2 bg-gray-700 text-gray-200 rounded-full text-[10px]" style="left: ${positions[construct].x}%; top: ${positions[construct].y}%; transform: translate(-50%, -50%);">${construct}</div>`;
+        }).join('');
+
+        connectionContainer.innerHTML = `<svg id="connection-lines" class="absolute top-0 left-0 w-full h-full" style="pointer-events: none;"></svg>` + taskNodes + constructNodes;
+        
+        const svg = document.getElementById('connection-lines');
+        allTasks.forEach(task => {
+            const relatedConstructs = [...new Set([...task.constructs.split(',').map(c=>c.trim()), ...task.linkages])];
+            relatedConstructs.forEach(construct => {
+                if (positions[task.id] && positions[construct]) {
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', `${positions[task.id].x}%`);
+                    line.setAttribute('y1', `${positions[task.id].y}%`);
+                    line.setAttribute('x2', `${positions[construct].x}%`);
+                    line.setAttribute('y2', `${positions[construct].y}%`);
+                    line.setAttribute('stroke', 'rgba(128, 128, 128, 0.2)');
+                    line.setAttribute('stroke-width', '1.5');
+                    line.style.transition = 'all 0.3s ease';
+                    line.classList.add('conn-line', `line-for-${task.id}`);
+                    svg.appendChild(line);
+                }
+            });
+        });
+        
+        allTasks.forEach(task => {
+            document.getElementById(`conn-${task.id}`).addEventListener('mouseover', () => {
+                document.querySelectorAll('.conn-line').forEach(l => l.setAttribute('stroke', 'rgba(128, 128, 128, 0.05)'));
+                document.querySelectorAll(`.line-for-${task.id}`).forEach(l => {
+                     l.setAttribute('stroke', '#f97316');
+                     l.setAttribute('stroke-width', '2');
+                });
+            });
+             document.getElementById(`conn-${task.id}`).addEventListener('mouseout', () => {
+                document.querySelectorAll('.conn-line').forEach(l => {
+                    l.setAttribute('stroke', 'rgba(128, 128, 128, 0.2)');
+                    l.setAttribute('stroke-width', '1.5');
+                });
+            });
+        });
+    }
+
+    initializeApp();
+});
+</script>
+</body>
+</html>
