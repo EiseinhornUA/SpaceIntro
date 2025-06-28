@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef9fe87dd62c17a4eba43859eb730a1e, type: 3}
+  m_Name: DialogueTree
+  m_EditorClassIdentifier: 
+  nodes:
+  - speaker: {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    text: 'Hello
+
+'
+    choices:
+    - choiceText: Choice 1
+      nextNode:
+        speaker: {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+        text: Responce 1
+        choices:
+        - choiceText: 
+          nextNode:
+            speaker: {fileID: 0}
+            text: 
+            choices: []
+        - choiceText: 
+          nextNode:
+            speaker: {fileID: 0}
+            text: 
+            choices: []
+        - choiceText: 
+          nextNode:
+            speaker: {fileID: 0}
+            text: 
+            choices: []
+        - choiceText: 
+          nextNode:
+            speaker: {fileID: 0}
+            text: 
+            choices: []
+        - choiceText: 
+          nextNode:
+            speaker: {fileID: 0}
+            text: 
+            choices: []
