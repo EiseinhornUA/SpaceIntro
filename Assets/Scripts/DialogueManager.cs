@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-[RequireComponent(typeof(DialogueView))]
 public class DialogueManager : MonoBehaviour
 {
-    private DialogueView dialogueDisplayer;
+    private DialogueView dialogueView;
+    private DialoguePrefab dialogueInstance;
 
     private void Start()
     {
-        dialogueDisplayer = GetComponent<DialogueView>();
+        dialogueView = GameObject.FindObjectOfType<DialogueView>(includeInactive: true);
+    }
+
+    public void StartDialogue(DialoguePrefab dialoguePrefab)
+    {
+        Destroy(dialogueInstance);
+        dialogueView.Show();
+        dialogueInstance = GameObject.Instantiate(dialoguePrefab);
     }
 }

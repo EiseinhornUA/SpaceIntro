@@ -45,4 +45,7 @@ public class DialogueView : MonoBehaviour
             choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = choiceMessages[i];
         }
     }
+
+    internal void Show() => gameObject.SetActive(true);
+    internal void Hide() => gameObject.SetActive(false);
 }

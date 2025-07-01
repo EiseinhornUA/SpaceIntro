@@ -29,9 +29,4 @@ public class PlayerController : MonoBehaviour
         movementDirection = new Vector2(joystick.Horizontal, joystick.Vertical);
         playerMovement.Move(movementDirection);
     }
-
-    public void OnInteract()
-    {
-        interactor.Interact();
-    }
 }
