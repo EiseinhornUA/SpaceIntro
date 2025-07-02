@@ -5373,6 +5373,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094070361}
   m_CullTransparentMesh: 1
+--- !u!95 &1100584132 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6870112098505576497, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
+  m_PrefabInstance: {fileID: 93662668534711159}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1101633582
 GameObject:
   m_ObjectHideFlags: 0
@@ -9870,12 +9875,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1936215832762236660, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1100584132}
+    - target: {fileID: 1936215832762236660, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
       propertyPath: joystick
       value: 
       objectReference: {fileID: 1831896009}
     - target: {fileID: 4786370943020563665, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855185412676543321, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
+      propertyPath: movementSpeed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6255280010660609788, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
       propertyPath: interactionButton
@@ -9885,6 +9898,22 @@ PrefabInstance:
       propertyPath: interactionPrompt
       value: 
       objectReference: {fileID: 1894125494}
+    - target: {fileID: 6870112098505576497, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: a115dd02594f9094c81a9a6eb404f9e3, type: 3}
+    - target: {fileID: 6870112098505576497, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 438f570d0c3be7b4894bf3f0382bfb8e, type: 2}
+    - target: {fileID: 6870112098505576497, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6870112098505576497, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

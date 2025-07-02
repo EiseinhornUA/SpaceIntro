@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private PlayerRotator playerRotator;
     private Interactor interactor;
     [SerializeField] private Joystick joystick;
+    [SerializeField] private Animator animator;
 
     void Start()
     {
@@ -33,5 +34,6 @@ public class PlayerController : MonoBehaviour
         movementDirection = new Vector2(joystick.Horizontal, joystick.Vertical);
         playerRotator.RotatePlayer(movementDirection);
         playerMovement.Move(movementDirection);
+        animator.SetFloat("Speed", movementDirection.magnitude);
     }
 }
