@@ -5,17 +5,21 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerRotator))]
 [RequireComponent(typeof(Interactor))]
+
 public class PlayerController : MonoBehaviour
 {
     private Vector2 movementDirection;
     private PlayerMovement playerMovement;
+    private PlayerRotator playerRotator;
     private Interactor interactor;
     [SerializeField] private Joystick joystick;
 
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        playerRotator = GetComponent<PlayerRotator>();
         interactor = GetComponent<Interactor>();
     }
 
@@ -27,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private void OnPlayerMove()
     {
         movementDirection = new Vector2(joystick.Horizontal, joystick.Vertical);
+        playerRotator.RotatePlayer(movementDirection);
         playerMovement.Move(movementDirection);
     }
 }
