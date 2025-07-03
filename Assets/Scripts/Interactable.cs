@@ -18,8 +18,7 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Interactor interactor = collision.gameObject.GetComponent<Interactor>();
-        if (!interactor) return;
+        if (!IsPlayer(collision)) return;
         interactionPrompt.SetPosition(transform.position);
     }
 
@@ -32,8 +31,7 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Interactor interactor = collision.gameObject.GetComponent<Interactor>();
-        if (!interactor) return;
+        if (!IsPlayer(collision)) return;
         interactionPrompt.SetPosition(transform.position);
         interactionPrompt.Show();
         interactionView.Show();
@@ -42,10 +40,13 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Interactor interactor = collision.gameObject.GetComponent<Interactor>();
-        if (!interactor) return;
+        if (!IsPlayer(collision)) return;
         interactionPrompt.Hide();
         interactionView.Hide();
         interactionView.RemoveListener(OnInteract);
+    }
+    private static bool IsPlayer(Collider2D collision)
+    {
+        return collision.CompareTag("Player");
     }
 }

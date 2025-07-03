@@ -6,22 +6,23 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerRotator))]
-[RequireComponent(typeof(Interactor))]
+[RequireComponent(typeof(CharacterLoader))]
 
 public class PlayerController : MonoBehaviour
 {
     private Vector2 movementDirection;
     private PlayerMovement playerMovement;
     private PlayerRotator playerRotator;
-    private Interactor interactor;
+    private CharacterLoader characterLoader;
+    private Animator animator;
     [SerializeField] private Joystick joystick;
-    [SerializeField] private Animator animator;
 
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerRotator = GetComponent<PlayerRotator>();
-        interactor = GetComponent<Interactor>();
+        characterLoader = GetComponent<CharacterLoader>();
+        animator = characterLoader.GetAnimator();
     }
 
     private void Update()
