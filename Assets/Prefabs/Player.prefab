@@ -268,7 +268,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -329,7 +329,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.8
-  smoothing: 10
 --- !u!114 &6126973577035118419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,7 +719,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3895815349647218518}
   - component: {fileID: 2346973716072413559}
-  - component: {fileID: 4662601682368875233}
   - component: {fileID: 9195963956079872507}
   m_Layer: 0
   m_Name: CharacterCamera
@@ -795,14 +793,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &4662601682368875233
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8203137841919465533}
-  m_Enabled: 1
 --- !u!114 &9195963956079872507
 MonoBehaviour:
   m_ObjectHideFlags: 0

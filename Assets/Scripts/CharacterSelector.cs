@@ -40,7 +40,7 @@ public class CharacterSelector : MonoBehaviour
     private void SelectPrevious()
     {
         Hide(selectedIndex);
-        selectedIndex = (selectedIndex - 1) % characterContainer.Count;
+        selectedIndex = (selectedIndex - 1 + characterContainer.Count) % characterContainer.Count;
         Show(selectedIndex);
     }
 
