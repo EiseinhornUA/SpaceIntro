@@ -33,8 +33,8 @@ public class PlayerController : MonoBehaviour
     private void OnPlayerMove()
     {
         movementDirection = new Vector2(joystick.Horizontal, joystick.Vertical);
-        playerRotator.RotatePlayer(movementDirection);
+        playerRotator.RotatePlayer(playerMovement.GetCurrentVelocity().normalized);
+        animator.SetFloat("Speed", playerMovement.GetCurrentSpeed());
         playerMovement.Move(movementDirection);
-        animator.SetFloat("Speed", movementDirection.magnitude);
     }
 }
