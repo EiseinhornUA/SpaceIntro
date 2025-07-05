@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     internal void Move(Vector2 movementDirection)
     {
-        ridgidbody.velocity = IsometrizeMovement(movementDirection);
+        ridgidbody.velocity = IsometrizeMovement(movementDirection) * movementSpeed;
     }
 
     private Vector2 IsometrizeMovement(Vector2 movementDirection) => movementDirection * tileSize;

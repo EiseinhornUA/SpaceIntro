@@ -15,7 +15,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(DialoguePrefab dialoguePrefab)
     {
-        Destroy(dialogueInstance);
+        if (dialogueInstance) 
+            Destroy(dialogueInstance.gameObject);
         dialogueView.Show();
         dialogueInstance = GameObject.Instantiate(dialoguePrefab);
     }
