@@ -47,7 +47,7 @@ public class CharacterSelector : MonoBehaviour
     private void Select()
     {
         PlayerPrefs.SetInt("SelectedCharacter", selectedIndex);
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     private void Show(int index) => characters[index].SetActive(true);
