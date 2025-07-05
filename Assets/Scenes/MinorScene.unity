@@ -792,6 +792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 232221916}
   - component: {fileID: 232221915}
+  - component: {fileID: 232221917}
   m_Layer: 0
   m_Name: RedDockTerminal
   m_TagString: Untagged
@@ -866,6 +867,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 198237294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &232221917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232221914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a083a4ff79c08a46a640dd45e05d424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2135173302}
+        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: StartDialogue
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5484172804279799536, guid: 06fde50b73df7824795c9ea43cf7148d, type: 3}
+          m_ObjectArgumentAssemblyTypeName: DialoguePrefab, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &235162318
 GameObject:
   m_ObjectHideFlags: 0
@@ -10064,6 +10092,17 @@ Sprite:
   m_PhysicsShape: []
   m_Bones: []
   m_SpriteID: 
+--- !u!114 &2135173302 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5861807546087977872, guid: 08d92fd44ef77594a9847a4048db6a6e, type: 3}
+  m_PrefabInstance: {fileID: 1385601604}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d375a0764622e304393b39530eb56b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2256770105228314510
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(CircleCollider2D))]
 public class Interactable : MonoBehaviour
 {
     [SerializeField] private UnityEvent onInteract;
@@ -14,6 +15,8 @@ public class Interactable : MonoBehaviour
     {
         interactionPrompt = FindObjectOfType<InteractionPrompt>(includeInactive: true);
         interactionView = FindObjectOfType<InteractionView>(includeInactive: true);
+        CircleCollider2D collider = GetComponent<CircleCollider2D>();
+        collider.isTrigger = true;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
