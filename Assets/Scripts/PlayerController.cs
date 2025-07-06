@@ -1,42 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(PlayerMovement))]
-[RequireComponent(typeof(PlayerRotator))]
-[RequireComponent(typeof(CharacterLoader))]
-
+[RequireComponent(typeof(PlayerMovement), typeof(PlayerRotator), typeof(CharacterLoader))]
 public class PlayerController : MonoBehaviour
 {
-    private Vector2 movementDirection;
-    private PlayerMovement playerMovement;
-    private PlayerRotator playerRotator;
-    private CharacterLoader characterLoader;
-    private Animator animator;
     [SerializeField] private Joystick joystick;
 
-    void Start()
+    private PlayerMovement movement;
+    private PlayerRotator rotator;
+    private Animator animator;
+
+    private void Start()
     {
-        playerMovement = GetComponent<PlayerMovement>();
-        playerRotator = GetComponent<PlayerRotator>();
-        characterLoader = GetComponent<CharacterLoader>();
-        animator = characterLoader.GetAnimator();
+        movement = GetComponent<PlayerMovement>();
+        rotator = GetComponent<PlayerRotator>();
     }
 
     private void Update()
     {
-        OnPlayerMove();
-    }
+        animator = GetComponent<CharacterLoader>().GetAnimator();
+        if (!animator) return;
 
-    private void OnPlayerMove()
-    {
-        movementDirection = new Vector2(joystick.Horizontal, joystick.Vertical);
+        Vector2 input = new Vector2(joystick.Horizontal, joystick.Vertical);
+
         Debuger debuger = GameObject.FindAnyObjectByType<Debuger>();
-        if(debuger) debuger.ShowDebugText(movementDirection.ToString());
-        playerRotator.RotatePlayer(playerMovement.GetCurrentVelocity().normalized);
-        animator.SetFloat("Speed", playerMovement.GetCurrentSpeed());
-        playerMovement.Move(movementDirection);
+        if (debuger) debuger.ShowDebugText(input.ToString());
+
+        rotator.RotatePlayer(movement.GetCurrentVelocity().normalized);
+
+        if (animator) animator.SetFloat("Speed", movement.GetCurrentSpeed());
+
+        movement.Move(input);
     }
 }
