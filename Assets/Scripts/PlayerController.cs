@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 inputDirection = new Vector2(joystick.Horizontal, joystick.Vertical);
 
-        rotator.RotatePlayer(movement.GetCurrentVelocity().normalized);
+        //rotator.RotatePlayer(movement.GetCurrentVelocity().normalized);
 
         if (animator) animator.SetFloat("Speed", movement.GetCurrentSpeed());
 
