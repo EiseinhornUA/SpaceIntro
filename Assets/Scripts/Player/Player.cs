@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.InputSystem;
 
-[RequireComponent (typeof (Controller2D))]
+[RequireComponent (typeof (Controller2D), (typeof (AnimationHandler)))]
 public class Player : MonoBehaviour {
 
 	public float maxJumpHeight = 4;
@@ -32,10 +32,15 @@ public class Player : MonoBehaviour {
 	bool wallSliding;
 	int wallDirX;
 
-	void Start() {
-		controller = GetComponent<Controller2D> ();
+	private AnimationHandler animationHandler;
+    private PlayerRotator playerRotator;
 
-		gravity = -(2 * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2);
+    void Start() {
+		controller = GetComponent<Controller2D> ();
+        animationHandler = GetComponent<AnimationHandler>();
+        playerRotator = GetComponent<PlayerRotator>();
+
+        gravity = -(2 * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2);
 		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 		minJumpVelocity = Mathf.Sqrt (2 * Mathf.Abs (gravity) * minJumpHeight);
 	}
@@ -46,7 +51,9 @@ public class Player : MonoBehaviour {
 
 		controller.Move (velocity * Time.deltaTime, directionalInput);
 
-		if (controller.collisions.above || controller.collisions.below) {
+		if (playerRotator) playerRotator.RotatePlayer(velocity.x);
+
+        if (controller.collisions.above || controller.collisions.below) {
 			if (controller.collisions.slidingDownMaxSlope) {
 				velocity.y += controller.collisions.slopeNormal.y * -gravity * Time.deltaTime;
 			} else {
@@ -131,6 +138,7 @@ public class Player : MonoBehaviour {
     public void OnPlayerMove(InputAction.CallbackContext context)
     {
         directionalInput.x = context.ReadValue<Vector2>().x;
+		animationHandler.SetHorizontalSpeed(directionalInput.x);
     }
 
     public void OnPlayerJump(InputAction.CallbackContext context)
@@ -138,10 +146,12 @@ public class Player : MonoBehaviour {
         if (context.performed)
         {
             OnJumpInputDown();
+			animationHandler.Jump(true);
         }
         if (context.canceled)
         {
             OnJumpInputUp();
+            animationHandler.Jump(false);
         }
     }
 }
