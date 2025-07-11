@@ -17,17 +17,19 @@ public class PhysicsController : MonoBehaviour
     [SerializeField] private float airFriction = 0.01f;
     [SerializeField] private float maxVelocity = 16f;
     [SerializeField] private float maxClimbAngle = 40f;
-
+    
     [Header("Raycast Settings")]
     [SerializeField] int horizontalRayCount = 3;
     [SerializeField] int verticalRayCount = 3;
-    private const float skinWidth = 0.1f;
+    private const float skinWidth = 0.01f;
+
     private float horizontalRaySpacing;
     private float verticalRaySpacing;
     private BoxCollider2D boxCollider;
     public RaycastOrigins raycastOrigins;
     private List<Vector2> forces = new List<Vector2>();
     public Vector2 velocity;
+    private Vector2 shift;
     public CollisionInfo collisions;
 
     private void Start()
@@ -37,7 +39,7 @@ public class PhysicsController : MonoBehaviour
         CalculateRaySpacing();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         UpdatePhysics();
     }
@@ -52,11 +54,10 @@ public class PhysicsController : MonoBehaviour
 
         LimitVelocity();
 
-        Vector2 shift = velocity * Time.deltaTime;
+        shift = velocity * Time.deltaTime;
 
-        ClimbSlope(ref shift);
-        CollideHorizontally(ref shift);
-        CollideVertically(ref shift);
+        CollideHorizontally();
+        CollideVertically();
 
         transform.Translate(shift);
 
@@ -109,35 +110,37 @@ public class PhysicsController : MonoBehaviour
     internal void SetVelocityX(float velocityX) => this.velocity.x = velocityX;
     internal void SetVelocityY(float velocityY) => this.velocity.y = velocityY;
 
-    private void CollideHorizontally(ref Vector2 shift)
-    {
-        List<RaycastHit2D> hits = GetHorizontalRaysHits(shift).Where(h => (bool)h).ToList();
+    //private void CollideHorizontally(ref Vector2 shift)
+    //{
+    //    if (shift.x == 0) return;
 
-        if (hits.Count == 0) return;
+    //    List<RaycastHit2D> hits = GetHorizontalRaysHits(shift).Where(h => (bool)h).ToList();
 
-        float minDistance = hits.Select(h => h.distance).Min();
+    //    if (hits.Count == 0) return;
 
-        shift.x = Mathf.Sign(shift.x) * (minDistance - skinWidth);
-        //shift.x = 0;
+    //    float minDistance = hits.Select(h => h.distance).Min();
 
-        velocity.x = 0;
-    }
+    //    shift.x = Mathf.Sign(shift.x) * (minDistance - skinWidth);
 
-    private void CollideVertically(ref Vector2 shift)
-    {
-        List<RaycastHit2D> hits = GetVerticalRaysHits(shift).ToList();
+    //    velocity.x = shift.x / Time.deltaTime;
+    //}
 
-        if (hits.Count == 0) return;
+    //private void CollideVertically(ref Vector2 shift)
+    //{
+    //    if (shift.y == 0) return;
 
-        float minDistance = hits.Select(h => h.distance).Min();
+    //    List<RaycastHit2D> hits = GetVerticalRaysHits(shift).ToList();
 
-        shift.y = Mathf.Sign(shift.y) * (minDistance - skinWidth);
-        //shift.y = 0;
+    //    if (hits.Count == 0) return;
 
-        velocity.y = 0;
-    }
+    //    float minDistance = hits.Select(h => h.distance).Min();
 
-    private IEnumerable<RaycastHit2D> GetVerticalRaysHits(Vector2 shift)
+    //    shift.y = Mathf.Sign(shift.y) * (minDistance - skinWidth);
+
+    //    velocity.y = shift.y / Time.deltaTime;
+    //}
+
+    private void CollideVertically()
     {
         float directionY = Mathf.Sign(shift.y);
         float rayLength = Mathf.Abs(shift.y) + skinWidth;
@@ -153,19 +156,27 @@ public class PhysicsController : MonoBehaviour
 
             if (hit)
             {
-                yield return hit;
+                shift.y = (hit.distance  - skinWidth) * directionY;
+                print(hit.distance);
+                velocity.y = shift.y / Time.deltaTime;
+
+                //if (hit.distance < skinWidth)
+                //{
+                //    Debug.Break();
+                //}
+
+                rayLength = hit.distance;
+
                 collisions.below = directionY == -1;
                 collisions.above = directionY == 1;
             }
         }
     }
 
-    private IEnumerable<RaycastHit2D> GetHorizontalRaysHits(Vector2 shift)
+    private void CollideHorizontally()
     {
         float directionX = Mathf.Sign(shift.x);
         float rayLength = Mathf.Abs(shift.x) + skinWidth;
-
-        List<RaycastHit2D> hits = new List<RaycastHit2D>();
 
         for (int i = 0; i < horizontalRayCount; i++)
         {
@@ -176,29 +187,41 @@ public class PhysicsController : MonoBehaviour
 
             Debug.DrawRay(rayOrigin, Vector2.right * rayLength * directionX, Color.red);
             
-            yield return hit;
             if (hit)
             {
+                if (i == 0)
+                {
+                    ClimbSlope(hit);
+                    Debug.DrawRay(rayOrigin, shift, Color.magenta);
+                }
+
+                shift.x = (hit.distance - skinWidth) * directionX;
+                velocity.x = shift.x / Time.deltaTime;
+
+                //if (hit.distance < skinWidth)
+                //{
+                //    Debug.Break();
+                //}
+
+                rayLength = hit.distance;
+
                 collisions.left = directionX == -1;
                 collisions.right = directionX == 1;
             }
         }
     }
 
-    private void ClimbSlope(ref Vector2 shift)
+    private void ClimbSlope(RaycastHit2D hit)
     {
-        var hits = GetHorizontalRaysHits(shift);
-
-        if (!hits.First()) return;
-
-        float slopeAngle = Vector2.Angle(hits.First().normal, Vector2.up);
+        float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 
         if (slopeAngle > maxClimbAngle) return;
 
         float moveDistance = Mathf.Abs(shift.x);
-        
+
         shift.y = Mathf.Sin(slopeAngle * Mathf.Deg2Rad) * moveDistance;
         shift.x = Mathf.Cos(slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(shift.x);
+        velocity.y = shift.y / Time.deltaTime;
     }
 
     private void UpdateRaycastOrigins()
