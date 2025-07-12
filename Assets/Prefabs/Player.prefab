@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 7607422250899601089}
   - component: {fileID: 587263838012983589}
   - component: {fileID: 1742612671985487556}
-  - component: {fileID: 6847839062482692900}
   m_Layer: 0
   m_Name: PlayerImage
   m_TagString: Untagged
@@ -147,7 +146,7 @@ RectTransform:
   m_GameObject: {fileID: 3010336398886683354}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6235666699756113208}
@@ -207,36 +206,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 0.005, y: 0.005}
   m_UseGraphicAlpha: 1
---- !u!114 &6847839062482692900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3010336398886683354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_ComponentVersion: 1
-  m_HasRenderer: 0
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: 00000000
-  m_ShapePath:
-  - {x: -0.1, y: -0.4, z: 0}
-  - {x: -0.1, y: 0.3, z: 0}
-  - {x: 0.1, y: 0.3, z: 0}
-  - {x: 0.1, y: -0.4, z: 0}
-  m_ShapePathHash: 1205272297
-  m_Mesh: {fileID: 0}
-  m_InstanceId: 51164
-  m_LocalBounds:
-    m_Center: {x: 0, y: -0.049999982, z: 0}
-    m_Extent: {x: 0.1, y: 0.35000002, z: 0}
 --- !u!1 &4089808012910854722
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +423,7 @@ MonoBehaviour:
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   collider: {fileID: 0}
-  maxSlopeAngle: 80
+  maxSlopeAngle: 45
   playerInput: {x: 0, y: 0}
 --- !u!114 &3331485955106548368
 MonoBehaviour:
@@ -468,14 +437,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b678e08966899479d8de48b5287a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpHeight: 2
-  minJumpHeight: 0.5
+  maxJumpHeight: 1
+  minJumpHeight: 0.2
   timeToJumpApex: 0.4
-  wallJumpClimb: {x: 8, y: 8}
-  wallJumpOff: {x: 8, y: 8}
-  wallLeap: {x: 8, y: 8}
+  moveSpeed: 3
+  wallJumpClimb: {x: 2, y: 2}
+  wallJumpOff: {x: 2, y: 2}
+  wallLeap: {x: 2, y: 2}
   wallSlideSpeedMax: 3
   wallStickTime: 0.25
+  velocityXSmoothing: 4
 --- !u!114 &2797205918139180764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,7 +739,7 @@ Transform:
   m_GameObject: {fileID: 6105454163340448630}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.073, y: 0, z: 0.644}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -789,9 +760,9 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 1
   m_LightVolumeIntensity: 0.06
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000

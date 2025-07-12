@@ -5,27 +5,27 @@ using Cysharp.Threading.Tasks;
 
 [UnitTitle("Start Dialogue Node")]
 [UnitCategory("Quest")]
-public class StartDialogueNode : Unit
+public class StartDialogueNode : WaitUnit
 {
     private ValueInput dialogueInput;
-    private ControlInput enter;
-    private ControlOutput exit;
 
     protected override void Definition()
     {
-        exit = ControlOutput("exit");
-        enter = ControlInput("enter", OnEnter);
+        base.Definition();
         dialogueInput = ValueInput<DialoguePrefab>("Dialogue Prefab", null);
 
         Succession(enter, exit);
     }
 
-    private ControlOutput OnEnter(Flow flow)
+    protected override IEnumerator Await(Flow flow)
     {
         var dialoguePrefab = flow.GetValue<DialoguePrefab>(dialogueInput);
 
-        GameObject.FindObjectOfType<DialogueManager>().StartDialogue(dialoguePrefab);
+        DialogueManager dialogueManager = GameObject.FindObjectOfType<DialogueManager>();
+        dialogueManager.StartDialogue(dialoguePrefab);
 
-        return exit;
+        yield return dialogueManager.WaitForDialogueEnd().ToCoroutine();
+
+        yield return exit;
     }
 }

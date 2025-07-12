@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: AskRobotForHelp
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":1883.052,"y":-119.3999},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":215.0,"y":-58.0},"guid":"19b2f7b3-e284-4b1b-8f95-7d210b029d8a","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"defaultValues":{},"position":{"x":1927.0,"y":-109.0},"guid":"62612e39-d061-426e-ae55-2d85a1bcdaef","$version":"A","$type":"EndDialogueNode","$id":"11"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Hello again, how can I open that door?","$type":"System.String"},"Character":{"$content":0,"$type":"UnityEngine.Object"}},"position":{"x":388.0,"y":-120.0},"guid":"5bd8d48f-1015-4dd3-9248-ccc311d54924","$version":"A","$type":"DialogueNode","$id":"13"},{"defaultValues":{"Dialogue
+      Line":{"$content":"I can help you with that. I will try to hack it.","$type":"System.String"},"Character":{"$content":1,"$type":"UnityEngine.Object"}},"position":{"x":789.0,"y":-141.0},"guid":"696312da-1300-42b7-b84b-1a4b475622c4","$version":"A","$type":"DialogueNode","$id":"15"},{"defaultValues":{"Dialogue
+      Line":{"$content":"But...","$type":"System.String"},"Character":{"$content":2,"$type":"UnityEngine.Object"}},"position":{"x":1219.0,"y":-150.0},"guid":"1d4f06fe-b5c1-4e7c-a3c1-ccde57dd8fec","$version":"A","$type":"DialogueNode","$id":"17"},{"defaultValues":{"Dialogue
+      Line":{"$content":"I need you to find the door schematic and a programming
+      spike.","$type":"System.String"},"Character":{"$content":3,"$type":"UnityEngine.Object"}},"position":{"x":1498.0,"y":-141.0},"guid":"c767d687-ab18-455b-b541-59549dbd3f50","$version":"A","$type":"DialogueNode","$id":"19"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"13"},"destinationKey":"enter","guid":"51552d7a-6dfd-4034-bd45-9ffd389e47f2","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"exit","destinationUnit":{"$ref":"15"},"destinationKey":"enter","guid":"833008e0-d0de-413b-9770-b16407c35ac8","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"exit","destinationUnit":{"$ref":"17"},"destinationKey":"enter","guid":"7ed49332-6930-480e-a53a-63fef1c3bfbf","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"17"},"sourceKey":"exit","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"45742efb-c4ed-4ef1-814c-fe66446df43e","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"exit","destinationUnit":{"$ref":"11"},"destinationKey":"enter","guid":"3455d6ac-b937-4ebb-8d14-8350630087f1","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}

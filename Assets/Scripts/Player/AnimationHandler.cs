@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class AnimationHandler : MonoBehaviour
     {
         if (!animator) return;
 
-        animator.SetFloat("HorizontalSpeed", speed);
+        animator.SetFloat("HorizontalSpeed", Mathf.Abs(speed));
     }
 
     internal void SetVerticalSpeed(float speed)
@@ -25,9 +26,15 @@ public class AnimationHandler : MonoBehaviour
         animator.SetFloat("VerticalSpeed", speed);
     }
 
-    internal void Jump(bool isJumping)
+    internal void Jump()
     {
         if (!animator) return;
-        animator.SetBool("IsJumping", isJumping);
+        animator.SetBool("Jump", true);
+    }
+
+    internal void Turn()
+    {
+        if (!animator) return;
+        animator.SetTrigger("Turn");
     }
 }

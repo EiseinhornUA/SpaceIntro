@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4534960930336948539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7075647471358136473}
+  - component: {fileID: 4849253396463388814}
+  - component: {fileID: 7327339600317694271}
+  m_Layer: 0
+  m_Name: Quest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7075647471358136473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4534960930336948539}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.2029358, y: -1.0065205, z: 0.19600217}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4849253396463388814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4534960930336948539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
+    _objectReferences: []
+--- !u!114 &7327339600317694271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4534960930336948539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2fe5546f775c47d2820aa5e8a715f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"nest":{"source":"Embed","macro":null,"embed":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":-79.7083,"y":-204.2},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":-596.0,"y":-104.0},"guid":"8571a129-127b-4e84-82e1-29e79d560ff1","$version":"A","$type":"Unity.VisualScripting.Start","$id":"10"},{"defaultValues":{"Dialogue
+      Prefab":{"$content":0,"$type":"UnityEngine.Object"}},"position":{"x":749.0,"y":-106.0},"guid":"2c3a561e-e144-4d4a-9273-33fd13695204","$version":"A","$type":"StartDialogueNode","$id":"12"},{"interactableCount":1,"defaultValues":{"GameObject
+      1":null,"Disable After Interaction":{"$content":true,"$type":"System.Boolean"}},"position":{"x":67.0,"y":-149.0},"guid":"a8684913-3e67-4b25-b613-171b5c72be31","$version":"A","$type":"OnInteractNode","$id":"14"},{"defaultValues":{"Dialogue
+      Prefab":{"$content":1,"$type":"UnityEngine.Object"}},"position":{"x":-435.0,"y":-128.0},"guid":"d1bab9be-5fc2-4f56-b38f-a106e602908a","$version":"A","$type":"StartDialogueNode","$id":"16"},{"sourceUnit":{"$ref":"16"},"sourceKey":"exit","destinationUnit":{"$ref":"14"},"destinationKey":"enter","guid":"8222a614-19ee-457a-a2e5-f514eb1f558c","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"14"},"sourceKey":"exit
+      1","destinationUnit":{"$ref":"12"},"destinationKey":"enter","guid":"746e660c-0441-4edc-a172-927eccdaf6ca","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"10"},"sourceKey":"trigger","destinationUnit":{"$ref":"16"},"destinationKey":"enter","guid":"edadaa67-5384-4b93-8380-bf8ef860e9b6","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}}'
+    _objectReferences:
+    - {fileID: 3013254617165089809, guid: 76e1177a05c65b34e91857f36b1840e2, type: 3}
+    - {fileID: 3515692843057203791, guid: dc8c7fedfbb5436489e3e06e16b666cb, type: 3}

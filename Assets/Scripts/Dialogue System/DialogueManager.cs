@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Triggers;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,13 +7,8 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
-    private DialogueView dialogueView;
+    [SerializeField] private DialogueView dialogueView;
     private DialoguePrefab dialogueInstance;
-
-    private void Start()
-    {
-        dialogueView = GameObject.FindObjectOfType<DialogueView>(includeInactive: true);
-    }
 
     public void StartDialogue(DialoguePrefab dialoguePrefab)
     {
@@ -19,5 +16,10 @@ public class DialogueManager : MonoBehaviour
             Destroy(dialogueInstance.gameObject);
         dialogueView.Show();
         dialogueInstance = GameObject.Instantiate(dialoguePrefab);
+    }
+
+    public async UniTask WaitForDialogueEnd()
+    {
+        await dialogueView.WaitForHide();
     }
 }

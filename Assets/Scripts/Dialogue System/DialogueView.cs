@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
 public class DialogueView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI message;
@@ -12,6 +13,7 @@ public class DialogueView : MonoBehaviour
     [SerializeField] private Image characterPortrait;
     [SerializeField] private Button nextButton;
     [SerializeField] private List<Button> choiceButtons;
+    private UniTaskCompletionSource taskCompletionSource;
 
     public void ChangeMessage(string messageText) => message.text = messageText;
     public void ChangeCharacterName(string name) => characterName.text = name;
@@ -48,4 +50,15 @@ public class DialogueView : MonoBehaviour
 
     internal void Show() => gameObject.SetActive(true);
     internal void Hide() => gameObject.SetActive(false);
+    internal async UniTask WaitForHide()
+    {
+        taskCompletionSource = new UniTaskCompletionSource();
+        await taskCompletionSource.Task;
+    }
+
+    private void OnDisable()
+    {
+        taskCompletionSource?.TrySetResult();
+    }
+
 }

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: DoorHacking
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":1609.142,"y":-39.39993},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":215.0,"y":-58.0},"guid":"19b2f7b3-e284-4b1b-8f95-7d210b029d8a","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"defaultValues":{},"position":{"x":1782.0,"y":-64.0},"guid":"62612e39-d061-426e-ae55-2d85a1bcdaef","$version":"A","$type":"EndDialogueNode","$id":"11"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Hacking...","$type":"System.String"},"Character":{"$content":0,"$type":"UnityEngine.Object"}},"position":{"x":469.0,"y":-110.0},"guid":"5bd8d48f-1015-4dd3-9248-ccc311d54924","$version":"A","$type":"DialogueNode","$id":"13"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Hacking...","$type":"System.String"},"Character":{"$content":1,"$type":"UnityEngine.Object"}},"position":{"x":758.0,"y":-93.0},"guid":"1d493ad3-30fb-4a31-aff1-d12ae128f499","$version":"A","$type":"DialogueNode","$id":"15"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Hacking...","$type":"System.String"},"Character":{"$content":2,"$type":"UnityEngine.Object"}},"position":{"x":1010.0,"y":-65.0},"guid":"e6d6fe8b-a48d-4898-9865-b493187409fe","$version":"A","$type":"DialogueNode","$id":"17"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Done.","$type":"System.String"},"Character":{"$content":3,"$type":"UnityEngine.Object"}},"position":{"x":1268.0,"y":-67.0},"guid":"fd208c89-0f84-4504-81b7-df688498693a","$version":"A","$type":"DialogueNode","$id":"19"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Finally!","$type":"System.String"},"Character":{"$content":4,"$type":"UnityEngine.Object"}},"position":{"x":1507.0,"y":-65.0},"guid":"b4f0fd76-fdf6-412e-8c61-1a2dd21ddf75","$version":"A","$type":"DialogueNode","$id":"21"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"13"},"destinationKey":"enter","guid":"51552d7a-6dfd-4034-bd45-9ffd389e47f2","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"exit","destinationUnit":{"$ref":"15"},"destinationKey":"enter","guid":"8dcf0905-c16d-4483-98b8-786bfa89f809","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"exit","destinationUnit":{"$ref":"17"},"destinationKey":"enter","guid":"99aea659-a98e-4a8e-9b0c-a25c73906f08","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"17"},"sourceKey":"exit","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"f20dcee7-7670-40e4-915a-bcba1aa9ea88","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"exit","destinationUnit":{"$ref":"21"},"destinationKey":"enter","guid":"3875be31-f2e5-488a-913b-6409a3530679","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"21"},"sourceKey":"exit","destinationUnit":{"$ref":"11"},"destinationKey":"enter","guid":"9ee1a86b-d6d2-4de3-9dea-4290a398247c","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}

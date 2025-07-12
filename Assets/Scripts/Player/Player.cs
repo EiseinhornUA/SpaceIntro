@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 	public float timeToJumpApex = .4f;
 	float accelerationTimeAirborne = .2f;
 	float accelerationTimeGrounded = .1f;
-	float moveSpeed = 6;
+	[SerializeField] private float moveSpeed = 6;
 
 	public Vector2 wallJumpClimb;
 	public Vector2 wallJumpOff;
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 	float maxJumpVelocity;
 	float minJumpVelocity;
 	Vector3 velocity;
-	float velocityXSmoothing;
+	[SerializeField] private float velocityXSmoothing = 4;
 
 	Controller2D controller;
 
@@ -34,6 +34,7 @@ public class Player : MonoBehaviour {
 
 	private AnimationHandler animationHandler;
     private PlayerRotator playerRotator;
+    private float previousDirectionInput;
 
     void Start() {
 		controller = GetComponent<Controller2D> ();
@@ -51,7 +52,15 @@ public class Player : MonoBehaviour {
 
 		controller.Move (velocity * Time.deltaTime, directionalInput);
 
-		if (playerRotator) playerRotator.RotatePlayer(velocity.x);
+		if (playerRotator)
+		{
+			playerRotator.RotatePlayer(velocity.x);
+			//if (controller.collisions.climbingSlope)
+			//	playerRotator.RotateParent(controller.collisions.slopeAngle);
+			//if (!controller.collisions.climbingSlope)
+			//	playerRotator.RotateParent(0);
+        }
+
 
         if (controller.collisions.above || controller.collisions.below) {
 			if (controller.collisions.slidingDownMaxSlope) {
@@ -138,6 +147,11 @@ public class Player : MonoBehaviour {
     public void OnPlayerMove(InputAction.CallbackContext context)
     {
         directionalInput.x = context.ReadValue<Vector2>().x;
+		if ((directionalInput.x != previousDirectionInput) && (directionalInput.x != 0 || previousDirectionInput != 0))
+		{
+			animationHandler.Turn();
+            previousDirectionInput = directionalInput.x;
+        }
 		animationHandler.SetHorizontalSpeed(directionalInput.x);
     }
 
@@ -146,12 +160,11 @@ public class Player : MonoBehaviour {
         if (context.performed)
         {
             OnJumpInputDown();
-			animationHandler.Jump(true);
+			animationHandler.Jump();
         }
         if (context.canceled)
         {
             OnJumpInputUp();
-            animationHandler.Jump(false);
         }
     }
 }

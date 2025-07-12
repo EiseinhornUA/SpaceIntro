@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: DoorOpeningChoice
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":386.295,"y":-133.7999},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":-97.0,"y":-82.0},"guid":"19b2f7b3-e284-4b1b-8f95-7d210b029d8a","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"defaultValues":{},"position":{"x":1284.0,"y":-109.0},"guid":"62612e39-d061-426e-ae55-2d85a1bcdaef","$version":"A","$type":"EndDialogueNode","$id":"11"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Hmm... how can I open the main door&","$type":"System.String"},"Character":{"$content":0,"$type":"UnityEngine.Object"}},"position":{"x":105.0,"y":-115.0},"guid":"5bd8d48f-1015-4dd3-9248-ccc311d54924","$version":"A","$type":"DialogueNode","$id":"13"},{"choiceCount":3,"defaultValues":{"Dialogue
+      Line":{"$content":"Should I ask the Robot or probably try to open it myself?","$type":"System.String"},"Character":{"$content":1,"$type":"UnityEngine.Object"},"Text1":{"$content":"I
+      will ask the Robot for help.","$type":"System.String"},"Text2":{"$content":"I
+      will try to open it.","$type":"System.String"},"Text3":{"$content":"I will
+      try to fix it.","$type":"System.String"}},"position":{"x":549.0,"y":-163.0},"guid":"109ab7b7-7900-4761-9926-36b92e28d5c9","$version":"A","$type":"DialogueChoiceNode","$id":"15"},{"defaultValues":{},"position":{"x":1234.0,"y":-262.0},"guid":"aa58954a-fde9-4e07-9ec8-2353a3852472","$version":"A","$type":"EndDialogueNode","$id":"17"},{"defaultValues":{},"position":{"x":1291.0,"y":29.0},"guid":"14de260e-e0b3-48cf-9169-898916bb3855","$version":"A","$type":"EndDialogueNode","$id":"19"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"13"},"destinationKey":"enter","guid":"51552d7a-6dfd-4034-bd45-9ffd389e47f2","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"exit","destinationUnit":{"$ref":"15"},"destinationKey":"enter","guid":"139fe80e-b78f-4863-ad31-41050ae55a07","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"Choice
+      1 Exit","destinationUnit":{"$ref":"17"},"destinationKey":"enter","guid":"d8c196d0-6f3a-456c-a09e-3cc80c200890","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"Choice
+      2 Exit","destinationUnit":{"$ref":"11"},"destinationKey":"enter","guid":"0de4a8e9-8c92-40a2-9efa-86792f7339c5","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"Choice
+      3 Exit","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"6d9439c2-6b07-4bda-8cbc-a27857562f57","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}

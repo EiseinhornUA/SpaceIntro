@@ -1,34 +1,57 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using System.Threading.Tasks;
 
 [UnitTitle("On Interact Node")]
 [UnitCategory("Quest")]
 public class OnInteractNode : WaitUnit
 {
-    private ValueInput gameObject;
+    [UnitHeaderInspectable("Interactable Count")]
+    [Range(1, 10)]
+    public int interactableCount = 1;
+
+    private ControlInput enter;
+    private List<ValueInput> gameObjects = new();
+    private List<ControlOutput> exits = new();
     private ValueInput disableAfterInteraction;
 
     protected override void Definition()
     {
-        base.Definition();
+        enter = ControlInputCoroutine("enter", Await);
 
-        gameObject = ValueInput<GameObject>("Game Object", null);
+
+        for (int i = 0; i < interactableCount; i++)
+        {
+            var input = ValueInput<GameObject>($"GameObject {i + 1}", null);
+            gameObjects.Add(input);
+
+            var output = ControlOutput($"exit {i + 1}");
+            exits.Add(output);
+
+            Succession(enter, output);
+        }
+
         disableAfterInteraction = ValueInput<bool>("Disable After Interaction", true);
 
-        Succession(enter, exit);
+        Requirement(disableAfterInteraction, enter);
     }
 
     protected override IEnumerator Await(Flow flow)
     {
-        var interactable = flow.GetValue<GameObject>(gameObject);
+        for (int i = 0; i < interactableCount; i++)
+        {
+            var go = flow.GetValue<GameObject>(gameObjects[i]);
 
-        yield return interactable.AddComponent<Interactable>().WaitForInteraction().ToCoroutine();
-        if (flow.GetValue<bool>(disableAfterInteraction))
-            interactable.GetComponent<Interactable>().Deactivate();
+            Interactable interactable = go.AddComponent<Interactable>();
 
-        yield return exit;
+            yield return interactable.WaitForInteraction().ToCoroutine();
+
+            if (flow.GetValue<bool>(disableAfterInteraction))
+                interactable.Deactivate();
+
+            yield return exits[i];
+        }
     }
 }
