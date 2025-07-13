@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 3331485955106548368}
   - component: {fileID: 2797205918139180764}
   - component: {fileID: 217340537135351144}
+  - component: {fileID: 948311925719686272}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -437,14 +438,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b678e08966899479d8de48b5287a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpHeight: 1
+  maxJumpHeight: 2
   minJumpHeight: 0.2
   timeToJumpApex: 0.4
   moveSpeed: 3
-  wallJumpClimb: {x: 2, y: 2}
-  wallJumpOff: {x: 2, y: 2}
-  wallLeap: {x: 2, y: 2}
-  wallSlideSpeedMax: 3
+  wallJumpClimb: {x: 4, y: 4}
+  wallJumpOff: {x: 4, y: 4}
+  wallLeap: {x: 4, y: 4}
+  wallSlideSpeedMax: 2
   wallStickTime: 0.25
   velocityXSmoothing: 4
 --- !u!114 &2797205918139180764
@@ -473,6 +474,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelParent: {fileID: 6259789745513989407}
+--- !u!50 &948311925719686272
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4786370943020563665}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5610396379407531247
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,18 +40,22 @@ public class OnInteractNode : WaitUnit
 
     protected override IEnumerator Await(Flow flow)
     {
+        List<Interactable> interactables = new List<Interactable>();
         for (int i = 0; i < interactableCount; i++)
         {
             var go = flow.GetValue<GameObject>(gameObjects[i]);
 
-            Interactable interactable = go.AddComponent<Interactable>();
+            if (!go.TryGetComponent<Interactable>(out Interactable interactable))
+                interactable = go.AddComponent<Interactable>();
 
-            yield return interactable.WaitForInteraction().ToCoroutine();
-
-            if (flow.GetValue<bool>(disableAfterInteraction))
-                interactable.Deactivate();
-
-            yield return exits[i];
+            interactable.Activate();
+            interactables.Add(interactable);
         }
+        int index = 0;
+        yield return UniTask.WhenAny(interactables.Select(i => i.WaitForInteraction())).ContinueWith(i => index = i).ToCoroutine();
+        Debug.Log($"Interaction completed {index}");
+        interactables.ForEach(i => i.Deactivate());
+        yield return exits[index];
+
     }
 }

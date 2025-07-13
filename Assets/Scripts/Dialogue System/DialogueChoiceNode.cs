@@ -50,11 +50,18 @@ public class DialogueChoiceNode : WaitUnit
         var message = flow.GetValue<string>(messageInput);
         var character = flow.GetValue<DialogueCharacter>(characterInput);
 
-        view.ChangeCharacterName(character.GetName());
-        view.ChangeCharacterPortrait(character.GetPortrait());
-        view.ChangeMessage(message);
+        if (character)
+        {
+            view.ChangeCharacterName(character.GetName());
+            view.ChangeCharacterPortrait(character.GetPortrait());
+            view.ChangeMessage(message);
+        }
+        else
+        {
+            Debug.LogError(character + " is null. Please assign a character to the Dialogue Choice Node.");
+        }
 
-        var choices = new List<string>();
+            var choices = new List<string>();
         for (int i = 0; i < choiceCount; i++)
         {
             choices.Add(flow.GetValue<string>(choiceInputs[i]));
