@@ -4,8 +4,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent (typeof (Controller2D), (typeof (AnimationHandler)))]
 public class Player : MonoBehaviour {
-
-	public float maxJumpHeight = 4;
+    public float maxJumpHeight = 4;
 	public float minJumpHeight = 1;
 	public float timeToJumpApex = .4f;
 	float accelerationTimeAirborne = .2f;
@@ -35,11 +34,14 @@ public class Player : MonoBehaviour {
 	private AnimationHandler animationHandler;
     private PlayerRotator playerRotator;
     private float previousDirectionInput;
+	private Joystick joystick;
+    [SerializeField] private float jumpThreshold = .8f;
 
     void Start() {
 		controller = GetComponent<Controller2D> ();
         animationHandler = GetComponent<AnimationHandler>();
         playerRotator = GetComponent<PlayerRotator>();
+        joystick = FindObjectOfType<Joystick>();
 
         gravity = -(2 * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2);
 		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -50,7 +52,11 @@ public class Player : MonoBehaviour {
 		CalculateVelocity ();
 		HandleWallSliding ();
 
-		controller.Move (velocity * Time.deltaTime, directionalInput);
+		OnPlayerMove();
+		OnPlayerJump();
+
+        controller.Move(velocity * Time.deltaTime, directionalInput);
+        animationHandler.SetHorizontalSpeed(directionalInput.x);
 
 		if (playerRotator)
 		{
@@ -144,27 +150,39 @@ public class Player : MonoBehaviour {
 		velocity.y += gravity * Time.deltaTime;
 	}
 
-    public void OnPlayerMove(InputAction.CallbackContext context)
-    {
-        directionalInput.x = context.ReadValue<Vector2>().x;
-		if ((directionalInput.x != previousDirectionInput) && (directionalInput.x != 0 || previousDirectionInput != 0))
-		{
-			animationHandler.Turn();
-            previousDirectionInput = directionalInput.x;
-        }
-		animationHandler.SetHorizontalSpeed(directionalInput.x);
+    //public void OnPlayerMove(InputAction.CallbackContext context)
+    //{
+    //    directionalInput.x = context.ReadValue<Vector2>().x;
+    //    //if ((directionalInput.x != previousDirectionInput) && (directionalInput.x != 0 || previousDirectionInput != 0))
+    //    //{
+    //    //	animationHandler.Turn();
+    //    //          previousDirectionInput = directionalInput.x;
+    //    //      }
+    //}
+
+    private void OnPlayerMove()
+	{
+		directionalInput.x = (joystick.Horizontal == 0) ? 0 : Mathf.Sign(joystick.Horizontal);
     }
 
-    public void OnPlayerJump(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            OnJumpInputDown();
-			animationHandler.Jump();
-        }
-        if (context.canceled)
-        {
+	// public void OnPlayerJump(InputAction.CallbackContext context)
+	// {
+	//     if (context.performed)
+	//     {
+	//         OnJumpInputDown();
+	//animationHandler.Jump();
+	//     }
+	//     if (context.canceled)
+	//     {
+	//         OnJumpInputUp();
+	//     }
+	// }
+
+	private void OnPlayerJump()
+	{
+		if (joystick.Vertical >= jumpThreshold)
+			OnJumpInputDown();
+		else
             OnJumpInputUp();
-        }
-    }
+	}
 }
