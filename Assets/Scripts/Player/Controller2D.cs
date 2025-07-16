@@ -55,13 +55,16 @@ public class Controller2D : RaycastController {
 		}
 
 		for (int i = 0; i < horizontalRayCount; i ++) {
-			Vector2 rayOrigin = (directionX == -1)?raycastOrigins.bottomLeft:raycastOrigins.bottomRight;
-			rayOrigin += Vector2.up * (horizontalRaySpacing * i);
-			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
+			Vector3 rayOrigin = (directionX == -1)?raycastOrigins.bottomLeft:raycastOrigins.bottomRight;
+			rayOrigin += transform.position.z * Vector3.forward;
+			rayOrigin += Vector3.up * (horizontalRaySpacing * i);
+            //RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
+            RaycastHit hit;
+            bool hasHit = Physics.Raycast(rayOrigin, Vector3.right * directionX, out hit, rayLength, collisionMask);
 
-			Debug.DrawRay(rayOrigin, Vector2.right * directionX,Color.red);
+            Debug.DrawRay(rayOrigin, Vector3.right * directionX, Color.red);
 
-			if (hit) {
+			if (hasHit) {
 
 				if (hit.distance == 0) {
 					continue;
@@ -104,14 +107,17 @@ public class Controller2D : RaycastController {
 
 		for (int i = 0; i < verticalRayCount; i ++) {
 
-			Vector2 rayOrigin = (directionY == -1)?raycastOrigins.bottomLeft:raycastOrigins.topLeft;
-			rayOrigin += Vector2.right * (verticalRaySpacing * i + moveAmount.x);
-			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+			Vector3 rayOrigin = (directionY == -1)?raycastOrigins.bottomLeft:raycastOrigins.topLeft;
+            rayOrigin += transform.position.z * Vector3.forward;
+            rayOrigin += Vector3.right * (verticalRaySpacing * i + moveAmount.x);
+			//RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
 
-			Debug.DrawRay(rayOrigin, Vector2.up * directionY,Color.red);
+			RaycastHit hit;
+            bool hasHit = Physics.Raycast(rayOrigin, Vector3.up * directionY, out hit, rayLength, collisionMask);
+            Debug.DrawRay(rayOrigin, Vector2.up * directionY,Color.green);
 
-			if (hit) {
-				if (hit.collider.tag == "Through") {
+			if (hasHit) {
+				if (hit.collider.CompareTag("Through")) {
 					if (directionY == 1 || hit.distance == 0) {
 						continue;
 					}

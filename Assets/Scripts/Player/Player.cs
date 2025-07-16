@@ -150,39 +150,39 @@ public class Player : MonoBehaviour {
 		velocity.y += gravity * Time.deltaTime;
 	}
 
-    //public void OnPlayerMove(InputAction.CallbackContext context)
-    //{
-    //    directionalInput.x = context.ReadValue<Vector2>().x;
-    //    //if ((directionalInput.x != previousDirectionInput) && (directionalInput.x != 0 || previousDirectionInput != 0))
-    //    //{
-    //    //	animationHandler.Turn();
-    //    //          previousDirectionInput = directionalInput.x;
-    //    //      }
-    //}
+	//public void OnPlayerMove(InputAction.CallbackContext context)
+	//{
+	//	directionalInput.x = context.ReadValue<Vector2>().x * -1;
+	//	//if ((directionalInput.x != previousDirectionInput) && (directionalInput.x != 0 || previousDirectionInput != 0))
+	//	//{
+	//	//	animationHandler.Turn();
+	//	//          previousDirectionInput = directionalInput.x;
+	//	//      }
+	//}
 
-    private void OnPlayerMove()
+	private void OnPlayerMove()
 	{
-		directionalInput.x = (joystick.Horizontal == 0) ? 0 : Mathf.Sign(joystick.Horizontal);
+		directionalInput.x = (joystick.Horizontal == 0) ? 0 : Mathf.Sign(joystick.Horizontal)  * -1;
     }
 
-	// public void OnPlayerJump(InputAction.CallbackContext context)
-	// {
-	//     if (context.performed)
-	//     {
-	//         OnJumpInputDown();
-	//animationHandler.Jump();
-	//     }
-	//     if (context.canceled)
-	//     {
-	//         OnJumpInputUp();
-	//     }
-	// }
+	//   public void OnPlayerJump(InputAction.CallbackContext context)
+	//{
+	//	if (context.performed)
+	//	{
+	//		OnJumpInputDown();
+	//		animationHandler.Jump();
+	//	}
+	//	if (context.canceled)
+	//	{
+	//		OnJumpInputUp();
+	//	}
+	//}
 
 	private void OnPlayerJump()
 	{
 		if (joystick.Vertical >= jumpThreshold)
 			OnJumpInputDown();
 		else
-            OnJumpInputUp();
+			OnJumpInputUp();
 	}
 }
