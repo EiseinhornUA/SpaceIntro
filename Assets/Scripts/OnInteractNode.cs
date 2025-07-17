@@ -45,11 +45,27 @@ public class OnInteractNode : WaitUnit
         {
             var go = flow.GetValue<GameObject>(gameObjects[i]);
 
-            if (!go.TryGetComponent<Interactable>(out Interactable interactable))
-                interactable = go.AddComponent<Interactable>();
-
-            interactable.Activate();
-            interactables.Add(interactable);
+            GameObject child;
+            bool hasInteractable = false;
+            if (go.transform.childCount > 0)
+            {
+                child = go.transform.GetChild(0).gameObject;
+                hasInteractable = child.TryGetComponent<Interactable>(out Interactable interactable);
+                if (hasInteractable)
+                {
+                    interactable.Activate();
+                    interactables.Add(interactable);
+                }
+            }
+            if (!hasInteractable)
+            {
+                Interactable interactable;
+                child = new GameObject("Child");
+                child.transform.SetParent(go.transform, false);
+                interactable = child.AddComponent<Interactable>();
+                interactable.Activate();
+                interactables.Add(interactable);
+            }
         }
         int index = 0;
         yield return UniTask.WhenAny(interactables.Select(i => i.WaitForInteraction())).ContinueWith(i => index = i).ToCoroutine();
