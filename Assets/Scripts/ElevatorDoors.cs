@@ -36,14 +36,12 @@ public class ElevatorDoors : MonoBehaviour
     }
 
     [ContextMenu("Close door")]
-    public void CloseDoors()
+    public async UniTask CloseDoors()
     {
-
-
         if (isElevatorOpened)
         {
-            leftDoor.transform.DOMoveX(-elevatorOpenDistance, openDuration).SetEase(ease).SetRelative();
-            rightDoor.transform.DOMoveX(elevatorOpenDistance, openDuration).SetEase(ease).SetRelative();
+            _ = leftDoor.transform.DOMoveX(-elevatorOpenDistance, openDuration).SetEase(ease).SetRelative();
+            await rightDoor.transform.DOMoveX(elevatorOpenDistance, openDuration).SetEase(ease).SetRelative();
         }
         isElevatorOpened = false;
     }
