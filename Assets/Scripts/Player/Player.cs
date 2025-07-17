@@ -53,10 +53,10 @@ public class Player : MonoBehaviour {
 		HandleWallSliding ();
 
 		OnPlayerMove();
-		OnPlayerJump();
+		//OnPlayerJump();
 
         controller.Move(velocity * Time.deltaTime, directionalInput);
-        animationHandler.SetHorizontalSpeed(directionalInput.x);
+        animationHandler.SetHorizontalSpeed(velocity.x);
 
 		if (playerRotator)
 		{
