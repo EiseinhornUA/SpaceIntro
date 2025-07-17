@@ -11,7 +11,7 @@ public class ElevatorMechanics : MonoBehaviour
     private float elevatorOpenDistance = 0.7f;
 
     [SerializeField]
-    private float openDuration = 0.5f;
+    private float openDuration = 0.75f;
 
     [SerializeField]
     private GameObject leftDoor;
