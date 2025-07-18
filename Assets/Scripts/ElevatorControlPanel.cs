@@ -17,11 +17,16 @@ public class ElevatorControlPanel : MonoBehaviour
     [SerializeField]
     private int currentFloor = 0;
 
+    [SerializeField]
+    private ElevatorButtonsInside elevatorButtonsInside;
+
     [ContextMenu("Call Elevator")]
     public async UniTask CallElevator()
     {
         await UniTask.WhenAll(elevatorDoors.Where(door => door != currentElevatorDoor).Select(async door => await door.CloseDoors()));
         await elevator.GoToFloor(currentFloor);
         await currentElevatorDoor.OpenDoors();
+        Debug.Log($"1111111111111Setting current elevatorDoor to {currentFloor}");
+        elevatorButtonsInside.SetCurrentFloor(currentFloor);
     }
 }
