@@ -20,7 +20,7 @@ public class DialogueChoiceNode : WaitUnit
     private List<ControlOutput> exits = new();
 
     private DialogueView view;
-    private ControlInput enter;
+    private new ControlInput enter;
 
     protected override void Definition()
     {

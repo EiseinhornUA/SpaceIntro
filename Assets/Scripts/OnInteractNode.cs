@@ -12,7 +12,7 @@ public class OnInteractNode : WaitUnit
     [Range(1, 10)]
     public int interactableCount = 1;
 
-    private ControlInput enter;
+    private new ControlInput enter;
     private List<ValueInput> gameObjects = new();
     private List<ControlOutput> exits = new();
     private ValueInput disableAfterInteraction;
@@ -72,6 +72,6 @@ public class OnInteractNode : WaitUnit
         Debug.Log($"Interaction completed {index}");
         interactables.ForEach(i => i.Deactivate());
         yield return exits[index];
-
+        Debug.Log($"Interaction exited {index}");
     }
 }

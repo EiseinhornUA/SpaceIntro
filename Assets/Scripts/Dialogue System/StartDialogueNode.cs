@@ -20,7 +20,7 @@ public class StartDialogueNode : WaitUnit
 
     protected override void Definition()
     {
-        dialogueInput = ValueInput<DialoguePrefab>("Dialogue Prefab", null);
+        dialogueInput = ValueInput<DialoguePrefab>("Dialogue Prefab", default);
 
         enter = ControlInputCoroutine("enter", Await);
 
