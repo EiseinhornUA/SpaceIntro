@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,10 +9,13 @@ using UnityEngine.UI;
 public class CharacterSelector : MonoBehaviour
 {
     [SerializeField] private CharacterContainer characterContainer;
+    [SerializeField] private TextMeshProUGUI characterNameText;
+    [SerializeField] private TextMeshProUGUI characterDescriptionText;
     [SerializeField] private Button nextButton;
     [SerializeField] private Button previousButton;
     [SerializeField] private Button selectButton;
     private List<GameObject> characters = new();
+    private List<CharacterRoleSO> roles = new();
 
     private int selectedIndex = 0;
 
@@ -27,7 +31,10 @@ public class CharacterSelector : MonoBehaviour
             characters.Add(instance);
             instance.SetActive(false);
         }
+        roles.AddRange(characterContainer.GetRoles());
         characters[selectedIndex].SetActive(true);
+        SetCharacterName(roles[selectedIndex].GetName());
+        SetDescription(roles[selectedIndex].GetDescription());
     }
 
     private void SelectNext()
@@ -35,6 +42,8 @@ public class CharacterSelector : MonoBehaviour
         Hide(selectedIndex);
         selectedIndex = (selectedIndex + 1) % characterContainer.Count;
         Show(selectedIndex);
+        SetCharacterName(roles[selectedIndex].GetName());
+        SetDescription(roles[selectedIndex].GetDescription());
     }
 
     private void SelectPrevious()
@@ -42,6 +51,8 @@ public class CharacterSelector : MonoBehaviour
         Hide(selectedIndex);
         selectedIndex = (selectedIndex - 1 + characterContainer.Count) % characterContainer.Count;
         Show(selectedIndex);
+        SetCharacterName(roles[selectedIndex].GetName());
+        SetDescription(roles[selectedIndex].GetDescription());
     }
 
     private void Select()
@@ -49,6 +60,10 @@ public class CharacterSelector : MonoBehaviour
         PlayerPrefs.SetInt("SelectedCharacter", selectedIndex);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    private void SetCharacterName(string name) => characterNameText.text = name;
+    private void SetDescription(string text) => characterDescriptionText.text = text;
+
 
     private void Show(int index) => characters[index].SetActive(true);
     private void Hide(int index) => characters[index].SetActive(false);
