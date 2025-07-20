@@ -60,5 +60,4 @@ public class DialogueView : MonoBehaviour
     {
         taskCompletionSource?.TrySetResult();
     }
-
 }
