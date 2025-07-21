@@ -185,4 +185,24 @@ public class Player : MonoBehaviour {
 		else
 			OnJumpInputUp();
 	}
+
+    private float originalGravity;
+    private float originalTimeToJumpApex;
+
+    public void SetGravityEnabled(bool enabled)
+    {
+        if (enabled)
+        {
+            gravity = originalGravity;
+            timeToJumpApex = originalTimeToJumpApex;
+        }
+        else
+        {
+            originalGravity = gravity;
+            originalTimeToJumpApex = timeToJumpApex;
+
+            gravity = 0f;
+            timeToJumpApex = 999f;
+        }
+    }
 }

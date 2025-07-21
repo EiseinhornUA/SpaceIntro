@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -26,7 +27,12 @@ public class ElevatorControlPanel : MonoBehaviour
         await UniTask.WhenAll(elevatorDoors.Where(door => door != currentElevatorDoor).Select(async door => await door.CloseDoors()));
         await elevator.GoToFloor(currentFloor);
         await currentElevatorDoor.OpenDoors();
-        Debug.Log($"1111111111111Setting current elevatorDoor to {currentFloor}");
+        //Debug.Log($"1111111111111Setting current elevatorDoor to {currentFloor}");
         elevatorButtonsInside.SetCurrentFloor(currentFloor);
+    }
+
+    public int GetPanelFloor()
+    {
+        return currentFloor;
     }
 }
