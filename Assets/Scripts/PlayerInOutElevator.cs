@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerInOutElevator : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class PlayerInOutElevator : MonoBehaviour
     {
         await elevatorControlPanel.CallElevator();
 
-        player.transform.position.DOMove(elevator.transform.position, 0.1f);
+        _ = player.transform.DOMove(elevator.transform.position, 0.1f);
     }
 
 }

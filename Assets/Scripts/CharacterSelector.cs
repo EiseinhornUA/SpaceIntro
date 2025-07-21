@@ -66,7 +66,7 @@ public class CharacterSelector : MonoBehaviour
         }
         PlayerPrefs.SetString("CharacterName", characterNameInputField.text);
         PlayerPrefs.SetInt("SelectedCharacter", selectedIndex);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("3DSci-fiScene");
     }
 
     private void SetCharacterName(string name) => characterNameText.text = name;
