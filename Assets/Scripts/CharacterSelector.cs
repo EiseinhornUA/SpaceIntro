@@ -11,6 +11,8 @@ public class CharacterSelector : MonoBehaviour
     [SerializeField] private CharacterContainer characterContainer;
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI characterDescriptionText;
+    [SerializeField] private TMP_InputField characterNameInputField;
+    [SerializeField] private GameObject enterNamePopup;
     [SerializeField] private Button nextButton;
     [SerializeField] private Button previousButton;
     [SerializeField] private Button selectButton;
@@ -57,8 +59,14 @@ public class CharacterSelector : MonoBehaviour
 
     private void Select()
     {
+        if (string.IsNullOrWhiteSpace(characterNameInputField.text))
+        {
+            enterNamePopup.SetActive(true);
+            return;
+        }
+        PlayerPrefs.SetString("CharacterName", characterNameInputField.text);
         PlayerPrefs.SetInt("SelectedCharacter", selectedIndex);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("3DSci-fiScene");
     }
 
     private void SetCharacterName(string name) => characterNameText.text = name;
