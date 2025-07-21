@@ -22,9 +22,11 @@ public class PlayerInOutElevator : MonoBehaviour
 
         player.SetGravityEnabled(false);
 
-        Vector3 playerPositionInsideElevator = playersPointInsideElevator.position;//transform.Find("ElevatorCenter");
+        Vector3 playerPositionInsideElevator = playersPointInsideElevator.position;
 
         await player.transform.DOMove(playerPositionInsideElevator, 1.0f);
+
+        player.transform.SetParent(elevator.transform);
 
         player.SetGravityEnabled(true);
 
@@ -32,10 +34,11 @@ public class PlayerInOutElevator : MonoBehaviour
 
         await elevatorButtonsInside.ElevateToFloor(floorTo);
 
+        player.transform.SetParent(null);
+
         player.SetGravityEnabled(false);
         // playerAnimator.Play("Walking");
 
-        //Transform elevatorOutside = elevator.transform.Find("ElevatorOutside");
         Vector3 destinationOutSideElevator = playersPointOutsideElevator.position;
         await player.transform.DOMove(destinationOutSideElevator, 1.0f).AsyncWaitForCompletion();
 
@@ -49,8 +52,23 @@ public class PlayerInOutElevator : MonoBehaviour
         return elevatorControlPanels.Find(cp => cp.GetPanelFloor() == currentFloor);
     }
 
-    [ContextMenu("Go to Floor 1 to 2")]
+    [ContextMenu("GoToFloor1")]
+
+    public void GoToFloor1()
+    {
+        MovePlayerToFloor(2, 0).Forget();
+    }
+    
+    [ContextMenu("GoToFloor2")]
+
     public void GoToFloor2()
+    {
+        MovePlayerToFloor(0, 1).Forget();
+    }
+
+    [ContextMenu("GoToFloor3")]
+
+    public void GoToFloor3()
     {
         MovePlayerToFloor(1, 2).Forget();
     }

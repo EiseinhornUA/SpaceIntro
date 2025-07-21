@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 28310770}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 0.05, z: 7.5}
+  m_LocalPosition: {x: -2.5, y: 0.02, z: 7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1093,11 +1093,11 @@ Transform:
   m_GameObject: {fileID: 494495832}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.42, y: 11, z: 7.554}
+  m_LocalPosition: {x: 12.08, y: 10, z: 2.554}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1255748167}
+  m_Father: {fileID: 9080496928096190199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &494495834
 MonoBehaviour:
@@ -1116,7 +1116,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3949980236720097459}
         m_TargetAssemblyTypeName: PlayerInOutElevator, Assembly-CSharp
-        m_MethodName: GoToFloor2
+        m_MethodName: GoToFloor1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1347,11 +1347,11 @@ Transform:
   m_GameObject: {fileID: 677375624}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.42, y: 1.275, z: 7.554}
+  m_LocalPosition: {x: 12.08, y: 0.27499998, z: 2.554}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1255748167}
+  m_Father: {fileID: 9080496928096190199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &677375626
 MonoBehaviour:
@@ -1921,11 +1921,11 @@ Transform:
   m_GameObject: {fileID: 880268404}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.42, y: 6, z: 7.554}
+  m_LocalPosition: {x: 12.08, y: 5, z: 2.554}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1255748167}
+  m_Father: {fileID: 9080496928096190199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &880268406
 MonoBehaviour:
@@ -1944,7 +1944,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3949980236720097459}
         m_TargetAssemblyTypeName: PlayerInOutElevator, Assembly-CSharp
-        m_MethodName: GoToFloor2
+        m_MethodName: GoToFloor3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2120,7 +2120,7 @@ Transform:
   m_GameObject: {fileID: 1166951621}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 0.05, z: 2.5}
+  m_LocalPosition: {x: -2.5, y: 0.03, z: 2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8406,15 +8406,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5178794833753208712, guid: 638e1b4ba74b85a4e9a4807d9f66adec, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 677375625}
-    - targetCorrespondingSourceObject: {fileID: 5178794833753208712, guid: 638e1b4ba74b85a4e9a4807d9f66adec, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 880268405}
-    - targetCorrespondingSourceObject: {fileID: 5178794833753208712, guid: 638e1b4ba74b85a4e9a4807d9f66adec, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 494495833}
-    - targetCorrespondingSourceObject: {fileID: 5178794833753208712, guid: 638e1b4ba74b85a4e9a4807d9f66adec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1794146177}
     - targetCorrespondingSourceObject: {fileID: 5178794833753208712, guid: 638e1b4ba74b85a4e9a4807d9f66adec, type: 3}
@@ -14552,6 +14543,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 494495833}
+  - {fileID: 880268405}
+  - {fileID: 677375625}
   - {fileID: 1255748167}
   - {fileID: 195453572228430950}
   - {fileID: 1710227034}
