@@ -28,14 +28,15 @@ public class EndDialogueNode : Unit
         for (int i = 0; i < exitCount; i++)
         {
             var nameInput = ValueInput<string>($"Variant Name {i + 1}", " ");
-
             variantNames.Add(nameInput);
 
-            var enter = ControlInput($"Dialogue {i + 1} Exit", flow => OnEnter(flow, i));
+            int capturedIndex = i; // Capture index properly
+            var enter = ControlInput($"Dialogue {i + 1} Exit", flow => OnEnter(flow, capturedIndex));
             enters.Add(enter);
 
             Succession(enter, exit);
         }
+
     }
 
 
@@ -49,6 +50,7 @@ public class EndDialogueNode : Unit
                 decisionName = flow.GetValue<string>(variantNames[index]);
             else
                 decisionName = " ";
+            Debug.Log($"Ending dialogue with decision: {decisionName} at index {index}");
             dialogueManager.SetSelectedDecision(new Decision(decisionName, index));
         }
 

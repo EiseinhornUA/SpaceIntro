@@ -44,6 +44,7 @@ public class StartDialogueNode : WaitUnit
 
 
         int index = dialogueManager.GetSelectedDecision().GetIndex();
+        Debug.Log($"Dialogue ended with decision index: {index}");
         index = Mathf.Clamp(index, 0, exitCount - 1);
         yield return exits[index];
     }
