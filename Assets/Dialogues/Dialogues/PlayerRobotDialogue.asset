@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: PlayerRobotDialogue
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":2249.634,"y":-67.99989},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":215.0,"y":-58.0},"guid":"19b2f7b3-e284-4b1b-8f95-7d210b029d8a","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"exitCount":1,"defaultValues":{"Variant
+      Name 1":null},"position":{"x":5069.0,"y":-103.0},"guid":"62612e39-d061-426e-ae55-2d85a1bcdaef","$version":"A","$type":"EndDialogueNode"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Can I fix it?","$type":"System.String"},"Character":{"$content":0,"$type":"UnityEngine.Object"}},"position":{"x":469.0,"y":-110.0},"guid":"5bd8d48f-1015-4dd3-9248-ccc311d54924","$version":"A","$type":"DialogueNode","$id":"13"},{"defaultValues":{"Dialogue
+      Line":{"$content":"How do I get there?","$type":"System.String"},"Character":{"$content":1,"$type":"UnityEngine.Object"}},"position":{"x":1261.0,"y":-78.0},"guid":"b24e7479-5389-4bc2-86a2-93a829bca644","$version":"A","$type":"DialogueNode","$id":"15"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Yes. Manual reboot required at the command bridge.","$type":"System.String"},"Character":{"$content":2,"$type":"UnityEngine.Object"}},"position":{"x":809.0,"y":-102.0},"guid":"ac5eddd9-5e8f-4d92-ac5d-9ffb3513e5c8","$version":"A","$type":"DialogueNode","$id":"17"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Route: Through corridor B-1 \u2192 Lab Alpha \u2192 Command
+      Bridge. Shortest path logged.","$type":"System.String"},"Character":{"$content":3,"$type":"UnityEngine.Object"}},"position":{"x":1630.0,"y":-77.0},"guid":"8f67b11c-2d2c-44f0-92ff-27b93e75bd73","$version":"A","$type":"DialogueNode","$id":"19"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Journal entry added","$type":"System.String"},"Character":{"$content":4,"$type":"UnityEngine.Object"}},"position":{"x":2078.0,"y":-74.0},"guid":"5eea1eb4-8a44-4651-8742-515d8cd3e68e","$version":"A","$type":"DialogueNode","$id":"21"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"13"},"destinationKey":"enter","guid":"51552d7a-6dfd-4034-bd45-9ffd389e47f2","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"exit","destinationUnit":{"$ref":"17"},"destinationKey":"enter","guid":"c3b13618-ff4c-4408-803c-ea542095760d","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"17"},"sourceKey":"exit","destinationUnit":{"$ref":"15"},"destinationKey":"enter","guid":"c706bdbb-e064-4173-b0f3-c118f712d228","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"exit","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"4c4d5d06-ae16-4ce5-a07d-29bf0efcc0a1","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"exit","destinationUnit":{"$ref":"21"},"destinationKey":"enter","guid":"5d8461ad-ca6f-4000-aa9a-2f09e257dd72","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: a732cbedab3694342af889fa6f6742e1, type: 2}
