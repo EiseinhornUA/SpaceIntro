@@ -3844,6 +3844,9 @@ MonoBehaviour:
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ProgrammingSpike","value":{"$content":10,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorSchematic","value":{"$content":11,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Lights","value":{"$content":12,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Interaction1","value":{"$content":13,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Interaction2","value":{"$content":14,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Interaction3","value":{"$content":15,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 5449569031936165080}
@@ -3859,6 +3862,9 @@ MonoBehaviour:
     - {fileID: 3435404068979985956}
     - {fileID: 4908500988809365340}
     - {fileID: 410087039}
+    - {fileID: 677375624}
+    - {fileID: 880268404}
+    - {fileID: 494495832}
 --- !u!4 &1364289608
 Transform:
   m_ObjectHideFlags: 0
@@ -4513,11 +4519,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 746446917416575491, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.25
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 746446917416575491, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.7000003
+      value: 4.4500003
       objectReference: {fileID: 0}
     - target: {fileID: 746446917416575491, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6982,6 +6988,10 @@ PrefabInstance:
     - target: {fileID: 4950033287718502, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64585779360771958, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
