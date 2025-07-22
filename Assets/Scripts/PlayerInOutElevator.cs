@@ -18,24 +18,27 @@ public class PlayerInOutElevator : MonoBehaviour
     private Animator animator;
     [SerializeField] private Transform characterParent;
 
-    private bool isPlayerMovingInFrontOfElevator = false;
-
     private Transform modelTransform;
 
-    public async UniTask RotatePlayerToInside()
+    public async UniTask RotatePlayerTowardsElevator()
     {
-        modelTransform = characterParent.GetChild(1).GetChild(0).transform;
+        modelTransform = GetModelTransform();
 
         Vector3 direction = (playersPointInsideElevator.position - modelTransform.transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction);
-        targetRotation *= Quaternion.Euler(0, 0f, 0);
+        //targetRotation *= Quaternion.Euler(0, 0f, 0);
 
         await modelTransform
             .DORotateQuaternion(targetRotation, 0.25f)
             .AsyncWaitForCompletion();
     }
 
-    public async UniTask RotatePlayerToOutside()
+    private Transform GetModelTransform()
+    {
+        return characterParent.GetChild(1).GetChild(0).transform;
+    }
+
+    public async UniTask RotatePlayerTowardExitOfElevator()
     {
         Vector3 direction = (playersPointOutsideElevator.position - modelTransform.transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction);
@@ -46,30 +49,14 @@ public class PlayerInOutElevator : MonoBehaviour
             .AsyncWaitForCompletion();
     }
 
-    private void Update()
-    {
-        animator = characterParent.GetChild(1).GetChild(0).GetComponent<Animator>();
-
-        if (isPlayerMovingInFrontOfElevator == true)
-        {
-            GameObject.FindAnyObjectByType<AnimationHandler>().enabled = false;
-            animator.SetFloat("HorizontalSpeed", 1f);
-        }
-        else
-        {
-            GameObject.FindAnyObjectByType<AnimationHandler>().enabled = true;
-        }
-    }
-
 
     public async UniTask MovePlayerToFloor(int floorFrom, int floorTo)
     {
         await GetCurrentElevatorPanel(floorFrom).CallElevator();
 
-        //characterParent.rotation = 
-        isPlayerMovingInFrontOfElevator = true;
-        await RotatePlayerToInside();
-        animator.SetFloat("HorizontalSpeed", 1f);
+        await RotatePlayerTowardsElevator();
+        EnablePlayerControls(false);
+        GetAnimationHandler().SetHorizontalSpeed(1f);
 
         player.SetGravityEnabled(false);
 
@@ -77,12 +64,13 @@ public class PlayerInOutElevator : MonoBehaviour
 
         await player.transform.DOMove(playerPositionInsideElevator, 1.0f);
 
+        await RotatePlayerTowardExitOfElevator();
+
         player.transform.SetParent(elevator.transform);
 
         player.SetGravityEnabled(true);
 
-        animator.SetFloat("HorizontalSpeed", 0f);
-        isPlayerMovingInFrontOfElevator = false;
+        GetAnimationHandler().SetHorizontalSpeed(0f);
 
         await elevatorButtonsInside.ElevateToFloor(floorTo);
 
@@ -90,17 +78,26 @@ public class PlayerInOutElevator : MonoBehaviour
 
         player.SetGravityEnabled(false);
 
-        isPlayerMovingInFrontOfElevator = true;
-        await RotatePlayerToOutside();
-        animator.SetFloat("HorizontalSpeed", 1f);
+        GetAnimationHandler().SetHorizontalSpeed(1f);
 
         Vector3 destinationOutSideElevator = playersPointOutsideElevator.position;
         await player.transform.DOMove(destinationOutSideElevator, 1.0f).AsyncWaitForCompletion();
 
         player.SetGravityEnabled(true);
 
-        isPlayerMovingInFrontOfElevator = false;
-        animator.SetFloat("HorizontalSpeed", 0f);
+        GetAnimationHandler().SetHorizontalSpeed(0f);
+        EnablePlayerControls(true);
+    }
+
+    private static void EnablePlayerControls(bool enabled)
+    {
+        GameObject.FindAnyObjectByType<PlayerRotator>().enabled = enabled;
+        GameObject.FindAnyObjectByType<Player>().enabled = enabled;
+    }
+
+    private static AnimationHandler GetAnimationHandler()
+    {
+        return GameObject.FindAnyObjectByType<AnimationHandler>();
     }
 
     private ElevatorControlPanel GetCurrentElevatorPanel(int currentFloor)
@@ -127,5 +124,11 @@ public class PlayerInOutElevator : MonoBehaviour
     public void GoToFloor3()
     {
         MovePlayerToFloor(1, 2).Forget();
+    }
+
+    [ContextMenu("RotateTowardsElevator")]
+    private void RotateTowardsElevator()
+    {
+        RotatePlayerTowardsElevator().Forget();
     }
 }
