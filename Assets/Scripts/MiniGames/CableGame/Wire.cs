@@ -7,31 +7,36 @@ using UnityEngine.UI;
 public class Wire : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Image image;
+    private CableMiniGame cableMiniGame;
     private Transform parentAfterDrag;
 
     private void Start()
     {
         image = GetComponent<Image>();
+        cableMiniGame = FindObjectOfType<CableMiniGame>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        image.raycastTarget = false;
+        cableMiniGame.DisableRaycasts();
+        transform.SetParent(cableMiniGame.transform);
         parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
     }
-    
+
     public void OnDrag(PointerEventData eventData)
     {
-        // Use eventData.position instead of Input.mousePosition for better compatibility with UI events
         transform.position = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        image.raycastTarget = true;
+        cableMiniGame.EnableRaycasts();
         transform.SetParent(parentAfterDrag);
     }
 
-    internal void SetParentAfterDrag(Transform transform) => parentAfterDrag = transform;
+    internal WireSlot GetParentSlot() => transform.parent.GetComponent<WireSlot>();
+
+    internal void DisableRaycast() => image.raycastTarget = false;
+
+    internal void EnableRaycast() => image.raycastTarget = true;
 }
