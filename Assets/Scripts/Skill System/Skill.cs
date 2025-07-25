@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill : MonoBehaviour
+[System.Serializable]
+public class Skill
 {
-    public string skillName { get; set; }
-    public int level { get; set; }
+
+    [field: SerializeField] public string skillName { get; set; }
+    [field: SerializeField] public int level { get; set; }
 
     public Skill(SkillSO skillSO)
     {
