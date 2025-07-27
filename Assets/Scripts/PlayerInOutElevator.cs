@@ -126,6 +126,11 @@ public class PlayerInOutElevator : MonoBehaviour
         MovePlayerToFloor(1, 2).Forget();
     }
 
+    public void GoToFloor1From2()
+    {
+        MovePlayerToFloor(1, 0).Forget();
+    }
+
     [ContextMenu("RotateTowardsElevator")]
     private void RotateTowardsElevator()
     {
