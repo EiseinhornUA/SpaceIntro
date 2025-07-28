@@ -2,8 +2,8 @@
 
 public static class ItemExtensions
 {
-    public static Item AsItem(this GameObject gameObject)
+    public static InventoryItem AsInventoryItem(this ItemSO ItemSO)
     {
-        return new Item(gameObject);
+        return new InventoryItem(ItemSO);
     }
 }
