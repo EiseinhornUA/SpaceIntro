@@ -2,24 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 
 
 public class ItemContainer : MonoBehaviour
 {
 
-    [SerializeField] private List<Item> items = new();
+    [SerializeField] private List<InventoryItem> items = new();
+    [SerializeField] private InventoryView inventoryView;
 
-    public void AddItem(GameObject item)
+    public void AddItem(ItemSO itemSO)
     {
-        if (item == null)
+        if (itemSO == null)
         {
-            throw new System.ArgumentNullException(nameof(item), "Item cannot be null.");
+            throw new System.ArgumentNullException(nameof(itemSO), "Item cannot be null.");
         }
-        items.Add(item.AsItem());
+        items.Add(itemSO.AsInventoryItem());
+        inventoryView.AddItem(itemSO.AsInventoryItem());
     }
-    public void RemoveItem(GameObject item) => items.Remove(item.AsItem());
+    public void RemoveItem(ItemSO itemSO) => items.Remove(itemSO.AsInventoryItem());
 
-    public Item GetItem(GameObject gameObject)
+    public InventoryItem GetItem(GameObject gameObject)
     {
         return items.Find(item => item.itemName == gameObject.name);
     }

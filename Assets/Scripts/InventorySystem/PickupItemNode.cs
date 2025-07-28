@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class PickupItemNode : Unit
 {
     private ValueInput gameObjectInput;
+    private ValueInput itemInput;
 
     private ControlInput enter;
     private ControlOutput exit;
@@ -17,6 +18,7 @@ public class PickupItemNode : Unit
         exit = ControlOutput("");
 
         gameObjectInput = ValueInput<GameObject>("gameObject", default);
+        itemInput = ValueInput<ItemSO>("itemSO", default);
 
         Succession(enter, exit);
     }
@@ -25,13 +27,13 @@ public class PickupItemNode : Unit
     {
         ItemContainer itemContainer = GameObject.FindObjectOfType<ItemContainer>(includeInactive: true);
 
-        GameObject gameObject = flow.GetValue<GameObject>(gameObjectInput);
 
-        if (itemContainer != null)
+        if (itemContainer)
         {
-            itemContainer.AddItem(gameObject);
-            gameObject.SetActive(false);
-            Debug.Log($"Item {gameObject.name} picked up.");
+            ItemSO item = flow.GetValue<ItemSO>(itemInput);
+            itemContainer.AddItem(item);
+            flow.GetValue<GameObject>(gameObjectInput).SetActive(false);
+            Debug.Log($"Item {item.name} picked up.");
         }
 
         return exit;
