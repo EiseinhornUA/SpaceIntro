@@ -7,12 +7,15 @@ using UnityEngine;
 
 public class InventoryView : MonoBehaviour
 {
+    [Header("Inventory References")]
     private List<ItemSlot> itemSlots = new List<ItemSlot>();
     [SerializeField] private ItemSlot itemSlotPrefab;
     [SerializeField] private Transform itemsParent;
     [SerializeField] private GameObject ItemDescriptionPanel;
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemDescriptionText;
+    [Header("Task References")]
+    [SerializeField] private TaskView taskView;
 
     private void Start()
     {
@@ -54,5 +57,11 @@ public class InventoryView : MonoBehaviour
         item.SetItem(inventoryItem);
         itemSlots.Add(item);
         item.OnItemSelected += OnItemSelect;
+    }
+
+    internal void SetTaskText(string text)
+    {
+        if (!taskView) return;
+        taskView.SetTaskText(text);
     }
 }
