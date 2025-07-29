@@ -18,6 +18,7 @@ public class NumPad: MonoBehaviour
     [SerializeField] private TextMeshProUGUI symbolEntry;
     [SerializeField] private string password;
     [SerializeField] private UnityEvent onAccessGranted;
+    [SerializeField] private GameObject playerControls;
 
     private void Awake()
     {
@@ -37,6 +38,7 @@ public class NumPad: MonoBehaviour
                 await Cysharp.Threading.Tasks.UniTask.Delay(TimeSpan.FromSeconds(0.75f));
                 symbolEntry.text = "";
                 onAccessGranted.Invoke();
+                playerControls.SetActive(true);
             }
 
             else
