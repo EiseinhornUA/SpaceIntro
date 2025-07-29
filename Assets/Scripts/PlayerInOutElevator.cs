@@ -3,7 +3,6 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using System.Collections.Generic;
-using UnityEditor.U2D.Animation;
 
 public class PlayerInOutElevator : MonoBehaviour
 {
