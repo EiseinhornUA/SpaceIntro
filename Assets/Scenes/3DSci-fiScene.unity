@@ -4846,6 +4846,10 @@ PrefabInstance:
       value: -34.0437
       objectReference: {fileID: 0}
     - target: {fileID: 1487784079457760899, guid: 08d92fd44ef77594a9847a4048db6a6e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487784079457760899, guid: 08d92fd44ef77594a9847a4048db6a6e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.00036621094
       objectReference: {fileID: 0}
@@ -15653,6 +15657,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1472943499}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!58 &1309653107
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -16910,6 +16926,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4660784718858138, guid: c473ddc8c27cd5844a39f065961816d0, type: 3}
   m_PrefabInstance: {fileID: 1472536348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1472943499 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6986329510689732345, guid: 08d92fd44ef77594a9847a4048db6a6e, type: 3}
+  m_PrefabInstance: {fileID: 342554796}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1486355001 stripped
 Transform:
@@ -19547,6 +19568,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1472943499}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1864418530
 MonoBehaviour:

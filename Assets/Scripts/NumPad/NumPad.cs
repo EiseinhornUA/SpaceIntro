@@ -27,14 +27,23 @@ public class NumPad: MonoBehaviour
         }
     }
 
-    private void OnButtonClick(string symbol)
+    private async void OnButtonClick(string symbol)
     {
         if (symbol == "#")
         {
             if (symbolEntry.text == password)
             {
+                symbolEntry.text = "SUCCESS";
+                await Cysharp.Threading.Tasks.UniTask.Delay(TimeSpan.FromSeconds(0.75f));
                 symbolEntry.text = "";
                 onAccessGranted.Invoke();
+            }
+
+            else
+            {
+                symbolEntry.text = "ERROR";
+                await Cysharp.Threading.Tasks.UniTask.Delay(TimeSpan.FromSeconds(0.75f));
+                symbolEntry.text = "";
             }
 
             return;
