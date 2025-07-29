@@ -20,6 +20,21 @@ public class ItemContainer : MonoBehaviour
         items.Add(itemSO.AsInventoryItem());
         inventoryView.AddItem(itemSO.AsInventoryItem());
     }
+
+    internal bool HasItem(string name)
+    {
+        return items.Contains(items.Find(item => item.itemName == name));
+    }
+
+    internal bool HasItem(ItemSO itemSO)
+    {
+        if (itemSO == null)
+        {
+            throw new System.ArgumentNullException(nameof(itemSO), "Item cannot be null.");
+        }
+        return items.Contains(itemSO.AsInventoryItem());
+    }
+
     public void RemoveItem(ItemSO itemSO) => items.Remove(itemSO.AsInventoryItem());
 
     public InventoryItem GetItem(GameObject gameObject)
