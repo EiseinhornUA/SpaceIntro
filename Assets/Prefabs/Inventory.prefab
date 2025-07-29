@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 7753992936644179418}
   - component: {fileID: 5788583207024934733}
   m_Layer: 5
-  m_Name: SeparatorLine (1)
+  m_Name: SeparatorLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,7 +167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4064479695973934208
 RectTransform:
   m_ObjectHideFlags: 0
@@ -376,7 +376,7 @@ GameObject:
   - component: {fileID: 7878157380859234494}
   - component: {fileID: 1030585502053638308}
   m_Layer: 5
-  m_Name: CurrentTask
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1209,7 +1209,7 @@ MonoBehaviour:
   ItemDescriptionPanel: {fileID: 4064479695973934209}
   itemNameText: {fileID: 4064479696735359270}
   itemDescriptionText: {fileID: 6344698736881394970}
-  taskView: {fileID: 0}
+  taskView: {fileID: 1825033261915684730}
 --- !u!1 &8054532303939149272
 GameObject:
   m_ObjectHideFlags: 0
@@ -3115,6 +3115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5483772537440939186}
+  - component: {fileID: 1825033261915684730}
   m_Layer: 5
   m_Name: CurrentTaskPanel
   m_TagString: Untagged
@@ -3143,3 +3144,16 @@ RectTransform:
   m_AnchoredPosition: {x: 292.4995, y: 0}
   m_SizeDelta: {x: 584.999, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1825033261915684730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893791221291342100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7a5cf743651bf4dbe15ad9c007f1d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskText: {fileID: 1030585502053638308}
