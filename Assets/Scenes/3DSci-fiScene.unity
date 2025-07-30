@@ -5438,6 +5438,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 843488683}
     m_Modifications:
     - target: {fileID: 1182285933139604, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
+      propertyPath: m_Name
+      value: DoorMoveablePart
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182285933139604, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
@@ -5447,7 +5451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1543695114780030, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
       propertyPath: m_Name
-      value: SM_Bld_Wall_Doorframe_02 (1)
+      value: EngineeringDoor
       objectReference: {fileID: 0}
     - target: {fileID: 1543695114780030, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
       propertyPath: m_Layer
@@ -7048,6 +7052,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorTerminal (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3047820974091998313, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1886455284}
     - target: {fileID: 8607237514919010369, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.28659
@@ -9552,6 +9560,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8607237514919010369, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947848986459187544, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -14726,6 +14738,9 @@ MonoBehaviour:
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ElevatorInteraction1","value":{"$content":13,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ElevatorInteraction2","value":{"$content":14,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ElevatorInteraction3","value":{"$content":15,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"CryoDoor","value":{"$content":16,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"SlidingDoor,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"EngineeringDoor","value":{"$content":17,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorInteraction","value":{"$content":18,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 5449569031936165080}
@@ -14744,6 +14759,9 @@ MonoBehaviour:
     - {fileID: 323636012}
     - {fileID: 114685169}
     - {fileID: 207731719}
+    - {fileID: 1613792375}
+    - {fileID: 1886455279}
+    - {fileID: 5696958963402244031}
 --- !u!4 &1364289608
 Transform:
   m_ObjectHideFlags: 0
@@ -15665,8 +15683,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2563638071570994010, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
       propertyPath: m_Name
-      value: DoorTerminal (1)
+      value: DoorTerminal
       objectReference: {fileID: 0}
+    - target: {fileID: 3047820974091998313, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1613792375}
     - target: {fileID: 8607237514919010369, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.286591
@@ -15970,6 +15992,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4944680388452134, guid: 3deace0cd22ccd54b809b039e70ff8f6, type: 3}
   m_PrefabInstance: {fileID: 28447630043071593}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1613792375 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6212031214156801384, guid: 17b0fd45f570237469afc9d8ef55dcad, type: 3}
+  m_PrefabInstance: {fileID: 8589605161386857451}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e00e230dd223ea41904bc7632899d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1620019457 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4837895800271798, guid: 103cc39f51141714b8910daa066c1d84, type: 3}
@@ -17875,6 +17908,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8947848986459187544, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18369,7 +18406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openLength: 3
-  <unlocked>k__BackingField: 1
+  <locked>k__BackingField: 0
   isOpen: 0
   duration: 0.5
   doorMoveablePart: {fileID: 1309923841}
@@ -27691,7 +27728,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 954153f8b2c2eb24db32767ef2d027fa, type: 3}
       propertyPath: m_LocalScale.x
-      value: -15
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 954153f8b2c2eb24db32767ef2d027fa, type: 3}
       propertyPath: m_LocalScale.y
@@ -27703,7 +27740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 954153f8b2c2eb24db32767ef2d027fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5901966
+      value: -2.590334
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 954153f8b2c2eb24db32767ef2d027fa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27711,19 +27748,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 954153f8b2c2eb24db32767ef2d027fa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.035282
+      value: 5.041944
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 954153f8b2c2eb24db32767ef2d027fa, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.36024112
+      value: -0.38268325
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 954153f8b2c2eb24db32767ef2d027fa, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 954153f8b2c2eb24db32767ef2d027fa, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.93285924
+      value: 0.9238796
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 954153f8b2c2eb24db32767ef2d027fa, type: 3}
       propertyPath: m_LocalRotation.z
@@ -27735,7 +27772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 954153f8b2c2eb24db32767ef2d027fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 137.77
+      value: 225
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 954153f8b2c2eb24db32767ef2d027fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -29011,6 +29048,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorTerminal
       objectReference: {fileID: 0}
+    - target: {fileID: 3047820974091998313, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1613792375}
+    - target: {fileID: 3047820974091998313, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenDoor
+      objectReference: {fileID: 0}
     - target: {fileID: 8607237514919010369, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -29051,6 +29096,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8947848986459187544, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29059,6 +29108,11 @@ PrefabInstance:
 --- !u!1 &5696958963402244030 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2563638071570994010, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
+  m_PrefabInstance: {fileID: 5696958963402244029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5696958963402244031 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8947848986459187544, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
   m_PrefabInstance: {fileID: 5696958963402244029}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5697771774831066516
@@ -32402,7 +32456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7028927436739002195, guid: 17b0fd45f570237469afc9d8ef55dcad, type: 3}
       propertyPath: m_Name
-      value: Door
+      value: CryoDoor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

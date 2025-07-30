@@ -4,10 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenCloseDoor : MonoBehaviour
+public class SlidingDoor : MonoBehaviour
 {
     [SerializeField] private float openLength = 3.0f;
-    [field:SerializeField] public bool unlocked { get; set; } = true;
+    [field:SerializeField] public bool locked { get; set; } = true;
     [SerializeField] private bool isOpen = false;
     [SerializeField] private float duration = 0.5f;
     [SerializeField] private GameObject doorMoveablePart;
@@ -19,9 +19,12 @@ public class OpenCloseDoor : MonoBehaviour
     }
 
     [ContextMenu("Open Door")]
-    public async UniTask OpenDoor()
+
+    public void OpenDoor() => OpenDoorAsync().Forget();
+
+    public async UniTask OpenDoorAsync()
     {
-        if (!unlocked)
+        if (locked)
         {
             return;
         }
@@ -33,9 +36,12 @@ public class OpenCloseDoor : MonoBehaviour
     }
 
     [ContextMenu("Close Door")]
-    public async UniTask CloseDoor()
+
+    public void CloseDoor() => CloseDoorAsync().Forget();
+
+    public async UniTask CloseDoorAsync()
     {
-        if (!unlocked)
+        if (locked)
         {
             return;
         }
