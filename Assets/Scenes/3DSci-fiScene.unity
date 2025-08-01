@@ -11222,6 +11222,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 591323406657748123, guid: 97f5c00f8fb9f8e44a3672d2ccc50281, type: 3}
   m_PrefabInstance: {fileID: 4121798818476440771}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &984878594 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1592204196245504597, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
+  m_PrefabInstance: {fileID: 1767369789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &987320605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4790190688571470, guid: c6ca24f648280eb42aacc73b163e0f98, type: 3}
@@ -14399,16 +14404,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sci-fiRobot
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 216b398d1b81f5742829cc69e8e216d3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 216b398d1b81f5742829cc69e8e216d3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1324533531}
   m_SourcePrefab: {fileID: 100100000, guid: 216b398d1b81f5742829cc69e8e216d3, type: 3}
 --- !u!1 &1324533527 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 216b398d1b81f5742829cc69e8e216d3, type: 3}
   m_PrefabInstance: {fileID: 1324533526}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1324533531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324533527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ec885cafe253b4f8c82e3abd2532f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 984878594}
+  followDistance: 2.5
+  followSpeed: 10
+  offsetX: 0
+  offsetY: 1.5
+  offsetZ: -0.5
+  frequency: 0.5
+  amplitude: 0.01
 --- !u!1 &1327203535
 GameObject:
   m_ObjectHideFlags: 0
