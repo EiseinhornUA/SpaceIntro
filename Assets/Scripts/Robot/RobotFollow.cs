@@ -34,6 +34,8 @@ public class RobotFollow : MonoBehaviour
         isRobotOn = true;
     }
 
+    public bool IsRobotOn() => isRobotOn;
+
     private void RotateTowardsPlayer()
     {
         transform.LookAt(player.position + new Vector3(0f, offsetY, 1f));

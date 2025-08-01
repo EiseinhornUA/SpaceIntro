@@ -3,18 +3,23 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class PlayerInOutElevator : MonoBehaviour
 {
+    [SerializeField] private float playerWalkingDuration = 1.0f;
     [SerializeField] private Elevator elevator;
     [SerializeField] private List<ElevatorControlPanel> elevatorControlPanels;
     [SerializeField] private ElevatorButtonsInside elevatorButtonsInside;
     [SerializeField] private Player player;
+    [SerializeField] private RobotFollow robot;
     [SerializeField] private Animator player_animator;
     [SerializeField] private Transform playersPointOutsideElevator;
     [SerializeField] private Transform playersPointInsideElevator;
-    
-    private Animator animator;
+    [SerializeField] private Transform robotsPointOutsideElevator;
+    [SerializeField] private Transform robotsPointInsideElevator;
+    [SerializeField] private float robotFlyingSpeed = 20f;
+    [SerializeField] private float robotRotateSpeed = 0.3f;
     [SerializeField] private Transform characterParent;
 
     private Transform modelTransform;
@@ -53,39 +58,126 @@ public class PlayerInOutElevator : MonoBehaviour
     {
         await GetCurrentElevatorPanel(floorFrom).CallElevator();
 
+        await MoveRobotToElevator();
+
         await RotatePlayerTowardsElevator();
         EnablePlayerControls(false);
-        GetAnimationHandler().SetHorizontalSpeed(1f);
+
+        StartPlayerWalkingAnimation();
 
         player.SetGravityEnabled(false);
 
         Vector3 playerPositionInsideElevator = playersPointInsideElevator.position;
 
-        await player.transform.DOMove(playerPositionInsideElevator, 1.0f);
+        await player.transform.DOMove(playerPositionInsideElevator, playerWalkingDuration);
 
         await RotatePlayerTowardExitOfElevator();
 
         player.transform.SetParent(elevator.transform);
+        MakeRobotFollowElevator();
 
         player.SetGravityEnabled(true);
-
-        GetAnimationHandler().SetHorizontalSpeed(0f);
+        
+        StopPlayerWalkingAnimation();
 
         await elevatorButtonsInside.ElevateToFloor(floorTo);
 
         player.transform.SetParent(null);
+        StopRobotFolowingElevator();
 
         player.SetGravityEnabled(false);
 
-        GetAnimationHandler().SetHorizontalSpeed(1f);
+        StartPlayerWalkingAnimation();
 
         Vector3 destinationOutSideElevator = playersPointOutsideElevator.position;
-        await player.transform.DOMove(destinationOutSideElevator, 1.0f).AsyncWaitForCompletion();
+        await player.transform.DOMove(destinationOutSideElevator, playerWalkingDuration).AsyncWaitForCompletion();
 
         player.SetGravityEnabled(true);
 
-        GetAnimationHandler().SetHorizontalSpeed(0f);
+        StopPlayerWalkingAnimation();
+        await MoveRobotOutOfElevator();
         EnablePlayerControls(true);
+    }
+
+    private void StopRobotFolowingElevator()
+    {
+        if (robot.IsRobotOn())
+        {
+            robot.transform.SetParent(null);
+        }
+    }
+
+    private void MakeRobotFollowElevator()
+    {
+        if (robot.IsRobotOn())
+        {
+            robot.transform.SetParent(elevator.transform);
+        }
+    }
+
+    private void StopPlayerWalkingAnimation()
+    {
+            GetAnimationHandler().SetHorizontalSpeed(0f);
+
+    }
+
+    private static void StartPlayerWalkingAnimation()
+    {
+        GetAnimationHandler().SetHorizontalSpeed(1f);
+    }
+
+    public async UniTask MoveRobotToElevator()
+    {
+        if (!robot.IsRobotOn())
+            return;
+
+        DisablePlayerFollowing();
+        await RotateRobotToOutsidePoint();
+        //await MoveRobotToOutsidePoint();
+        Vector3[] path = new[] { robotsPointOutsideElevator.position, robotsPointInsideElevator.position };
+        RotateRobotToInsidePoint().Forget();
+        await robot.transform.DOPath(path, robotFlyingSpeed).SetSpeedBased().SetEase(Ease.InOutSine);
+        //await MoveRobotToInsidePoint();
+        await RotateRobotToOutsidePoint();
+    }
+
+    public async UniTask MoveRobotOutOfElevator()
+    {
+        if (robot.IsRobotOn())
+        {
+            await MoveRobotToOutsidePoint();
+            EnablePlayerFollowing();
+        }
+    }
+
+    public void DisablePlayerFollowing()
+    {
+        robot.enabled = false;
+    }
+
+    public async UniTask RotateRobotToOutsidePoint()
+    {
+        await robot.transform.DOLookAt(robotsPointOutsideElevator.position, robotRotateSpeed);
+    }
+
+    public async UniTask MoveRobotToOutsidePoint()
+    {
+        await robot.transform.DOMove(robotsPointOutsideElevator.position, robotFlyingSpeed).SetSpeedBased();
+    }
+
+    public async UniTask RotateRobotToInsidePoint()
+    {
+        await robot.transform.DOLookAt(robotsPointInsideElevator.position, robotRotateSpeed);
+    }
+
+    public async UniTask MoveRobotToInsidePoint()
+    {
+        await robot.transform.DOMove(robotsPointInsideElevator.position, robotFlyingSpeed).SetSpeedBased();
+    }
+
+    public void EnablePlayerFollowing()
+    {
+        robot.enabled = true;
     }
 
     private static void EnablePlayerControls(bool enabled)
