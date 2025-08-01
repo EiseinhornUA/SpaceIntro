@@ -1,0 +1,92 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
+
+public class CharacterSelector : MonoBehaviour
+{
+    #region SerializeFields
+    [SerializeField] private CharacterContainer characterContainer;
+    [SerializeField] private TextMeshProUGUI characterNameText;
+    [SerializeField] private TextMeshProUGUI characterDescriptionText;
+    [SerializeField] private TMP_InputField characterNameInputField;
+    [SerializeField] private GameObject enterNamePopup;
+    [SerializeField] private Button nextButton;
+    [SerializeField] private Button previousButton;
+    [SerializeField] private Button selectButton;
+    [SerializeField] private Button changeHairColorButton;
+    [SerializeField] private HairColorChanger hairColorChanger;
+    #endregion // SerializeField
+
+    private List<GameObject> characters = new();
+    private List<CharacterRoleSO> roles = new();
+
+    private int selectedIndex = 0;
+
+    private void Start()
+    {
+        nextButton.onClick.AddListener(SelectNext);
+        previousButton.onClick.AddListener(SelectPrevious);
+        selectButton.onClick.AddListener(Select);
+        changeHairColorButton.onClick.AddListener(ChangeColor);
+
+        foreach (var character in characterContainer.GetCharacters())
+        {
+            GameObject instance = Instantiate(character, transform);
+            characters.Add(instance);
+            instance.SetActive(false);
+        }
+        roles.AddRange(characterContainer.GetRoles());
+        characters[selectedIndex].SetActive(true);
+        SetCharacterName(roles[selectedIndex].GetName());
+        SetDescription(roles[selectedIndex].GetDescription());
+    }
+
+    private void ChangeColor()
+    {
+        hairColorChanger.ChangeColor();
+    }
+
+    private void SelectNext()
+    {
+        Hide(selectedIndex);
+        selectedIndex = (selectedIndex + 1) % characterContainer.Count;
+        Show(selectedIndex);
+        SetCharacterName(roles[selectedIndex].GetName());
+        SetDescription(roles[selectedIndex].GetDescription());
+    }
+
+    private void SelectPrevious()
+    {
+        Hide(selectedIndex);
+        selectedIndex = (selectedIndex - 1 + characterContainer.Count) % characterContainer.Count;
+        Show(selectedIndex);
+        SetCharacterName(roles[selectedIndex].GetName());
+        SetDescription(roles[selectedIndex].GetDescription());
+    }
+
+    private void Select()
+    {
+        if (string.IsNullOrWhiteSpace(characterNameInputField.text))
+        {
+            enterNamePopup.SetActive(true);
+            return;
+        }
+        PlayerPrefs.SetString("CharacterName", characterNameInputField.text);
+        PlayerPrefs.SetInt("SelectedCharacter", selectedIndex);
+        SceneManager.LoadScene("3DSci-fiScene");
+    }
+
+    private void SetCharacterName(string name) => characterNameText.text = name;
+    private void SetDescription(string text) => characterDescriptionText.text = text;
+
+
+    private void Show(int index) => characters[index].SetActive(true);
+    private void Hide(int index) => characters[index].SetActive(false);
+}
