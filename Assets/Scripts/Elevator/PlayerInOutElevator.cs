@@ -54,14 +54,14 @@ public class PlayerInOutElevator : MonoBehaviour
     }
 
 
-    public async UniTask MovePlayerToFloor(int floorFrom, int floorTo)
+    public async UniTask MoveEntitiesToFloor(int floorFrom, int floorTo)
     {
+        EnablePlayerControls(false);
         await GetCurrentElevatorPanel(floorFrom).CallElevator();
 
         await MoveRobotToElevator();
 
         await RotatePlayerTowardsElevator();
-        EnablePlayerControls(false);
 
         StartPlayerWalkingAnimation();
 
@@ -152,7 +152,7 @@ public class PlayerInOutElevator : MonoBehaviour
 
     public void DisablePlayerFollowing()
     {
-        robot.enabled = false;
+        robot.TurnOffRobotFollowing();
     }
 
     public async UniTask RotateRobotToOutsidePoint()
@@ -177,7 +177,7 @@ public class PlayerInOutElevator : MonoBehaviour
 
     public void EnablePlayerFollowing()
     {
-        robot.enabled = true;
+        robot.TurnOnRobotFollowing();
     }
 
     private static void EnablePlayerControls(bool enabled)
@@ -200,26 +200,26 @@ public class PlayerInOutElevator : MonoBehaviour
 
     public void GoToFloor1()
     {
-        MovePlayerToFloor(2, 0).Forget();
+        MoveEntitiesToFloor(2, 0).Forget();
     }
     
     [ContextMenu("GoToFloor2")]
 
     public void GoToFloor2()
     {
-        MovePlayerToFloor(0, 1).Forget();
+        MoveEntitiesToFloor(0, 1).Forget();
     }
 
     [ContextMenu("GoToFloor3")]
 
     public void GoToFloor3()
     {
-        MovePlayerToFloor(1, 2).Forget();
+        MoveEntitiesToFloor(1, 2).Forget();
     }
 
     public void GoToFloor1From2()
     {
-        MovePlayerToFloor(1, 0).Forget();
+        MoveEntitiesToFloor(1, 0).Forget();
     }
 
     [ContextMenu("RotateTowardsElevator")]

@@ -17,21 +17,36 @@ public class RobotFollow : MonoBehaviour
     [SerializeField] private float frequency = 0.5f; // Frequency of the idle movement
     [SerializeField] private float amplitude = 0.01f; // Speed of the idle movement
     private bool isRobotOn = false;
+    private bool isFollowingOn = true;
     private float yzSpeedNormalizer = 0.2f;
 
     private void Update()
     {
         if (isRobotOn)
         {
-            FollowPlayer();
             ApplyIdleMovement();
-            RotateTowardsPlayer();
+
+            if (isFollowingOn)
+            {
+                FollowPlayer();
+                RotateTowardsPlayer();
+            }
         }
     }
 
     public void TurnOnRobot()
     {
         isRobotOn = true;
+    }
+
+    public void TurnOnRobotFollowing()
+    {
+        isFollowingOn = true;
+    }
+
+    public void TurnOffRobotFollowing()
+    {
+        isFollowingOn = false;
     }
 
     public bool IsRobotOn() => isRobotOn;
@@ -44,9 +59,9 @@ public class RobotFollow : MonoBehaviour
     private void ApplyIdleMovement()
     {
         transform.position += new Vector3(
-            0f, // Small horizontal movement
+            0f,
             Mathf.Cos(Time.fixedTime * 2f * (float)Math.PI * frequency) * amplitude,
-            0f); // No movement in the Z direction
+            0f);
     }
 
     public void FollowPlayer()
