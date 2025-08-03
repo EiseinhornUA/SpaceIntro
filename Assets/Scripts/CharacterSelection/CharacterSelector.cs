@@ -1,13 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class CharacterSelector : MonoBehaviour
 {
+    #region SerializeFields
     [SerializeField] private CharacterContainer characterContainer;
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI characterDescriptionText;
@@ -16,6 +20,10 @@ public class CharacterSelector : MonoBehaviour
     [SerializeField] private Button nextButton;
     [SerializeField] private Button previousButton;
     [SerializeField] private Button selectButton;
+    [SerializeField] private Button changeHairColorButton;
+    [SerializeField] private HairColorChanger hairColorChanger;
+    #endregion // SerializeField
+
     private List<GameObject> characters = new();
     private List<CharacterRoleSO> roles = new();
 
@@ -26,6 +34,7 @@ public class CharacterSelector : MonoBehaviour
         nextButton.onClick.AddListener(SelectNext);
         previousButton.onClick.AddListener(SelectPrevious);
         selectButton.onClick.AddListener(Select);
+        changeHairColorButton.onClick.AddListener(ChangeColor);
 
         foreach (var character in characterContainer.GetCharacters())
         {
@@ -37,6 +46,11 @@ public class CharacterSelector : MonoBehaviour
         characters[selectedIndex].SetActive(true);
         SetCharacterName(roles[selectedIndex].GetName());
         SetDescription(roles[selectedIndex].GetDescription());
+    }
+
+    private void ChangeColor()
+    {
+        hairColorChanger.ChangeColor();
     }
 
     private void SelectNext()
