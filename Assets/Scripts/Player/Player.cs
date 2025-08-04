@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
+using UnityEditor.U2D.Animation;
 
 [RequireComponent (typeof (Controller2D), (typeof (AnimationHandler)))]
 public class Player : MonoBehaviour {
@@ -204,5 +205,21 @@ public class Player : MonoBehaviour {
             gravity = 0f;
             timeToJumpApex = 999f;
         }
+    }
+
+    public void EnableControls(bool enabled)
+    {
+        GameObject.FindAnyObjectByType<PlayerRotator>().enabled = enabled;
+        this.enabled = enabled;
+    }
+
+    public Transform GetModelTransform()
+    {
+        return transform.GetChild(1).GetChild(0).transform;
+    }
+
+    public AnimationHandler GetAnimationHandler()
+    {
+        return GameObject.FindAnyObjectByType<AnimationHandler>();
     }
 }

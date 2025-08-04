@@ -26,7 +26,7 @@ public class PlayerInOutElevator : MonoBehaviour
 
     public async UniTask RotatePlayerTowardsElevator()
     {
-        modelTransform = GetModelTransform();
+        modelTransform = player.GetModelTransform();
 
         Vector3 direction = (playersPointInsideElevator.position - modelTransform.transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction);
@@ -35,11 +35,6 @@ public class PlayerInOutElevator : MonoBehaviour
         await modelTransform
             .DORotateQuaternion(targetRotation, 0.25f)
             .AsyncWaitForCompletion();
-    }
-
-    private Transform GetModelTransform()
-    {
-        return characterParent.GetChild(1).GetChild(0).transform;
     }
 
     public async UniTask RotatePlayerTowardExitOfElevator()
@@ -56,7 +51,7 @@ public class PlayerInOutElevator : MonoBehaviour
 
     public async UniTask MoveEntitiesToFloor(int floorFrom, int floorTo)
     {
-        EnablePlayerControls(false);
+        player.EnableControls(false);
         await GetCurrentElevatorPanel(floorFrom).CallElevator();
 
         await MoveRobotToElevator();
@@ -96,7 +91,7 @@ public class PlayerInOutElevator : MonoBehaviour
 
         StopPlayerWalkingAnimation();
         await MoveRobotOutOfElevator();
-        EnablePlayerControls(true);
+        player.EnableControls(true);
     }
 
     private void StopRobotFolowingElevator()
@@ -117,13 +112,12 @@ public class PlayerInOutElevator : MonoBehaviour
 
     private void StopPlayerWalkingAnimation()
     {
-            GetAnimationHandler().SetHorizontalSpeed(0f);
-
+        player.GetAnimationHandler().SetHorizontalSpeed(0f);
     }
 
-    private static void StartPlayerWalkingAnimation()
+    private void StartPlayerWalkingAnimation()
     {
-        GetAnimationHandler().SetHorizontalSpeed(1f);
+        player.GetAnimationHandler().SetHorizontalSpeed(1f);
     }
 
     public async UniTask MoveRobotToElevator()
@@ -178,17 +172,6 @@ public class PlayerInOutElevator : MonoBehaviour
     public void EnablePlayerFollowing()
     {
         robot.TurnOnRobotFollowing();
-    }
-
-    private static void EnablePlayerControls(bool enabled)
-    {
-        GameObject.FindAnyObjectByType<PlayerRotator>().enabled = enabled;
-        GameObject.FindAnyObjectByType<Player>().enabled = enabled;
-    }
-
-    private static AnimationHandler GetAnimationHandler()
-    {
-        return GameObject.FindAnyObjectByType<AnimationHandler>();
     }
 
     private ElevatorControlPanel GetCurrentElevatorPanel(int currentFloor)
