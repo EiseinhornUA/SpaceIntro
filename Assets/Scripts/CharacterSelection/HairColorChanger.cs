@@ -1,17 +1,26 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class HairColorChanger : MonoBehaviour
 {
     [SerializeField] private Material hairMaterial;
-    [SerializeField] private HairColorContainerSO colorContainer;
-    private int currentColorIndex;
+    [SerializeField] private ColorContainerSO hairColorContainer;
+    private int currentIndex;
 
-    internal void SetColor(Color color) => hairMaterial.color = color;
-    
+    private void Start()
+    {
+        ResetColor();
+    }
+
+    private void ResetColor()
+    {
+        hairMaterial.color = hairColorContainer.GetColor(0);
+    }
+
     internal void ChangeColor()
     {
-        currentColorIndex = (currentColorIndex + 1) % colorContainer.colors.Count;
-        SetColor(colorContainer.GetColor(currentColorIndex));
+        currentIndex = (currentIndex + 1) % hairColorContainer.colors.Count;
+        hairMaterial.color = hairColorContainer.GetColor(currentIndex);
     }
 }

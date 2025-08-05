@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class CharacterSelector : MonoBehaviour
@@ -16,12 +14,13 @@ public class CharacterSelector : MonoBehaviour
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI characterDescriptionText;
     [SerializeField] private TMP_InputField characterNameInputField;
-    [SerializeField] private GameObject enterNamePopup;
     [SerializeField] private Button nextButton;
     [SerializeField] private Button previousButton;
     [SerializeField] private Button selectButton;
     [SerializeField] private Button changeHairColorButton;
+    [SerializeField] private Button changeSkinColorButton;
     [SerializeField] private HairColorChanger hairColorChanger;
+    [SerializeField] private SkinChanger skinChanger;
     #endregion // SerializeField
 
     private List<GameObject> characters = new();
@@ -34,7 +33,8 @@ public class CharacterSelector : MonoBehaviour
         nextButton.onClick.AddListener(SelectNext);
         previousButton.onClick.AddListener(SelectPrevious);
         selectButton.onClick.AddListener(Select);
-        changeHairColorButton.onClick.AddListener(ChangeColor);
+        changeHairColorButton.onClick.AddListener(HairChangeColor);
+        changeSkinColorButton.onClick.AddListener(ChangeSkinColor);
 
         foreach (var character in characterContainer.GetCharacters())
         {
@@ -48,9 +48,30 @@ public class CharacterSelector : MonoBehaviour
         SetDescription(roles[selectedIndex].GetDescription());
     }
 
-    private void ChangeColor()
+    private void Update()
+    {
+        if (IsNameEmpty())
+        {
+            selectButton.gameObject.SetActive(false);
+            return;
+        }
+
+        selectButton.gameObject.SetActive(true);
+    }
+
+    private bool IsNameEmpty()
+    {
+        return string.IsNullOrWhiteSpace(characterNameInputField.text);
+    }
+
+    private void HairChangeColor()
     {
         hairColorChanger.ChangeColor();
+    }
+
+    private void ChangeSkinColor()
+    {
+        skinChanger.ChangeColor();
     }
 
     private void SelectNext()
@@ -73,11 +94,6 @@ public class CharacterSelector : MonoBehaviour
 
     private void Select()
     {
-        if (string.IsNullOrWhiteSpace(characterNameInputField.text))
-        {
-            enterNamePopup.SetActive(true);
-            return;
-        }
         PlayerPrefs.SetString("CharacterName", characterNameInputField.text);
         PlayerPrefs.SetInt("SelectedCharacter", selectedIndex);
         SceneManager.LoadScene("3DSci-fiScene");
