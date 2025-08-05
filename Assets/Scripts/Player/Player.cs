@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
-using UnityEditor.U2D.Animation;
 
 [RequireComponent (typeof (Controller2D), (typeof (AnimationHandler)))]
 public class Player : MonoBehaviour {

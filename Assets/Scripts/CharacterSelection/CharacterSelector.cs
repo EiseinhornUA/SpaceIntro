@@ -14,7 +14,6 @@ public class CharacterSelector : MonoBehaviour
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI characterDescriptionText;
     [SerializeField] private TMP_InputField characterNameInputField;
-    [SerializeField] private GameObject enterNamePopup;
     [SerializeField] private Button nextButton;
     [SerializeField] private Button previousButton;
     [SerializeField] private Button selectButton;
@@ -49,6 +48,22 @@ public class CharacterSelector : MonoBehaviour
         SetDescription(roles[selectedIndex].GetDescription());
     }
 
+    private void Update()
+    {
+        if (IsNameEmpty())
+        {
+            selectButton.gameObject.SetActive(false);
+            return;
+        }
+
+        selectButton.gameObject.SetActive(true);
+    }
+
+    private bool IsNameEmpty()
+    {
+        return string.IsNullOrWhiteSpace(characterNameInputField.text);
+    }
+
     private void HairChangeColor()
     {
         hairColorChanger.ChangeColor();
@@ -79,11 +94,6 @@ public class CharacterSelector : MonoBehaviour
 
     private void Select()
     {
-        if (string.IsNullOrWhiteSpace(characterNameInputField.text))
-        {
-            enterNamePopup.SetActive(true);
-            return;
-        }
         PlayerPrefs.SetString("CharacterName", characterNameInputField.text);
         PlayerPrefs.SetInt("SelectedCharacter", selectedIndex);
         SceneManager.LoadScene("3DSci-fiScene");

@@ -2,7 +2,6 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class TransitionPlayerToOutsideAnimation : MonoBehaviour
