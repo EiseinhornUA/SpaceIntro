@@ -17,7 +17,7 @@ public class PlayerCryoChamberEscape : MonoBehaviour
     {
         player.EnableControls(false);
         cryoGlass = GetComponent<CryoGlass>();
-        //Escape();
+        Escape();
     }
 
     [ContextMenu("Escape")]
