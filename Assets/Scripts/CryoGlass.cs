@@ -1,17 +1,20 @@
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 public class CryoGlass : MonoBehaviour
 {
     [SerializeField] private Transform pivotPoint;
-    private float openSpeed = 1.5f;
+    private float openTime = 1.5f;
     private float targetAngle = 90f;
 
     public enum DoorState : int
     {
-        IDLE = 0,
-        OPENING = 1,
-        CLOSING = 2
+        CLOSED = 0,
+        OPENED,
+        OPENING,
+        CLOSING
     }
 
     [SerializeField]
@@ -29,7 +32,7 @@ public class CryoGlass : MonoBehaviour
             }
             else
             {
-                doorState = DoorState.IDLE;
+                doorState = DoorState.OPENED;
             }
         }
 
@@ -41,7 +44,7 @@ public class CryoGlass : MonoBehaviour
             }
             else
             {
-                doorState = DoorState.IDLE;
+                doorState = DoorState.CLOSED;
             }
         }
 
@@ -50,23 +53,39 @@ public class CryoGlass : MonoBehaviour
     public void Opening()
     {
         pivotPoint.transform.RotateAround(pivotPoint.position, pivotPoint.up, 
-            Time.deltaTime * (1f / openSpeed * targetAngle));
+            Time.deltaTime * (1f / openTime * targetAngle));
     }
 
     public void Closing()
     {
         pivotPoint.transform.RotateAround(pivotPoint.position, pivotPoint.up,
-            -Time.deltaTime * (1f / openSpeed * targetAngle));
+            -Time.deltaTime * (1f / openTime * targetAngle));
+    }
+
+    public async UniTask OpenAsync()
+    {
+        if (doorState == DoorState.OPENED)
+            return;
+        Open();
+        await UniTask.WaitUntil(() => doorState == DoorState.OPENED);
+    }
+
+    public async UniTask CloseAsync()
+    {
+        if (doorState == DoorState.CLOSED)
+            return;
+        Close();
+        await UniTask.WaitUntil(() => doorState == DoorState.CLOSED);
     }
 
     [ContextMenu("Open Glass")]
-    public void Open()
+    private void Open()
     {
         doorState = DoorState.OPENING;
     }
 
     [ContextMenu("Close Glass")]
-    public void Close()
+    private void Close()
     {
         doorState = DoorState.CLOSING;
     }

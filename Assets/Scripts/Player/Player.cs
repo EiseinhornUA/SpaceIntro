@@ -221,4 +221,14 @@ public class Player : MonoBehaviour {
     {
         return GameObject.FindAnyObjectByType<AnimationHandler>();
     }
+
+	public void StartWalkingAnimation()
+    { 
+		GetAnimationHandler().SetHorizontalSpeed(1f);
+    }
+
+    public void StopWalkingAnimation()
+    {
+        GetAnimationHandler().SetHorizontalSpeed(0f);
+    }
 }
