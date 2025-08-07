@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class SkillContainer : MonoBehaviour
 {
     [SerializeField] private List<SkillSO> skillSos;
     private List<Skill> skills;
+
+    public event Action<SkillSO, int> OnSkillLevelAdded;
 
     private void Start()
     {
@@ -17,9 +20,12 @@ public class SkillContainer : MonoBehaviour
         return skills.Find(s => s.skillName == skill.GetName());
     }
 
+    public List<Skill> GetSkills() => skills;
+
     public void AddSkillLevel(SkillSO skill, int amount)
     {
         GetSkill(skill).level += amount;
+        OnSkillLevelAdded?.Invoke(skill, amount);
     }
 
     public void SubtractSkillLevel(SkillSO skill, int amount)
