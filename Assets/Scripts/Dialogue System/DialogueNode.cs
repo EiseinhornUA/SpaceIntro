@@ -26,7 +26,8 @@ public class DialogueNode : WaitUnit
         var message = flow.GetValue<string>(messageInput);
         var character = flow.GetValue<DialogueCharacter>(characterInput);
 
-        view.ChangeCharacterName(character.GetName());
+        string name = (character.GetName() == "Player") ? PlayerPrefs.GetString("CharacterName", "Player") : character.GetName();
+        view.ChangeCharacterName(name);
         view.ChangeCharacterPortrait(character.GetPortrait());
         view.ChangeMessage(message);
 

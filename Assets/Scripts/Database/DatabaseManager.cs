@@ -10,6 +10,7 @@ public class DatabaseManager : MonoBehaviour
 {
     private SkillContainer skillContainer;
     private DatabaseReference database;
+    private DatabaseReference userReference;
 
     private string userID;
 
@@ -17,36 +18,29 @@ public class DatabaseManager : MonoBehaviour
     {
         userID = SystemInfo.deviceUniqueIdentifier;
         database = FirebaseDatabase.DefaultInstance.RootReference;
+        userReference = database.Child("users").Child(userID);
+
+        SaveName(PlayerPrefs.GetString("CharacterName", "Name"));
+
         skillContainer = FindObjectOfType<SkillContainer>();
         skillContainer.OnSkillLevelAdded += OnSkillLevelAdded;
     }
 
-    private void OnSkillLevelAdded(SkillSO sO, int arg2)
+    private void OnSkillLevelAdded(Skill skill)
     {
-        StoreSkillsToFirebase();
+        SaveSkill(skill);
     }
 
-    public async void StoreSkillsToFirebase()
+    private void SaveSkill(Skill skill)
     {
-        if (skillContainer == null) return;
-
-        List<Skill> skills = skillContainer.GetSkills();
-        Dictionary<string, object> skillsData = new Dictionary<string, object>();
-
-        foreach (Skill skill in skills)
-        {
-            skillsData[skill.skillName] = new Dictionary<string, object>
-            {
-                { "level", skill.level }
-            };
-        }
-
-        await SaveSkillsAsync(skillsData);
+        userReference.Child("metrics")
+            .Child(skill.skillName)
+            .SetValueAsync(skill.level);
     }
 
-    private async UniTask SaveSkillsAsync(Dictionary<string, object> skillsData)
+    private void SaveName(string CharacterName)
     {
-        await database.Child("users").Child(userID).Child("skills").SetValueAsync(skillsData);
-        Debug.Log("Skills saved to Firebase.");
+        userReference.Child("name")
+            .SetValueAsync(CharacterName);
     }
 }

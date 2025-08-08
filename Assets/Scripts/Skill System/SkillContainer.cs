@@ -9,7 +9,7 @@ public class SkillContainer : MonoBehaviour
     [SerializeField] private List<SkillSO> skillSos;
     private List<Skill> skills;
 
-    public event Action<SkillSO, int> OnSkillLevelAdded;
+    public event Action<Skill> OnSkillLevelAdded;
 
     private void Start()
     {
@@ -25,7 +25,7 @@ public class SkillContainer : MonoBehaviour
     public void AddSkillLevel(SkillSO skill, int amount)
     {
         GetSkill(skill).level += amount;
-        OnSkillLevelAdded?.Invoke(skill, amount);
+        OnSkillLevelAdded?.Invoke(GetSkill(skill));
     }
 
     public void SubtractSkillLevel(SkillSO skill, int amount)
