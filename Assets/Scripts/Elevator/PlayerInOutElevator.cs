@@ -51,6 +51,7 @@ public class PlayerInOutElevator : MonoBehaviour
 
     public async UniTask MoveEntitiesToFloor(int floorFrom, int floorTo)
     {
+        //player.SetGravityEnabled(true);
         player.EnableControls(false);
         await GetCurrentElevatorPanel(floorFrom).CallElevator();
 
@@ -60,7 +61,7 @@ public class PlayerInOutElevator : MonoBehaviour
 
         StartPlayerWalkingAnimation();
 
-        player.SetGravityEnabled(false);
+        //player.SetGravityEnabled(false);
 
         Vector3 playerPositionInsideElevator = playersPointInsideElevator.position;
 
@@ -71,7 +72,7 @@ public class PlayerInOutElevator : MonoBehaviour
         player.transform.SetParent(elevator.transform);
         MakeRobotFollowElevator();
 
-        player.SetGravityEnabled(true);
+        //player.SetGravityEnabled(true);
         
         StopPlayerWalkingAnimation();
 
@@ -80,14 +81,14 @@ public class PlayerInOutElevator : MonoBehaviour
         player.transform.SetParent(null);
         StopRobotFolowingElevator();
 
-        player.SetGravityEnabled(false);
+        //player.SetGravityEnabled(false);
 
         StartPlayerWalkingAnimation();
 
         Vector3 destinationOutSideElevator = playersPointOutsideElevator.position;
         await player.transform.DOMove(destinationOutSideElevator, playerWalkingDuration).AsyncWaitForCompletion();
 
-        player.SetGravityEnabled(true);
+        //player.SetGravityEnabled(true);
 
         StopPlayerWalkingAnimation();
         await MoveRobotOutOfElevator();
