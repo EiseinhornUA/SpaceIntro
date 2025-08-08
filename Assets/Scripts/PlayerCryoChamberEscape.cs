@@ -11,27 +11,26 @@ public class PlayerCryoChamberEscape : MonoBehaviour
     [SerializeField] private float escapeTime = 2f;
     private Transform modelTransform;
     [SerializeField] private Transform PosOutsideCryoChamber;
-    private CryoGlass cryoGlass;
+    [SerializeField] private CryoGlass cryoGlass;
 
     void Start()
     {
         player.EnableControls(false);
-        cryoGlass = GetComponent<CryoGlass>();
-        Escape();
+        //Escape();
     }
 
     [ContextMenu("Escape")]
     public void Escape() => EscapeAsync().Forget();
 
-    private async UniTask EscapeAsync()
+    public async UniTask EscapeAsync()
     {
         modelTransform = player.GetModelTransform().parent;
 
-        
+
         await cryoGlass.OpenAsync();
 
         RotatePlayerToExit();
-        
+
         player.StartWalkingAnimation();
 
         await player.transform.DOMove(PosOutsideCryoChamber.position, escapeTime);

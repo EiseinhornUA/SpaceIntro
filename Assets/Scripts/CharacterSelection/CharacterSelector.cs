@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ public class CharacterSelector : MonoBehaviour
     [SerializeField] private Button changeSkinColorButton;
     [SerializeField] private HairColorChanger hairColorChanger;
     [SerializeField] private SkinChanger skinChanger;
+    [SerializeField] private GameObject loadingText;
+    [SerializeField] private GameObject background;
     #endregion // SerializeField
 
     private List<GameObject> characters = new();
@@ -92,11 +95,27 @@ public class CharacterSelector : MonoBehaviour
         SetDescription(roles[selectedIndex].GetDescription());
     }
 
-    private void Select()
+    private void Select() => SelectAsync().Forget();
+
+    private async UniTaskVoid SelectAsync()
     {
         PlayerPrefs.SetString("CharacterName", characterNameInputField.text);
         PlayerPrefs.SetInt("SelectedCharacter", selectedIndex);
-        SceneManager.LoadScene("3DSci-fiScene");
+        ShowLoadingScreen();
+        await SceneManager.LoadSceneAsync("3DSci-fiScene");
+        CloseLoadingScreen();
+    }
+
+    private void ShowLoadingScreen()
+    {
+        loadingText.SetActive(true);
+        background.SetActive(true);
+    }
+
+    private void CloseLoadingScreen()
+    {
+        loadingText.SetActive(false);
+        background.SetActive(false);
     }
 
     private void SetCharacterName(string name) => characterNameText.text = name;
