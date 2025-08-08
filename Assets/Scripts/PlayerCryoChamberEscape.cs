@@ -22,7 +22,7 @@ public class PlayerCryoChamberEscape : MonoBehaviour
     [ContextMenu("Escape")]
     public void Escape() => EscapeAsync().Forget();
 
-    private async UniTask EscapeAsync()
+    public async UniTask EscapeAsync()
     {
         modelTransform = player.GetModelTransform().parent;
 
