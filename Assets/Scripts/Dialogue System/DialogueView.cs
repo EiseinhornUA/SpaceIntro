@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
+using UnityEngine.TextCore.Text;
 public class DialogueView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI message;
@@ -16,7 +17,11 @@ public class DialogueView : MonoBehaviour
     private UniTaskCompletionSource taskCompletionSource;
 
     public void ChangeMessage(string messageText) => message.text = messageText;
-    public void ChangeCharacterName(string name) => characterName.text = name;
+    public void ChangeCharacterName(string name)
+    {
+        characterName.text = (name == "Player") ? PlayerPrefs.GetString("CharacterName", "Player") : name;
+    }
+
     public void ChangeCharacterPortrait(Sprite portrait) => characterPortrait.sprite = portrait;
 
     internal async UniTask WaitForClick()
