@@ -76,7 +76,7 @@ public class Interactable : MonoBehaviour
         return collision.CompareTag("Player");
     }
 
-    internal void Activate() => isActive = true;
+    public void Activate() => isActive = true;
     internal void Deactivate()
     {
         isActive = false;
