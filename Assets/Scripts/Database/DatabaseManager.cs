@@ -23,10 +23,10 @@ public class DatabaseManager : MonoBehaviour
         SaveName(PlayerPrefs.GetString("CharacterName", "Name"));
 
         skillContainer = FindObjectOfType<SkillContainer>();
-        skillContainer.OnSkillLevelAdded += OnSkillLevelAdded;
+        skillContainer.OnSkillLevelChanged += OnSkillLevelChanged;
     }
 
-    private void OnSkillLevelAdded(Skill skill)
+    private void OnSkillLevelChanged(Skill skill)
     {
         SaveSkill(skill);
     }
