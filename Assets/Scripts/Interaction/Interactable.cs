@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -12,23 +13,19 @@ public class Interactable : MonoBehaviour
     [SerializeField] private UnityEvent onInteract = new();
     private InteractionPrompt interactionPrompt;
     private InteractionView interactionView;
+    private CircleCollider2D circleCollider;
     private UniTaskCompletionSource interactionTCS;
-    private bool isActive = true;
+    
+    [SerializeField] private bool isActive = false;
 
     private void Start()
     {
         interactionPrompt = FindObjectOfType<InteractionPrompt>(includeInactive: true);
         interactionView = FindObjectOfType<InteractionView>(includeInactive: true);
-        CircleCollider2D collider = GetComponent<CircleCollider2D>();
-        collider.isTrigger = true;
+        circleCollider = GetComponent<CircleCollider2D>();
+        circleCollider.isTrigger = true;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (!isActive) return;
-        if (!IsPlayer(collision)) return;
-        interactionPrompt.SetPosition(transform.position);
-    }
 
     public UniTask WaitForInteraction()
     {
@@ -49,10 +46,21 @@ public class Interactable : MonoBehaviour
     {
         if (!isActive) return;
         if (!IsPlayer(collision)) return;
-        interactionPrompt.SetPosition(transform.position);
+        interactionPrompt.SetPosition(GetPromptPosition());
         interactionPrompt.Show();
         interactionView.Show();
         interactionView.AddListener(OnInteract);
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!isActive) return;
+        if (!IsPlayer(collision)) return;
+        interactionPrompt.SetPosition(GetPromptPosition());
+    }
+
+    private Vector3 GetPromptPosition()
+    {
+        return transform.position + new Vector3(circleCollider.offset.x, circleCollider.offset.y, 0);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -76,4 +84,5 @@ public class Interactable : MonoBehaviour
         interactionView.Hide();
         interactionView.RemoveListener(OnInteract);
     }
+
 }

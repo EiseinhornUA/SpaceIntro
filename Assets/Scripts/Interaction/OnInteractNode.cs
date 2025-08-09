@@ -14,7 +14,7 @@ public class OnInteractNode : WaitUnit
     public int interactableCount = 1;
 
     private new ControlInput enter;
-    private List<ValueInput> gameObjects = new();
+    private List<ValueInput> interactables = new();
     private List<ControlOutput> exits = new();
     private ValueInput disableAfterInteraction;
 
@@ -25,8 +25,8 @@ public class OnInteractNode : WaitUnit
 
         for (int i = 0; i < interactableCount; i++)
         {
-            var input = ValueInput<GameObject>($"GameObject {i + 1}", null);
-            gameObjects.Add(input);
+            var input = ValueInput<Interactable>($"Interactable {i + 1}", default);
+            interactables.Add(input);
 
             var output = ControlOutput($"exit {i + 1}");
             exits.Add(output);
@@ -42,53 +42,30 @@ public class OnInteractNode : WaitUnit
     protected override IEnumerator Await(Flow flow)
     {
         List<Interactable> interactables = GetInteractables(flow);
-        foreach (var interactable in gameObjects)
+        foreach (var interactable in this.interactables)
         {
-            Debug.Log("Waiting for interaction with" + flow.GetValue<GameObject>(interactable));
+            Debug.Log("Waiting for interaction with" + flow.GetValue<Interactable>(interactable));
         }
 
         int index = 0;
         yield return UniTask.WhenAny(interactables.Select(i => i.WaitForInteraction())).ContinueWith(i => index = i).ToCoroutine();
         Debug.Log($"Interaction completed {index}");
+        
         interactables.ForEach(i => i.Deactivate());
+
         yield return exits[index];
         Debug.Log($"Interaction exited {index}");
     }
 
     private List<Interactable> GetInteractables(Flow flow)
     {
-        List<Interactable> interactables = new List<Interactable>();
-        for (int i = 0; i < interactableCount; i++)
+        List<Interactable> interactableList = new List<Interactable>();
+        foreach (var interactableInput in interactables)
         {
-            var go = flow.GetValue<GameObject>(gameObjects[i]);
-
-            GameObject trigger;
-            bool hasInteractable = false;
-            if (go.transform.childCount > 0)
-            {
-                Transform transform = go.transform.Find(TriggerName);
-                if (transform)
-                {
-                    trigger = transform.gameObject;
-                    hasInteractable = trigger.TryGetComponent<Interactable>(out Interactable interactable);
-                    if (hasInteractable)
-                    {
-                        interactable.Activate();
-                        interactables.Add(interactable);
-                    }
-                }
-            }
-            if (!hasInteractable)
-            {
-                Interactable interactable;
-                trigger = new GameObject(TriggerName);
-                trigger.transform.SetParent(go.transform, false);
-                interactable = trigger.AddComponent<Interactable>();
-                interactable.Activate();
-                interactables.Add(interactable);
-            }
+            var interactable = flow.GetValue<Interactable>(interactableInput);
+            interactable.Activate();
+            interactableList.Add(interactable);
         }
-
-        return interactables;
+        return interactableList;
     }
 }
