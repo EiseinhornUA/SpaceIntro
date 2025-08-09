@@ -1365,6 +1365,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isActive: 0
 --- !u!58 &114685172
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2713,6 +2714,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isActive: 0
 --- !u!58 &207731722
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4577,6 +4579,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isActive: 0
 --- !u!58 &323636015
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11740,6 +11743,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isActive: 0
 --- !u!58 &791184224
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -15216,6 +15220,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isActive: 0
 --- !u!58 &1071753807
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -17848,6 +17853,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isActive: 0
 --- !u!58 &1277871240
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -18294,6 +18300,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isActive: 0
 --- !u!58 &1309653107
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -18839,8 +18846,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"Kind":"Scene","collection":{"$content":[{"name":"CryoTerminal","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Robot","value":{"$content":1,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+    _json: '{"declarations":{"Kind":"Scene","collection":{"$content":[{"name":"CryoTerminal","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Robot","value":{"$content":1,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ToolBox","value":{"$content":2,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"AccessKey","value":{"$content":3,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorTerminal","value":{"$content":4,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
@@ -18861,7 +18868,7 @@ MonoBehaviour:
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"FrozenCryoGlass","value":{"$content":19,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
-    - {fileID: 5449569031936165080}
+    - {fileID: 5449569031936165082}
     - {fileID: 1324533527}
     - {fileID: 2805723067111348102}
     - {fileID: 8626088110301444375}
@@ -23888,6 +23895,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isActive: 0
 --- !u!58 &1786239009
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -29526,6 +29534,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isActive: 0
 --- !u!58 &2136770014
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -36806,13 +36815,70 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3264500985212283556, guid: 544020c3f027953408f32470ce61ade7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5449569031936165082}
+    - targetCorrespondingSourceObject: {fileID: 3264500985212283556, guid: 544020c3f027953408f32470ce61ade7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5449569031936165081}
   m_SourcePrefab: {fileID: 100100000, guid: 544020c3f027953408f32470ce61ade7, type: 3}
 --- !u!1 &5449569031936165080 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3264500985212283556, guid: 544020c3f027953408f32470ce61ade7, type: 3}
   m_PrefabInstance: {fileID: 5449569031936165079}
   m_PrefabAsset: {fileID: 0}
+--- !u!58 &5449569031936165081
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449569031936165080}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.5189544}
+  serializedVersion: 2
+  m_Radius: 0.8732547
+--- !u!114 &5449569031936165082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449569031936165080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a083a4ff79c08a46a640dd45e05d424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  isActive: 0
 --- !u!1001 &5542955792515411980
 PrefabInstance:
   m_ObjectHideFlags: 0
