@@ -41,7 +41,7 @@ public class Player : MonoBehaviour {
 		controller = GetComponent<Controller2D> ();
         animationHandler = GetComponent<AnimationHandler>();
         playerRotator = GetComponent<PlayerRotator>();
-        joystick = FindObjectOfType<Joystick>();
+        joystick = FindObjectOfType<Joystick>(includeInactive: true);
 
         gravity = -(2 * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2);
 		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;

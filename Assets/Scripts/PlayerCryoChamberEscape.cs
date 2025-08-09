@@ -13,12 +13,6 @@ public class PlayerCryoChamberEscape : MonoBehaviour
     [SerializeField] private Transform PosOutsideCryoChamber;
     [SerializeField] private CryoGlass cryoGlass;
 
-    void Start()
-    {
-        player.EnableControls(false);
-        //Escape();
-    }
-
     [ContextMenu("Escape")]
     public void Escape() => EscapeAsync().Forget();
 
@@ -26,6 +20,11 @@ public class PlayerCryoChamberEscape : MonoBehaviour
     {
         modelTransform = player.GetModelTransform().parent;
 
+        player.EnableControls(false);
+
+        Hud hud = Hud.FindHud();
+
+        hud.HideHud();
 
         await cryoGlass.OpenAsync();
 
@@ -36,6 +35,8 @@ public class PlayerCryoChamberEscape : MonoBehaviour
         await player.transform.DOMove(PosOutsideCryoChamber.position, escapeTime);
 
         player.StopWalkingAnimation();
+
+        hud.ShowHud();
 
         player.EnableControls(true);
     }
