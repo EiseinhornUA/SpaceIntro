@@ -12,11 +12,6 @@ public class SpaceSuit : MonoBehaviour
     private SkinnedMeshRenderer characterMesh;
     private Transform characterHead;
 
-    private void Start()
-    {
-        SetSpaceSuitMesh();
-    }
-
     [ContextMenu("Set Space Suit Mesh")]
     public void SetSpaceSuitMesh()
     {
@@ -25,6 +20,7 @@ public class SpaceSuit : MonoBehaviour
         characterMesh.sharedMesh = suitMesh;
         characterHead = FindChildRecursive(characterModelGameObject, "Head");
         Instantiate(helmet, characterHead);
+        gameObject.SetActive(false);
     }
 
     private Transform FindChildRecursive(Transform parent, string name)
