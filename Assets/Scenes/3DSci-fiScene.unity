@@ -5407,7 +5407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1487784078342327706, guid: 08d92fd44ef77594a9847a4048db6a6e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -14.07605
+      value: -14.076172
       objectReference: {fileID: 0}
     - target: {fileID: 1487784078342327709, guid: 08d92fd44ef77594a9847a4048db6a6e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5487,7 +5487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1487784079819774614, guid: 08d92fd44ef77594a9847a4048db6a6e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -14.078003
+      value: -14.078125
       objectReference: {fileID: 0}
     - target: {fileID: 1487784079819774617, guid: 08d92fd44ef77594a9847a4048db6a6e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7005,7 +7005,7 @@ Light:
   m_GameObject: {fileID: 410087039}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 0
+  m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 40
@@ -12759,6 +12759,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5eb78043d12b9c44581bdb3d34160102, type: 3}
   m_PrefabInstance: {fileID: 859923584}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &864806078 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 8933063011275852528, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
+  m_PrefabInstance: {fileID: 1767369789}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &868882840
 PrefabInstance:
@@ -18984,16 +18989,17 @@ MonoBehaviour:
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DiagnosticTool","value":{"$content":8,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ProgrammingSpike","value":{"$content":9,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorSchematic","value":{"$content":10,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Lights","value":{"$content":11,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ElevatorInteraction1","value":{"$content":12,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ElevatorInteraction2","value":{"$content":13,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ElevatorInteraction3","value":{"$content":14,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"CryoDoor","value":{"$content":15,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"SlidingDoor,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"EngineeringDoor","value":{"$content":16,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Lights","value":{"$content":11,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.Light,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"PlayerLight","value":{"$content":12,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.Light,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ElevatorInteraction1","value":{"$content":13,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ElevatorInteraction2","value":{"$content":14,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ElevatorInteraction3","value":{"$content":15,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"CryoDoor","value":{"$content":16,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"SlidingDoor,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"EngineeringDoor","value":{"$content":17,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorTerminalInteraction","value":null,"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"FrozenCryoGlass","value":{"$content":17,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"RobotGameObject","value":{"$content":18,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorTerminalGameObject","value":{"$content":19,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"FrozenCryoGlass","value":{"$content":18,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"RobotGameObject","value":{"$content":19,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorTerminalGameObject","value":{"$content":20,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 5449569031936165082}
@@ -19007,7 +19013,8 @@ MonoBehaviour:
     - {fileID: 4953294178169090071}
     - {fileID: 3435404068979985956}
     - {fileID: 4908500988809365344}
-    - {fileID: 410087039}
+    - {fileID: 410087040}
+    - {fileID: 864806078}
     - {fileID: 323636012}
     - {fileID: 114685169}
     - {fileID: 207731719}
@@ -23713,14 +23720,6 @@ PrefabInstance:
     - target: {fileID: 8603711558300876737, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8933063011275852528, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
-      propertyPath: m_Range
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8933063011275852528, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
-      propertyPath: m_Intensity
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8954317478739037210, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
       propertyPath: m_StaticEditorFlags
