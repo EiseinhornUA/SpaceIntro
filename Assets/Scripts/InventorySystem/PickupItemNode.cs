@@ -1,54 +1,41 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.UI;
+using System.Collections;
+using Cysharp.Threading.Tasks;
 
 [UnitTitle("Pickup Item Node")]
 [UnitCategory("Inventory")]
-public class PickupItemNode : Unit
+public class PickupItemNode : WaitUnit
 {
     private ValueInput gameObjectInput;
     private ValueInput itemInput;
-
     private ControlInput enter;
     private ControlOutput exit;
 
+    private PopupManager popupManager;
+    private ItemPickUpPopUp itemPickUpPopUp;
+
     protected override void Definition()
     {
-        enter = ControlInput("", OnEnter);
+        enter = ControlInputCoroutine("", Await);
         exit = ControlOutput("");
-
         gameObjectInput = ValueInput<GameObject>("gameObject", default);
         itemInput = ValueInput<ItemSO>("itemSO", default);
-
         Succession(enter, exit);
     }
 
-    protected ControlOutput OnEnter(Flow flow)
+    protected override IEnumerator Await(Flow flow)
     {
+        popupManager = GameObject.FindObjectOfType<PopupManager>();
+        itemPickUpPopUp = popupManager.ShowPopup<ItemPickUpPopUp>();
+
         ItemContainer itemContainer = GameObject.FindObjectOfType<ItemContainer>(includeInactive: true);
-
-        if (itemContainer)
-        {
-            ItemSO item = flow.GetValue<ItemSO>(itemInput);
-            itemContainer.AddItem(item);
-            flow.GetValue<GameObject>(gameObjectInput).SetActive(false);
-            Debug.Log($"Item {item.name} picked up.");
-
-            ShowPickedUpItem(flow);
-        }
-
-        return exit;
-    }
-
-    private void ShowPickedUpItem(Flow flow)
-    {
-        PopupManager popupManager = GameObject.FindObjectOfType<PopupManager>();
-
-        ItemPickUpPopUp itemPickUpPopUp = popupManager.ShowPopup<ItemPickUpPopUp>();
-        Sprite icon = flow.GetValue<ItemSO>(itemInput).icon;
-        itemPickUpPopUp.SetIcon(icon);
-        //itemPickUpPopUp.SaveItemTransform(flow.GetValue<GameObject>(gameObjectInput).transform);
-        itemPickUpPopUp.MoveIconToPosition(flow.GetValue<GameObject>(gameObjectInput).transform);
+        ItemSO item = flow.GetValue<ItemSO>(itemInput);
+        itemContainer.AddItem(item);
+        flow.GetValue<GameObject>(gameObjectInput).SetActive(false);
+        Debug.Log($"Item {item.name} picked up.");
+        itemPickUpPopUp.ShowPickedUpItem(flow, itemInput, gameObjectInput);
+        yield return itemPickUpPopUp.WaitForMove().ToCoroutine();
+        yield return exit;
     }
 }

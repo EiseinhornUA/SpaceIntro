@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,9 @@ public class ItemPickUpPopUp : Popup
 
     private Transform itemTransform;
     private Image itemIcon;
+
+    private UniTaskCompletionSource taskCompletionSource;
+    private MaterialPropertyBlock materialPropertyBlock;
 
     //public void SaveItemTransform(Transform objectTransform)
     //{
@@ -33,21 +37,40 @@ public class ItemPickUpPopUp : Popup
         await itemIconTransform.DOAnchorPos(targetScreenPosition, moveToInventoryDuration);
         Hide();
     }
-
-public static Vector2 WorldToAnchoredPosition(Camera camera, RectTransform rectTransform, Vector3 worldPosition)
-{
-    // 1. Convert world position to screen position
-    Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(camera, worldPosition);
-
-    // 2. Convert screen position to local position on the RectTransform
-    if (RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenPoint, camera, out Vector2 localPoint))
+    public async UniTask WaitForMove()
     {
-        return localPoint;
+        taskCompletionSource = new UniTaskCompletionSource();
+        await taskCompletionSource.Task;
     }
-    else
+
+    private void OnDisable()
     {
-        Debug.LogError("World position is not within the RectTransform.");
-        return Vector2.zero;
+        taskCompletionSource?.TrySetResult();
     }
-}
+
+    public void ShowPickedUpItem(Flow flow, ValueInput itemInput, ValueInput gameObjectInput)
+    {
+        //popupManager = GameObject.FindObjectOfType<PopupManager>();
+        //itemPickUpPopUp = popupManager.ShowPopup<ItemPickUpPopUp>();
+        Sprite icon = flow.GetValue<ItemSO>(itemInput).icon;
+        SetIcon(icon);
+        MoveIconToPosition(flow.GetValue<GameObject>(gameObjectInput).transform).Forget();
+    }
+
+    public static Vector2 WorldToAnchoredPosition(Camera camera, RectTransform rectTransform, Vector3 worldPosition)
+    {
+        // 1. Convert world position to screen position
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(camera, worldPosition);
+
+        // 2. Convert screen position to local position on the RectTransform
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenPoint, camera, out Vector2 localPoint))
+        {
+            return localPoint;
+        }
+        else
+        {
+            Debug.LogError("World position is not within the RectTransform.");
+            return Vector2.zero;
+        }
+    }
 }
