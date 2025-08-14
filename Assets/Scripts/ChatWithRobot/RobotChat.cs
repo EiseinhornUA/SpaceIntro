@@ -35,7 +35,7 @@ public class RobotChat : MonoBehaviour
     {
         ChatRequest requestData = new ChatRequest
         {
-            user_id = PlayerPrefs.GetString("CharacterName", "Student"),
+            user_id = SystemInfo.deviceUniqueIdentifier,
             question = question,
             conversation_history = conversationHistory
         };
@@ -60,6 +60,7 @@ public class RobotChat : MonoBehaviour
             if (response != null && !string.IsNullOrEmpty(response.response))
             {
                 askView.SetResponse(response.response);
+                askView.ShowAskButton();
                 conversationHistory.Add(question);
                 conversationHistory.Add(response.response);
             }

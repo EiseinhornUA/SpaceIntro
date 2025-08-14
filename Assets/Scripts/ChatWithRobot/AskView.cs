@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,17 @@ public class AskView : MonoBehaviour
     private void Start()
     {
         closeButton.onClick.AddListener(Hide);
+        askButton.onClick.AddListener(HideAskButton);
+    }
+
+    private void HideAskButton()
+    {
+        askButton.gameObject.SetActive(false);
+    }
+
+    public void ShowAskButton()
+    {
+        askButton.gameObject.SetActive(true);
     }
 
     [ContextMenu("Show")]
