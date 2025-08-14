@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Popup : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class Popup : MonoBehaviour
     {
         gameObject.SetActive(true);
     }
+
     public virtual void Hide()
     {
         gameObject.SetActive(false);
