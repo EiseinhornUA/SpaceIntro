@@ -2447,8 +2447,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 474457819850839492, guid: dc4dad41d4c48cf4a9d2e00cc9fe5a2e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2173290548216757254, guid: dc4dad41d4c48cf4a9d2e00cc9fe5a2e, type: 3}
+      propertyPath: invetoryIcon
+      value: 
+      objectReference: {fileID: 342554799}
     - target: {fileID: 2173290548216757254, guid: dc4dad41d4c48cf4a9d2e00cc9fe5a2e, type: 3}
       propertyPath: invetoryIconPosition
       value: 
@@ -2456,6 +2460,14 @@ PrefabInstance:
     - target: {fileID: 2173290548216757254, guid: dc4dad41d4c48cf4a9d2e00cc9fe5a2e, type: 3}
       propertyPath: moveToInventoryDuration
       value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2173290548216757254, guid: dc4dad41d4c48cf4a9d2e00cc9fe5a2e, type: 3}
+      propertyPath: inventoryIconScaleDuration
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685288194603544951, guid: dc4dad41d4c48cf4a9d2e00cc9fe5a2e, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8346960382753122956, guid: dc4dad41d4c48cf4a9d2e00cc9fe5a2e, type: 3}
       propertyPath: m_Pivot.x
@@ -5899,6 +5911,11 @@ RectTransform:
 --- !u!224 &342554798 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1112068846816929872, guid: 08d92fd44ef77594a9847a4048db6a6e, type: 3}
+  m_PrefabInstance: {fileID: 342554796}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &342554799 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1112068846816929873, guid: 08d92fd44ef77594a9847a4048db6a6e, type: 3}
   m_PrefabInstance: {fileID: 342554796}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &342823877

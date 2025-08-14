@@ -8,69 +8,62 @@ using UnityEngine.UI;
 public class ItemPickUpPopUp : Popup
 {
     [SerializeField] float moveToInventoryDuration = 0.75f;
-    [SerializeField] RectTransform invetoryIconPosition;
+    [SerializeField] float inventoryIconScaleDuration = 0.25f;
+    [SerializeField] float inventoryIconScale = 1.5f;
+    [SerializeField] GameObject invetoryIcon;
 
-    private Transform itemTransform;
     private Image itemIcon;
 
-    private UniTaskCompletionSource taskCompletionSource;
-    private MaterialPropertyBlock materialPropertyBlock;
-
-    //public void SaveItemTransform(Transform objectTransform)
-    //{
-    //    itemTransform = objectTransform;
-    //}
-
-    public void SetIcon(Sprite icon)
+    private void Awake()
     {
-        itemIcon = GetComponent<Image>();
-        itemIcon.sprite = icon;
+        itemIcon = gameObject.GetComponent<Image>();
     }
+
+    private UniTaskCompletionSource taskCompletionSource;
 
     public async UniTask MoveIconToPosition(Transform objectTransform)
     {
         Vector2 startScreenPosition = Camera.main.WorldToScreenPoint(objectTransform.position);
-        var inventoryIconRectTransform = invetoryIconPosition.GetComponent<RectTransform>();
+        var inventoryIconRectTransform = invetoryIcon.GetComponent<RectTransform>();
         RectTransform itemIconTransform = itemIcon.GetComponent<RectTransform>();
-        var targetScreenPosition = new Vector2(Screen.width + inventoryIconRectTransform.anchoredPosition.x, Screen.height + inventoryIconRectTransform.anchoredPosition.y);
+        var targetScreenPosition = new Vector2(Screen.width + inventoryIconRectTransform.anchoredPosition.x,
+            Screen.height + inventoryIconRectTransform.anchoredPosition.y);
         itemIconTransform.anchoredPosition = startScreenPosition;
-        await itemIconTransform.DOAnchorPos(targetScreenPosition, moveToInventoryDuration);
+        await itemIconTransform.DOAnchorPos(targetScreenPosition, moveToInventoryDuration).SetEase(Ease.InCubic);
+        FadeOut();
+        var initialInventoryIconScale = inventoryIconRectTransform.localScale;
+        await inventoryIconRectTransform.DOScale(new Vector3(inventoryIconScale, inventoryIconScale, inventoryIconScale),
+            inventoryIconScaleDuration * 0.5f);
+        await inventoryIconRectTransform.DOScale(initialInventoryIconScale, inventoryIconScaleDuration * 0.5f);
+        taskCompletionSource?.TrySetResult();
         Hide();
     }
+
     public async UniTask WaitForMove()
     {
         taskCompletionSource = new UniTaskCompletionSource();
         await taskCompletionSource.Task;
     }
 
-    private void OnDisable()
-    {
-        taskCompletionSource?.TrySetResult();
-    }
-
     public void ShowPickedUpItem(Flow flow, ValueInput itemInput, ValueInput gameObjectInput)
     {
-        //popupManager = GameObject.FindObjectOfType<PopupManager>();
-        //itemPickUpPopUp = popupManager.ShowPopup<ItemPickUpPopUp>();
         Sprite icon = flow.GetValue<ItemSO>(itemInput).icon;
-        SetIcon(icon);
+        itemIcon.sprite = icon;
         MoveIconToPosition(flow.GetValue<GameObject>(gameObjectInput).transform).Forget();
     }
 
-    public static Vector2 WorldToAnchoredPosition(Camera camera, RectTransform rectTransform, Vector3 worldPosition)
+    public override void Show()
     {
-        // 1. Convert world position to screen position
-        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(camera, worldPosition);
+        base.Show();
+        Color alphaColor = itemIcon.color;
+        alphaColor.a = 1f;
+        itemIcon.color = alphaColor;
+    }
 
-        // 2. Convert screen position to local position on the RectTransform
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenPoint, camera, out Vector2 localPoint))
-        {
-            return localPoint;
-        }
-        else
-        {
-            Debug.LogError("World position is not within the RectTransform.");
-            return Vector2.zero;
-        }
+    private void FadeOut()
+    {
+        Color alphaColor = itemIcon.color;
+        alphaColor.a = 0f;
+        itemIcon.color = alphaColor;
     }
 }
