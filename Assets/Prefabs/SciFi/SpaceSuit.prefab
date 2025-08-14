@@ -50,8 +50,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   characterContainer: {fileID: 11400000, guid: 58147d5465213874887e93ca4818c5be, type: 2}
-  suitMesh: {fileID: 4300030, guid: c8c20564eb982f84a96a0d4d8e357cc5, type: 3}
+  suitMesh: {fileID: -5453521797462728743, guid: 3c579a21d8f02014980d40855417895c, type: 3}
   helmet: {fileID: 6829775899175646610}
+  suitMaterial: {fileID: 0}
 --- !u!58 &21024892920523059
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -104,7 +105,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7769642976390271824}
         m_TargetAssemblyTypeName: SpaceSuit, Assembly-CSharp
-        m_MethodName: SetSpaceSuitMesh
+        m_MethodName: PutSpaceSuitOn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpaceSuit : MonoBehaviour
@@ -7,33 +8,21 @@ public class SpaceSuit : MonoBehaviour
     [SerializeField] private CharacterContainer characterContainer;
     [SerializeField] private Mesh suitMesh;
     [SerializeField] private GameObject helmet;
-
-    private Transform characterModelGameObject;
-    private SkinnedMeshRenderer characterMesh;
-    private Transform characterHead;
+    [SerializeField] private Material suitMaterial;
 
     [ContextMenu("Set Space Suit Mesh")]
-    public void SetSpaceSuitMesh()
+    public void PutSpaceSuitOn()
     {
-        characterModelGameObject = player.GetModelTransform();
-        characterMesh = characterModelGameObject.GetComponentInChildren<SkinnedMeshRenderer>(false);
+        Transform characterModelGameObject = player.GetModelTransform();
+        SkinnedMeshRenderer characterMesh = characterModelGameObject.GetComponentInChildren<SkinnedMeshRenderer>(false);
         characterMesh.sharedMesh = suitMesh;
-        characterHead = FindChildRecursive(characterModelGameObject, "Head");
-        Instantiate(helmet, characterHead);
+
+        CharacterModel characterModel = FindObjectOfType<CharacterModel>();
+        if (characterModel)
+            Instantiate(helmet, characterModel.head);
+
+        characterMesh.materials = new Material[] { suitMaterial };
+
         gameObject.SetActive(false);
-    }
-
-    private Transform FindChildRecursive(Transform parent, string name)
-    {
-        if (parent.name == name)
-            return parent;
-
-        foreach (Transform child in parent)
-        {
-            var result = FindChildRecursive(child, name);
-            if (result != null)
-                return result;
-        }
-        return null;
     }
 }
