@@ -214,7 +214,7 @@ public class Player : MonoBehaviour {
 
     public Transform GetModelTransform()
     {
-        return transform.GetChild(1).GetChild(0).transform;
+        return transform.GetChild(0).GetChild(0).transform;
     }
 
     public AnimationHandler GetAnimationHandler()
