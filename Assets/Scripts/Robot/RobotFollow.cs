@@ -16,9 +16,12 @@ public class RobotFollow : MonoBehaviour
     [SerializeField] private float offsetZ = -0.5f;
     [SerializeField] private float frequency = 0.5f; // Frequency of the idle movement
     [SerializeField] private float amplitude = 0.01f; // Speed of the idle movement
+    [SerializeField]
     private bool isRobotOn = false;
+    [SerializeField]
     private bool isFollowingOn = true;
     private float yzSpeedNormalizer = 0.2f;
+    private float idleOffsetY = 0f;
 
     private void Update()
     {
@@ -60,7 +63,7 @@ public class RobotFollow : MonoBehaviour
     {
         transform.position += new Vector3(
             0f,
-            Mathf.Cos(Time.fixedTime * 2f * (float)Math.PI * frequency) * amplitude,
+            Mathf.Cos(Time.timeSinceLevelLoad * 2f * (float)Math.PI * frequency) * amplitude * Time.deltaTime,
             0f);
     }
 
