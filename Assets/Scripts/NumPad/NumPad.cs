@@ -41,7 +41,7 @@ public class NumPad: MonoBehaviour
                 playerControls.SetActive(true);
             }
 
-            else
+            else if (symbolEntry.text != "SUCCESS")
             {
                 symbolEntry.text = "ERROR";
                 await Cysharp.Threading.Tasks.UniTask.Delay(TimeSpan.FromSeconds(0.75f));
