@@ -223,12 +223,14 @@ public class Player : MonoBehaviour {
     }
 
 	public void StartWalkingAnimation()
-    { 
-		GetAnimationHandler().SetHorizontalSpeed(1f);
-    }
+    {
+		GetAnimationHandler().StartWalking();
+		//GetAnimationHandler().SetHorizontalSpeed(1f);
+	}
 
     public void StopWalkingAnimation()
     {
-        GetAnimationHandler().SetHorizontalSpeed(0f);
-    }
+        GetAnimationHandler().StopWalking();
+        //GetAnimationHandler().SetHorizontalSpeed(0f);
+	}
 }

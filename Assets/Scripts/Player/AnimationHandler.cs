@@ -37,4 +37,14 @@ public class AnimationHandler : MonoBehaviour
         if (!animator) return;
         animator.SetTrigger("Turn");
     }
+
+    internal void StartWalking()
+    {
+        animator.SetBool("IsWalking", true);
+    }
+
+    internal void StopWalking()
+    {
+        animator.SetBool("IsWalking", false);
+    }
 }
