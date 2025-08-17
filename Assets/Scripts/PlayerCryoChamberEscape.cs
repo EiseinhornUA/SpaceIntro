@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class PlayerCryoChamberEscape : MonoBehaviour
     private Transform modelTransform;
     [SerializeField] private Transform PosOutsideCryoChamber;
     [SerializeField] private CryoGlass cryoGlass;
+
+    [SerializeField] private Vector3 impulseForce;
 
     [ContextMenu("Escape")]
     public void Escape() => EscapeAsync().Forget();
@@ -30,6 +33,10 @@ public class PlayerCryoChamberEscape : MonoBehaviour
 
         RotatePlayerToExit();
 
+        gameObject.AddComponent<Rigidbody>();
+
+        AddImpulse();
+
         player.StartWalkingAnimation();
 
         await player.transform.DOMove(PosOutsideCryoChamber.position, escapeTime);
@@ -39,6 +46,12 @@ public class PlayerCryoChamberEscape : MonoBehaviour
         hud.ShowHud();
 
         player.EnableControls(true);
+    }
+
+    [ContextMenu("Add Impulse")]
+    private void AddImpulse()
+    {
+        gameObject.GetComponent<Rigidbody>().AddForce(impulseForce, ForceMode.Impulse);
     }
 
     public void RotatePlayerToExit() => RotatePlayerToExitAsync().Forget();

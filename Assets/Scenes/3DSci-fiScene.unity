@@ -5076,7 +5076,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1487784078342327706, guid: 08d92fd44ef77594a9847a4048db6a6e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -14.075989
+      value: -14.07605
       objectReference: {fileID: 0}
     - target: {fileID: 1487784078342327709, guid: 08d92fd44ef77594a9847a4048db6a6e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -13270,6 +13270,7 @@ MonoBehaviour:
   escapeTime: 0.75
   PosOutsideCryoChamber: {fileID: 1500275668}
   cryoGlass: {fileID: 990117454}
+  impulseForce: {x: 0.05, y: 0, z: 0.505}
 --- !u!4 &1019344500 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4171445653160714, guid: 7eecc3884fdf1a54796bc19d450d5ec3, type: 3}
@@ -28379,7 +28380,8 @@ GameObject:
   - component: {fileID: 543450652743735715}
   - component: {fileID: 3469287836592739846}
   - component: {fileID: 1711813856019440332}
-  m_Layer: 0
+  - component: {fileID: 3469287836592739847}
+  m_Layer: 10
   m_Name: CryoChambersVar4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30485,6 +30487,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 65585401646757160, guid: 3deace0cd22ccd54b809b039e70ff8f6, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31803,6 +31809,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 65585401646757160, guid: 3deace0cd22ccd54b809b039e70ff8f6, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32000,6 +32010,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149071659801}
+  m_Mesh: {fileID: 5549377152107726865, guid: 1e2503bb936c54047ae51566c75e42e7, type: 3}
+--- !u!64 &3469287836592739847
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149071659801}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 5549377152107726865, guid: 1e2503bb936c54047ae51566c75e42e7, type: 3}
 --- !u!1001 &3589495996001957452
 PrefabInstance:
@@ -38239,6 +38271,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 65585401646757160, guid: 3deace0cd22ccd54b809b039e70ff8f6, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -40291,13 +40327,36 @@ GameObject:
   - component: {fileID: 7604815003192261151}
   - component: {fileID: 990117457}
   - component: {fileID: 990117454}
-  m_Layer: 0
+  - component: {fileID: 8745115816982683095}
+  m_Layer: 11
   m_Name: CryoChamberDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &8745115816982683095
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8745115816982683094}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1280204112134479622, guid: 1e2503bb936c54047ae51566c75e42e7, type: 3}
 --- !u!1001 &8745803825766890791
 PrefabInstance:
   m_ObjectHideFlags: 0
