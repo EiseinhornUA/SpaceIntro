@@ -55,21 +55,28 @@ public class RobotChat : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             string jsonResponse = request.downloadHandler.text;
-            ChatResponse response = JsonUtility.FromJson<ChatResponse>(jsonResponse);
+            ResponseData responseData = JsonUtility.FromJson<ResponseData>(jsonResponse);
 
-            if (response != null && !string.IsNullOrEmpty(response.response))
+            if (responseData != null && !string.IsNullOrEmpty(responseData.answer))
             {
-                askView.SetResponse(response.response);
+                askView.SetResponse(responseData.answer);
                 askView.ShowAskButton();
                 conversationHistory.Add(question);
-                conversationHistory.Add(response.response);
+                conversationHistory.Add(responseData.answer);
             }
             else
             {
                 askView.SetResponse("No response received from the server.");
+                Debug.LogError("No response received from the server.");
             }
         }
     }
+}
+
+[System.Serializable]
+internal class ResponseData
+{
+    public string answer;
 }
 
 [System.Serializable]
@@ -78,11 +85,4 @@ public class ChatRequest
     public string user_id;
     public string question;
     public List<string> conversation_history;
-}
-
-[System.Serializable]
-public class ChatResponse
-{
-    public string response;
-    public string[] context_used;
 }
