@@ -12,6 +12,9 @@ public class ItemPickUpPopUp : Popup
     [SerializeField] float inventoryIconScale = 1.5f;
     [SerializeField] GameObject invetoryIcon;
 
+
+    [SerializeField] Transform debugObjectToMove;
+
     private Image itemIcon;
 
     private void Awake()
@@ -20,15 +23,27 @@ public class ItemPickUpPopUp : Popup
     }
 
     private UniTaskCompletionSource taskCompletionSource;
+    [SerializeField] private float offsetX = 0f;
+    [SerializeField] private float offsetY = 100f;
 
     public async UniTask MoveIconToPosition(Transform objectTransform)
     {
         Vector2 startScreenPosition = Camera.main.WorldToScreenPoint(objectTransform.position);
         var inventoryIconRectTransform = invetoryIcon.GetComponent<RectTransform>();
         RectTransform itemIconTransform = itemIcon.GetComponent<RectTransform>();
-        var targetScreenPosition = new Vector2(Screen.width + inventoryIconRectTransform.anchoredPosition.x,
-            Screen.height + inventoryIconRectTransform.anchoredPosition.y);
-        itemIconTransform.anchoredPosition = startScreenPosition;
+        CanvasScaler canvasScaler = this.GetComponentInParent<CanvasScaler>();
+        Canvas canvas = this.GetComponentInParent<Canvas>();
+
+        startScreenPosition.x /= Screen.width / canvas.GetComponent<RectTransform>().sizeDelta.x;
+        startScreenPosition.y /= Screen.width / canvas.GetComponent<RectTransform>().sizeDelta.y;
+
+        Vector2 pos = itemIconTransform.anchoredPosition;
+        pos.x = startScreenPosition.x + offsetX;
+        pos.y = startScreenPosition.y + offsetY;
+        itemIconTransform.anchoredPosition = pos;
+        Debug.Log($"Canvas scale: {canvasScaler.scaleFactor}, Canvas size: {canvas.GetComponent<RectTransform>().sizeDelta}");
+        var targetScreenPosition = new Vector2(canvas.GetComponent<RectTransform>().sizeDelta.x + inventoryIconRectTransform.anchoredPosition.x,
+            canvas.GetComponent<RectTransform>().sizeDelta.y + inventoryIconRectTransform.anchoredPosition.y);
         await itemIconTransform.DOAnchorPos(targetScreenPosition, moveToInventoryDuration).SetEase(Ease.InCubic);
         FadeOut();
         var initialInventoryIconScale = inventoryIconRectTransform.localScale;
@@ -65,5 +80,12 @@ public class ItemPickUpPopUp : Popup
         Color alphaColor = itemIcon.color;
         alphaColor.a = 0f;
         itemIcon.color = alphaColor;
+    }
+
+    [ContextMenu("Debug Fly")]
+    private void DebugFly()
+    {
+        Show();
+        MoveIconToPosition(debugObjectToMove);
     }
 }
