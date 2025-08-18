@@ -101,6 +101,8 @@ public class CharacterSelector : MonoBehaviour
     {
         PlayerPrefs.SetString("CharacterName", characterNameInputField.text);
         PlayerPrefs.SetInt("SelectedCharacter", selectedIndex);
+
+        FindObjectOfType<PortraitSaver>().SaveImage();
         ShowLoadingScreen();
         await SceneManager.LoadSceneAsync("3DSci-fiScene");
         CloseLoadingScreen();

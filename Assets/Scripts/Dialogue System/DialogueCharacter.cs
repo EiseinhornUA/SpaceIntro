@@ -8,5 +8,13 @@ public class DialogueCharacter : ScriptableObject
     [SerializeField] private Sprite portrait;
     public string GetName() => name;
     public Sprite GetPortrait() => portrait;
+    public void SetPortrait(string path)
+    {
+        if (string.IsNullOrEmpty(path))
+        {
+            throw new System.Exception("Portrait path is not valid.");
+        }
+        portrait = SpriteLoader.LoadSpriteFromDisk(path);
+    }
 }
 
