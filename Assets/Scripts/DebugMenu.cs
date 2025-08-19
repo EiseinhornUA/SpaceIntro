@@ -11,14 +11,14 @@ public class DebugMenu : Popup
     [SerializeField] private Volume postProcessingVolume;
     [SerializeField] private Toggle togglePostProcessing;
     [SerializeField] private Toggle toggleBloom;
-    [SerializeField] private Toggle toggleTonemapping;
+    [SerializeField] private Toggle toggleCurves;
     [SerializeField] private Toggle toggleColorAjustments;
 
     private void Start()
     {
         togglePostProcessing.onValueChanged.AddListener(TogglePostProcessing);
         toggleBloom.onValueChanged.AddListener(ToggleBloom);
-        toggleTonemapping.onValueChanged.AddListener(ToggleTonemapping);
+        toggleCurves.onValueChanged.AddListener(ToggleCurves);
         toggleColorAjustments.onValueChanged.AddListener(ToggleColorAjustments);
     }
 
@@ -39,12 +39,12 @@ public class DebugMenu : Popup
         }
     }
 
-    public void ToggleTonemapping(bool isOn)
+    public void ToggleCurves(bool isOn)
     {
         if (postProcessingVolume != null &&
-            postProcessingVolume.profile.TryGet<Tonemapping>(out var tonemapping))
+            postProcessingVolume.profile.TryGet<ColorCurves>(out var curves))
         {
-            tonemapping.active = isOn;
+            curves.active = isOn;
         }
     }
 

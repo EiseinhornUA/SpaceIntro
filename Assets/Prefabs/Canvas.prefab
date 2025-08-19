@@ -590,7 +590,7 @@ MonoBehaviour:
   postProcessingVolume: {fileID: 0}
   togglePostProcessing: {fileID: 3788247584929212434}
   toggleBloom: {fileID: 4039771005215072404}
-  toggleTonemapping: {fileID: 4752499783622126009}
+  toggleCurves: {fileID: 4752499783622126009}
   toggleColorAjustments: {fileID: 7191112994452171660}
 --- !u!1 &1104088879062258865
 GameObject:
@@ -2361,7 +2361,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tonemapping
+  m_text: 'Color Curves
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38aecd77a18d544bfb836befe83883b7, type: 2}
   m_sharedMaterial: {fileID: 6434564289584660316, guid: 38aecd77a18d544bfb836befe83883b7, type: 2}
@@ -2601,7 +2603,7 @@ MonoBehaviour:
   postProcessingVolume: {fileID: 0}
   togglePostProcessing: {fileID: 0}
   toggleBloom: {fileID: 0}
-  toggleTonemapping: {fileID: 0}
+  toggleCurves: {fileID: 0}
   toggleColorAjustments: {fileID: 0}
 --- !u!114 &6956137107288797877
 MonoBehaviour:
@@ -4374,7 +4376,7 @@ GameObject:
   - component: {fileID: 9108812446768906673}
   - component: {fileID: 4752499783622126009}
   m_Layer: 5
-  m_Name: ToggleTonemapping
+  m_Name: ToggleCurves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
