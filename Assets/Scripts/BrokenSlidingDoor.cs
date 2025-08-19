@@ -1,0 +1,28 @@
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEngine;
+
+public class BrokenSlidingDoor : SlidingDoor
+{
+    [SerializeField] private float openPercent = 20f;
+
+    [ContextMenu("Open Broken Door")]
+
+    public override void OpenDoor() => PlayBrokenDoorAnimationAsync().Forget();
+
+    private async UniTask PlayBrokenDoorAnimationAsync()
+    {
+        if (locked)
+        {
+            return;
+        }
+        if (!isOpen)
+        {
+            await doorMoveablePart.transform.DOLocalMoveY(openLength * (openPercent / 100f), duration * (openPercent / 100f));
+            isOpen = true;
+        }
+    }
+}

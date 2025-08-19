@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class SlidingDoor : MonoBehaviour
 {
-    [SerializeField] private float openLength = 3.0f;
+    [SerializeField] protected float openLength = 3.0f;
     [field:SerializeField] public bool locked { get; set; } = true;
-    [SerializeField] private bool isOpen = false;
-    [SerializeField] private float duration = 0.5f;
-    [SerializeField] private GameObject doorMoveablePart;
+    [SerializeField] protected bool isOpen = false;
+    [SerializeField] protected float duration = 0.5f;
+    [SerializeField] protected GameObject doorMoveablePart;
     private Vector3 localDoorPosition;
 
     private void Awake()
@@ -20,7 +20,7 @@ public class SlidingDoor : MonoBehaviour
 
     [ContextMenu("Open Door")]
 
-    public void OpenDoor() => OpenDoorAsync().Forget();
+    public virtual void OpenDoor() => OpenDoorAsync().Forget();
 
     public async UniTask OpenDoorAsync()
     {
@@ -37,9 +37,9 @@ public class SlidingDoor : MonoBehaviour
 
     [ContextMenu("Close Door")]
 
-    public void CloseDoor() => CloseDoorAsync().Forget();
+    public virtual void CloseDoor() => CloseDoorAsync().Forget();
 
-    public async UniTask CloseDoorAsync()
+    public virtual async UniTask CloseDoorAsync()
     {
         if (locked)
         {
