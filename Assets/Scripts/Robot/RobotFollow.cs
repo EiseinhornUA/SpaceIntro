@@ -1,6 +1,11 @@
+using Cinemachine;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -23,6 +28,24 @@ public class RobotFollow : MonoBehaviour
     private float yzSpeedNormalizer = 0.2f;
     private float idleOffsetY = 0f;
 
+    [SerializeField] private float accelerationDistance = 5f;
+    [SerializeField] private float breakSpeed = 2f;
+    [SerializeField] private Transform doorTransform;
+    [SerializeField] private float hitPointOffsetX = 0f;
+    [SerializeField] private float hitPointOffsetY = 0f;
+    [SerializeField] private float hitPointOffsetZ = 0f;
+    [SerializeField] private float breakingForce = 15f;
+    [SerializeField] private float disableTimeAfterHit = 1f;
+    private float robotColliderRadius;
+
+    [SerializeField] CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private Transform playerParent;
+
+    private void Awake()
+    {
+        robotColliderRadius = GetComponent<CircleCollider2D>().radius;
+    }
+
     private void Update()
     {
         if (isRobotOn)
@@ -42,6 +65,11 @@ public class RobotFollow : MonoBehaviour
         isRobotOn = true;
     }
 
+    public void TurnOffRobot()
+    {
+        isRobotOn = false;
+    }
+
     public void TurnOnRobotFollowing()
     {
         isFollowingOn = true;
@@ -54,18 +82,6 @@ public class RobotFollow : MonoBehaviour
 
     public bool IsRobotOn() => isRobotOn;
 
-    private void RotateTowardsPlayer()
-    {
-        transform.LookAt(player.position + new Vector3(0f, offsetY, 1f));
-    }
-
-    private void ApplyIdleMovement()
-    {
-        transform.position += new Vector3(
-            0f,
-            Mathf.Cos(Time.timeSinceLevelLoad * 2f * (float)Math.PI * frequency) * amplitude * Time.deltaTime,
-            0f);
-    }
 
     public void FollowPlayer()
     {
@@ -83,6 +99,86 @@ public class RobotFollow : MonoBehaviour
 
         robotPosition.y += yzSpeedNormalizer * directionY * followSpeed * Time.deltaTime;
         robotPosition.z += yzSpeedNormalizer * directionZ * followSpeed * Time.deltaTime;
-        transform.position = robotPosition;
+        transform.position = robotPosition;    
+    }
+
+    [ContextMenu("Destroy Door")]
+    public async UniTask DestroyDoor()
+    {
+        virtualCamera.Follow = transform;
+        virtualCamera.LookAt = transform;
+        TurnOffRobot();
+        await MoveBackToAccelerate();
+        await Accelerate();
+        await EnableRobotsPhysic();
+        KnockDownDoor();
+
+        await UniTask.Delay(System.TimeSpan.FromSeconds(disableTimeAfterHit));
+
+        await DisableRobotPhysic();
+
+        virtualCamera.Follow = playerParent;
+        virtualCamera.LookAt = playerParent;
+    }
+
+    private async UniTask DisableRobotPhysic()
+    {
+        Destroy(gameObject.GetComponent<Rigidbody>());
+        Destroy(gameObject.GetComponent<MeshCollider>());
+        await UniTask.WaitForFixedUpdate();
+        TurnOnRobot();
+        gameObject.AddComponent<CircleCollider2D>().radius = robotColliderRadius;
+        gameObject.AddComponent<Interactable>();
+    }
+
+    private async Task Accelerate()
+    {
+        await transform.DOMove(
+                    new Vector3(doorTransform.position.x + hitPointOffsetX,
+                    doorTransform.position.y + hitPointOffsetY,
+                    doorTransform.position.z + hitPointOffsetZ),
+                    breakSpeed).SetEase(Ease.InQuart);
+    }
+
+    private async Task MoveBackToAccelerate()
+    {
+        await transform.DOMove(new
+            Vector3(transform.position.x + accelerationDistance,
+            transform.position.y,
+            transform.position.z), breakSpeed)
+            .SetEase(Ease.InOutQuad);
+    }
+
+    private void KnockDownDoor()
+    {
+        var doorRigidBody = doorTransform.AddComponent<Rigidbody>();
+        const float RobotDampingFactor = 2f;
+        gameObject.GetComponent<Rigidbody>().AddForce(
+        new Vector3(-breakingForce / RobotDampingFactor, 0f, 0f), ForceMode.Impulse);
+        doorRigidBody.AddForce(
+        new Vector3(-breakingForce, 0f, 0f), ForceMode.Impulse);
+    }
+
+    private async UniTask EnableRobotsPhysic()
+    {
+        Destroy(gameObject.GetComponent<Interactable>());
+        Destroy(gameObject.GetComponent<CircleCollider2D>());
+        await UniTask.WaitForFixedUpdate();
+        var meshCollider = gameObject.AddComponent<MeshCollider>();
+        gameObject.AddComponent<Rigidbody>();
+        meshCollider.convex = true;
+        meshCollider.providesContacts = true;
+    }
+    private void RotateTowardsPlayer()
+    {
+        transform.LookAt(player.position + new Vector3(0f, offsetY, 1f));
+    }
+
+    private void ApplyIdleMovement()
+    {
+        transform.position += new Vector3(
+            0f,
+            Mathf.Cos(Time.timeSinceLevelLoad * 2f * (float)Math.PI * frequency) * amplitude * Time.deltaTime,
+            0f);
     }
 }
