@@ -39,6 +39,7 @@ public class RobotFollow : MonoBehaviour
     private float robotColliderRadius;
 
     [SerializeField] CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private float cameraOffsetY = -2f;
     [SerializeField] private Transform playerParent;
 
     private void Awake()
@@ -105,8 +106,8 @@ public class RobotFollow : MonoBehaviour
     [ContextMenu("Destroy Door")]
     public async UniTask DestroyDoor()
     {
-        virtualCamera.Follow = transform;
-        virtualCamera.LookAt = transform;
+        //virtualCamera.Follow = transform;
+        //virtualCamera.LookAt = transform;
         TurnOffRobot();
         await MoveBackToAccelerate();
         await Accelerate();
@@ -117,8 +118,11 @@ public class RobotFollow : MonoBehaviour
 
         await DisableRobotPhysic();
 
-        virtualCamera.Follow = playerParent;
-        virtualCamera.LookAt = playerParent;
+        doorTransform.gameObject.layer = 13;
+        doorTransform.GetChild(0).gameObject.layer = 13;
+
+        //virtualCamera.Follow = playerParent;
+        //virtualCamera.LookAt = playerParent;
     }
 
     private async UniTask DisableRobotPhysic()

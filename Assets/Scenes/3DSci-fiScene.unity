@@ -4211,6 +4211,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 65585401646757160, guid: 3deace0cd22ccd54b809b039e70ff8f6, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6865,8 +6869,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382567848}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000008745768, y: 0.99950725, z: -0.031387564, w: 0.00027850067}
-  m_LocalPosition: {x: 27.004929, y: 6.7102275, z: 10.541029}
+  m_LocalRotation: {x: -8.3920815e-10, y: 0.99949116, z: -0.031898186, w: -0.000000026295574}
+  m_LocalPosition: {x: 27.01, y: 6.7195272, z: 10.5404415}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7456,7 +7460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1543695114780030, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1543695114780030, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7503,7 +7507,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 64585779360771958, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64585779360771958, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64585779360771958, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
+      propertyPath: m_ProvidesContacts
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7515,7 +7527,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1543695114780030, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1886455284}
+      addedObject: {fileID: 1886455280}
   m_SourcePrefab: {fileID: 100100000, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
 --- !u!4 &442142305 stripped
 Transform:
@@ -8014,31 +8026,31 @@ PrefabInstance:
       objectReference: {fileID: 746446917832740414}
     - target: {fileID: 2440512004207721219, guid: 389b8b0334473e04d9796e43d98e2d7f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.004929
+      value: 27.01
       objectReference: {fileID: 0}
     - target: {fileID: 2440512004207721219, guid: 389b8b0334473e04d9796e43d98e2d7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.7102275
+      value: 6.7195272
       objectReference: {fileID: 0}
     - target: {fileID: 2440512004207721219, guid: 389b8b0334473e04d9796e43d98e2d7f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.541029
+      value: 10.5404415
       objectReference: {fileID: 0}
     - target: {fileID: 2440512004207721219, guid: 389b8b0334473e04d9796e43d98e2d7f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.00027850067
+      value: -0.000000026295574
       objectReference: {fileID: 0}
     - target: {fileID: 2440512004207721219, guid: 389b8b0334473e04d9796e43d98e2d7f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000008745768
+      value: -8.3920815e-10
       objectReference: {fileID: 0}
     - target: {fileID: 2440512004207721219, guid: 389b8b0334473e04d9796e43d98e2d7f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.99950725
+      value: 0.99949116
       objectReference: {fileID: 0}
     - target: {fileID: 2440512004207721219, guid: 389b8b0334473e04d9796e43d98e2d7f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.031387564
+      value: -0.031898186
       objectReference: {fileID: 0}
     - target: {fileID: 2440512004207721219, guid: 389b8b0334473e04d9796e43d98e2d7f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10131,6 +10143,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 27a26df9ceba4174a854cf003b56d460, type: 2}
+    - target: {fileID: 65113161536644624, guid: 207c4df47bbdb954c96147f7a5c1783a, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16146,6 +16162,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 65585401646757160, guid: 3deace0cd22ccd54b809b039e70ff8f6, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17410,6 +17430,17 @@ MonoBehaviour:
   amplitude: 0.5
   isRobotOn: 0
   isFollowingOn: 1
+  accelerationDistance: 10
+  breakSpeed: 2
+  doorTransform: {fileID: 1309923842}
+  hitPointOffsetX: 0.5
+  hitPointOffsetY: 1.4
+  hitPointOffsetZ: 0
+  breakingForce: 15
+  disableTimeAfterHit: 2
+  virtualCamera: {fileID: 491891344}
+  cameraOffsetY: -1
+  playerParent: {fileID: 746446917832740414}
 --- !u!114 &1324533535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17460,7 +17491,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.21428572
+  m_Radius: 0.25
 --- !u!1 &1327203535
 GameObject:
   m_ObjectHideFlags: 0
@@ -17740,7 +17771,8 @@ MonoBehaviour:
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"RobotGameObject","value":{"$content":19,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorTerminalGameObject","value":{"$content":20,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"AskMenuButton","value":{"$content":21,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"EngineeringDoorTerminal","value":{"$content":22,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 5449569031936165082}
     - {fileID: 1324533535}
@@ -17764,6 +17796,7 @@ MonoBehaviour:
     - {fileID: 1324533527}
     - {fileID: 7826260819959180519}
     - {fileID: 775995653}
+    - {fileID: 6678624693226620741}
 --- !u!4 &1364289608
 Transform:
   m_ObjectHideFlags: 0
@@ -22460,7 +22493,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1543695114780030, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
   m_PrefabInstance: {fileID: 442142304}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1886455284
+--- !u!114 &1886455280
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22469,7 +22502,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1886455279}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e00e230dd223ea41904bc7632899d70, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c70571d1a2b83f498098c17f3681ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   openLength: 3
@@ -22477,6 +22510,7 @@ MonoBehaviour:
   isOpen: 0
   duration: 0.5
   doorMoveablePart: {fileID: 1309923841}
+  openPercent: 20
 --- !u!1 &1886706796
 GameObject:
   m_ObjectHideFlags: 0
@@ -25254,6 +25288,10 @@ PrefabInstance:
     - target: {fileID: 4944680388452134, guid: 3deace0cd22ccd54b809b039e70ff8f6, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65585401646757160, guid: 3deace0cd22ccd54b809b039e70ff8f6, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30950,6 +30988,10 @@ PrefabInstance:
     - target: {fileID: 4944680388452134, guid: 3deace0cd22ccd54b809b039e70ff8f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65585401646757160, guid: 3deace0cd22ccd54b809b039e70ff8f6, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37499,8 +37541,8 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1886455284}
-        m_TargetAssemblyTypeName: SlidingDoor, Assembly-CSharp
+      - m_Target: {fileID: 1886455280}
+        m_TargetAssemblyTypeName: BrokenSlidingDoor, Assembly-CSharp
         m_MethodName: OpenDoor
         m_Mode: 1
         m_Arguments:
@@ -37511,7 +37553,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  isActive: 1
+  isActive: 0
 --- !u!58 &6678624693226620742
 CircleCollider2D:
   m_ObjectHideFlags: 0
