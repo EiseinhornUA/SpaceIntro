@@ -28,7 +28,7 @@ public class ItemPickUpPopUp : Popup
 
     public async UniTask MoveIconToPosition(Transform objectTransform)
     {
-        Hud hud = Hud.FindHud();
+        Hud hud = Hud.Instance;
 
         hud.HideHud();
         Vector2 startScreenPosition = Camera.main.WorldToScreenPoint(objectTransform.position);
