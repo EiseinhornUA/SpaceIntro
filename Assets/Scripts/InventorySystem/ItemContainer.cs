@@ -9,7 +9,7 @@ public class ItemContainer : MonoBehaviour
 {
 
     [SerializeField] private List<InventoryItem> items = new();
-    [SerializeField] private InventoryView inventoryView;
+    [SerializeField] private BackpackView backpackView;
 
     public void AddItem(ItemSO itemSO)
     {
@@ -18,7 +18,7 @@ public class ItemContainer : MonoBehaviour
             throw new System.ArgumentNullException(nameof(itemSO), "Item cannot be null.");
         }
         items.Add(itemSO.AsInventoryItem());
-        inventoryView.AddItem(itemSO.AsInventoryItem());
+        backpackView.AddItem(itemSO.AsInventoryItem());
     }
 
     internal bool HasItem(string name)

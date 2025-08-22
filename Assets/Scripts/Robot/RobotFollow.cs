@@ -131,7 +131,7 @@ public class RobotFollow : MonoBehaviour
         gameObject.AddComponent<Interactable>();
     }
 
-    private async Task Accelerate()
+    private async System.Threading.Tasks.Task Accelerate()
     {
         await transform.DOMove(
                     new Vector3(doorTransform.position.x + hitPointOffsetX,
@@ -140,7 +140,7 @@ public class RobotFollow : MonoBehaviour
                     breakSpeed).SetEase(Ease.InQuart);
     }
 
-    private async Task MoveBackToAccelerate()
+    private async System.Threading.Tasks.Task MoveBackToAccelerate()
     {
         await transform.DOMove(new
             Vector3(transform.position.x + accelerationDistance,
