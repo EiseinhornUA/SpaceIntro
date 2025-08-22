@@ -38,7 +38,7 @@ public class StartDialogueNode : WaitUnit
         var dialoguePrefab = flow.GetValue<DialoguePrefab>(dialogueInput);
 
         DialogueManager dialogueManager = GameObject.FindObjectOfType<DialogueManager>();
-        Hud hud = Hud.FindHud();
+        Hud hud = Hud.Instance;
         if (!dialogueManager) Debug.LogError("DialogueManager not found in the scene. Please add a DialogueManager component to a GameObject.");
         dialogueManager.StartDialogue(dialoguePrefab);
 

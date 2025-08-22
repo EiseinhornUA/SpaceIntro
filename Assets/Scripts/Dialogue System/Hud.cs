@@ -3,7 +3,21 @@ using UnityEngine;
 
 public class Hud : MonoBehaviour
 {
-    internal static Hud FindHud()
+    public static Hud Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindHud();
+            }
+            return instance;
+        }
+    }
+
+    private static Hud instance;
+
+    private static Hud FindHud()
     {
         return FindObjectOfType<Hud>(includeInactive: true);
     }

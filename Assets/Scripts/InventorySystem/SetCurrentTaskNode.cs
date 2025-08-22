@@ -9,25 +9,34 @@ public class SetCurrentTaskNode : Unit
 {
     public ControlInput enter;
     public ControlOutput exit;
-    public ValueInput inputText;
+    public ValueInput inputName;
+    public ValueInput inputDescription;
 
     protected override void Definition()
     {
         enter = ControlInput("enter", (flow) =>
         {
-            InventoryView inventoryView = GameObject.FindObjectOfType<InventoryView>(includeInactive: true);
-            string taskText = flow.GetValue<string>(inputText);
-            if (!inventoryView)
+            JournalView journalView = GameObject.FindObjectOfType<JournalView>(includeInactive: true);
+            
+            if (!journalView)
             {
-                throw new System.Exception("InventoryView not found in the scene.");
+                throw new System.Exception("BackpackView not found in the scene.");
             }
-            inventoryView.SetTaskText(taskText);
+
+            string taskName = flow.GetValue<string>(inputName);
+            string taskDescription = flow.GetValue<string>(inputDescription);
+
+            journalView.AddTask(taskName, taskDescription);
+            
             return exit;
         });
+
         exit = ControlOutput("exit");
-        inputText = ValueInput<string>("inputText", string.Empty);
+        inputName = ValueInput<string>("inputName", string.Empty);
+        inputDescription = ValueInput<string>("inputDescription", string.Empty);
 
         Succession(enter, exit);
-        Requirement(inputText, enter);
+        Requirement(inputName, enter);
+        Requirement(inputDescription, enter);
     }
 }

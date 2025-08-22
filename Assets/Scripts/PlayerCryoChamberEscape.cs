@@ -26,7 +26,7 @@ public class PlayerCryoChamberEscape : MonoBehaviour
 
         player.EnableControls(false);
 
-        Hud hud = Hud.FindHud();
+        Hud hud = Hud.Instance;
 
         hud.HideHud();
 
