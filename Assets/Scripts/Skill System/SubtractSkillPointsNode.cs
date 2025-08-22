@@ -26,7 +26,7 @@ public class SubtractSkillPointsNode : Unit
 
         for (int i = 0; i < skillCount; i++)
         {
-            amountInputs.Add(ValueInput<uint>($"Amount {i + 1}", 0));
+            amountInputs.Add(ValueInput<float>($"Amount {i + 1}", 0f));
             skillInputs.Add(ValueInput<SkillSO>($"Skill {i + 1}", null));
         }
 
@@ -38,7 +38,7 @@ public class SubtractSkillPointsNode : Unit
         SkillContainer skillContainer = GameObject.FindObjectOfType<SkillContainer>(includeInactive: true);
         for (int i = 0; i < skillCount; i++)
         {
-            int amount = (int)flow.GetValue<uint>(amountInputs[i]);
+            float amount = flow.GetValue<float>(amountInputs[i]);
             SkillSO skill = flow.GetValue<SkillSO>(skillInputs[i]);
 
             if (skill != null)

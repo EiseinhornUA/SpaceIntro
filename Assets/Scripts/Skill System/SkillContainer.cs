@@ -22,13 +22,13 @@ public class SkillContainer : MonoBehaviour
 
     public List<Skill> GetSkills() => skills;
 
-    public void AddSkillLevel(SkillSO skill, int amount)
+    public void AddSkillLevel(SkillSO skill, float amount)
     {
         GetSkill(skill).level += amount;
         OnSkillLevelChanged?.Invoke(GetSkill(skill));
     }
 
-    public void SubtractSkillLevel(SkillSO skill, int amount)
+    public void SubtractSkillLevel(SkillSO skill, float amount)
     {
         GetSkill(skill).level -= amount;
         OnSkillLevelChanged?.Invoke(GetSkill(skill));
@@ -37,11 +37,6 @@ public class SkillContainer : MonoBehaviour
     [ContextMenu("Print Skills")]
     public void PrintSkills()
     {
-
         Debug.Log(string.Join('\n', skills.Select(skill => $"{skill.skillName}: {skill.level}")));
-        //foreach (var skill in skills)
-        //{
-        //    Debug.Log($"Skill: {skill.skillName}, Level: {skill.level}");
-        //}
     }
 }
