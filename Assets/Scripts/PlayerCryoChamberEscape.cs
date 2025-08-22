@@ -15,6 +15,7 @@ public class PlayerCryoChamberEscape : MonoBehaviour
     [SerializeField] private CryoGlass cryoGlass;
 
     [SerializeField] private Vector3 impulseForce;
+    [SerializeField] private ParticleSystem escapeParticles;
 
     [ContextMenu("Escape")]
     public void Escape() => EscapeAsync().Forget();
@@ -29,6 +30,7 @@ public class PlayerCryoChamberEscape : MonoBehaviour
 
         hud.HideHud();
 
+        escapeParticles.Play();
         await cryoGlass.OpenAsync();
 
         RotatePlayerToExit();

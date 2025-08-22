@@ -28,6 +28,9 @@ public class ItemPickUpPopUp : Popup
 
     public async UniTask MoveIconToPosition(Transform objectTransform)
     {
+        Hud hud = Hud.FindHud();
+
+        hud.HideHud();
         Vector2 startScreenPosition = Camera.main.WorldToScreenPoint(objectTransform.position);
         var inventoryIconRectTransform = invetoryIcon.GetComponent<RectTransform>();
         RectTransform itemIconTransform = itemIcon.GetComponent<RectTransform>();
@@ -51,6 +54,8 @@ public class ItemPickUpPopUp : Popup
             inventoryIconScaleDuration * 0.5f);
         await inventoryIconRectTransform.DOScale(initialInventoryIconScale, inventoryIconScaleDuration * 0.5f);
         taskCompletionSource?.TrySetResult();
+
+        hud.ShowHud();
         Hide();
     }
 
