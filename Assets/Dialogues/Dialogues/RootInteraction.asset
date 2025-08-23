@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: RootInteraction
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":4787.095,"y":-83.99988},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":215.0,"y":-58.0},"guid":"19b2f7b3-e284-4b1b-8f95-7d210b029d8a","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"exitCount":1,"defaultValues":{"Variant
+      Name 1":null},"position":{"x":4778.0,"y":-127.0},"guid":"62612e39-d061-426e-ae55-2d85a1bcdaef","$version":"A","$type":"EndDialogueNode","$id":"11"},{"defaultValues":{"Dialogue
+      Line":{"$content":"What is this!","$type":"System.String"},"Character":{"$content":0,"$type":"UnityEngine.Object"}},"position":{"x":395.0,"y":-91.0},"guid":"5bd8d48f-1015-4dd3-9248-ccc311d54924","$version":"A","$type":"DialogueNode","$id":"13"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Analysis\u2026","$type":"System.String"},"Character":{"$content":1,"$type":"UnityEngine.Object"}},"position":{"x":735.0,"y":-98.0},"guid":"bab35288-4a94-4bc8-8d89-49fbac2ff427","$version":"A","$type":"DialogueNode","$id":"15"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Root system of a biological species. History of origin unknown.","$type":"System.String"},"Character":{"$content":2,"$type":"UnityEngine.Object"}},"position":{"x":1016.0,"y":-94.0},"guid":"3a33ab29-43cb-411e-856d-d0a0eb856201","$version":"A","$type":"DialogueNode","$id":"17"},{"defaultValues":{"Dialogue
+      Line":{"$content":"How long has this been here?","$type":"System.String"},"Character":{"$content":3,"$type":"UnityEngine.Object"}},"position":{"x":1418.0,"y":-91.0},"guid":"97d44815-b0e4-4c43-bd38-f0e937233a64","$version":"A","$type":"DialogueNode","$id":"19"},{"defaultValues":{"Dialogue
+      Line":{"$content":"No data.","$type":"System.String"},"Character":{"$content":4,"$type":"UnityEngine.Object"}},"position":{"x":1783.0,"y":-88.0},"guid":"773d3deb-231f-47a2-9699-694c47b2cfa6","$version":"A","$type":"DialogueNode","$id":"21"},{"defaultValues":{"Dialogue
+      Line":{"$content":"\ufe0fHave these roots damaged the ship''s hermetic seal?","$type":"System.String"},"Character":{"$content":5,"$type":"UnityEngine.Object"}},"position":{"x":2017.0,"y":-94.0},"guid":"8390b915-5718-45c1-aac3-d0ebd73ab762","$version":"A","$type":"DialogueNode","$id":"23"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Analyzing\u2026 presumably yes. The roots are damaging one
+      of the walls and adjacent compartments. ","$type":"System.String"},"Character":{"$content":6,"$type":"UnityEngine.Object"}},"position":{"x":2425.0,"y":-97.0},"guid":"943e6bff-c54e-4414-be91-56fe4e584ec3","$version":"A","$type":"DialogueNode","$id":"25"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Let''s try to remove these roots, do you know how?","$type":"System.String"},"Character":{"$content":7,"$type":"UnityEngine.Object"}},"position":{"x":2840.0,"y":-107.0},"guid":"b988970a-45b1-46f3-a495-63ddbc73a05a","$version":"A","$type":"DialogueNode","$id":"27"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Warning! An even stronger breach of hermetic seal may lead
+      to complete depressurization! Recommendation: do not breach the ship''s hermetic
+      seal.","$type":"System.String"},"Character":{"$content":8,"$type":"UnityEngine.Object"}},"position":{"x":3237.0,"y":-113.0},"guid":"410c76c6-43e8-40d6-81db-95bd273aedf4","$version":"A","$type":"DialogueNode","$id":"29"},{"defaultValues":{"Dialogue
+      Line":{"$content":"\ufe0fYou said oxygen deficiency here. What is the oxygen
+      level now?","$type":"System.String"},"Character":{"$content":9,"$type":"UnityEngine.Object"}},"position":{"x":3637.0,"y":-113.0},"guid":"e7878427-4149-4557-991a-2e7c2b408567","$version":"A","$type":"DialogueNode","$id":"31"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Analyzing\u2026","$type":"System.String"},"Character":{"$content":10,"$type":"UnityEngine.Object"}},"position":{"x":4036.0,"y":-113.0},"guid":"5e569ba2-342d-4ea9-bd99-1e9f07ad8df9","$version":"A","$type":"DialogueNode","$id":"33"},{"defaultValues":{"Dialogue
+      Line":{"$content":"The composition of the air environment:","$type":"System.String"},"Character":{"$content":11,"$type":"UnityEngine.Object"}},"position":{"x":4313.0,"y":-117.0},"guid":"e8844f38-c6a9-4bf3-bedf-4761bbacab9f","$version":"A","$type":"DialogueNode","$id":"35"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"13"},"destinationKey":"enter","guid":"51552d7a-6dfd-4034-bd45-9ffd389e47f2","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"exit","destinationUnit":{"$ref":"15"},"destinationKey":"enter","guid":"927a1e44-6d0d-41bd-a8e0-6d7d31e43956","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"exit","destinationUnit":{"$ref":"17"},"destinationKey":"enter","guid":"46153987-e75f-4975-968f-93a11cc97dd2","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"17"},"sourceKey":"exit","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"0dfae60c-76c9-4bb3-8a3e-4913027c6489","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"exit","destinationUnit":{"$ref":"21"},"destinationKey":"enter","guid":"78670ec9-748d-4e8d-a0d3-84b2294d5255","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"21"},"sourceKey":"exit","destinationUnit":{"$ref":"23"},"destinationKey":"enter","guid":"da8f10b0-5f1f-4be2-9edf-c49a6d7866fe","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"23"},"sourceKey":"exit","destinationUnit":{"$ref":"25"},"destinationKey":"enter","guid":"be1d52df-83dd-4346-a542-c82a11495d10","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"25"},"sourceKey":"exit","destinationUnit":{"$ref":"27"},"destinationKey":"enter","guid":"978e9ae4-7a3e-48cb-b8bc-b1b623ff1824","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"27"},"sourceKey":"exit","destinationUnit":{"$ref":"29"},"destinationKey":"enter","guid":"2625f3f3-19c6-4e01-887c-2aed134647b8","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"29"},"sourceKey":"exit","destinationUnit":{"$ref":"31"},"destinationKey":"enter","guid":"5ded4d2a-37bc-45c7-b15f-96c4a2e5eb8d","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"31"},"sourceKey":"exit","destinationUnit":{"$ref":"33"},"destinationKey":"enter","guid":"dc486b6f-b15c-4ff5-8a06-d1663f715828","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"33"},"sourceKey":"exit","destinationUnit":{"$ref":"35"},"destinationKey":"enter","guid":"42a47bb5-641b-4051-b266-5959e1e9dde0","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"35"},"sourceKey":"exit","destinationUnit":{"$ref":"11"},"destinationKey":"Dialogue
+      1 Exit","guid":"d9b5f8e9-57c1-4f50-8b2d-c91a3a80316d","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}

@@ -7,7 +7,7 @@ public class Skill
 {
 
     [field: SerializeField] public string skillName { get; set; }
-    [field: SerializeField] public int level { get; set; }
+    [field: SerializeField] public float level { get; set; }
 
     public Skill(SkillSO skillSO)
     {
