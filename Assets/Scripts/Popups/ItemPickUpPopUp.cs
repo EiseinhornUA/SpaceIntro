@@ -11,6 +11,7 @@ public class ItemPickUpPopUp : Popup
     [SerializeField] float inventoryIconScaleDuration = 0.25f;
     [SerializeField] float inventoryIconScale = 1.5f;
     [SerializeField] GameObject invetoryIcon;
+    [SerializeField] GameObject joyStick;
 
 
     [SerializeField] Transform debugObjectToMove;
@@ -28,9 +29,7 @@ public class ItemPickUpPopUp : Popup
 
     public async UniTask MoveIconToPosition(Transform objectTransform)
     {
-        Hud hud = Hud.Instance;
-
-        hud.HideHud();
+        joyStick.SetActive(false);
         Vector2 startScreenPosition = Camera.main.WorldToScreenPoint(objectTransform.position);
         var inventoryIconRectTransform = invetoryIcon.GetComponent<RectTransform>();
         RectTransform itemIconTransform = itemIcon.GetComponent<RectTransform>();
@@ -55,7 +54,7 @@ public class ItemPickUpPopUp : Popup
         await inventoryIconRectTransform.DOScale(initialInventoryIconScale, inventoryIconScaleDuration * 0.5f);
         taskCompletionSource?.TrySetResult();
 
-        hud.ShowHud();
+        joyStick.SetActive(true);
         Hide();
     }
 
