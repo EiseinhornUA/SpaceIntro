@@ -13,72 +13,72 @@ MonoBehaviour:
   m_Name: RobotAwake2
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":1566.252,"y":-33.44781},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":215.0,"y":-58.0},"guid":"19b2f7b3-e284-4b1b-8f95-7d210b029d8a","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"choiceCount":4,"defaultValues":{"Dialogue
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":1974.252,"y":-273.4478},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":215.0,"y":-58.0},"guid":"19b2f7b3-e284-4b1b-8f95-7d210b029d8a","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"skillCount":3,"defaultValues":{"Amount
+      1":{"$content":2.0,"$type":"System.Single"},"Skill 1":{"$content":0,"$type":"UnityEngine.Object"},"Amount
+      2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":1,"$type":"UnityEngine.Object"},"Amount
+      3":{"$content":1.0,"$type":"System.Single"},"Skill 3":{"$content":2,"$type":"UnityEngine.Object"}},"position":{"x":2234.0,"y":-48.0},"guid":"a119cc6b-4ace-48ef-aea6-0c442a0565d9","$version":"A","$type":"AddSkillPointsNode","$id":"11"},{"choiceCount":4,"defaultValues":{"Dialogue
       Line":{"$content":"High stress level detected! It\u2019s dangerous since you
-      may pose a threat to the spaceship and all systems!","$type":"System.String"},"Character":{"$content":0,"$type":"UnityEngine.Object"},"Text1":{"$content":"I''m
+      may pose a threat to the spaceship and all systems!","$type":"System.String"},"Character":{"$content":3,"$type":"UnityEngine.Object"},"Text1":{"$content":"I''m
       just alert, not stressed. You misread me, no need to worry. ","$type":"System.String"},"Text2":{"$content":"No
       way! Your scanner must be broken. I''m totally fine!  ","$type":"System.String"},"Text3":{"$content":"It\u2019s
       cold and systems glitch, I\u2019m not a threat, no worries.   ","$type":"System.String"},"Text4":{"$content":"Maybe
-      I just need time to adjust and calm down a bit.","$type":"System.String"}},"position":{"x":1177.0,"y":-85.0},"guid":"0b1e6611-4580-45f4-b43f-fe4db4badd09","$version":"A","$type":"DialogueChoiceNode","$id":"11"},{"defaultValues":{"Dialogue
-      Line":{"$content":"Scanning...","$type":"System.String"},"Character":{"$content":1,"$type":"UnityEngine.Object"}},"position":{"x":868.0,"y":-83.0},"guid":"61b28a75-03be-4cc4-8d8f-dbbc59dbe201","$version":"A","$type":"DialogueNode","$id":"13"},{"defaultValues":{"Dialogue
-      Line":{"$content":"All systems are up to date. I''m ready to work. Before we
-      start, I am forced to scan you due to potential safety risks.","$type":"System.String"},"Character":{"$content":2,"$type":"UnityEngine.Object"}},"position":{"x":440.0,"y":-85.0},"guid":"5bd8d48f-1015-4dd3-9248-ccc311d54924","$version":"A","$type":"DialogueNode","$id":"15"},{"exitCount":1,"defaultValues":{"Variant
+      I just need time to adjust and calm down a bit.","$type":"System.String"}},"position":{"x":1177.0,"y":-85.0},"guid":"0b1e6611-4580-45f4-b43f-fe4db4badd09","$version":"A","$type":"DialogueChoiceNode","$id":"13"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Scanning...","$type":"System.String"},"Character":{"$content":4,"$type":"UnityEngine.Object"}},"position":{"x":868.0,"y":-83.0},"guid":"61b28a75-03be-4cc4-8d8f-dbbc59dbe201","$version":"A","$type":"DialogueNode","$id":"15"},{"exitCount":1,"defaultValues":{"Variant
       Name 1":null},"position":{"x":4299.0,"y":-75.0},"guid":"62612e39-d061-426e-ae55-2d85a1bcdaef","$version":"A","$type":"EndDialogueNode","$id":"17"},{"choiceCount":4,"defaultValues":{"Dialogue
       Line":{"$content":"Ok, but I strongly recommend that you reduce your heartbeat
-      because it can negatively impact the decisions you make.","$type":"System.String"},"Character":{"$content":3,"$type":"UnityEngine.Object"},"Text1":{"$content":"Ok,
+      because it can negatively impact the decisions you make.","$type":"System.String"},"Character":{"$content":5,"$type":"UnityEngine.Object"},"Text1":{"$content":"Ok,
       I''ll track my heart rate and ask you for help if things get worse.","$type":"System.String"},"Text2":{"$content":"I\u2019ll
       try to calm down and think of something peaceful and hopeful. ","$type":"System.String"},"Text3":{"$content":"Thanks.
       I\u2019ll be fine - my heart rate won\u2019t affect what I do. ","$type":"System.String"},"Text4":{"$content":"Got
       it. I\u2019ll take a few deep breaths and will try to reset. ","$type":"System.String"}},"position":{"x":2899.0,"y":-68.0},"guid":"71beae3d-5526-4ffe-b61b-4aad3b458ec0","$version":"A","$type":"DialogueChoiceNode","$id":"19"},{"skillCount":3,"defaultValues":{"Amount
-      1":{"$content":3.0,"$type":"System.Single"},"Skill 1":{"$content":4,"$type":"UnityEngine.Object"},"Amount
-      2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":5,"$type":"UnityEngine.Object"},"Amount
-      3":{"$content":2.0,"$type":"System.Single"},"Skill 3":{"$content":6,"$type":"UnityEngine.Object"}},"position":{"x":1671.0,"y":-444.0},"guid":"26f83e3a-327f-482c-88a6-cfdf61d8f254","$version":"A","$type":"AddSkillPointsNode","$id":"21"},{"skillCount":3,"defaultValues":{"Amount
-      1":{"$content":2.0,"$type":"System.Single"},"Skill 1":{"$content":7,"$type":"UnityEngine.Object"},"Amount
-      2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":8,"$type":"UnityEngine.Object"},"Amount
-      3":{"$content":1.0,"$type":"System.Single"},"Skill 3":{"$content":9,"$type":"UnityEngine.Object"}},"position":{"x":2234.0,"y":-48.0},"guid":"a119cc6b-4ace-48ef-aea6-0c442a0565d9","$version":"A","$type":"AddSkillPointsNode","$id":"23"},{"skillCount":4,"defaultValues":{"Amount
+      1":{"$content":3.0,"$type":"System.Single"},"Skill 1":{"$content":6,"$type":"UnityEngine.Object"},"Amount
+      2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":7,"$type":"UnityEngine.Object"},"Amount
+      3":{"$content":2.0,"$type":"System.Single"},"Skill 3":{"$content":8,"$type":"UnityEngine.Object"}},"position":{"x":1812.0,"y":-452.0},"guid":"26f83e3a-327f-482c-88a6-cfdf61d8f254","$version":"A","$type":"AddSkillPointsNode","$id":"21"},{"defaultValues":{"Dialogue
+      Line":{"$content":"All systems are up to date. I''m ready to work. Before we
+      start, I am forced to scan you due to potential safety risks.","$type":"System.String"},"Character":{"$content":9,"$type":"UnityEngine.Object"}},"position":{"x":440.0,"y":-85.0},"guid":"5bd8d48f-1015-4dd3-9248-ccc311d54924","$version":"A","$type":"DialogueNode","$id":"23"},{"skillCount":4,"defaultValues":{"Amount
       1":{"$content":5.0,"$type":"System.Single"},"Skill 1":{"$content":10,"$type":"UnityEngine.Object"},"Amount
       2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":11,"$type":"UnityEngine.Object"},"Amount
       3":{"$content":1.0,"$type":"System.Single"},"Skill 3":{"$content":12,"$type":"UnityEngine.Object"},"Amount
       4":{"$content":1.0,"$type":"System.Single"},"Skill 4":{"$content":13,"$type":"UnityEngine.Object"}},"position":{"x":2521.0,"y":172.0},"guid":"7a3e18a4-ab76-4a39-9bbf-41548abfab2b","$version":"A","$type":"AddSkillPointsNode","$id":"25"},{"skillCount":2,"defaultValues":{"Amount
       1":{"$content":1.0,"$type":"System.Single"},"Skill 1":{"$content":14,"$type":"UnityEngine.Object"},"Amount
-      2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":15,"$type":"UnityEngine.Object"}},"position":{"x":1955.0,"y":-223.0},"guid":"d3ba0589-5607-4399-aee3-cb82579b0ea5","$version":"A","$type":"SubtractSkillPointsNode","$id":"27"},{"skillCount":5,"defaultValues":{"Amount
+      2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":15,"$type":"UnityEngine.Object"}},"position":{"x":2034.0,"y":-244.0},"guid":"d3ba0589-5607-4399-aee3-cb82579b0ea5","$version":"A","$type":"SubtractSkillPointsNode","$id":"27"},{"skillCount":5,"defaultValues":{"Amount
       1":{"$content":4.0,"$type":"System.Single"},"Skill 1":{"$content":16,"$type":"UnityEngine.Object"},"Amount
       2":{"$content":2.0,"$type":"System.Single"},"Skill 2":{"$content":17,"$type":"UnityEngine.Object"},"Amount
       3":{"$content":2.0,"$type":"System.Single"},"Skill 3":{"$content":18,"$type":"UnityEngine.Object"},"Amount
       4":{"$content":1.0,"$type":"System.Single"},"Skill 4":{"$content":19,"$type":"UnityEngine.Object"},"Amount
       5":{"$content":2.0,"$type":"System.Single"},"Skill 5":{"$content":20,"$type":"UnityEngine.Object"}},"position":{"x":3625.0,"y":-448.0},"guid":"9806a858-fb8a-43c8-9e43-a77899f7883b","$version":"A","$type":"AddSkillPointsNode","$id":"29"},{"skillCount":2,"defaultValues":{"Amount
-      1":{"$content":1.0,"$type":"System.Single"},"Skill 1":{"$content":21,"$type":"UnityEngine.Object"},"Amount
-      2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":22,"$type":"UnityEngine.Object"}},"position":{"x":3445.0,"y":-126.0},"guid":"efa29f51-d885-4bab-afb0-8e7bad8c6882","$version":"A","$type":"AddSkillPointsNode","$id":"31"},{"skillCount":2,"defaultValues":{"Amount
-      1":{"$content":0.5,"$type":"System.Single"},"Skill 1":{"$content":23,"$type":"UnityEngine.Object"},"Amount
-      2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":24,"$type":"UnityEngine.Object"}},"position":{"x":3816.0,"y":-126.0},"guid":"bffc1326-31a5-43ec-a680-bcdfb4a3e266","$version":"A","$type":"SubtractSkillPointsNode","$id":"33"},{"skillCount":2,"defaultValues":{"Amount
-      1":{"$content":1.0,"$type":"System.Single"},"Skill 1":{"$content":25,"$type":"UnityEngine.Object"},"Amount
-      2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":26,"$type":"UnityEngine.Object"}},"position":{"x":3638.0,"y":67.0},"guid":"47aa6882-fdfb-443c-8919-4ba821d44afa","$version":"A","$type":"SubtractSkillPointsNode","$id":"35"},{"skillCount":3,"defaultValues":{"Amount
-      1":{"$content":5.0,"$type":"System.Single"},"Skill 1":{"$content":27,"$type":"UnityEngine.Object"},"Amount
-      2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":28,"$type":"UnityEngine.Object"},"Amount
-      3":{"$content":2.0,"$type":"System.Single"},"Skill 3":{"$content":29,"$type":"UnityEngine.Object"}},"position":{"x":3648.0,"y":250.0},"guid":"06419d30-14d6-4b90-9cfe-47ef7a6fa68d","$version":"A","$type":"AddSkillPointsNode","$id":"37"},{"sourceUnit":{"$ref":"13"},"sourceKey":"exit","destinationUnit":{"$ref":"11"},"destinationKey":"enter","guid":"b54c2aec-1877-474c-b243-0422519aa8c0","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"15"},"destinationKey":"enter","guid":"51552d7a-6dfd-4034-bd45-9ffd389e47f2","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"exit","destinationUnit":{"$ref":"13"},"destinationKey":"enter","guid":"a3fad13b-b2b1-47c2-844b-5805316ba77f","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"11"},"sourceKey":"Choice
-      1 Exit","destinationUnit":{"$ref":"21"},"destinationKey":"","guid":"66038cae-fd50-42b5-890b-96e502d621d1","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"21"},"sourceKey":"","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"ccd53048-9fac-484d-bd0e-53b043b01a59","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"11"},"sourceKey":"Choice
-      2 Exit","destinationUnit":{"$ref":"27"},"destinationKey":"","guid":"5b7533bb-7313-4de4-8114-90be70f450cf","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"27"},"sourceKey":"","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"f1ef4e96-ec86-4c0d-b85e-dcc18769dfef","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"11"},"sourceKey":"Choice
-      3 Exit","destinationUnit":{"$ref":"23"},"destinationKey":"","guid":"1474cc2b-a52d-48ff-b079-05dba299e9ea","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"23"},"sourceKey":"","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"3fdd27ab-c465-4768-a4a2-091cea1e52a7","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"11"},"sourceKey":"Choice
-      4 Exit","destinationUnit":{"$ref":"25"},"destinationKey":"","guid":"c94bc606-463d-4d07-958a-8c7aa57c9f64","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"25"},"sourceKey":"","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"8d4535aa-6f19-4c4f-a18d-45e4a279a326","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"Choice
-      1 Exit","destinationUnit":{"$ref":"29"},"destinationKey":"","guid":"0cb5e01e-7a63-4463-a566-c3bacb289a59","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"29"},"sourceKey":"","destinationUnit":{"$ref":"17"},"destinationKey":"Dialogue
-      1 Exit","guid":"4435446a-6341-443d-8da7-3c79672abe8c","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"Choice
-      2 Exit","destinationUnit":{"$ref":"31"},"destinationKey":"","guid":"e5f52e8f-4869-475a-854e-a2cefcf8a436","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"31"},"sourceKey":"","destinationUnit":{"$ref":"33"},"destinationKey":"","guid":"b5234a58-9f1e-49f3-9f96-016ec0cf110d","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"33"},"sourceKey":"","destinationUnit":{"$ref":"17"},"destinationKey":"Dialogue
-      1 Exit","guid":"67ea71c6-bd2b-43ef-a33a-97df0977a94d","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"Choice
-      3 Exit","destinationUnit":{"$ref":"35"},"destinationKey":"","guid":"903d9688-d9d6-4436-90e3-5a748817bc6e","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"35"},"sourceKey":"","destinationUnit":{"$ref":"17"},"destinationKey":"Dialogue
+      1":{"$content":0.5,"$type":"System.Single"},"Skill 1":{"$content":21,"$type":"UnityEngine.Object"},"Amount
+      2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":22,"$type":"UnityEngine.Object"}},"position":{"x":3816.0,"y":-126.0},"guid":"bffc1326-31a5-43ec-a680-bcdfb4a3e266","$version":"A","$type":"SubtractSkillPointsNode","$id":"31"},{"skillCount":2,"defaultValues":{"Amount
+      1":{"$content":1.0,"$type":"System.Single"},"Skill 1":{"$content":23,"$type":"UnityEngine.Object"},"Amount
+      2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":24,"$type":"UnityEngine.Object"}},"position":{"x":3638.0,"y":67.0},"guid":"47aa6882-fdfb-443c-8919-4ba821d44afa","$version":"A","$type":"SubtractSkillPointsNode","$id":"33"},{"skillCount":3,"defaultValues":{"Amount
+      1":{"$content":5.0,"$type":"System.Single"},"Skill 1":{"$content":25,"$type":"UnityEngine.Object"},"Amount
+      2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":26,"$type":"UnityEngine.Object"},"Amount
+      3":{"$content":2.0,"$type":"System.Single"},"Skill 3":{"$content":27,"$type":"UnityEngine.Object"}},"position":{"x":3648.0,"y":250.0},"guid":"06419d30-14d6-4b90-9cfe-47ef7a6fa68d","$version":"A","$type":"AddSkillPointsNode","$id":"35"},{"skillCount":2,"defaultValues":{"Amount
+      1":{"$content":1.0,"$type":"System.Single"},"Skill 1":{"$content":28,"$type":"UnityEngine.Object"},"Amount
+      2":{"$content":1.0,"$type":"System.Single"},"Skill 2":{"$content":29,"$type":"UnityEngine.Object"}},"position":{"x":3445.0,"y":-126.0},"guid":"efa29f51-d885-4bab-afb0-8e7bad8c6882","$version":"A","$type":"AddSkillPointsNode","$id":"37"},{"sourceUnit":{"$ref":"13"},"sourceKey":"Choice
+      1 Exit","destinationUnit":{"$ref":"21"},"destinationKey":"","guid":"66038cae-fd50-42b5-890b-96e502d621d1","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"21"},"sourceKey":"","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"ccd53048-9fac-484d-bd0e-53b043b01a59","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"Choice
+      2 Exit","destinationUnit":{"$ref":"27"},"destinationKey":"","guid":"5b7533bb-7313-4de4-8114-90be70f450cf","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"25"},"sourceKey":"","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"8d4535aa-6f19-4c4f-a18d-45e4a279a326","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"33"},"sourceKey":"","destinationUnit":{"$ref":"17"},"destinationKey":"Dialogue
       1 Exit","guid":"069bf487-8a16-4a0a-80c3-e13557d1c07b","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"Choice
-      4 Exit","destinationUnit":{"$ref":"37"},"destinationKey":"","guid":"43c07113-a89e-4c4c-a372-2c637fbea286","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"37"},"sourceKey":"","destinationUnit":{"$ref":"17"},"destinationKey":"Dialogue
+      3 Exit","destinationUnit":{"$ref":"33"},"destinationKey":"","guid":"903d9688-d9d6-4436-90e3-5a748817bc6e","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"Choice
+      4 Exit","destinationUnit":{"$ref":"25"},"destinationKey":"","guid":"c94bc606-463d-4d07-958a-8c7aa57c9f64","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"Choice
+      4 Exit","destinationUnit":{"$ref":"35"},"destinationKey":"","guid":"43c07113-a89e-4c4c-a372-2c637fbea286","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"27"},"sourceKey":"","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"f1ef4e96-ec86-4c0d-b85e-dcc18769dfef","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"29"},"sourceKey":"","destinationUnit":{"$ref":"17"},"destinationKey":"Dialogue
+      1 Exit","guid":"4435446a-6341-443d-8da7-3c79672abe8c","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"31"},"sourceKey":"","destinationUnit":{"$ref":"17"},"destinationKey":"Dialogue
+      1 Exit","guid":"67ea71c6-bd2b-43ef-a33a-97df0977a94d","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"11"},"sourceKey":"","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"3fdd27ab-c465-4768-a4a2-091cea1e52a7","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"23"},"sourceKey":"exit","destinationUnit":{"$ref":"15"},"destinationKey":"enter","guid":"a3fad13b-b2b1-47c2-844b-5805316ba77f","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"23"},"destinationKey":"enter","guid":"51552d7a-6dfd-4034-bd45-9ffd389e47f2","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"exit","destinationUnit":{"$ref":"13"},"destinationKey":"enter","guid":"b54c2aec-1877-474c-b243-0422519aa8c0","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"Choice
+      3 Exit","destinationUnit":{"$ref":"11"},"destinationKey":"","guid":"1474cc2b-a52d-48ff-b079-05dba299e9ea","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"Choice
+      2 Exit","destinationUnit":{"$ref":"37"},"destinationKey":"","guid":"e5f52e8f-4869-475a-854e-a2cefcf8a436","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"37"},"sourceKey":"","destinationUnit":{"$ref":"31"},"destinationKey":"","guid":"b5234a58-9f1e-49f3-9f96-016ec0cf110d","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"Choice
+      1 Exit","destinationUnit":{"$ref":"29"},"destinationKey":"","guid":"0cb5e01e-7a63-4463-a566-c3bacb289a59","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"35"},"sourceKey":"","destinationUnit":{"$ref":"17"},"destinationKey":"Dialogue
       1 Exit","guid":"b15c07db-3fc9-456c-a45e-bd7b69b51b6c","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}'
     _objectReferences:
-    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 6779e706f045f824db40fcb672bc207e, type: 2}
+    - {fileID: 11400000, guid: f59050e080147cf49a611b3db4de26fb, type: 2}
+    - {fileID: 11400000, guid: 962071cf49d7ce34bb7db332b822f019, type: 2}
     - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
     - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
     - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
     - {fileID: 11400000, guid: 6779e706f045f824db40fcb672bc207e, type: 2}
     - {fileID: 11400000, guid: 6d968e37e274d3043a509b902ab97547, type: 2}
     - {fileID: 11400000, guid: f59050e080147cf49a611b3db4de26fb, type: 2}
-    - {fileID: 11400000, guid: 6779e706f045f824db40fcb672bc207e, type: 2}
-    - {fileID: 11400000, guid: f59050e080147cf49a611b3db4de26fb, type: 2}
-    - {fileID: 11400000, guid: 962071cf49d7ce34bb7db332b822f019, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
     - {fileID: 11400000, guid: 6779e706f045f824db40fcb672bc207e, type: 2}
     - {fileID: 11400000, guid: 6d968e37e274d3043a509b902ab97547, type: 2}
     - {fileID: 11400000, guid: f59050e080147cf49a611b3db4de26fb, type: 2}
@@ -90,12 +90,12 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f59050e080147cf49a611b3db4de26fb, type: 2}
     - {fileID: 11400000, guid: 962071cf49d7ce34bb7db332b822f019, type: 2}
     - {fileID: 11400000, guid: 523553fb61d97d540a13f6a3156043f0, type: 2}
-    - {fileID: 11400000, guid: 6779e706f045f824db40fcb672bc207e, type: 2}
-    - {fileID: 11400000, guid: f59050e080147cf49a611b3db4de26fb, type: 2}
     - {fileID: 11400000, guid: 962071cf49d7ce34bb7db332b822f019, type: 2}
     - {fileID: 11400000, guid: 523553fb61d97d540a13f6a3156043f0, type: 2}
     - {fileID: 11400000, guid: 6d968e37e274d3043a509b902ab97547, type: 2}
     - {fileID: 11400000, guid: 962071cf49d7ce34bb7db332b822f019, type: 2}
     - {fileID: 11400000, guid: 6779e706f045f824db40fcb672bc207e, type: 2}
     - {fileID: 11400000, guid: 6d968e37e274d3043a509b902ab97547, type: 2}
+    - {fileID: 11400000, guid: f59050e080147cf49a611b3db4de26fb, type: 2}
+    - {fileID: 11400000, guid: 6779e706f045f824db40fcb672bc207e, type: 2}
     - {fileID: 11400000, guid: f59050e080147cf49a611b3db4de26fb, type: 2}

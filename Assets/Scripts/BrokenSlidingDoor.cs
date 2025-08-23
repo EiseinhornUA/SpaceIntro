@@ -13,7 +13,7 @@ public class BrokenSlidingDoor : SlidingDoor
 
     public override void OpenDoor() => PlayBrokenDoorAnimationAsync().Forget();
 
-    private async UniTask PlayBrokenDoorAnimationAsync()
+    public async UniTask PlayBrokenDoorAnimationAsync()
     {
         if (locked)
         {
