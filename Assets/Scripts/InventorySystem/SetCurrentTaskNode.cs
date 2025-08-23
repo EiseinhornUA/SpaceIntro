@@ -26,6 +26,7 @@ public class SetCurrentTaskNode : Unit
             string taskName = flow.GetValue<string>(inputName);
             string taskDescription = flow.GetValue<string>(inputDescription);
 
+            journalView.CompletePreviousTask();
             journalView.AddTask(taskName, taskDescription);
             
             return exit;

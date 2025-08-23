@@ -16,6 +16,11 @@ public class TaskView : MonoBehaviour
         button.onClick.AddListener(OnTaskClicked);
     }
 
+    public void Complete()
+    {
+        taskNameText.text = "<s>" + taskNameText.text + "</s>";
+    }
+
     public static TaskView Create(TaskView taskPrefab, Transform parent, string taskName, string description)
     {
         TaskView task = Instantiate(taskPrefab, parent);
