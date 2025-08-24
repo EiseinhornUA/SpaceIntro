@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JournalView : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class JournalView : MonoBehaviour
     [SerializeField] private TaskView taskPrefab;
     [SerializeField] private Transform tasksParent;
     [SerializeField] private TaskDescriptionPanel taskDescriptionPanel;
+    [SerializeField] private VerticalLayoutGroup tasksLayoutGroup;
+    [SerializeField] private RectTransform tasksLayoutGroupRectTransform;
     private TaskView previousTask;
 
     private void OnTaskSelected(TaskView task)
@@ -36,5 +40,30 @@ public class JournalView : MonoBehaviour
         if (!previousTask) return;
 
         previousTask.Complete();
+    }
+
+    //private async UniTask UpdateTaskPositions()
+    //{
+    //    tasksLayoutGroup.enabled = false;
+    //    await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate);
+    //    tasksLayoutGroup.enabled = true;
+    //}
+
+    private async void OnEnable()
+    {
+        await UpdateTaskPositions();
+    }
+
+    private async UniTask UpdateTaskPositions()
+    {
+        await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate);
+
+        tasksLayoutGroup.enabled = false;
+
+        tasksLayoutGroup.CalculateLayoutInputVertical();
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(tasksLayoutGroupRectTransform);
+
+        tasksLayoutGroup.enabled = true;
     }
 }
