@@ -77,7 +77,7 @@ public class Interactable : MonoBehaviour
     }
 
     public void Activate() => isActive = true;
-    internal void Deactivate()
+    public void Deactivate()
     {
         isActive = false;
         interactionPrompt.Hide();

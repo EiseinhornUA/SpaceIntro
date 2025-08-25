@@ -28,6 +28,11 @@ public class NumPad: MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        Debug.Log("NumPad disabled, clearing symbol entry.");
+    }
+
     private async void OnButtonClick(string symbol)
     {
         if (symbol == "#")

@@ -50,9 +50,10 @@ public class OnInteractNode : WaitUnit
         int index = 0;
         yield return UniTask.WhenAny(interactables.Select(i => i.WaitForInteraction())).ContinueWith(i => index = i).ToCoroutine();
         Debug.Log($"Interaction completed {index}");
-        
-        interactables.ForEach(i => i.Deactivate());
 
+        if (flow.GetValue<bool>(disableAfterInteraction))
+            interactables.ForEach(i => i.Deactivate());
+        
         yield return exits[index];
         Debug.Log($"Interaction exited {index}");
     }
