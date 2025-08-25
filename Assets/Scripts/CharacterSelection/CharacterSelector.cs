@@ -105,7 +105,7 @@ public class CharacterSelector : MonoBehaviour
         FindObjectOfType<PortraitSaver>().SaveImage();
         ShowLoadingScreen();
         await SceneManager.LoadSceneAsync("3DSci-fiScene");
-        CloseLoadingScreen();
+        //CloseLoadingScreen();
     }
 
     private void ShowLoadingScreen()
