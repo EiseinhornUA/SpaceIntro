@@ -7,29 +7,25 @@ using UnityEngine.UI;
 
 public class TabSwitcher : MonoBehaviour
 {
-    [SerializeField] private List<TabButtonPair> tabButtonPairs;
+    [SerializeField] private List<Tab> tabs;
     private int previousTabIndex;
+    [SerializeField] private int initialTabIndex = 0;
 
     private void Start()
     {
-        for (int i = 0; i < tabButtonPairs.Count; i++)
+        for (int i = 0; i < tabs.Count; i++)
         {
             int capturedIndex = i;
-            tabButtonPairs[i].button.onClick.AddListener(() => SwitchTab(capturedIndex));
+            tabs[i].AddListener(() => SwitchTab(capturedIndex));
+            tabs[i].Deselect();
         }
+        tabs[initialTabIndex].Select();
     }
 
     public void SwitchTab(int index)
     {
-        tabButtonPairs[index].tab.SetActive(true);
-        tabButtonPairs[previousTabIndex].tab.SetActive(false);
+        tabs[previousTabIndex].Deselect();
+        tabs[index].Select();
         previousTabIndex = index;
     }
-}
-
-[System.Serializable]
-public class TabButtonPair
-{
-    public GameObject tab;
-    public Button button;
 }

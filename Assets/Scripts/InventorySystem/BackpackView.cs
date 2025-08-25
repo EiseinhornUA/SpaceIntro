@@ -11,27 +11,16 @@ public class BackpackView : MonoBehaviour
     [SerializeField] private ItemSlot itemSlotPrefab;
     [SerializeField] private Transform itemsParent;
     
-    [SerializeField] private ItemDescriptionPanel ItemDescriptionPanel;
-    [SerializeField] private TextMeshProUGUI itemNameText;
-    [SerializeField] private TextMeshProUGUI itemDescriptionText;
+    [SerializeField] private ItemDescriptionPanel descriptionPanel;
+
     
     private List<ItemSlot> itemSlots = new List<ItemSlot>();
 
     private void OnItemSelect(ItemSlot selectedItem)
     {
-        ItemDescriptionPanel.Show();
-        SetItemName(selectedItem);
-        SetItemDescription(selectedItem);
-    }
-
-    private void SetItemName(ItemSlot itemSlot)
-    {
-        itemNameText.text = itemSlot.GetItem().itemName;
-    }
-
-    private void SetItemDescription(ItemSlot itemSlot)
-    {
-        itemDescriptionText.text = itemSlot.GetItem().description;
+        descriptionPanel.Show();
+        descriptionPanel.SetItemName(selectedItem);
+        descriptionPanel.SetItemDescription(selectedItem);
     }
 
     public void AddItem(InventoryItem inventoryItem)

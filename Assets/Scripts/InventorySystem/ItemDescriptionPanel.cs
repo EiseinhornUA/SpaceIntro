@@ -1,9 +1,19 @@
 ﻿using System;
+using TMPro;
+using UnityEngine;
 
-internal class ItemDescriptionPanel
+public class ItemDescriptionPanel : Popup
 {
-    internal void Show()
+    [SerializeField] private TextMeshProUGUI itemNameTMP;
+    [SerializeField] private TextMeshProUGUI itemDescriptionTMP;
+
+    public void SetItemName(ItemSlot itemSlot)
     {
-        throw new NotImplementedException();
+        itemNameTMP.text = itemSlot.GetItem().itemName;
+    }
+
+    public void SetItemDescription(ItemSlot itemSlot)
+    {
+        itemDescriptionTMP.text = itemSlot.GetItem().description;
     }
 }
