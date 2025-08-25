@@ -19,8 +19,8 @@ public class RobotFollow : MonoBehaviour
     [SerializeField] private float offsetX = 0.0f;
     [SerializeField] private float offsetY = 1.5f;
     [SerializeField] private float offsetZ = -0.5f;
-    [SerializeField] private float frequency = 0.5f; // Frequency of the idle movement
-    [SerializeField] private float amplitude = 0.01f; // Speed of the idle movement
+    [SerializeField] private float frequency = 0.5f;
+    [SerializeField] private float amplitude = 0.01f;
     [SerializeField]
     private bool isRobotOn = false;
     [SerializeField]
@@ -36,6 +36,7 @@ public class RobotFollow : MonoBehaviour
     [SerializeField] private float hitPointOffsetZ = 0f;
     [SerializeField] private float breakingForce = 15f;
     [SerializeField] private float disableTimeAfterHit = 1f;
+    [SerializeField] private float rotateToDoorTime = 0.3f;
     private float robotColliderRadius;
 
     [SerializeField] CinemachineVirtualCamera virtualCamera;
@@ -109,6 +110,7 @@ public class RobotFollow : MonoBehaviour
         //virtualCamera.Follow = transform;
         //virtualCamera.LookAt = transform;
         TurnOffRobot();
+        await RotateRobotTowardsDoor();
         await MoveBackToAccelerate();
         await Accelerate();
         await EnableRobotsPhysic();
@@ -123,6 +125,15 @@ public class RobotFollow : MonoBehaviour
 
         //virtualCamera.Follow = playerParent;
         //virtualCamera.LookAt = playerParent;
+    }
+
+    private async UniTask RotateRobotTowardsDoor()
+    {
+        await transform.DOLookAt(new Vector3(doorTransform.position.x + hitPointOffsetX, 
+            doorTransform.position.y + hitPointOffsetY 
+            - (doorTransform.GetComponentInParent<BrokenSlidingDoor>().openLength * 
+            (doorTransform.GetComponentInParent<BrokenSlidingDoor>().openPercent / 100f)), 
+            doorTransform.position.z + hitPointOffsetZ), rotateToDoorTime);
     }
 
     private async UniTask DisableRobotPhysic()
