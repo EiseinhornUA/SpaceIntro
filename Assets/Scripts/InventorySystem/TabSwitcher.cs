@@ -17,15 +17,15 @@ public class TabSwitcher : MonoBehaviour
         {
             int capturedIndex = i;
             tabs[i].AddListener(() => SwitchTab(capturedIndex));
-            tabs[i].Disable();
+            tabs[i].Deselect();
         }
-        tabs[initialTabIndex].Enable();
+        tabs[initialTabIndex].Select();
     }
 
     public void SwitchTab(int index)
     {
-        tabs[previousTabIndex].Disable();
-        tabs[index].Enable();
+        tabs[previousTabIndex].Deselect();
+        tabs[index].Select();
         previousTabIndex = index;
     }
 }

@@ -8,13 +8,13 @@ public class Tab : MonoBehaviour
     [SerializeField] private Button tabButton;
     [SerializeField] private GameObject tabHighlighter;
 
-    public void Enable()
+    public void Select()
     {
         tabContent.SetActive(true);
         tabHighlighter.SetActive(true);
     }
 
-    public void Disable()
+    public void Deselect()
     {
         tabContent.SetActive(false);
         tabHighlighter.SetActive(false);
