@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5952406581538795037}
   - component: {fileID: 7685288194603544951}
   - component: {fileID: 2173290548216757254}
-  - component: {fileID: 998489376099216077}
   m_Layer: 5
   m_Name: ItemPopUp
   m_TagString: Untagged
@@ -90,16 +89,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveToInventoryDuration: 0.75
-  invetoryIconPosition: {fileID: 0}
---- !u!114 &998489376099216077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474457819850839492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e9afb42ac3511a45805f7a42879aebd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  inventoryIconScaleDuration: 0.25
+  inventoryIconScale: 1.5
+  invetoryIcon: {fileID: 0}
+  joyStick: {fileID: 0}
+  debugObjectToMove: {fileID: 0}
+  offsetX: 0
+  offsetY: 100
