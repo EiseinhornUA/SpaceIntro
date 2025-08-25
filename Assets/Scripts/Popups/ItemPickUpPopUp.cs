@@ -29,7 +29,7 @@ public class ItemPickUpPopUp : Popup
 
     public async UniTask MoveIconToPosition(Transform objectTransform)
     {
-        joyStick.SetActive(false);
+        //joyStick.SetActive(false);
         Vector2 startScreenPosition = Camera.main.WorldToScreenPoint(objectTransform.position);
         var inventoryIconRectTransform = invetoryIcon.GetComponent<RectTransform>();
         RectTransform itemIconTransform = itemIcon.GetComponent<RectTransform>();
@@ -54,7 +54,7 @@ public class ItemPickUpPopUp : Popup
         await inventoryIconRectTransform.DOScale(initialInventoryIconScale, inventoryIconScaleDuration * 0.5f);
         taskCompletionSource?.TrySetResult();
 
-        joyStick.SetActive(true);
+        //joyStick.SetActive(true);
         Hide();
     }
 
