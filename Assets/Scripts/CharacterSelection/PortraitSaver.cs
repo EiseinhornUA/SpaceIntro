@@ -37,6 +37,5 @@ public class PortraitSaver : MonoBehaviour
     {
         string path = Path.Combine(Application.persistentDataPath, fileName);
         File.WriteAllBytes(path, bytes);
-        Debug.Log("Image saved to: " + path);
     }
 }

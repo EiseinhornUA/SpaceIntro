@@ -43,7 +43,6 @@ public class ItemPickUpPopUp : Popup
         pos.x = startScreenPosition.x + offsetX;
         pos.y = startScreenPosition.y + offsetY;
         itemIconTransform.anchoredPosition = pos;
-        Debug.Log($"Canvas scale: {canvasScaler.scaleFactor}, Canvas size: {canvas.GetComponent<RectTransform>().sizeDelta}");
         var targetScreenPosition = new Vector2(canvas.GetComponent<RectTransform>().sizeDelta.x + inventoryIconRectTransform.anchoredPosition.x,
             canvas.GetComponent<RectTransform>().sizeDelta.y + inventoryIconRectTransform.anchoredPosition.y);
         await itemIconTransform.DOAnchorPos(targetScreenPosition, moveToInventoryDuration).SetEase(Ease.InCubic);

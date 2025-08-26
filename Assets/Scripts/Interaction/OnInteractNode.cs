@@ -42,20 +42,14 @@ public class OnInteractNode : WaitUnit
     protected override IEnumerator Await(Flow flow)
     {
         List<Interactable> interactables = GetInteractables(flow);
-        foreach (var interactable in this.interactables)
-        {
-            Debug.Log("Waiting for interaction with" + flow.GetValue<Interactable>(interactable));
-        }
 
         int index = 0;
         yield return UniTask.WhenAny(interactables.Select(i => i.WaitForInteraction())).ContinueWith(i => index = i).ToCoroutine();
-        Debug.Log($"Interaction completed {index}");
 
         if (flow.GetValue<bool>(disableAfterInteraction))
             interactables.ForEach(i => i.Deactivate());
         
         yield return exits[index];
-        Debug.Log($"Interaction exited {index}");
     }
 
     private List<Interactable> GetInteractables(Flow flow)

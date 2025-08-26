@@ -19,7 +19,6 @@ public class DialogueCreator : EditorWindow
 
         templateGraph = AssetDatabase.LoadAssetAtPath<ScriptGraphAsset>(graphPath);
         dialoguePrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
-        Debug.Log($"Loaded template graph: {templateGraph}, prefab: {dialoguePrefab}");
 
         if (templateGraph == null || dialoguePrefab == null)
         {

@@ -50,7 +50,6 @@ public class EndDialogueNode : Unit
                 decisionName = flow.GetValue<string>(variantNames[index]);
             else
                 decisionName = " ";
-            Debug.Log($"Ending dialogue with decision: {decisionName} at index {index}");
             dialogueManager.SetSelectedDecision(new Decision(decisionName, index));
         }
 
