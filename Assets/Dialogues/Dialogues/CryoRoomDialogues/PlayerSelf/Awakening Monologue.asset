@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: Awakening Monologue
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":1535.432,"y":-30.33061},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":-593.0,"y":-39.0},"guid":"19b2f7b3-e284-4b1b-8f95-7d210b029d8a","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"exitCount":1,"defaultValues":{"Variant
+      Name 1":null},"position":{"x":1746.0,"y":-69.0},"guid":"62612e39-d061-426e-ae55-2d85a1bcdaef","$version":"A","$type":"EndDialogueNode","$id":"11"},{"defaultValues":{"Dialogue
+      Line":{"$content":"What the... cold... why am I awake?","$type":"System.String"},"Character":{"$content":0,"$type":"UnityEngine.Object"}},"position":{"x":-387.0,"y":-94.0},"guid":"3b022092-380e-4d24-81c8-2c86b2e0b389","$version":"A","$type":"DialogueNode","$id":"13"},{"defaultValues":{"Dialogue
+      Line":{"$content":"It''s not on schedule...something went wrong.","$type":"System.String"},"Character":{"$content":1,"$type":"UnityEngine.Object"}},"position":{"x":22.0,"y":-95.0},"guid":"a604c4e4-4b14-4723-bc10-e157db28c256","$version":"A","$type":"DialogueNode","$id":"15"},{"defaultValues":{"Dialogue
+      Line":{"$content":"All these pods. are still closed. Or empty...","$type":"System.String"},"Character":{"$content":2,"$type":"UnityEngine.Object"}},"position":{"x":465.0,"y":-76.0},"guid":"b7973c74-4f66-45ec-8e55-69d9593f387a","$version":"A","$type":"DialogueNode","$id":"17"},{"defaultValues":{"Dialogue
+      Line":{"$content":"No command. No voices. Just... me.","$type":"System.String"},"Character":{"$content":3,"$type":"UnityEngine.Object"}},"position":{"x":936.0,"y":-71.0},"guid":"e6031868-d0a9-4c68-81dd-964789603fe7","$version":"A","$type":"DialogueNode","$id":"19"},{"defaultValues":{"Dialogue
+      Line":{"$content":"Need to turn on light...","$type":"System.String"},"Character":{"$content":4,"$type":"UnityEngine.Object"}},"position":{"x":1339.0,"y":-76.0},"guid":"bf4de271-a5ec-4a94-9cad-62f7091f46a7","$version":"A","$type":"DialogueNode","$id":"21"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"13"},"destinationKey":"enter","guid":"817d2468-4b76-4548-8cf8-a2afa37f1a51","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"17"},"sourceKey":"exit","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"d13b105f-da81-495e-b025-984f6114c914","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"exit","destinationUnit":{"$ref":"17"},"destinationKey":"enter","guid":"36c133f8-c6f4-4441-a314-5ef20f75d45c","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"exit","destinationUnit":{"$ref":"15"},"destinationKey":"enter","guid":"e6fab010-5c56-4556-a942-79bd7db466cf","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"exit","destinationUnit":{"$ref":"21"},"destinationKey":"enter","guid":"163069a2-a810-4824-9218-0a753f10cc87","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"21"},"sourceKey":"exit","destinationUnit":{"$ref":"11"},"destinationKey":"Dialogue
+      1 Exit","guid":"297dc92e-f525-4f45-95c8-f5e19282e508","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}

@@ -51,4 +51,6 @@ public class SlidingDoor : MonoBehaviour
             isOpen = false;
         }
     }
+
+    public void UnlockDoor() => locked = false;
 }
