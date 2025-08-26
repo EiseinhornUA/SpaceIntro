@@ -10,6 +10,5 @@ public class PortraitLoader : MonoBehaviour
     private void Start()
     {
         character.SetPortrait(PlayerPrefs.GetString("PortraitPath", string.Empty));
-        Debug.Log("Portrait loaded from: " + PlayerPrefs.GetString("PortraitPath", "No path set"));
     }
 }

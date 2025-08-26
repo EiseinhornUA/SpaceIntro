@@ -45,7 +45,6 @@ public class AddSkillPointsNode : Unit
             if (skill != null)
             {
                 skillContainer.AddSkillLevel(skill, amount);
-                Debug.Log($"Added {amount} skill points to {skill.GetName()}. Current level: {skill.GetLevel()}");
             }
         }
 

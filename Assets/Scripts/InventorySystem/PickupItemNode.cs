@@ -33,7 +33,6 @@ public class PickupItemNode : WaitUnit
         ItemSO item = flow.GetValue<ItemSO>(itemInput);
         itemContainer.AddItem(item);
         flow.GetValue<GameObject>(gameObjectInput).SetActive(false);
-        Debug.Log($"Item {item.name} picked up.");
         itemPickUpPopUp.ShowPickedUpItem(flow, itemInput, gameObjectInput);
         yield return itemPickUpPopUp.WaitForMove().ToCoroutine();
         yield return exit;

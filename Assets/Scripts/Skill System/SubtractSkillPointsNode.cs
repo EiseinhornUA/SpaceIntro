@@ -44,7 +44,6 @@ public class SubtractSkillPointsNode : Unit
             if (skill != null)
             {
                 skillContainer.SubtractSkillLevel(skill, amount);
-                Debug.Log($"Subtracted {amount} skill points from {skill.GetName()}. Current level: {skill.GetLevel()}");
             }
         }
 

@@ -52,7 +52,6 @@ public class ElevatorButtonsInside : MonoBehaviour
 
     public void SetCurrentFloor(int currentFloor)
     {
-        Debug.Log($"Setting current elevatorDoor to {currentFloor}");
         currentElevatorDoor = elevatorDoors.Find(door => door.floor == currentFloor).elevatorDoor;
     }
 }

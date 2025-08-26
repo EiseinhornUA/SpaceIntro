@@ -12,6 +12,7 @@ public class DialogueManager : MonoBehaviour
     private DialoguePrefab dialogueInstance;
     private List<Decision> dialogueDecisions;
     private Decision selectedDecision;
+    public Action onDialogueStart = delegate {};
 
     public void StartDialogue(DialoguePrefab dialoguePrefab)
     {
@@ -19,6 +20,7 @@ public class DialogueManager : MonoBehaviour
             Destroy(dialogueInstance.gameObject);
         dialogueView.Show();
         dialogueInstance = GameObject.Instantiate(dialoguePrefab);
+        onDialogueStart?.Invoke();
     }
 
     public async UniTask WaitForDialogueEnd()
