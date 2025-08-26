@@ -51,6 +51,7 @@ public class PlayerInOutElevator : MonoBehaviour
 
     public async UniTask MoveEntitiesToFloor(int floorFrom, int floorTo)
     {
+        Hud.Instance.HideHud();
         //player.SetGravityEnabled(true);
         player.EnableControls(false);
         await GetCurrentElevatorPanel(floorFrom).CallElevator();
@@ -93,6 +94,8 @@ public class PlayerInOutElevator : MonoBehaviour
         StopPlayerWalkingAnimation();
         await MoveRobotOutOfElevator();
         player.EnableControls(true);
+
+        Hud.Instance.ShowHud();
     }
 
     private void StopRobotFolowingElevator()
