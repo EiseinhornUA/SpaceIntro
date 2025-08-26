@@ -201,6 +201,11 @@ public class PlayerInOutElevator : MonoBehaviour
         MoveEntitiesToFloor(1, 2).Forget();
     }
 
+    public async UniTask GoToFloor3Async()
+    {
+        await MoveEntitiesToFloor(1, 2);
+    }
+
     public void GoToFloor1From2()
     {
         MoveEntitiesToFloor(1, 0).Forget();
