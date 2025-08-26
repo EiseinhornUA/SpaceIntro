@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class SlidingDoor : MonoBehaviour
 {
-    [SerializeField] protected float openLength = 3.0f;
+    [SerializeField] public float openLength = 3.0f;
     [field:SerializeField] public bool locked { get; set; } = true;
     [SerializeField] protected bool isOpen = false;
     [SerializeField] protected float duration = 0.5f;

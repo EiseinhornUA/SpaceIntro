@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class BrokenSlidingDoor : SlidingDoor
 {
-    [SerializeField] private float openPercent = 20f;
+    [SerializeField] public float openPercent = 20f;
 
     [ContextMenu("Open Broken Door")]
 
