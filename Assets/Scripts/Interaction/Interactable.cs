@@ -11,21 +11,18 @@ using UnityEngine.UI;
 public class Interactable : MonoBehaviour
 {
     [SerializeField] private UnityEvent onInteract = new();
-    private InteractionPrompt interactionPrompt;
     private InteractionView interactionView;
     private CircleCollider2D circleCollider;
     private UniTaskCompletionSource interactionTCS;
     
     [SerializeField] private bool isActive = false;
 
-    private void Start()
+    private void Awake()
     {
-        interactionPrompt = FindObjectOfType<InteractionPrompt>(includeInactive: true);
         interactionView = FindObjectOfType<InteractionView>(includeInactive: true);
         circleCollider = GetComponent<CircleCollider2D>();
         circleCollider.isTrigger = true;
     }
-
 
     public UniTask WaitForInteraction()
     {
@@ -36,7 +33,6 @@ public class Interactable : MonoBehaviour
     public void OnInteract()
     {
         onInteract.Invoke();
-        interactionPrompt.Hide();
         interactionView.Hide();
 
         interactionTCS?.TrySetResult(); // Resume WaitForInteraction
@@ -46,16 +42,20 @@ public class Interactable : MonoBehaviour
     {
         if (!isActive) return;
         if (!IsPlayer(collision)) return;
-        interactionPrompt.SetPosition(GetPromptPosition());
-        interactionPrompt.Show();
-        interactionView.Show();
-        interactionView.AddListener(OnInteract);
+        interactionView.SetPosition(GetPromptPosition());
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (!isActive) return;
         if (!IsPlayer(collision)) return;
-        interactionPrompt.SetPosition(GetPromptPosition());
+
+        if(!interactionView.gameObject.activeSelf)
+        {
+            interactionView.Show();
+            interactionView.AddListener(OnInteract);
+        }
+
+        interactionView.SetPosition(GetPromptPosition());
     }
 
     private Vector3 GetPromptPosition()
@@ -67,10 +67,10 @@ public class Interactable : MonoBehaviour
     {
         if (!isActive) return;
         if (!IsPlayer(collision)) return;
-        interactionPrompt.Hide();
         interactionView.Hide();
         interactionView.RemoveListener(OnInteract);
     }
+
     private static bool IsPlayer(Collider2D collision)
     {
         return collision.CompareTag("Player");
@@ -80,7 +80,6 @@ public class Interactable : MonoBehaviour
     public void Deactivate()
     {
         isActive = false;
-        interactionPrompt.Hide();
         interactionView.Hide();
         interactionView.RemoveListener(OnInteract);
     }

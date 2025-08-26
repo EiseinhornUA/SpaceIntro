@@ -28,9 +28,14 @@ public class NumPad: MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        Hud.Instance.HideHud();
+    }
+
     private void OnDisable()
     {
-        Debug.Log("NumPad disabled, clearing symbol entry.");
+        Hud.Instance.ShowHud();
     }
 
     private async void OnButtonClick(string symbol)

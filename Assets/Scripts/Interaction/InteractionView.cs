@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class InteractionView : MonoBehaviour
+public class InteractionView : Popup
 {
     [SerializeField] private Button interactionButton;
 
@@ -18,6 +18,10 @@ public class InteractionView : MonoBehaviour
         interactionButton.onClick.RemoveListener(onInteract);
     }
 
-    internal void Hide() => gameObject.SetActive(false);
-    internal void Show() => gameObject.SetActive(true);
+    public void SetPosition(Vector3 position)
+    {
+        Vector2 screenPosition = Camera.main.WorldToScreenPoint(position);
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        rectTransform.position = screenPosition;
+    }
 }
