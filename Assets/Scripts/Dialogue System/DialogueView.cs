@@ -16,6 +16,15 @@ public class DialogueView : Popup
     [SerializeField] private List<Button> choiceButtons;
     private UniTaskCompletionSource taskCompletionSource;
 
+    private void Start()
+    {
+        Hide();
+        foreach (var button in choiceButtons)
+        {
+            button.gameObject.SetActive(false);
+        }
+    }
+
     public void SetMessage(string messageText) => message.text = messageText;
     public void SetCharacterName(string name)
     {

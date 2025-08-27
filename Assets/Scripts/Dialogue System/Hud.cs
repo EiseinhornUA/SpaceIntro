@@ -24,7 +24,8 @@ public class Hud : MonoBehaviour
 
     internal void HideHud()
     {
-        gameObject.SetActive(false);
+        if(gameObject.activeSelf)
+            gameObject.SetActive(false);
     }
 
     internal void ShowHud()
