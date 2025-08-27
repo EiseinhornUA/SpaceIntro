@@ -26,9 +26,9 @@ public class DialogueNode : WaitUnit
         var message = flow.GetValue<string>(messageInput);
         var character = flow.GetValue<DialogueCharacter>(characterInput);
 
-        view.ChangeCharacterName(character.GetName());
+        view.SetCharacterName(character.GetName());
         view.ChangeCharacterPortrait(character.GetPortrait());
-        view.ChangeMessage(message);
+        view.SetMessage(message);
 
         yield return view.WaitForClick().ToCoroutine();
         yield return exit;

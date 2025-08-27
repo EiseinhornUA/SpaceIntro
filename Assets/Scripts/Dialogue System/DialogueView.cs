@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine.TextCore.Text;
-public class DialogueView : MonoBehaviour
+public class DialogueView : Popup
 {
     [SerializeField] private TextMeshProUGUI message;
     [SerializeField] private TextMeshProUGUI characterName;
@@ -16,8 +16,8 @@ public class DialogueView : MonoBehaviour
     [SerializeField] private List<Button> choiceButtons;
     private UniTaskCompletionSource taskCompletionSource;
 
-    public void ChangeMessage(string messageText) => message.text = messageText;
-    public void ChangeCharacterName(string name)
+    public void SetMessage(string messageText) => message.text = messageText;
+    public void SetCharacterName(string name)
     {
         characterName.text = (name == "Player") ? PlayerPrefs.GetString("CharacterName", "Player") : name;
     }
@@ -40,6 +40,8 @@ public class DialogueView : MonoBehaviour
 
         int selectedIndex = await UniTask.WhenAny(tasks);
 
+        nextButton.gameObject.SetActive(true);
+
         return selectedIndex;
     }
 
@@ -51,10 +53,9 @@ public class DialogueView : MonoBehaviour
             choiceButtons[i].gameObject.SetActive(true);
             choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = choiceMessages[i];
         }
+        nextButton.gameObject.SetActive(false);
     }
 
-    internal void Show() => gameObject.SetActive(true);
-    internal void Hide() => gameObject.SetActive(false);
     internal async UniTask WaitForHide()
     {
         taskCompletionSource = new UniTaskCompletionSource();

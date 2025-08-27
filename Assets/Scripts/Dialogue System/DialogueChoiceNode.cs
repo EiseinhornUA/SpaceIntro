@@ -52,9 +52,9 @@ public class DialogueChoiceNode : WaitUnit
 
         if (character)
         {
-            view.ChangeCharacterName(character.GetName());
+            view.SetCharacterName(character.GetName());
             view.ChangeCharacterPortrait(character.GetPortrait());
-            view.ChangeMessage(message);
+            view.SetMessage(message);
         }
         else
         {
