@@ -38,12 +38,6 @@ public class Interactable : MonoBehaviour
         interactionTCS?.TrySetResult(); // Resume WaitForInteraction
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!isActive) return;
-        if (!IsPlayer(collision)) return;
-        interactionView.SetPosition(GetPromptPosition());
-    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (!isActive) return;
@@ -51,14 +45,14 @@ public class Interactable : MonoBehaviour
 
         if(!interactionView.gameObject.activeSelf)
         {
+            interactionView.SetPosition(GetViewPosition());
             interactionView.Show();
             interactionView.AddListener(OnInteract);
         }
 
-        interactionView.SetPosition(GetPromptPosition());
     }
 
-    private Vector3 GetPromptPosition()
+    private Vector3 GetViewPosition()
     {
         return transform.position + new Vector3(circleCollider.offset.x, circleCollider.offset.y, 0);
     }

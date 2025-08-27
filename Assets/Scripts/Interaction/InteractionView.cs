@@ -8,6 +8,12 @@ using UnityEngine.UI;
 public class InteractionView : Popup
 {
     [SerializeField] private Button interactionButton;
+    private Vector3 worldPosition;
+
+    private void Update()
+    {
+        UpdatePosition();
+    }
 
     internal void AddListener(UnityAction onInteract)
     {
@@ -18,10 +24,10 @@ public class InteractionView : Popup
         interactionButton.onClick.RemoveListener(onInteract);
     }
 
-    public void SetPosition(Vector3 position)
+    public void SetPosition(Vector3 position) => this.worldPosition = position;
+
+    public void UpdatePosition()
     {
-        Vector2 screenPosition = Camera.main.WorldToScreenPoint(position);
-        RectTransform rectTransform = GetComponent<RectTransform>();
-        rectTransform.position = screenPosition;
+        GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(worldPosition);
     }
 }
