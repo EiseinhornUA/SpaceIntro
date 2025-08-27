@@ -9,23 +9,34 @@ using UnityEngine;
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private DialogueView dialogueView;
+    [SerializeField] private List<DialoguePrefab> dialoguePrefabs;
     private DialoguePrefab dialogueInstance;
     private List<Decision> dialogueDecisions;
     private Decision selectedDecision;
     public Action onDialogueStart = delegate {};
 
+    private void Awake()
+    {
+        dialogueView.Show();
+    }
+
+    private void Start()
+    {
+        dialogueView.Hide();
+    }
+
     public void StartDialogue(DialoguePrefab dialoguePrefab)
     {
-        if (dialogueInstance) 
-            Destroy(dialogueInstance.gameObject);
         dialogueView.Show();
-        dialogueInstance = GameObject.Instantiate(dialoguePrefab);
+        dialogueInstance = dialoguePrefabs.Find(dialogue => dialogue.name == dialoguePrefab.name);
+        dialogueInstance.Show();
         onDialogueStart?.Invoke();
     }
 
     public async UniTask WaitForDialogueEnd()
     {
         await dialogueView.WaitForHide();
+        dialogueInstance.Hide();
     }
 
     internal void SetDecisions(List<Decision> decisions) => dialogueDecisions = decisions;
