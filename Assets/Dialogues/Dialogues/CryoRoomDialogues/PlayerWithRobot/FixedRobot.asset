@@ -13,15 +13,98 @@ MonoBehaviour:
   m_Name: FixedRobot
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":2157.856,"y":-49.56892},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":215.0,"y":-58.0},"guid":"19b2f7b3-e284-4b1b-8f95-7d210b029d8a","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"exitCount":1,"defaultValues":{"Variant
-      Name 1":null},"position":{"x":2268.0,"y":-111.0},"guid":"62612e39-d061-426e-ae55-2d85a1bcdaef","$version":"A","$type":"EndDialogueNode","$id":"11"},{"defaultValues":{"Dialogue
-      Line":{"$content":"Ready. Can you hear me? Get up, buddy.","$type":"System.String"},"Character":{"$content":0,"$type":"UnityEngine.Object"}},"position":{"x":439.0,"y":-97.0},"guid":"5bd8d48f-1015-4dd3-9248-ccc311d54924","$version":"A","$type":"DialogueNode","$id":"13"},{"defaultValues":{"Dialogue
-      Line":{"$content":"Self-diagnostics complete. Service mode activated.","$type":"System.String"},"Character":{"$content":1,"$type":"UnityEngine.Object"}},"position":{"x":879.0,"y":-102.0},"guid":"bcb447b4-fb55-4f1d-bad9-411b9ff8734c","$version":"A","$type":"DialogueNode","$id":"15"},{"defaultValues":{"Dialogue
-      Line":{"$content":"Access to memory received.","$type":"System.String"},"Character":{"$content":2,"$type":"UnityEngine.Object"}},"position":{"x":1290.0,"y":-115.0},"guid":"261a31c3-0cde-4b4f-af44-92a35c64975a","$version":"A","$type":"DialogueNode","$id":"17"},{"defaultValues":{"Dialogue
-      Line":{"$content":"Great, it works! She? Or he? Hey, what''s your name, buddy?","$type":"System.String"},"Character":{"$content":3,"$type":"UnityEngine.Object"}},"position":{"x":1711.0,"y":-118.0},"guid":"ce69968a-51fe-4025-9f96-67d8719d8a3f","$version":"A","$type":"DialogueNode","$id":"19"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"13"},"destinationKey":"enter","guid":"51552d7a-6dfd-4034-bd45-9ffd389e47f2","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"13"},"sourceKey":"exit","destinationUnit":{"$ref":"15"},"destinationKey":"enter","guid":"3d972c49-f48b-43da-9ff3-ead730b9eca6","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"exit","destinationUnit":{"$ref":"17"},"destinationKey":"enter","guid":"da412751-240a-477e-8072-4b4e788d5eda","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"17"},"sourceKey":"exit","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"12555a20-11d4-4bee-b864-5639e3815985","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"exit","destinationUnit":{"$ref":"11"},"destinationKey":"Dialogue
-      1 Exit","guid":"fd84068f-e587-436b-a061-85390c8bd6d2","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}'
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":449.8133,"y":-510.389},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":-428.0,"y":-96.0},"guid":"19b2f7b3-e284-4b1b-8f95-7d210b029d8a","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"choiceCount":2,"defaultValues":{"Dialogue
+      Line":{"$content":"Loading the logs: arrange them in the order you\u2019d load
+      for optimal calibration","$type":"System.String"},"Character":{"$content":0,"$type":"UnityEngine.Object"},"Text1":{"$content":"Crew
+      Interaction Log","$type":"System.String"},"Text2":{"$content":"Standard Protocol
+      Deviation Log","$type":"System.String"}},"position":{"x":2098.0,"y":-1542.0},"guid":"7a2da329-9e3d-42ea-b08b-7424ac9b27e0","$version":"A","$type":"DialogueChoiceNode","$id":"11"},{"choiceCount":2,"defaultValues":{"Dialogue
+      Line":{"$content":"Loading the logs: arrange them in the order you\u2019d load
+      for optimal calibration","$type":"System.String"},"Character":{"$content":1,"$type":"UnityEngine.Object"},"Text1":{"$content":"System
+      Diagnostic Log","$type":"System.String"},"Text2":{"$content":"Crew Interaction
+      Log","$type":"System.String"}},"position":{"x":2084.0,"y":-1757.0},"guid":"d6797187-6edf-4806-abbc-8ad5e60bcb5d","$version":"A","$type":"DialogueChoiceNode","$id":"13"},{"defaultValues":{"Dialogue
+      Line":{"$content":"","$type":"System.String"},"Character":{"$content":2,"$type":"UnityEngine.Object"}},"position":{"x":642.0,"y":-424.0},"guid":"d803014a-44ca-4620-9811-72bcadf17775","$version":"A","$type":"DialogueNode"},{"exitCount":1,"defaultValues":{"Variant
+      Name 1":null},"position":{"x":2268.0,"y":-111.0},"guid":"62612e39-d061-426e-ae55-2d85a1bcdaef","$version":"A","$type":"EndDialogueNode"},{"choiceCount":3,"defaultValues":{"Dialogue
+      Line":{"$content":"Loading the logs: arrange them in the order you\u2019d load
+      for optimal calibration","$type":"System.String"},"Character":{"$content":3,"$type":"UnityEngine.Object"},"Text1":{"$content":"System
+      Diagnostic Log","$type":"System.String"},"Text2":{"$content":"Crew Interaction
+      Log","$type":"System.String"},"Text3":{"$content":"Standard Protocol Deviation
+      Log","$type":"System.String"}},"position":{"x":1143.0,"y":-1940.0},"guid":"1277c32f-6007-43d7-949d-ec02e4146502","$version":"A","$type":"DialogueChoiceNode","$id":"19"},{"choiceCount":3,"defaultValues":{"Dialogue
+      Line":{"$content":"Loading the logs: arrange them in the order you\u2019d load
+      for optimal calibration","$type":"System.String"},"Character":{"$content":4,"$type":"UnityEngine.Object"},"Text1":{"$content":"Mission
+      Execution Log","$type":"System.String"},"Text2":{"$content":"Crew Interaction
+      Log","$type":"System.String"},"Text3":{"$content":"Standard Protocol Deviation
+      Log","$type":"System.String"}},"position":{"x":1165.0,"y":-1481.0},"guid":"fac03a80-8cdd-4ae5-9678-e34c7e6414a4","$version":"A","$type":"DialogueChoiceNode","$id":"21"},{"choiceCount":3,"defaultValues":{"Dialogue
+      Line":{"$content":"Loading the logs: arrange them in the order you\u2019d load
+      for optimal calibration","$type":"System.String"},"Character":{"$content":5,"$type":"UnityEngine.Object"},"Text1":{"$content":"Mission
+      Execution Log","$type":"System.String"},"Text2":{"$content":"System Diagnostic
+      Log","$type":"System.String"},"Text3":{"$content":"Standard Protocol Deviation
+      Log","$type":"System.String"}},"position":{"x":1162.0,"y":-901.0},"guid":"050dde39-51d6-4018-b270-919d7317e572","$version":"A","$type":"DialogueChoiceNode","$id":"23"},{"skillCount":1,"defaultValues":{"Amount
+      1":{"$content":3.0,"$type":"System.Single"},"Skill 1":{"$content":6,"$type":"UnityEngine.Object"}},"position":{"x":724.0,"y":-1350.0},"guid":"54d4d018-ad8a-4fe4-9d28-fff94c93bbea","$version":"A","$type":"AddSkillPointsNode","$id":"25"},{"choiceCount":2,"defaultValues":{"Dialogue
+      Line":{"$content":"Loading the logs: arrange them in the order you\u2019d load
+      for optimal calibration","$type":"System.String"},"Character":{"$content":7,"$type":"UnityEngine.Object"},"Text1":{"$content":"System
+      Diagnostic Log","$type":"System.String"},"Text2":{"$content":"Standard Protocol
+      Deviation Log","$type":"System.String"}},"position":{"x":2087.0,"y":-1936.0},"guid":"b46e11f0-d25a-498d-ae07-a250de815eab","$version":"A","$type":"DialogueChoiceNode","$id":"27"},{"skillCount":1,"defaultValues":{"Amount
+      1":{"$content":0.0,"$type":"System.Single"},"Skill 1":null},"position":{"x":683.0,"y":-567.0},"guid":"25c17043-1c6c-4df4-9854-2d2275ec4150","$version":"A","$type":"SubtractSkillPointsNode"},{"skillCount":1,"defaultValues":{"Amount
+      1":{"$content":3.0,"$type":"System.Single"},"Skill 1":{"$content":8,"$type":"UnityEngine.Object"}},"position":{"x":740.0,"y":-1186.0},"guid":"d2ee5f76-d87f-4c3b-80c1-5dc28186a440","$version":"A","$type":"AddSkillPointsNode","$id":"31"},{"skillCount":1,"defaultValues":{"Amount
+      1":{"$content":3.0,"$type":"System.Single"},"Skill 1":{"$content":9,"$type":"UnityEngine.Object"}},"position":{"x":756.0,"y":-992.0},"guid":"5e2e6b60-0d02-45ca-b8d0-a868bc6f2835","$version":"A","$type":"AddSkillPointsNode","$id":"33"},{"skillCount":1,"defaultValues":{"Amount
+      1":{"$content":3.0,"$type":"System.Single"},"Skill 1":{"$content":10,"$type":"UnityEngine.Object"}},"position":{"x":739.0,"y":-781.0},"guid":"943a8a9c-9887-422b-ad13-df521daea19f","$version":"A","$type":"AddSkillPointsNode","$id":"35"},{"choiceCount":2,"defaultValues":{"Dialogue
+      Line":{"$content":"Loading the logs: arrange them in the order you\u2019d load
+      for optimal calibration","$type":"System.String"},"Character":{"$content":11,"$type":"UnityEngine.Object"},"Text1":{"$content":"Crew
+      Interaction Log","$type":"System.String"},"Text2":{"$content":"Standard Protocol
+      Deviation Log","$type":"System.String"}},"position":{"x":2086.0,"y":-2114.0},"guid":"afc8f787-e253-4876-8a99-f5cd0d7722ce","$version":"A","$type":"DialogueChoiceNode","$id":"37"},{"choiceCount":4,"defaultValues":{"Dialogue
+      Line":{"$content":"Loading emergency directives: in which order should they
+      be loaded?","$type":"System.String"},"Character":{"$content":12,"$type":"UnityEngine.Object"},"Text1":{"$content":"Rapid
+      Shutdown Directive","$type":"System.String"},"Text2":{"$content":"Resource
+      Mapping Protocol","$type":"System.String"},"Text3":{"$content":"Evacuation
+      Coordination Directive","$type":"System.String"},"Text4":{"$content":"Contingency
+      Check","$type":"System.String"}},"position":{"x":95.0,"y":-70.0},"guid":"4a0aa404-71c7-45bc-9180-63dbd3f54fb8","$version":"A","$type":"DialogueChoiceNode"},{"choiceCount":4,"defaultValues":{"Dialogue
+      Line":{"$content":"Loading recovery protocols: in which order should they be
+      loaded?","$type":"System.String"},"Character":{"$content":13,"$type":"UnityEngine.Object"},"Text1":{"$content":"Spaceship
+      System Stabilization","$type":"System.String"},"Text2":{"$content":"Unresponsive
+      Systems List","$type":"System.String"},"Text3":{"$content":"Crew Biomarker
+      Analysis","$type":"System.String"},"Text4":{"$content":"Error Log Analysis","$type":"System.String"}},"position":{"x":94.0,"y":-290.0},"guid":"d0d11271-5d69-41b2-b267-430f882e5cc0","$version":"A","$type":"DialogueChoiceNode"},{"choiceCount":4,"defaultValues":{"Dialogue
+      Line":{"$content":"Loading the logs: arrange them in the order you\u2019d load
+      for optimal calibration","$type":"System.String"},"Character":{"$content":14,"$type":"UnityEngine.Object"},"Text1":{"$content":"Mission
+      Execution Log","$type":"System.String"},"Text2":{"$content":"System Diagnostic
+      Log","$type":"System.String"},"Text3":{"$content":"Crew Interaction Log","$type":"System.String"},"Text4":{"$content":"Standard
+      Protocol Deviation Log","$type":"System.String"}},"position":{"x":140.0,"y":-1079.0},"guid":"ac57179a-ffbd-42fb-a44a-f0d7bfd8368c","$version":"A","$type":"DialogueChoiceNode","$id":"43"},{"choiceCount":3,"defaultValues":{"Dialogue
+      Line":{"$content":"Loading the logs: arrange them in the order you\u2019d load
+      for optimal calibration","$type":"System.String"},"Character":{"$content":15,"$type":"UnityEngine.Object"},"Text1":{"$content":"Mission
+      Execution Log","$type":"System.String"},"Text2":{"$content":"System Diagnostic
+      Log","$type":"System.String"},"Text3":{"$content":"Crew Interaction Log","$type":"System.String"}},"position":{"x":1165.0,"y":-469.0},"guid":"a82ef099-018d-4209-8e43-563d36136ba2","$version":"A","$type":"DialogueChoiceNode","$id":"45"},{"choiceCount":4,"defaultValues":{"Dialogue
+      Line":{"$content":"answer:","$type":"System.String"},"Character":{"$content":16,"$type":"UnityEngine.Object"},"Respondent":{"$content":17,"$type":"UnityEngine.Object"},"Text1":{"$content":"AE1","$type":"System.String"},"Skill
+      1":{"$content":18,"$type":"UnityEngine.Object"},"Text2":{"$content":"AR2","$type":"System.String"},"Skill
+      2":{"$content":19,"$type":"UnityEngine.Object"},"Text3":{"$content":"CR3","$type":"System.String"},"Skill
+      3":{"$content":20,"$type":"UnityEngine.Object"},"Text4":{"$content":"SC4","$type":"System.String"},"Skill
+      4":{"$content":21,"$type":"UnityEngine.Object"}},"position":{"x":128.0,"y":-666.0},"guid":"c3edad1a-12f8-474b-bc07-e7abe9d03a2f","$version":"A","$type":"DialogueIterativeNode","$id":"47"},{"sourceUnit":{"$ref":"25"},"sourceKey":"","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"93104734-aaac-4383-be5a-b1cc1334223c","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"Choice
+      2 Exit","destinationUnit":{"$ref":"27"},"destinationKey":"enter","guid":"3bbd1790-f513-4da6-b0aa-36283254a744","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"21"},"sourceKey":"Choice
+      1 Exit","destinationUnit":{"$ref":"11"},"destinationKey":"enter","guid":"1bdf806f-ecae-4460-abcb-7ad201e47e84","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"43"},"sourceKey":"Choice
+      1 Exit","destinationUnit":{"$ref":"25"},"destinationKey":"","guid":"c7763ec9-af1a-4f5b-bf98-ccdde33abb0f","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"43"},"sourceKey":"Choice
+      2 Exit","destinationUnit":{"$ref":"31"},"destinationKey":"","guid":"3ed2b58b-0238-4a4d-8716-84cda746eeb3","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"31"},"sourceKey":"","destinationUnit":{"$ref":"21"},"destinationKey":"enter","guid":"cb4ccd52-87d0-4bbb-8e18-4c6687a6eb0d","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"35"},"sourceKey":"","destinationUnit":{"$ref":"45"},"destinationKey":"enter","guid":"4f46d8d8-28ae-4add-ac66-67ade4f2e9d2","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"33"},"sourceKey":"","destinationUnit":{"$ref":"23"},"destinationKey":"enter","guid":"27086dd8-e748-4f40-aa84-5a043f02f196","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"43"},"sourceKey":"Choice
+      4 Exit","destinationUnit":{"$ref":"35"},"destinationKey":"","guid":"0f1dee02-b3d2-4c82-ba41-aa929abb8c78","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"43"},"sourceKey":"Choice
+      3 Exit","destinationUnit":{"$ref":"33"},"destinationKey":"","guid":"3a98d55c-fda5-4d9f-abb4-36035cbcdbbb","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"Choice
+      1 Exit","destinationUnit":{"$ref":"37"},"destinationKey":"enter","guid":"2cab2bb0-316a-40a8-b287-f465a7cf7bf2","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"Choice
+      3 Exit","destinationUnit":{"$ref":"13"},"destinationKey":"enter","guid":"c1b8cda3-80e4-4c68-802e-0b2e2a6ab8ef","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"47"},"destinationKey":"enter","guid":"6a2a6c41-327f-4dd6-a737-e7b9faa7ba4c","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}'
     _objectReferences:
-    - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 4900099ca905db54db936c3308002723, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 6d968e37e274d3043a509b902ab97547, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 962071cf49d7ce34bb7db332b822f019, type: 2}
+    - {fileID: 11400000, guid: 523553fb61d97d540a13f6a3156043f0, type: 2}
+    - {fileID: 11400000, guid: f59050e080147cf49a611b3db4de26fb, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
+    - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
     - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
     - {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
     - {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+    - {fileID: 11400000, guid: 6d968e37e274d3043a509b902ab97547, type: 2}
+    - {fileID: 11400000, guid: 962071cf49d7ce34bb7db332b822f019, type: 2}
+    - {fileID: 11400000, guid: 523553fb61d97d540a13f6a3156043f0, type: 2}
+    - {fileID: 11400000, guid: f59050e080147cf49a611b3db4de26fb, type: 2}
