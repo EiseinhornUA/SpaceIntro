@@ -16,9 +16,7 @@ public class RobotFollow : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private float followDistance = 2.5f;
     [SerializeField] private float followSpeed = 10f;
-    [SerializeField] private float offsetX = 0.0f;
-    [SerializeField] private float offsetY = 1.5f;
-    [SerializeField] private float offsetZ = -0.5f;
+    [SerializeField] private Vector3 offset = new Vector3(0f, 1.5f, -0.5f);
     [SerializeField] private float frequency = 0.5f;
     [SerializeField] private float amplitude = 0.01f;
     [SerializeField]
@@ -89,18 +87,16 @@ public class RobotFollow : MonoBehaviour
     {
         Vector3 robotPosition = transform.position;
 
-        float directionX = player.position.x - transform.position.x + offsetX;
-        float directionY = player.position.y - transform.position.y + offsetY;
-        float directionZ = player.position.z - transform.position.z + offsetZ;
+        Vector3 direction = player.position - transform.position + offset;
 
-        if (Mathf.Abs(directionX) > followDistance)
+        if (Mathf.Abs(direction.x) > followDistance)
         {
-            robotPosition.x += (Mathf.Sign(directionX) - ((followDistance - ApproachingThreshold) / directionX))
+            robotPosition.x += (Mathf.Sign(direction.x) - ((followDistance - ApproachingThreshold) / direction.x))
                 * followSpeed * Time.deltaTime;
         }
 
-        robotPosition.y += yzSpeedNormalizer * directionY * followSpeed * Time.deltaTime;
-        robotPosition.z += yzSpeedNormalizer * directionZ * followSpeed * Time.deltaTime;
+        robotPosition.y += yzSpeedNormalizer * direction.y * followSpeed * Time.deltaTime;
+        robotPosition.z += yzSpeedNormalizer * direction.z * followSpeed * Time.deltaTime;
         transform.position = robotPosition;    
     }
 
