@@ -1,9 +1,10 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
-using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
+using System.Linq;
+using Cysharp.Threading.Tasks;
 
 [UnitTitle("Dialogue Iterative Node")]
 [UnitCategory("Dialogue")]
@@ -20,18 +21,15 @@ public class DialogueIterativeNode : WaitUnit
 
     private List<ValueInput> choiceInputs = new();
     private List<ValueInput> skillInputs = new();
-    //private List<ControlOutput> exits = new();
 
     private DialogueView view;
     private new ControlInput enter;
 
-    private UniTask<int> task;
     private SkillSO skill;
 
     protected override void Definition()
     {
         choiceInputs.Clear();
-        //exits.Clear();
 
         messageInput = ValueInput<string>("Dialogue Line", "");
         characterInput = ValueInput<DialogueCharacter>("Character", null);
@@ -55,42 +53,32 @@ public class DialogueIterativeNode : WaitUnit
         view = GameObject.FindObjectOfType<DialogueView>();
 
         var message = flow.GetValue<string>(messageInput);
-        var character = flow.GetValue<DialogueCharacter>(characterInput);
+        var requester = flow.GetValue<DialogueCharacter>(characterInput);
 
-        if (!character)
+        if (!requester)
         {
-            Debug.LogError(character + " is null. Please assign a character to the Dialogue Choice Node.");
+            Debug.LogError(requester + " is null. Please assign a character to the Dialogue Choice Node.");
             yield break;
         }
 
-        view.SetCharacterName(character.GetName());
-        view.ChangeCharacterPortrait(character.GetPortrait());
-        view.SetMessage(message);
+        SetupDialogueView(message, requester);
 
+        var skills = skillInputs.Select(input => flow.GetValue<SkillSO>(input)).ToList();
+        var choices = choiceInputs.Select(input => flow.GetValue<string>(input)).ToList();
 
-        var choices = new List<string>();
-        var skills = new List<SkillSO>();
-
-        for (int i = 0; i < choiceCount; i++)
-        {
-            choices.Add(flow.GetValue<string>(choiceInputs[i]));
-            skills.Add(flow.GetValue<SkillSO>(skillInputs[i]));
-        }
-
-        int selectedIndex = -1; // ?????
+        int selectedIndex = -1;
 
         for (int i = 0; i < choiceInputs.Count - 1; i++)
         {
             view.ShowChoices(choices);
-            task = view.WaitForChoice();
-            yield return task.ContinueWith(i => selectedIndex = i).ToCoroutine();
+            yield return view.WaitForChoice().ContinueWith(i => selectedIndex = i).ToCoroutine();
 
-            float amount = 3 - i;
+            float skillPoints = CalculateSkillPoints(i);
             skill = skills[selectedIndex];
 
             if (skill != null)
             {
-                skillContainer.AddSkillLevel(skill, amount);
+                skillContainer.AddSkillLevel(skill, skillPoints);
                 //Debug.Log($"Added {amount} points to {skill.name}");
             }
 
@@ -100,11 +88,18 @@ public class DialogueIterativeNode : WaitUnit
 
         var respondent = flow.GetValue<DialogueCharacter>(respondentInput);
 
-        view.SetCharacterName(respondent.GetName());
-        view.ChangeCharacterPortrait(respondent.GetPortrait());
-        view.SetMessage(choices[0]);
+        SetupDialogueView(message: choices[0], respondent);
 
         yield return view.WaitForClick().ToCoroutine();
         yield return exit;
     }
+
+    private void SetupDialogueView(string message, DialogueCharacter requester)
+    {
+        view.SetCharacterName(requester.GetName());
+        view.ChangeCharacterPortrait(requester.GetPortrait());
+        view.SetMessage(message);
+    }
+
+    private int CalculateSkillPoints(int i) => choiceInputs.Count - 1 - i;
 }
