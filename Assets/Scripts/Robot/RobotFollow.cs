@@ -16,9 +16,7 @@ public class RobotFollow : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private float followDistance = 2.5f;
     [SerializeField] private float followSpeed = 10f;
-    [SerializeField] private float offsetX = 0.0f;
-    [SerializeField] private float offsetY = 1.5f;
-    [SerializeField] private float offsetZ = -0.5f;
+    [SerializeField] private Vector3 offset = new Vector3(0f, 1.5f, -0.5f);
     [SerializeField] private float frequency = 0.5f;
     [SerializeField] private float amplitude = 0.01f;
     [SerializeField]
@@ -89,26 +87,23 @@ public class RobotFollow : MonoBehaviour
     {
         Vector3 robotPosition = transform.position;
 
-        float directionX = player.position.x - transform.position.x + offsetX;
-        float directionY = player.position.y - transform.position.y + offsetY;
-        float directionZ = player.position.z - transform.position.z + offsetZ;
+        Vector3 direction = player.position - transform.position + offset;
 
-        if (Mathf.Abs(directionX) > followDistance)
+        if (Mathf.Abs(direction.x) > followDistance)
         {
-            robotPosition.x += (Mathf.Sign(directionX) - ((followDistance - ApproachingThreshold) / directionX))
+            robotPosition.x += (Mathf.Sign(direction.x) - ((followDistance - ApproachingThreshold) / direction.x))
                 * followSpeed * Time.deltaTime;
         }
 
-        robotPosition.y += yzSpeedNormalizer * directionY * followSpeed * Time.deltaTime;
-        robotPosition.z += yzSpeedNormalizer * directionZ * followSpeed * Time.deltaTime;
+        robotPosition.y += yzSpeedNormalizer * direction.y * followSpeed * Time.deltaTime;
+        robotPosition.z += yzSpeedNormalizer * direction.z * followSpeed * Time.deltaTime;
         transform.position = robotPosition;    
     }
 
     [ContextMenu("Destroy Door")]
     public async UniTask DestroyDoor()
     {
-        //virtualCamera.Follow = transform;
-        //virtualCamera.LookAt = transform;
+        playerParent.GetComponent<Player>().EnableControls(false);
         TurnOffRobot();
         await RotateRobotTowardsDoor();
         await MoveBackToAccelerate();
@@ -122,9 +117,7 @@ public class RobotFollow : MonoBehaviour
 
         doorTransform.gameObject.layer = 13;
         doorTransform.GetChild(0).gameObject.layer = 13;
-
-        //virtualCamera.Follow = playerParent;
-        //virtualCamera.LookAt = playerParent;
+        playerParent.GetComponent<Player>().EnableControls(true);
     }
 
     private async UniTask RotateRobotTowardsDoor()
@@ -146,7 +139,7 @@ public class RobotFollow : MonoBehaviour
         gameObject.AddComponent<Interactable>();
     }
 
-    private async System.Threading.Tasks.Task Accelerate()
+    private async UniTask Accelerate()
     {
         await transform.DOMove(
                     new Vector3(doorTransform.position.x + hitPointOffsetX,
@@ -155,7 +148,7 @@ public class RobotFollow : MonoBehaviour
                     breakSpeed).SetEase(Ease.InQuart);
     }
 
-    private async System.Threading.Tasks.Task MoveBackToAccelerate()
+    private async UniTask MoveBackToAccelerate()
     {
         await transform.DOMove(new
             Vector3(transform.position.x + accelerationDistance,
@@ -186,7 +179,7 @@ public class RobotFollow : MonoBehaviour
     }
     private void RotateTowardsPlayer()
     {
-        transform.LookAt(player.position + new Vector3(0f, offsetY, 1f));
+        transform.LookAt(player.position + new Vector3(0f, offset.y, 1f));
     }
 
     private void ApplyIdleMovement()
