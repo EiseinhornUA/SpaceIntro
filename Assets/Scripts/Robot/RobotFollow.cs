@@ -182,7 +182,7 @@ public class RobotFollow : MonoBehaviour
     }
     private void RotateTowardsPlayer()
     {
-        transform.LookAt(player.position + new Vector3(0f, offsetY, 1f));
+        transform.LookAt(player.position + new Vector3(0f, offset.y, 1f));
     }
 
     private void ApplyIdleMovement()
