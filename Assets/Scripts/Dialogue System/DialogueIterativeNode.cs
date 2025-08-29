@@ -24,6 +24,7 @@ public class DialogueIterativeNode : WaitUnit
 
     private DialogueView view;
     private new ControlInput enter;
+    private new ControlOutput exit;
 
     private SkillSO skill;
 
@@ -32,19 +33,21 @@ public class DialogueIterativeNode : WaitUnit
         choiceInputs.Clear();
 
         messageInput = ValueInput<string>("Dialogue Line", "");
-        characterInput = ValueInput<DialogueCharacter>("Character", null);
+        characterInput = ValueInput<DialogueCharacter>("Requester", null);
         respondentInput = ValueInput<DialogueCharacter>("Respondent", null);
         enter = ControlInputCoroutine("enter", Await);
 
-        var exit = ControlOutput("");
+        exit = ControlOutput("");
 
         for (int i = 0; i < choiceCount; i++)
         {
             choiceInputs.Add(ValueInput<string>($"Text{i + 1}", ""));
             skillInputs.Add(ValueInput<SkillSO>($"Skill {i + 1}", null));
 
-            Succession(enter, exit);
+            //Succession(enter, exit);
         }
+
+        Succession(enter, exit);
     }
 
     protected override IEnumerator Await(Flow flow)
@@ -79,7 +82,7 @@ public class DialogueIterativeNode : WaitUnit
             if (skill != null)
             {
                 skillContainer.AddSkillLevel(skill, skillPoints);
-                //Debug.Log($"Added {amount} points to {skill.name}");
+                Debug.Log($"Added {skillPoints} points to {skill.name}");
             }
 
             choices.Remove(choices[selectedIndex]);
