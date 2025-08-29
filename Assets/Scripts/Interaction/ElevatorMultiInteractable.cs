@@ -15,7 +15,7 @@ public class ElevatorMultiInteractable : MonoBehaviour
     [SerializeField] private int buttonAmount;
     private ElevatorMultiInteractionView multiInteractionView;
     private ElevatorControlPanel elevatorControlPanel;
-    [SerializeField] private PlayerInOutElevator elevator;
+    private PlayerInOutElevator elevator;
     private CircleCollider2D circleCollider;
 
     [SerializeField] private bool isActive = false;

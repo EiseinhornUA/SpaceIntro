@@ -4,6 +4,7 @@ using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using System.Collections;
 
 public class PlayerInOutElevator : MonoBehaviour
 {
@@ -225,5 +226,10 @@ public class PlayerInOutElevator : MonoBehaviour
     {
         MoveEntitiesToFloor(from, to).Forget();
         Debug.Log("Going to floor from " + from + " to " + to); 
+    }
+
+    internal object WaitForElevator()
+    {
+        throw new NotImplementedException();
     }
 }
