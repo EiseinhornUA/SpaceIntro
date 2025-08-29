@@ -103,8 +103,7 @@ public class RobotFollow : MonoBehaviour
     [ContextMenu("Destroy Door")]
     public async UniTask DestroyDoor()
     {
-        //virtualCamera.Follow = transform;
-        //virtualCamera.LookAt = transform;
+        playerParent.GetComponent<Player>().EnableControls(false);
         TurnOffRobot();
         await RotateRobotTowardsDoor();
         await MoveBackToAccelerate();
@@ -118,9 +117,7 @@ public class RobotFollow : MonoBehaviour
 
         doorTransform.gameObject.layer = 13;
         doorTransform.GetChild(0).gameObject.layer = 13;
-
-        //virtualCamera.Follow = playerParent;
-        //virtualCamera.LookAt = playerParent;
+        playerParent.GetComponent<Player>().EnableControls(true);
     }
 
     private async UniTask RotateRobotTowardsDoor()
@@ -142,7 +139,7 @@ public class RobotFollow : MonoBehaviour
         gameObject.AddComponent<Interactable>();
     }
 
-    private async System.Threading.Tasks.Task Accelerate()
+    private async UniTask Accelerate()
     {
         await transform.DOMove(
                     new Vector3(doorTransform.position.x + hitPointOffsetX,
@@ -151,7 +148,7 @@ public class RobotFollow : MonoBehaviour
                     breakSpeed).SetEase(Ease.InQuart);
     }
 
-    private async System.Threading.Tasks.Task MoveBackToAccelerate()
+    private async UniTask MoveBackToAccelerate()
     {
         await transform.DOMove(new
             Vector3(transform.position.x + accelerationDistance,
