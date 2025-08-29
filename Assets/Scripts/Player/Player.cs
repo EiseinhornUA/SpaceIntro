@@ -43,7 +43,7 @@ public class Player : MonoBehaviour {
         playerRotator = GetComponent<PlayerRotator>();
         joystick = FindObjectOfType<Joystick>(includeInactive: true);
 
-		FindObjectOfType<DialogueManager>(includeInactive: true).onDialogueStart += OnDialogueStart;
+		FindObjectOfType<DialogueManager>(includeInactive: true).onDialogueStart += StopMovement;
 
         gravity = -(2 * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2);
 		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -236,7 +236,7 @@ public class Player : MonoBehaviour {
         //GetAnimationHandler().SetHorizontalSpeed(0f);
 	}
 
-	private void OnDialogueStart()
+	public void StopMovement()
 	{
 		joystick.OnPointerUp(null);
     }
