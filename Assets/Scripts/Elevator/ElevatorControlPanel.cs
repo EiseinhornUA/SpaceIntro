@@ -25,7 +25,7 @@ public class ElevatorControlPanel : MonoBehaviour
     public async UniTask CallElevator()
     {
         await UniTask.WhenAll(elevatorDoors.Where(door => door != currentElevatorDoor).Select(async door => await door.CloseDoors()));
-        await elevator.GoToFloor(currentFloor);
+        await elevator.GoToFloorAsync(currentFloor);
         await currentElevatorDoor.OpenDoors();
         //Debug.Log($"1111111111111Setting current elevatorDoor to {currentFloor}");
         elevatorButtonsInside.SetCurrentFloor(currentFloor);
@@ -35,4 +35,8 @@ public class ElevatorControlPanel : MonoBehaviour
     {
         return currentFloor;
     }
+
+    public int GetCurrentFloorIndex() => currentFloor;
+
+    public PlayerInOutElevator GetElevator() => elevator.GetPlayerInOutElevator();
 }

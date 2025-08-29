@@ -23,6 +23,7 @@ public class PlayerInOutElevator : MonoBehaviour
     [SerializeField] private Transform characterParent;
 
     private Transform modelTransform;
+    private int currentFloorIndex;
 
     public async UniTask RotatePlayerTowardsElevator()
     {
@@ -218,5 +219,11 @@ public class PlayerInOutElevator : MonoBehaviour
     private void RotateTowardsElevator()
     {
         RotatePlayerTowardsElevator().Forget();
+    }
+
+    public void GoToFloor(int from, int to)
+    {
+        MoveEntitiesToFloor(from, to).Forget();
+        Debug.Log("Going to floor from " + from + " to " + to); 
     }
 }

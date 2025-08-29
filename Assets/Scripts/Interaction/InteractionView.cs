@@ -19,6 +19,7 @@ public class InteractionView : Popup
     {
         interactionButton.onClick.AddListener(onInteract);
     }
+
     internal void RemoveListener(UnityAction onInteract)
     {
         interactionButton.onClick.RemoveListener(onInteract);

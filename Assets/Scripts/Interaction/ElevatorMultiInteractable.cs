@@ -8,34 +8,31 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CircleCollider2D))]
-public class Interactable : MonoBehaviour
+[RequireComponent(typeof(ElevatorControlPanel))]
+public class ElevatorMultiInteractable : MonoBehaviour
 {
-    [SerializeField] private UnityEvent onInteract = new();
-    private InteractionView interactionView;
+    [Range(2, 3)]
+    [SerializeField] private int buttonAmount;
+    private ElevatorMultiInteractionView multiInteractionView;
+    private ElevatorControlPanel elevatorControlPanel;
+    [SerializeField] private PlayerInOutElevator elevator;
     private CircleCollider2D circleCollider;
-    private UniTaskCompletionSource interactionTCS;
 
     [SerializeField] private bool isActive = false;
 
     private void Awake()
     {
-        interactionView = FindObjectOfType<InteractionView>(includeInactive: true);
+        multiInteractionView = FindObjectOfType<ElevatorMultiInteractionView>(true);
+        elevatorControlPanel = GetComponent<ElevatorControlPanel>();
+        elevator = elevatorControlPanel.GetElevator();
         circleCollider = GetComponent<CircleCollider2D>();
         circleCollider.isTrigger = true;
     }
 
-    public UniTask WaitForInteraction()
+    public void OnInteract(int interactionIndex)
     {
-        interactionTCS = new UniTaskCompletionSource();
-        return interactionTCS.Task;
-    }
-
-    public void OnInteract()
-    {
-        onInteract.Invoke();
-        interactionView.Hide();
-
-        interactionTCS?.TrySetResult(); // Resume WaitForInteraction
+        elevator.GoToFloor(elevatorControlPanel.GetCurrentFloorIndex(), interactionIndex);
+        multiInteractionView.Hide();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -43,13 +40,13 @@ public class Interactable : MonoBehaviour
         if (!isActive) return;
         if (!IsPlayer(collision)) return;
 
-        if(!interactionView.gameObject.activeSelf)
-        {
-            interactionView.SetPosition(GetViewPosition());
-            interactionView.Show();
-            interactionView.AddListener(OnInteract);
-        }
 
+        if (!multiInteractionView.IsActive())
+        {
+            multiInteractionView.SetPosition(GetViewPosition());
+            multiInteractionView.Show(buttonAmount);
+            multiInteractionView.AddListener(OnInteract);
+        }
     }
 
     private Vector3 GetViewPosition()
@@ -61,8 +58,8 @@ public class Interactable : MonoBehaviour
     {
         if (!isActive) return;
         if (!IsPlayer(collision)) return;
-        interactionView.Hide();
-        interactionView.RemoveListener(OnInteract);
+        multiInteractionView.Hide();
+        multiInteractionView.RemoveListeners();
     }
 
     private static bool IsPlayer(Collider2D collision)
@@ -74,8 +71,7 @@ public class Interactable : MonoBehaviour
     public void Deactivate()
     {
         isActive = false;
-        interactionView.Hide();
-        interactionView.RemoveListener(OnInteract);
+        multiInteractionView.Hide();
+        multiInteractionView.RemoveListeners();
     }
-
 }

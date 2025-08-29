@@ -26,7 +26,7 @@ public class ElevatorButtonsInside : MonoBehaviour
     public async UniTask ElevateToFloor(int destinationFloor)
     {
         await currentElevatorDoor.CloseDoors();
-        await elevator.GoToFloor(destinationFloor);
+        await elevator.GoToFloorAsync(destinationFloor);
         ElevatorDoors nextElevatorDoor = elevatorDoors.Find(door => door.floor == destinationFloor).elevatorDoor;
         await nextElevatorDoor.OpenDoors();
         currentElevatorDoor = nextElevatorDoor;
