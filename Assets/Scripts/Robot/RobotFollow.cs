@@ -110,14 +110,13 @@ public class RobotFollow : MonoBehaviour
         await Accelerate();
         await EnableRobotsPhysic();
         KnockDownDoor();
-
+        playerParent.GetComponent<Player>().EnableControls(true);
         await UniTask.Delay(System.TimeSpan.FromSeconds(disableTimeAfterHit));
 
         await DisableRobotPhysic();
 
         doorTransform.gameObject.layer = 13;
         doorTransform.GetChild(0).gameObject.layer = 13;
-        playerParent.GetComponent<Player>().EnableControls(true);
     }
 
     private async UniTask RotateRobotTowardsDoor()

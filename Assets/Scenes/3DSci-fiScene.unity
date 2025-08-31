@@ -17113,6 +17113,7 @@ MonoBehaviour:
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"RootsDestroyScript","value":{"$content":27,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Roots,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"RootsEscape","value":{"$content":28,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"TransitionPlayerToOutsideAnimation,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ElevatorRoom","value":null,"typeHandle":{"Identification":"PlayerInOutElevator,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"FadeOut","value":{"$content":29,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"FadeOut,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 5449569031936165082}
@@ -17144,6 +17145,7 @@ MonoBehaviour:
     - {fileID: 1490343951}
     - {fileID: 2136770012}
     - {fileID: 2136770015}
+    - {fileID: 413957495}
 --- !u!4 &1364289608
 Transform:
   m_ObjectHideFlags: 0
@@ -23450,6 +23452,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4301472655502874, guid: 558510d06d2efb441bb5308b93053816, type: 3}
   m_PrefabInstance: {fileID: 6883188893104515667}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1915014588
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3523582944881787990}
+    m_Modifications:
+    - target: {fileID: 7849447839824721773, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849447839824721773, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849447839824721773, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849447839824721773, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849447839824721773, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849447839824721773, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849447839824721773, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849447839824721773, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849447839824721773, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849447839824721773, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967366186468323077, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+      propertyPath: m_Name
+      value: HackingRobot
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967366186468323077, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+--- !u!4 &1915014589 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7849447839824721773, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+  m_PrefabInstance: {fileID: 1915014588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1915014590 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6659513176969642844, guid: b4d0f472e10af1f40ae7530616347889, type: 3}
+  m_PrefabInstance: {fileID: 1915014588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8836c12a2674947b4889d8cc004281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1915840668
 GameObject:
   m_ObjectHideFlags: 0
@@ -36576,6 +36655,7 @@ Transform:
   m_LocalScale: {x: 0.4884259, y: 0.4884259, z: 0.4884259}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1915014589}
   - {fileID: 1273218759}
   - {fileID: 809074482}
   - {fileID: 2088186616}
@@ -36857,7 +36937,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.8
+  m_fontSize: 38.8
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -38316,7 +38396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4253174332680612863
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38821,7 +38901,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.8
+  m_fontSize: 38.8
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -39490,7 +39570,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.8
+  m_fontSize: 38.8
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -40668,7 +40748,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.5
+  m_fontSize: 42.3
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -42884,6 +42964,7 @@ MonoBehaviour:
   - {fileID: 515455458}
   - {fileID: 2126744083}
   - {fileID: 311314527}
+  - {fileID: 1915014590}
 --- !u!1001 &5918527528509469269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44589,7 +44670,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.8
+  m_fontSize: 38.8
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -46282,7 +46363,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.35
+  m_fontSize: 41.9
   m_fontSizeBase: 46
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -47041,8 +47122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
