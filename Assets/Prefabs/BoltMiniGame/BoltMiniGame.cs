@@ -1,102 +1,55 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using System.Runtime.CompilerServices;
-//using Unity.VisualScripting;
-//using UnityEngine;
-
-//public class BoltMiniGame : MonoBehaviour
-//{
-//    [SerializeField] private List<GameObject> bolts;
-
-//    [SerializeField] private List<GameObject> layers;
-
-//    private bool isInside = false;
-
-//    private void OnTriggerEnter2D(Collider2D bolt)
-//    {
-//        isInside = true;
-//    }
-
-//    private void Start()
-//    {
-//        foreach (Collider2D bolt_collider in bolts)
-//        {
-//            OnTriggerEnter2D(bolt_collider);
-//            if (isInside = true)
-//            {
-//                bolt_collider.enabled = false;
-//            }
-//        }
-//    }
-//}
-
-
-
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class BoltController : MonoBehaviour
+public class BoltMiniGame : MonoBehaviour
 {
-    private Vector3 offset;
-    private bool isDragging = false;
-    private Vector3 startPos;
-    private Collider2D currentHole;
+    private Vector2 clickPosition;
 
-    void Start()
-    {
-        startPos = transform.position; // Save starting position
-    }
+    [SerializeField] private Wall wall;
 
-    void OnMouseDown()
+    private void Update()
     {
-        // Calculate offset between mouse position and bolt
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        offset = transform.position - new Vector3(mousePos.x, mousePos.y, transform.position.z);
-        isDragging = true;
-    }
-
-    void OnMouseDrag()
-    {
-        if (isDragging)
+        if (Input.GetMouseButtonUp(0))
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z) + offset;
+            clickPosition = Input.mousePosition;
         }
     }
 
-    void OnMouseUp()
+    [ContextMenu("InitializeGame")]
+    private void InitializeGame()
     {
-        isDragging = false;
 
-        // Check if bolt is on top of a valid hole
-        if (currentHole != null)
-        {
-            // Snap bolt to hole position
-            transform.position = currentHole.transform.position;
-            // Optionally disable dragging
-            this.enabled = false;
-        }
-        else
-        {
-            // Return bolt to start position
-            transform.position = startPos;
-        }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private IEnumerable<Bolt> GetBolts()
     {
-        if (other.CompareTag("BoltHole"))
-        {
-            currentHole = other;
-        }
+        return wall.GetBolts();
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    //private Hole GetNearestHole(Vector2 position)
+    //{
+    //    return holes
+    //                .Where(h => Vector2.Distance(position, h.transform.position) < checkBoltRadius)
+    //                .FirstOrDefault();
+    //}
+
+    private void SwapBolts(Hole holeFrom, Hole holeTo)
     {
-        if (other == currentHole)
-        {
-            currentHole = null;
-        }
+        if (!holeFrom.HasBolt()) return;
+
+        if (holeTo.HasBolt()) return;
+
+        if (!IsAbleToPlace(holeTo)) return;
+        holeTo.PlaceBolt(holeFrom.GetBolt());
+        holeTo.RemoveBolt();
+    }
+
+    private bool IsAbleToPlace(Hole holeTo)
+    {
+        return true;
     }
 }
-
-
