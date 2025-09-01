@@ -1,46 +1,76 @@
 ﻿using Cysharp.Threading.Tasks;
+using Firebase.Auth;
 using Firebase.Database;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class DatabaseManager : MonoBehaviour
 {
     private SkillContainer skillContainer;
-    private DatabaseReference database;
     private DatabaseReference userReference;
-
     private string userID;
 
-    private void Start()
+    private async void Awake()
     {
-        userID = SystemInfo.deviceUniqueIdentifier;
-        database = FirebaseDatabase.DefaultInstance.RootReference;
-        userReference = database.Child("users").Child(userID);
+        // Enable Firebase offline persistence (data is cached and syncs when online)
+        FirebaseDatabase.DefaultInstance.SetPersistenceEnabled(true);
+    }
 
-        SaveName(PlayerPrefs.GetString("CharacterName", "Name"));
+    private async void Start()
+    {
+        await Login();
+        InitDatabase();
+        await SaveName();
 
         skillContainer = FindObjectOfType<SkillContainer>();
         skillContainer.OnSkillLevelChanged += OnSkillLevelChanged;
     }
 
-    private void OnSkillLevelChanged(Skill skill)
+    private async UniTask Login()
     {
-        SaveSkill(skill);
+        var result = await FirebaseAuth.DefaultInstance.SignInAnonymouslyAsync();
+        userID = result.User.UserId;
+        Debug.Log($"Logged in as {userID}");
     }
 
-    private void SaveSkill(Skill skill)
+    private void InitDatabase()
     {
-        userReference.Child("metrics")
-            .Child(skill.skillName)
-            .SetValueAsync(skill.level);
+        userReference = FirebaseDatabase.DefaultInstance
+            .RootReference
+            .Child("users")
+            .Child(userID);
     }
 
-    private void SaveName(string CharacterName)
+    private async void OnSkillLevelChanged(Skill skill)
     {
-        userReference.Child("name")
-            .SetValueAsync(CharacterName);
+        await SaveSkill(skill);
+    }
+
+    private async UniTask SaveSkill(Skill skill)
+    {
+        try
+        {
+            await userReference.Child("metrics")
+                .Child(skill.skillName)
+                .SetValueAsync(skill.level);
+            Debug.Log($"Saved {skill.skillName}: {skill.level}");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"SaveSkill failed: {e.Message}");
+        }
+    }
+
+    private async UniTask SaveName()
+    {
+        try
+        {
+            string name = PlayerPrefs.GetString("CharacterName", "Name");
+            await userReference.Child("name").SetValueAsync(name);
+            Debug.Log($"Saved name: {name}");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"SaveName failed: {e.Message}");
+        }
     }
 }
