@@ -1,22 +1,92 @@
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BoltMiniGame : MonoBehaviour
 {
     private Vector2 clickPosition;
 
-    [SerializeField] private Wall wall;
+    private Wall wall;
+    private Hole[] holes;
+    public Hole holeFrom;
+    public Hole holeTo;
+    private Plank[] planks;
 
-    private void Update()
+    [SerializeField] private float clickOnHoleThreshold = 0.25f;
+    [SerializeField] private float plankHoleCheckThreshold = 0.2f;
+    [SerializeField] public float speedToSwapBolts = 6f;
+    [SerializeField] public Ease boltSwapEase = Ease.InOutQuint;
+
+    private void Awake()
     {
-        if (Input.GetMouseButtonUp(0))
+        wall = GetComponentInChildren<Wall>();
+        holes = wall.holes;
+        planks = wall.planks;
+        foreach (Plank plank in wall.planks)
+            plank.plankHoleCheckThreshold = plankHoleCheckThreshold;
+    }
+
+    private async void Update()
+    {
+        if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
-            clickPosition = Input.mousePosition;
+            Vector3 clickPositionInCanvas = Input.mousePosition;
+            clickPositionInCanvas.z = transform.position.z;
+
+            clickPosition = Camera.main.ScreenToWorldPoint(clickPositionInCanvas);
+
+            if (!holeFrom)
+            {
+                holeFrom = GetClickedHole();
+                return;
+            }
+                
+            if (!holeTo)
+            {
+                holeTo = GetClickedHole();
+            }
+
+            if (holeFrom && holeTo)
+            {
+                await SwapBolts(holeFrom, holeTo);
+                this.holeFrom = null;
+                this.holeTo = null;
+            }
         }
+
+        foreach (Hole hole in holes)
+        {
+            if (IsAbleToPlace(hole))
+            {
+                hole.GetComponent<SpriteRenderer>().color = Color.green;
+            }
+            else
+            {
+                hole.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+        }
+
+    }
+
+    private Hole GetClickedHole()
+    {
+        foreach (var hole in holes)
+        {
+            float clickToHoleDistance = Vector2.Distance(clickPosition, hole.transform.position);
+
+            if (clickToHoleDistance < clickOnHoleThreshold)
+            {
+                return hole;
+            }
+        }
+        return null;
     }
 
     [ContextMenu("InitializeGame")]
@@ -37,19 +107,27 @@ public class BoltMiniGame : MonoBehaviour
     //                .FirstOrDefault();
     //}
 
-    private void SwapBolts(Hole holeFrom, Hole holeTo)
+    [ContextMenu("SwapBolts")]
+    private async UniTask SwapBoltsWithArguments()
+    {
+        await SwapBolts(holeFrom, holeTo);
+        this.holeFrom = null;
+        this.holeTo = null;
+    }
+
+    private async UniTask SwapBolts(Hole holeFrom, Hole holeTo)
     {
         if (!holeFrom.HasBolt()) return;
 
         if (holeTo.HasBolt()) return;
 
         if (!IsAbleToPlace(holeTo)) return;
-        holeTo.PlaceBolt(holeFrom.GetBolt());
-        holeTo.RemoveBolt();
+        await holeTo.PlaceBolt(holeFrom.GetBolt());
+        holeFrom.RemoveBolt();
     }
 
     private bool IsAbleToPlace(Hole holeTo)
     {
-        return true;
+        return !planks.Any(p => p.IsBlocking(holeTo));
     }
 }
