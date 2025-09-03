@@ -1,0 +1,104 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+
+public class TetrominoDragHandler : MonoBehaviour
+{
+    private List<Tetromino> tetrominos = new();
+    [SerializeField] private TetrominoGrid tetrominoGrid;
+
+    private void Start()
+    {
+        tetrominos = GetTetrominos().ToList();
+        SubscribeToTetrominos();
+    }
+
+    private void SubscribeToTetrominos()
+    {
+        foreach (Tetromino tetromino in tetrominos)
+        {
+            tetromino.onBeginDrag.AddListener(() => OnBeginDrag(tetromino));
+            tetromino.onDrag.AddListener(() => OnDrag(tetromino));
+            tetromino.onEndDrag.AddListener(() => OnEndDrag(tetromino));
+        }
+    }
+
+    private void OnBeginDrag(Tetromino tetromino)
+    {
+        MoveToFront(tetromino);
+        tetrominoGrid.FreeCellsFrom(tetromino);
+    }
+
+    private void OnDrag(Tetromino tetromino)
+    {
+        SetToPointerPosition(tetromino);
+    }
+
+    private void OnEndDrag(Tetromino tetromino)
+    {
+        Vector2Int position = tetrominoGrid.GetPointerGridPosition();
+
+        Debug.Log($"Grid Position: {position}");
+        //Debug.Log($"Is possible to place: {IsOccupied(position)}");
+        
+        if (IsPossibleToPlaceAt(tetromino, position))
+            PlaceToGrid(tetromino, position);
+    }
+
+    private bool IsPossibleToPlaceAt(Tetromino tetromino, Vector2Int position)
+    {
+        foreach(var tetrominoPosition in tetromino.GetPositionsByPosition(position))
+        {
+            if (tetrominoGrid.IsCellOcupied(tetrominoPosition))
+                return false;
+        }
+        return true;
+    }
+
+    private void PlaceToGrid(Tetromino tetromino, Vector2Int gridPosition)
+    {
+        SetToPointerGridAlignedPosition(tetromino);
+
+        List<Vector2Int> positions = tetromino.GetPositionsByPosition(gridPosition).ToList();
+
+        tetrominoGrid.OccupyCells(tetromino, positions);
+    }
+
+    //private bool IsOccupied(Vector2Int position)
+    //{
+    //    return !occupiedCells.Any(tp => tp.positions.Contains(position));
+    //}
+
+    private void MoveToFront(Tetromino tetromino)
+    {
+        tetromino.transform.SetAsLastSibling();
+    }
+
+    private void SetToPointerPosition(Tetromino tetromino)
+    {
+        tetromino.transform.position = Pointer.current.position.ReadValue();
+    }
+    
+    private void SetToPointerGridAlignedPosition(Tetromino tetromino)
+    {
+        tetromino.transform.localPosition = tetrominoGrid.GetPointerGridAlignedPosition();
+    }
+
+    private IEnumerable<Tetromino> GetTetrominos()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.TryGetComponent<Tetromino>(out var tetromino))
+            {
+                yield return tetromino;
+            }
+        }
+    }
+}
+
