@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,7 +12,7 @@ using UnityEngine.InputSystem;
 
 public class BoltMiniGame : MonoBehaviour
 {
-    private Vector2 clickPosition;
+    private UnityEngine.Vector2 clickPosition;
 
     private Wall wall;
     private Hole[] holes;
@@ -31,13 +32,18 @@ public class BoltMiniGame : MonoBehaviour
         planks = wall.planks;
         foreach (Plank plank in wall.planks)
             plank.plankHoleCheckThreshold = plankHoleCheckThreshold;
+
+        foreach (Plank plank in planks)
+        {
+            plank.AttachAllBolts();
+        }
     }
 
     private async void Update()
     {
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
-            Vector3 clickPositionInCanvas = Input.mousePosition;
+            UnityEngine.Vector3 clickPositionInCanvas = Input.mousePosition;
             clickPositionInCanvas.z = transform.position.z;
 
             clickPosition = Camera.main.ScreenToWorldPoint(clickPositionInCanvas);
@@ -79,7 +85,7 @@ public class BoltMiniGame : MonoBehaviour
     {
         foreach (var hole in holes)
         {
-            float clickToHoleDistance = Vector2.Distance(clickPosition, hole.transform.position);
+            float clickToHoleDistance = UnityEngine.Vector2.Distance(clickPosition, hole.transform.position);
 
             if (clickToHoleDistance < clickOnHoleThreshold)
             {
@@ -122,7 +128,15 @@ public class BoltMiniGame : MonoBehaviour
         if (holeTo.HasBolt()) return;
 
         if (!IsAbleToPlace(holeTo)) return;
+
+        foreach (Plank plank in planks)
+            plank.DetachBolt(holeFrom);
+
         await holeTo.PlaceBolt(holeFrom.GetBolt());
+        
+        foreach (Plank plank in planks)
+            plank.AttachToBolt(holeTo);
+        
         holeFrom.RemoveBolt();
     }
 

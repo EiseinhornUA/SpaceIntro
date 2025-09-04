@@ -1676,7 +1676,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holeFrom: {fileID: 0}
   holeTo: {fileID: 0}
-  clickOnHoleThreshold: 0.3
+  clickOnHoleThreshold: 0.25
+  plankHoleCheckThreshold: 0.25
   speedToSwapBolts: 6
   boltSwapEase: 16
 --- !u!1 &6786834708308413351
@@ -1868,9 +1869,7 @@ MonoBehaviour:
   - {fileID: 5499549075960258201}
   - {fileID: 5711928700017089577}
   - {fileID: 7240071177297127648}
-  planks:
-  - {fileID: 709003695685150562}
-  - {fileID: 20788101336663514}
+  <planks>k__BackingField: []
 --- !u!1 &7363805457059329317
 GameObject:
   m_ObjectHideFlags: 0
