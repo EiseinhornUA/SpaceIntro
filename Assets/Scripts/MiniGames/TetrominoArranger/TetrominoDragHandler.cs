@@ -44,8 +44,6 @@ public class TetrominoDragHandler : MonoBehaviour
     {
         Vector2Int position = tetrominoGrid.GetPointerGridPosition();
 
-        Debug.Log($"Grid Position: {position}");
-        //Debug.Log($"Is possible to place: {IsOccupied(position)}");
         
         if (IsPossibleToPlaceAt(tetromino, position))
             PlaceToGrid(tetromino, position);
@@ -53,10 +51,10 @@ public class TetrominoDragHandler : MonoBehaviour
 
     private bool IsPossibleToPlaceAt(Tetromino tetromino, Vector2Int position)
     {
-        foreach(var tetrominoPosition in tetromino.GetPositionsByPosition(position))
+        foreach(var tetrominoPosition in tetromino.GetGridPositionsByPosition(position))
         {
-            if (tetrominoGrid.IsCellOcupied(tetrominoPosition))
-                return false;
+            if (tetrominoGrid.IsCellOcupied(tetrominoPosition)) return false;
+            if (tetrominoGrid.IsPositionOutOfGrid(tetrominoPosition)) return false;
         }
         return true;
     }
@@ -65,7 +63,7 @@ public class TetrominoDragHandler : MonoBehaviour
     {
         SetToPointerGridAlignedPosition(tetromino);
 
-        List<Vector2Int> positions = tetromino.GetPositionsByPosition(gridPosition).ToList();
+        List<Vector2Int> positions = tetromino.GetGridPositionsByPosition(gridPosition).ToList();
 
         tetrominoGrid.OccupyCells(tetromino, positions);
     }

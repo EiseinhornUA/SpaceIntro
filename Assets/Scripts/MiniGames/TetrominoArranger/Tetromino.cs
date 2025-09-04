@@ -26,7 +26,7 @@ public class Tetromino : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         onEndDrag.Invoke();
     }
 
-    public IEnumerable<Vector2Int> GetPositionsByPosition(Vector2Int position)
+    public IEnumerable<Vector2Int> GetGridPositionsByPosition(Vector2Int position)
     {
         foreach (var tetrominoPosition in tetrominoSO.positions)
         {

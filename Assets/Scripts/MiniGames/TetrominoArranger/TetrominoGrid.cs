@@ -56,15 +56,16 @@ public class TetrominoGrid : MonoBehaviour
     {
         foreach (var tetrominoPositions in occupiedCells)
         {
-            if (tetrominoPositions.positions.Contains(position) || IsPositionOutOfGrid(position))
+            if (tetrominoPositions.positions.Contains(position))
             {
+                Debug.Log($"Cell {position} is occupied by {tetrominoPositions.tetromino.name}");
                 return true;
             }
         }
         return false;
     }
 
-    private bool IsPositionOutOfGrid(Vector2Int position)
+    public bool IsPositionOutOfGrid(Vector2Int position)
     {
         return position.x < 0 || position.y < 0 || position.x >= gridSize.x || position.y >= gridSize.y;
     }
