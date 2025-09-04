@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Plank : MonoBehaviour
 {
@@ -16,15 +17,17 @@ public class Plank : MonoBehaviour
 
     public bool IsBlocking(Hole holeTo)
     {
-        Bounds plankBounds = GetComponent<BoxCollider2D>().bounds;
-        Bounds holeToBounds = holeTo.GetComponent<CircleCollider2D>().bounds;
-        print($"plank bounds: {plankBounds}");
-        print($"holeToBounds: {holeToBounds}");
+        BoxCollider2D plankCollider = GetComponent<BoxCollider2D>();
+        CircleCollider2D holeToCollider = holeTo.GetComponent<CircleCollider2D>();
+        //print($"plank bounds: {plankBounds}");
+        //print($"holeToBounds: {holeToBounds}");
             
         if (HasAtLeastOneCoaxialHole(holeTo))
             return false;
 
-        return plankBounds.Intersects(holeToBounds);
+        var holeToPlankDistance = plankCollider.Distance(holeToCollider);
+
+        return holeToPlankDistance.isOverlapped;
     }
 
     private bool HasAtLeastOneCoaxialHole(Hole holeTo)
