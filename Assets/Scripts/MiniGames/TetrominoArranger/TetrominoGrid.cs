@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Grid))]
 public class TetrominoGrid : MonoBehaviour
 {
     [SerializeField] private Vector2Int gridSize;
     private List<TetrominoPositions> occupiedCells = new();
+    private Grid grid;
 
-    public Vector2Int GetPointerGridPosition()
+    private void Start()
+    {
+        grid = GetComponent<Grid>();
+    }
+
+    public Vector2Int GetGridPositionFrom(Vector2 screenPosition)
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
 
         // Convert screen pointer position to local position inside RectTransform
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             rectTransform,
-            Pointer.current.position.ReadValue(),
+            screenPosition,
             null,
             out Vector2 localPoint
         );
@@ -30,9 +37,18 @@ public class TetrominoGrid : MonoBehaviour
         );
     }
 
-    public Vector2 GetPointerGridAlignedPosition()
+    //public Vector2Int GetGridPositionFrom(Vector2 screenPosition)
+    //{
+    //    Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPosition);
+
+    //    Vector3Int cell = grid.WorldToCell(worldPos);
+
+    //    return new Vector2Int(cell.x, cell.y);
+    //}
+
+
+    public Vector2 GetGridAlignedPositionFrom(Vector2Int gridPosition)
     {
-        Vector2Int pointerGridPosition = GetPointerGridPosition();
         RectTransform rectTransform = GetComponent<RectTransform>();
 
         // Calculate cell size in local space
@@ -40,11 +56,16 @@ public class TetrominoGrid : MonoBehaviour
 
         // Convert grid index to local position (center of the cell)
         Vector2 alignedLocalPosition = new Vector2(
-            (pointerGridPosition.x + 0.5f) * cellSize.x - rectTransform.sizeDelta.x * 0.5f,
-            (pointerGridPosition.y + 0.5f) * cellSize.y - rectTransform.sizeDelta.y * 0.5f
+            (gridPosition.x) * cellSize.x - rectTransform.sizeDelta.x * 0.5f,
+            (gridPosition.y) * cellSize.y - rectTransform.sizeDelta.y * 0.5f
         );
 
         return alignedLocalPosition;
+    }
+
+    public Vector2 GetPointerGridAlignedPosition()
+    {
+        return GetGridAlignedPositionFrom(GetGridPositionFrom(Pointer.current.position.ReadValue()));
     }
 
     public void OccupyCells(Tetromino tetromino, List<Vector2Int> positions)

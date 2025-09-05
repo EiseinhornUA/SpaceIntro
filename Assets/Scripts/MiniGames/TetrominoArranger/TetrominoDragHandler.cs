@@ -42,8 +42,10 @@ public class TetrominoDragHandler : MonoBehaviour
 
     private void OnEndDrag(Tetromino tetromino)
     {
-        Vector2Int position = tetrominoGrid.GetPointerGridPosition();
+        Vector2Int position = tetrominoGrid.GetGridPositionFrom(tetromino.GetPlacementPosition());
 
+        Debug.Log("Trying to place at " + position);
+        Debug.Log("IsPossibleToPlaceAt: " + IsPossibleToPlaceAt(tetromino, position));
         
         if (IsPossibleToPlaceAt(tetromino, position))
             PlaceToGrid(tetromino, position);
@@ -61,7 +63,7 @@ public class TetrominoDragHandler : MonoBehaviour
 
     private void PlaceToGrid(Tetromino tetromino, Vector2Int gridPosition)
     {
-        SetToPointerGridAlignedPosition(tetromino);
+        SetToGridAlignedPosition(tetromino, gridPosition);
 
         List<Vector2Int> positions = tetromino.GetGridPositionsByPosition(gridPosition).ToList();
 
@@ -83,9 +85,9 @@ public class TetrominoDragHandler : MonoBehaviour
         tetromino.transform.position = Pointer.current.position.ReadValue();
     }
     
-    private void SetToPointerGridAlignedPosition(Tetromino tetromino)
+    private void SetToGridAlignedPosition(Tetromino tetromino, Vector2Int gridPosition)
     {
-        tetromino.transform.localPosition = tetrominoGrid.GetPointerGridAlignedPosition();
+        tetromino.transform.localPosition = tetrominoGrid.GetGridAlignedPositionFrom(gridPosition) - tetromino.GetLeftBottomCornerRelativePosition();
     }
 
     private IEnumerable<Tetromino> GetTetrominos()

@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 public class Tetromino : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] private TetrominoSO tetrominoSO;
+    [SerializeField] private RectTransform placementPoint;
+
     public UnityEvent onBeginDrag { get; set; } = new();
     public UnityEvent onDrag { get; set; } = new();
     public UnityEvent onEndDrag { get; set; } = new();
@@ -32,5 +34,15 @@ public class Tetromino : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             yield return new Vector2Int(tetrominoPosition.x + position.x, tetrominoPosition.y + position.y);
         }
+    }
+
+    public Vector2 GetPlacementPosition()
+    {
+        return placementPoint.position;
+    }
+
+    public Vector2 GetLeftBottomCornerRelativePosition()
+    {
+        return GetComponent<RectTransform>().rect.min;
     }
 }
