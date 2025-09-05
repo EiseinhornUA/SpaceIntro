@@ -134,13 +134,13 @@ public class BoltMiniGame : MonoBehaviour
 
         holeTo.PlaceBolt(holeFrom.GetBolt());
 
-        //foreach (Plank plank in planks)
-        //    plank.HolesPlankIsMoveable(holeTo, false);
+        foreach (Plank plank in planks)
+            plank.HolesPlankIsMoveable(holeTo, false);
 
         await holeTo.MoveBolt(holeFrom.GetBolt());
 
-        //foreach (Plank plank in planks)
-        //    plank.HolesPlankIsMoveable(holeTo, true);
+        foreach (Plank plank in planks)
+            plank.HolesPlankIsMoveable(holeTo, true);
 
         foreach (Plank plank in planks)
             plank.AttachToBolt(holeTo);

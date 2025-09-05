@@ -11,15 +11,11 @@ public class Plank : MonoBehaviour
     [SerializeField] public List<HingeHolePair> hingeHoleList = new List<HingeHolePair>();
 
     public float plankHoleCheckThreshold;
-    private PlankHole coaxialPlankHole = null;
-    private float attachThreshold = 0.05f;
 
     public bool IsBlocking(Hole holeTo)
     {
         BoxCollider2D plankCollider = GetComponent<BoxCollider2D>();
         CircleCollider2D holeToCollider = holeTo.GetComponent<CircleCollider2D>();
-
-        coaxialPlankHole = GetPlankHoleCoaxialTo(holeTo);
 
         if (HasAtLeastOneCoaxialHole(holeTo))
             return false;
