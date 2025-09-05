@@ -26,10 +26,17 @@ public class Hole : MonoBehaviour
         return bolt != null;
     }
 
-    public async UniTask PlaceBolt(Bolt bolt)
+    public void PlaceBolt(Bolt bolt)
     {
         this.bolt = bolt;
+    }
+
+    public async UniTask MoveBolt(Bolt bolt)
+    {
+        var boltCollider = bolt.GetComponent<CircleCollider2D>();
+        boltCollider.enabled = false;
         await bolt.transform.DOMove(transform.position, speedToSwapBolts).SetSpeedBased().SetEase(boltSwapEase);
+        boltCollider.enabled = true;
     }
 
     public void RemoveBolt()

@@ -35,22 +35,24 @@ public class Plank : MonoBehaviour
                     < plankHoleCheckThreshold).Any();
     }
 
-    private PlankHole GetPlankHoleCoaxialTo(Hole hole)
+    public PlankHole GetPlankHoleCoaxialTo(Hole hole)
     {
-        return hingeHoleList
-            .FirstOrDefault(p =>
-                Vector2.Distance(p.hole.transform.position, hole.transform.position) < plankHoleCheckThreshold
-                    )?.hole;
+        foreach (var hingeHole in hingeHoleList)
+        {
+            var hingeHoleToHoleDistance = Vector2.Distance(hingeHole.hole.transform.position, hole.transform.position);
+            if (hingeHoleToHoleDistance < plankHoleCheckThreshold)
+                return hingeHole.hole;
+        }
+        return null;
     }
 
     public void AttachToBolt(Hole hole)
     {
         PlankHole plankHole = GetPlankHoleCoaxialTo(hole);
 
-        var plankHoleJoint = GetJointForHole(plankHole);
-
         if (plankHole)
         {
+            var plankHoleJoint = GetJointForHole(plankHole);
             plankHoleJoint.enabled = true;
             plankHoleJoint.connectedBody = hole.GetBolt().GetComponent<Rigidbody2D>();
             plankHoleJoint.autoConfigureConnectedAnchor = false;
@@ -78,7 +80,7 @@ public class Plank : MonoBehaviour
                 hingeHole.hingeJoint.anchor = hingeHole.hole.transform.localPosition;
                 hingeHole.hingeJoint.connectedAnchor = Vector2.zero;
             }
-        }  
+        }
     }
 
     private IEnumerable<PlankHole> GetPlankHoles(Hole hole)
@@ -99,6 +101,18 @@ public class Plank : MonoBehaviour
         {
             plankHoleJoint.enabled = false;
         }
+    }
+
+    public void HolesPlankIsMoveable(Hole hole, bool enabled)
+    {
+        if (enabled == false)
+        {
+            if (HasAtLeastOneCoaxialHole(hole))
+                this.GetComponent<Rigidbody2D>().simulated = enabled;
+            return;
+        }
+
+        this.GetComponent<Rigidbody2D>().simulated = enabled;
     }
 }
 
