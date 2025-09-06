@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Grid))]
 public class TetrominoGrid : MonoBehaviour
 {
     [SerializeField] private Vector2Int gridSize;
     private List<TetrominoPositions> occupiedCells = new();
-    private Grid grid;
-
-    private void Start()
-    {
-        grid = GetComponent<Grid>();
-    }
+    public UnityEvent onEndGame { get; set; } = new();
 
     public Vector2Int GetGridPositionFrom(Vector2 screenPosition)
     {
@@ -56,8 +52,8 @@ public class TetrominoGrid : MonoBehaviour
 
         // Convert grid index to local position (center of the cell)
         Vector2 alignedLocalPosition = new Vector2(
-            (gridPosition.x) * cellSize.x - rectTransform.sizeDelta.x * 0.5f,
-            (gridPosition.y) * cellSize.y - rectTransform.sizeDelta.y * 0.5f
+            (gridPosition.x + 0.5f) * cellSize.x - rectTransform.sizeDelta.x * 0.5f,
+            (gridPosition.y + 0.5f) * cellSize.y - rectTransform.sizeDelta.y * 0.5f
         );
 
         return alignedLocalPosition;
@@ -71,7 +67,20 @@ public class TetrominoGrid : MonoBehaviour
     public void OccupyCells(Tetromino tetromino, List<Vector2Int> positions)
     {
         occupiedCells.Add(new TetrominoPositions(tetromino, positions));
+        if (IsFull()) OnEndGame();
     }
+
+    private void OnEndGame()
+    {
+        onEndGame.Invoke();
+    }
+
+    private int GetOccupiedCellsCount()
+    {
+        return occupiedCells.Select(tetromino => tetromino.positions.Count).Sum();
+    }
+
+    private bool IsFull() => GetOccupiedCellsCount() == gridSize.x * gridSize.y;
 
     public bool IsCellOcupied(Vector2Int position)
     {
@@ -79,7 +88,6 @@ public class TetrominoGrid : MonoBehaviour
         {
             if (tetrominoPositions.positions.Contains(position))
             {
-                Debug.Log($"Cell {position} is occupied by {tetrominoPositions.tetromino.name}");
                 return true;
             }
         }

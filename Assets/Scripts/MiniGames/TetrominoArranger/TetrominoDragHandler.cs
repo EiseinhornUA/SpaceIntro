@@ -1,22 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class TetrominoDragHandler : MonoBehaviour
 {
     private List<Tetromino> tetrominos = new();
     [SerializeField] private TetrominoGrid tetrominoGrid;
+    [SerializeField] private Button rotateTetrominoButton;
+    private Tetromino selectedTetromino;
 
     private void Start()
     {
         tetrominos = GetTetrominos().ToList();
         SubscribeToTetrominos();
+
+        rotateTetrominoButton.onClick.AddListener(RotateTetromino);
+    }
+
+    private void RotateTetromino()
+    {
+        if (selectedTetromino)
+        {
+            selectedTetromino.RotateClockwise();
+            tetrominoGrid.FreeCellsFrom(selectedTetromino);
+            OnEndDrag(selectedTetromino);
+        }
     }
 
     private void SubscribeToTetrominos()
@@ -32,6 +42,7 @@ public class TetrominoDragHandler : MonoBehaviour
     private void OnBeginDrag(Tetromino tetromino)
     {
         MoveToFront(tetromino);
+        selectedTetromino = tetromino;
         tetrominoGrid.FreeCellsFrom(tetromino);
     }
 
@@ -44,16 +55,15 @@ public class TetrominoDragHandler : MonoBehaviour
     {
         Vector2Int position = tetrominoGrid.GetGridPositionFrom(tetromino.GetPlacementPosition());
 
-        Debug.Log("Trying to place at " + position);
-        Debug.Log("IsPossibleToPlaceAt: " + IsPossibleToPlaceAt(tetromino, position));
-        
         if (IsPossibleToPlaceAt(tetromino, position))
+        {
             PlaceToGrid(tetromino, position);
+        }
     }
 
     private bool IsPossibleToPlaceAt(Tetromino tetromino, Vector2Int position)
     {
-        foreach(var tetrominoPosition in tetromino.GetGridPositionsByPosition(position))
+        foreach(var tetrominoPosition in tetromino.GetGridCellPositions(position))
         {
             if (tetrominoGrid.IsCellOcupied(tetrominoPosition)) return false;
             if (tetrominoGrid.IsPositionOutOfGrid(tetrominoPosition)) return false;
@@ -65,7 +75,7 @@ public class TetrominoDragHandler : MonoBehaviour
     {
         SetToGridAlignedPosition(tetromino, gridPosition);
 
-        List<Vector2Int> positions = tetromino.GetGridPositionsByPosition(gridPosition).ToList();
+        List<Vector2Int> positions = tetromino.GetGridCellPositions(gridPosition).ToList();
 
         tetrominoGrid.OccupyCells(tetromino, positions);
     }
@@ -87,7 +97,7 @@ public class TetrominoDragHandler : MonoBehaviour
     
     private void SetToGridAlignedPosition(Tetromino tetromino, Vector2Int gridPosition)
     {
-        tetromino.transform.localPosition = tetrominoGrid.GetGridAlignedPositionFrom(gridPosition) - tetromino.GetLeftBottomCornerRelativePosition();
+        tetromino.transform.localPosition = tetrominoGrid.GetGridAlignedPositionFrom(gridPosition) - tetromino.GetPlacementRelativePosition();
     }
 
     private IEnumerable<Tetromino> GetTetrominos()

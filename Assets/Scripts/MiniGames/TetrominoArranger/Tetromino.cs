@@ -4,33 +4,24 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class Tetromino : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class Tetromino : MonoBehaviour
 {
     [SerializeField] private TetrominoSO tetrominoSO;
     [SerializeField] private RectTransform placementPoint;
+    private List<Vector2Int> cellPositions;
+    [SerializeField] private TetrominoView tetrominoView;
+    public UnityEvent onBeginDrag => tetrominoView.onBeginDrag;
+    public UnityEvent onDrag => tetrominoView.onDrag;
+    public UnityEvent onEndDrag => tetrominoView.onEndDrag;
 
-    public UnityEvent onBeginDrag { get; set; } = new();
-    public UnityEvent onDrag { get; set; } = new();
-    public UnityEvent onEndDrag { get; set; } = new();
-
-    public void OnBeginDrag(PointerEventData eventData)
+    private void Start()
     {
-        onBeginDrag.Invoke();
+        cellPositions = new List<Vector2Int>(tetrominoSO.cellPositions);
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public IEnumerable<Vector2Int> GetGridCellPositions(Vector2Int position)
     {
-        onDrag.Invoke();
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        onEndDrag.Invoke();
-    }
-
-    public IEnumerable<Vector2Int> GetGridPositionsByPosition(Vector2Int position)
-    {
-        foreach (var tetrominoPosition in tetrominoSO.positions)
+        foreach (var tetrominoPosition in cellPositions)
         {
             yield return new Vector2Int(tetrominoPosition.x + position.x, tetrominoPosition.y + position.y);
         }
@@ -41,8 +32,17 @@ public class Tetromino : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         return placementPoint.position;
     }
 
-    public Vector2 GetLeftBottomCornerRelativePosition()
+    public Vector2 GetPlacementRelativePosition()
     {
-        return GetComponent<RectTransform>().rect.min;
+        return placementPoint.localPosition;
+    }
+
+    public void RotateClockwise()
+    {
+        cellPositions = cellPositions.ConvertAll(pos => new Vector2Int(pos.y, -pos.x));
+
+        placementPoint.localPosition = new Vector2(placementPoint.localPosition.y, -placementPoint.localPosition.x);
+
+        tetrominoView.RotateClockwise();
     }
 }
