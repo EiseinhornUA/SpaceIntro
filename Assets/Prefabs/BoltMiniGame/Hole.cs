@@ -6,14 +6,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
-public class Hole : MonoBehaviour
+public class Hole : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Bolt bolt;
     private float speedToSwapBolts;
     private BoltMiniGame boltMiniGame;
     private Ease boltSwapEase;
-
     private void Awake()
     {
         boltMiniGame = FindObjectOfType<BoltMiniGame>();
@@ -59,5 +60,17 @@ public class Hole : MonoBehaviour
     private void DebugChoose2Hole()
     {
         boltMiniGame.holeTo = this;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log("Clicked: " + gameObject.name);
+
+        boltMiniGame.OnHoleClick(this);
+    }
+
+    private bool IsUITouch(PointerEventData eventData)
+    {
+        return EventSystem.current.IsPointerOverGameObject(eventData.pointerId);
     }
 }
