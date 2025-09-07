@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    private Hole[] holes;
+    public Hole[] holes;
+    [field:SerializeField]
+    public Plank[] planks { get; private set; }
 
     internal IEnumerable<Bolt> GetBolts()
     {
