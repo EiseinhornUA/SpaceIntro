@@ -54,6 +54,7 @@ public class Plank : MonoBehaviour
             plankHoleJoint.autoConfigureConnectedAnchor = false;
             plankHoleJoint.anchor = plankHole.transform.localPosition;
             plankHoleJoint.connectedAnchor = Vector2.zero;
+            plankHole.PlaceBolt(hole.GetBolt());
         }
     }
 
@@ -96,6 +97,7 @@ public class Plank : MonoBehaviour
         if (plankHole)
         {
             plankHoleJoint.enabled = false;
+            plankHole.RemoveBolt();
         }
     }
 

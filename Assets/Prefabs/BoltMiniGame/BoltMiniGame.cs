@@ -11,7 +11,7 @@ using UnityEngine.InputSystem;
 
 public class BoltMiniGame : MonoBehaviour
 {
-    private Wall wall;
+    [SerializeField] private Wall wall;
     private Hole[] holes;
     public Hole holeFrom;
     public Hole holeTo;
@@ -33,7 +33,6 @@ public class BoltMiniGame : MonoBehaviour
 
     private void Awake()
     {
-        wall = GetComponentInChildren<Wall>();
         holes = wall.holes;
         planks = wall.planks;
         Vector3 localScale = transform.localScale;
@@ -96,16 +95,22 @@ public class BoltMiniGame : MonoBehaviour
          if (!holeFrom)
          {
              holeFrom = hole;
-             if (!holeFrom.HasBolt()) holeFrom = null;
+             if (!holeFrom.HasBolt())
+             {
+                 holeFrom = null;
+                 holeTo = null;
+             }
              return;
-         }
+        }
 
-         if (!holeTo)
-         {
-             holeTo = hole;
-         }
+        if (!holeTo)
+        {
+            holeTo = hole;
+            if (holeTo.HasBolt() && holeTo != holeFrom && IsAbleToPlace(holeTo))
+                holeTo = null;
+        }
 
-         if (holeFrom && holeTo)
+        if (holeFrom && holeTo)
          {
              SwapBolts(holeFrom, holeTo).Forget();
              this.holeFrom = null;
@@ -174,7 +179,6 @@ public class BoltMiniGame : MonoBehaviour
     private async UniTask SwapBolts(Hole holeFrom, Hole holeTo)
     {
         if (!holeFrom.HasBolt()) return;
-
         if (holeTo.HasBolt()) return;
 
         if (!IsAbleToPlace(holeTo)) return;

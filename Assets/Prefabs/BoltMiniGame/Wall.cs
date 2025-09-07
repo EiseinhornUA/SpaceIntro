@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    public Hole[] holes;
+    [SerializeField] public Hole[] holes;
     [field:SerializeField]
     public Plank[] planks { get; private set; }
 
@@ -13,10 +13,5 @@ public class Wall : MonoBehaviour
     {
         return holes.Where(h => h.HasBolt())
             .Select(h => h.GetBolt());
-    }
-
-    private void Awake()
-    {
-        holes = GetComponentsInChildren<Hole>();
     }
 }
