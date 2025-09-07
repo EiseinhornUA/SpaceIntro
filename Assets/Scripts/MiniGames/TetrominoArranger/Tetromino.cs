@@ -13,6 +13,7 @@ public class Tetromino : MonoBehaviour
     public UnityEvent onBeginDrag => tetrominoView.onBeginDrag;
     public UnityEvent onDrag => tetrominoView.onDrag;
     public UnityEvent onEndDrag => tetrominoView.onEndDrag;
+    public UnityEvent onClick => tetrominoView.onClick;
 
     private void Start()
     {

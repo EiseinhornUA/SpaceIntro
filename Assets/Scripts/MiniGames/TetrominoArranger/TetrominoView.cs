@@ -5,12 +5,13 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(RectTransform))]
-public class TetrominoView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class TetrominoView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     private RectTransform rectTransform;
     public UnityEvent onBeginDrag { get; set; } = new();
     public UnityEvent onDrag { get; set; } = new();
     public UnityEvent onEndDrag { get; set; } = new();
+    public UnityEvent onClick { get; set; } = new();
 
     private void Start()
     {
@@ -30,6 +31,11 @@ public class TetrominoView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnEndDrag(PointerEventData eventData)
     {
         onEndDrag.Invoke();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        onClick.Invoke();
     }
 
     public void RotateClockwise()

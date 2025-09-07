@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -10,6 +12,7 @@ public class TetrominoDragHandler : MonoBehaviour
     [SerializeField] private TetrominoGrid tetrominoGrid;
     [SerializeField] private Button rotateTetrominoButton;
     private Tetromino selectedTetromino;
+    private bool isDragginTetromino;
 
     private void Start()
     {
@@ -36,11 +39,20 @@ public class TetrominoDragHandler : MonoBehaviour
             tetromino.onBeginDrag.AddListener(() => OnBeginDrag(tetromino));
             tetromino.onDrag.AddListener(() => OnDrag(tetromino));
             tetromino.onEndDrag.AddListener(() => OnEndDrag(tetromino));
+            tetromino.onClick.AddListener(() => OnClick(tetromino));
         }
+    }
+    private void OnClick(Tetromino tetromino)
+    {
+        if (isDragginTetromino) return;
+        selectedTetromino = tetromino;
+        MoveToFront(tetromino);
+        RotateTetromino();
     }
 
     private void OnBeginDrag(Tetromino tetromino)
     {
+        isDragginTetromino = true;
         MoveToFront(tetromino);
         selectedTetromino = tetromino;
         tetrominoGrid.FreeCellsFrom(tetromino);
@@ -59,6 +71,7 @@ public class TetrominoDragHandler : MonoBehaviour
         {
             PlaceToGrid(tetromino, position);
         }
+        isDragginTetromino = false;
     }
 
     private bool IsPossibleToPlaceAt(Tetromino tetromino, Vector2Int position)
