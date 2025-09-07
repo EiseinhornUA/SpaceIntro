@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Tetromino : MonoBehaviour
 {
@@ -38,12 +39,21 @@ public class Tetromino : MonoBehaviour
         return placementPoint.localPosition;
     }
 
-    public void RotateClockwise()
+    public void RotateClockwise(float rotationDurationSeconds)
     {
         cellPositions = cellPositions.ConvertAll(pos => new Vector2Int(pos.y, -pos.x));
 
         placementPoint.localPosition = new Vector2(placementPoint.localPosition.y, -placementPoint.localPosition.x);
 
-        tetrominoView.RotateClockwise();
+        tetrominoView.RotateClockwise(rotationDurationSeconds);
     }
+
+    public void ShowOutline() => tetrominoView.ShowOutline();
+    public void HideOutline() => tetrominoView.HideOutline();
+    public void SetOutlinePosition(Vector2 position) => tetrominoView.SetOutlinePosition(position, transform.localPosition);
+    public bool IsOutlineVisible() => tetrominoView.IsOutlineVisible();
+    public void ResetOutlinePoistion() => tetrominoView.ResetOutlinePosition();
+    public void RenderOutlineAbove() => tetrominoView.RenderOutlineAbove();
+    public void RenderOutlineBelow() => tetrominoView.RenderOutlineBelow();
+    public void SetColor(Color tetrominoColor) => tetrominoView.SetColor(tetrominoColor);
 }
