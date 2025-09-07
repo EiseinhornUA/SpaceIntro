@@ -278,11 +278,13 @@ MonoBehaviour:
   speedToSwapBolts: 5
   boltSwapEase: 16
   plankGravityScale: 5
-  camera: {fileID: 0}
-  miniGameOffset: {x: 0, y: 0, z: 2}
+  currentCamera: {fileID: 0}
+  miniGameOffset: {x: 0, y: 0, z: 2.8}
   showMiniGame: 0
   player: {fileID: 0}
   isDebuging: 0
+  buttons: {fileID: 0}
+  boltMiniGame: {fileID: 292163968406785725}
 --- !u!1 &7025035742678904409
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,6 +466,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3631042502697608607}
     m_Modifications:
+    - target: {fileID: 933425869187375740, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 1690251476437620606, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: bolt
       value: 
@@ -512,10 +518,22 @@ PrefabInstance:
       propertyPath: bolt
       value: 
       objectReference: {fileID: 3177364663365404740}
+    - target: {fileID: 5016369728349429646, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7389616824478561884, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 7733082267646826545, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: bolt
       value: 
       objectReference: {fileID: 3843957225397731642}
+    - target: {fileID: 8252628898897378435, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 8365724521134715570, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: m_Name
       value: MetalPanel4Holes
@@ -703,6 +721,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4349882108292129240}
     m_Modifications:
+    - target: {fileID: 933425869187375740, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 1609022760148996662, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: m_Color.b
       value: 0.4267213
@@ -767,6 +789,10 @@ PrefabInstance:
       propertyPath: bolt
       value: 
       objectReference: {fileID: 2645108404279767288}
+    - target: {fileID: 5016369728349429646, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 5558366511108446615, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: m_SortingOrder
       value: 8
@@ -779,6 +805,10 @@ PrefabInstance:
       propertyPath: bolt
       value: 
       objectReference: {fileID: 6589970569203773761}
+    - target: {fileID: 7389616824478561884, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 7733082267646826545, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: bolt
       value: 
@@ -787,9 +817,17 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8252628898897378435, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 8365724521134715570, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: m_Name
       value: MetalPanel4Holes
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365724521134715570, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 8365724521134715570, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: m_IsActive
@@ -974,6 +1012,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4358671491578634234}
     m_Modifications:
+    - target: {fileID: 933425869187375740, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 1609022760148996662, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: m_Color.b
       value: 0.14509805
@@ -1038,6 +1080,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5016369728349429646, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 5558366511108446615, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: m_SortingOrder
       value: 6
@@ -1050,6 +1096,10 @@ PrefabInstance:
       propertyPath: bolt
       value: 
       objectReference: {fileID: 3177364663365404740}
+    - target: {fileID: 7389616824478561884, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 7733082267646826545, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: bolt
       value: 
@@ -1058,9 +1108,17 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8252628898897378435, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 8365724521134715570, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: m_Name
       value: MetalPanel4Holes
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365724521134715570, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8365724521134715570, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: m_IsActive
@@ -1703,6 +1761,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1776626172551234916}
     m_Modifications:
+    - target: {fileID: 933425869187375740, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 1609022760148996662, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: m_Color.b
       value: 0.32677108
@@ -1771,6 +1833,10 @@ PrefabInstance:
       propertyPath: bolt
       value: 
       objectReference: {fileID: 6589970569203773761}
+    - target: {fileID: 5016369728349429646, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 5558366511108446615, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: m_SortingOrder
       value: 4
@@ -1783,6 +1849,10 @@ PrefabInstance:
       propertyPath: bolt
       value: 
       objectReference: {fileID: 3843957225397731642}
+    - target: {fileID: 7389616824478561884, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 7733082267646826545, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: bolt
       value: 
@@ -1791,9 +1861,17 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8252628898897378435, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 8365724521134715570, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: m_Name
       value: MetalPanel4Holes
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365724521134715570, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8365724521134715570, guid: efb96fb3603e6c045b54bd10de613860, type: 3}
       propertyPath: m_IsActive
