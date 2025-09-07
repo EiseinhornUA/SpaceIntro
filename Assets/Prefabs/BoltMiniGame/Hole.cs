@@ -64,13 +64,8 @@ public class Hole : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Clicked: " + gameObject.name);
+        //Debug.Log("Clicked: " + gameObject.name);
 
         boltMiniGame.OnHoleClick(this);
-    }
-
-    private bool IsUITouch(PointerEventData eventData)
-    {
-        return EventSystem.current.IsPointerOverGameObject(eventData.pointerId);
     }
 }

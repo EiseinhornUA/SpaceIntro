@@ -7,7 +7,10 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.UI;
 
 public class BoltMiniGame : MonoBehaviour
 {
@@ -20,16 +23,17 @@ public class BoltMiniGame : MonoBehaviour
 
     public UnityEvent onGameFinished;
 
-    //[SerializeField] private float clickOnHoleThreshold = 0.25f;
     [SerializeField] private float plankHoleCheckThreshold = 0.25f;
     [SerializeField] public float speedToSwapBolts = 6f;
     [SerializeField] public Ease boltSwapEase = Ease.InOutQuint;
     [SerializeField] private float plankGravityScale = 5f;
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera currentCamera;
     [SerializeField] private Vector3 miniGameOffset;
     [SerializeField] private bool showMiniGame = false;
     [SerializeField] private Player player;
     [SerializeField] private bool isDebuging = false;
+    [SerializeField] private GameObject buttons;
+    [SerializeField] private BoltMiniGame boltMiniGame;
 
     private void Awake()
     {
@@ -79,7 +83,7 @@ public class BoltMiniGame : MonoBehaviour
 
     private void AttachToCamera()
     {
-        transform.position = camera.transform.position + camera.transform.forward * miniGameOffset.z;
+        transform.position = currentCamera.transform.position + currentCamera.transform.forward * miniGameOffset.z;
     }
 
     private void RemoveDetachedPlanks()
@@ -127,6 +131,7 @@ public class BoltMiniGame : MonoBehaviour
     [ContextMenu("ShowMiniGame")]
     public void ShowMiniGame()
     {
+        buttons.SetActive(true);
         gameFinished = new UniTaskCompletionSource();
         player.GetComponent<Collider2D>().enabled = false;
         Hud.Instance.HideHud();
@@ -139,34 +144,8 @@ public class BoltMiniGame : MonoBehaviour
         player.GetComponent<Collider2D>().enabled = true;
         Hud.Instance.ShowHud();
         showMiniGame = false;
+        buttons.SetActive(false);
     }
-
-    //private Hole GetClickedHole(Vector2 clickPosition)
-    //{
-    //    foreach (var hole in holes)
-    //    {
-    //        float clickToHoleDistance = Vector2.Distance(
-    //            clickPosition, hole.transform.position);
-
-    //        if (clickToHoleDistance < clickOnHoleThreshold)
-    //        {
-    //            return hole;
-    //        }
-    //    }
-    //    return null;
-    //}
-
-    private IEnumerable<Bolt> GetBolts()
-    {
-        return wall.GetBolts();
-    }
-
-    //private Hole GetNearestHole(Vector2 position)
-    //{
-    //    return holes
-    //                .Where(h => Vector2.Distance(position, h.transform.position) < checkBoltRadius)
-    //                .FirstOrDefault();
-    //}
 
     [ContextMenu("SwapBolts")]
     private async UniTask SwapBoltsWithArguments()
@@ -227,5 +206,28 @@ public class BoltMiniGame : MonoBehaviour
         foreach (Plank plank in planks)
             if (plank.isActiveAndEnabled) return false;
         return true;
+    }
+
+    public void ResetMiniGame()
+    {
+        BoltMiniGame reloadedPrefab = Instantiate(boltMiniGame);
+        reloadedPrefab.boltMiniGame = boltMiniGame;
+        reloadedPrefab.gameFinished = new UniTaskCompletionSource();
+        reloadedPrefab.currentCamera = currentCamera;
+        reloadedPrefab.player = player;
+        reloadedPrefab.buttons = buttons;
+        reloadedPrefab.showMiniGame = true;
+        for (int i = 0; i < reloadedPrefab.buttons.transform.childCount; i++)
+        {
+            Transform buttonObject = reloadedPrefab.buttons.transform.GetChild(i);
+            if (buttonObject.name == "ResetButton")
+            {
+                Button button = buttonObject.GetComponent<Button>();
+                button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(() => reloadedPrefab.ResetMiniGame());
+            }
+        }
+        Debug.Log("Made reset");
+        Destroy(gameObject, Time.deltaTime);
     }
 }
