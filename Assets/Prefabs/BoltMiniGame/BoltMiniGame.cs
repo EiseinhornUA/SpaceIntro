@@ -216,7 +216,7 @@ public class BoltMiniGame : MonoBehaviour
         reloadedPrefab.currentCamera = currentCamera;
         reloadedPrefab.player = player;
         reloadedPrefab.buttons = buttons;
-        reloadedPrefab.showMiniGame = true;
+        reloadedPrefab.StartMiniGame().Forget();
         for (int i = 0; i < reloadedPrefab.buttons.transform.childCount; i++)
         {
             Transform buttonObject = reloadedPrefab.buttons.transform.GetChild(i);
@@ -225,6 +225,13 @@ public class BoltMiniGame : MonoBehaviour
                 Button button = buttonObject.GetComponent<Button>();
                 button.onClick.RemoveAllListeners();
                 button.onClick.AddListener(() => reloadedPrefab.ResetMiniGame());
+            }
+
+            if (buttonObject.name == "CloseButton")
+            {
+                Button button = buttonObject.GetComponent<Button>();
+                button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(() => reloadedPrefab.HideMiniGame());
             }
         }
         Debug.Log("Made reset");
