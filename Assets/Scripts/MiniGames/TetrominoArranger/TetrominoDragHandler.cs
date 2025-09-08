@@ -1,7 +1,9 @@
 ﻿using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -9,9 +11,9 @@ public class TetrominoDragHandler : MonoBehaviour
 {
     private List<Tetromino> tetrominos = new();
     [SerializeField] private TetrominoGrid tetrominoGrid;
-    [SerializeField] private Button rotateTetrominoButton;
     [SerializeField] private float rotationDurationSeconds = 0.125f;
     [SerializeField] private float placementDurationSeconds = 0.125f;
+    [SerializeField] private float resetTimeSeconds = 0.5f;
     private Tetromino selectedTetromino;
     private bool isDragingTetromino;
 
@@ -19,8 +21,6 @@ public class TetrominoDragHandler : MonoBehaviour
     {
         tetrominos = GetTetrominos().ToList();
         SubscribeToTetrominos();
-
-        rotateTetrominoButton.onClick.AddListener(RotateTetromino);
     }
 
     private void RotateTetromino()
@@ -181,6 +181,29 @@ public class TetrominoDragHandler : MonoBehaviour
             {
                 yield return tetromino;
             }
+        }
+    }
+
+    public void ResetGame()
+    {
+        resetTetrominoPositions();
+        resetTetrominoRotations();
+        tetrominoGrid.ResetCells();
+    }
+
+    private void resetTetrominoRotations()
+    {
+        foreach (var tetromino in tetrominos)
+        {
+            tetromino.ResetRotation(resetTimeSeconds);
+        }
+    }
+
+    private void resetTetrominoPositions()
+    {
+        foreach (var tetromino in tetrominos)
+        {
+            tetromino.ResetPosition(resetTimeSeconds);
         }
     }
 }
