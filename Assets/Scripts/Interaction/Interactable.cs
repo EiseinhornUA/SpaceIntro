@@ -10,12 +10,12 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CircleCollider2D))]
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] private UnityEvent onInteract = new();
+    [SerializeField] public UnityEvent onInteract = new();
     private InteractionView interactionView;
     private CircleCollider2D circleCollider;
     private UniTaskCompletionSource interactionTCS;
 
-    [SerializeField] private bool isActive = false;
+    [SerializeField] public bool isActive = false;
 
     private void Awake()
     {

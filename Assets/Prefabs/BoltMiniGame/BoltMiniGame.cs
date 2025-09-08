@@ -1,15 +1,8 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 
 public class BoltMiniGame : MonoBehaviour
@@ -32,10 +25,35 @@ public class BoltMiniGame : MonoBehaviour
     [SerializeField] private bool showMiniGame = false;
     [SerializeField] private Player player;
     [SerializeField] private bool isDebuging = false;
-    [SerializeField] private GameObject buttons;
-    [SerializeField] private BoltMiniGame boltMiniGame;
+    [SerializeField] private Button closeButton;
+    [SerializeField] private Button resetButton;
+    [SerializeField] private GameObject resetGame;
+    [SerializeField] private bool debugDontDestroyPlanks = false;
+    [SerializeField] private GameObject objectThatStartsGame;
+
+    private enum GameState
+    {
+        NotStarted,
+        Started,
+        Finished,
+        Restarting
+    }
+
+    [SerializeField]
+    private GameState gameState = GameState.NotStarted;
+
+    [ContextMenu("DebugDontDestroyPlanksFalse")]
+    public void DebugDontDestroyPlanksFalse()
+    {
+        debugDontDestroyPlanks = false;
+    }
 
     private void Awake()
+    {
+        InitializeGame();
+    }
+
+    private void InitializeGame()
     {
         holes = wall.holes;
         planks = wall.planks;
@@ -57,9 +75,15 @@ public class BoltMiniGame : MonoBehaviour
 
     private void Update()
     {
+        if (gameState != GameState.Started)
+            return;
+
         AttachToCamera();
 
-        if (!showMiniGame) transform.position += new Vector3(0f, 0f, 50f);
+        if (!showMiniGame)
+        {
+            transform.position += new Vector3(0f, 50f, 50f);
+        } 
 
         if (isDebuging)
         {
@@ -84,14 +108,25 @@ public class BoltMiniGame : MonoBehaviour
     private void AttachToCamera()
     {
         transform.position = currentCamera.transform.position + currentCamera.transform.forward * miniGameOffset.z;
+        transform.GetChild(0).position = transform.position;
     }
 
     private void RemoveDetachedPlanks()
     {
         const float DistanceToRemovePlanks = -3f;
+        bool removedPlank = false;
         foreach (Plank plank in planks)
+        {
+            if (plank == null) return;
             if ((plank.transform.position.y - transform.position.y) < DistanceToRemovePlanks)
-                plank.gameObject.SetActive(false);
+            {
+                removedPlank = true;
+                if (!debugDontDestroyPlanks) 
+                    Destroy(plank.gameObject);
+            }
+        }
+        if(removedPlank)
+            planks = planks.Where(p => p.isActiveAndEnabled).ToArray();
     }
 
     public void OnHoleClick(Hole hole)
@@ -124,27 +159,38 @@ public class BoltMiniGame : MonoBehaviour
 
     public async UniTask StartMiniGame()
     {
+        gameState = GameState.Started;
         ShowMiniGame();
         await WaitUntilFinished();
+
     }
 
     [ContextMenu("ShowMiniGame")]
     public void ShowMiniGame()
     {
-        buttons.SetActive(true);
-        gameFinished = new UniTaskCompletionSource();
+        resetButton.gameObject.SetActive(true);
+        closeButton.gameObject.SetActive(true);
+        if (gameFinished == null)
+            gameFinished = new UniTaskCompletionSource();
         player.GetComponent<Collider2D>().enabled = false;
         Hud.Instance.HideHud();
         showMiniGame = true;
     }
 
+    public void AddListenerToShowGame()
+    {
+        objectThatStartsGame.GetComponent<Interactable>().onInteract.AddListener(ShowMiniGame);
+    }
+
     [ContextMenu("HideMiniGame")]
     public void HideMiniGame()
-    {
+    {   
         player.GetComponent<Collider2D>().enabled = true;
         Hud.Instance.ShowHud();
         showMiniGame = false;
-        buttons.SetActive(false);
+        transform.position += new Vector3(0f, 50f, 50f);
+        resetButton.gameObject.SetActive(false);
+        closeButton.gameObject.SetActive(false);
     }
 
     [ContextMenu("SwapBolts")]
@@ -193,6 +239,8 @@ public class BoltMiniGame : MonoBehaviour
             gameFinished.TrySetResult();
             onGameFinished.Invoke();
             HideMiniGame();
+            gameState = GameState.Finished;
+            objectThatStartsGame.GetComponent<Interactable>().isActive = false;
         }
     }
 
@@ -203,38 +251,25 @@ public class BoltMiniGame : MonoBehaviour
 
     private bool IsGameFinished()
     {
-        foreach (Plank plank in planks)
-            if (plank.isActiveAndEnabled) return false;
-        return true;
+        return planks.Length == 0;
     }
 
     public void ResetMiniGame()
     {
-        BoltMiniGame reloadedPrefab = Instantiate(boltMiniGame);
-        reloadedPrefab.boltMiniGame = boltMiniGame;
-        reloadedPrefab.gameFinished = new UniTaskCompletionSource();
-        reloadedPrefab.currentCamera = currentCamera;
-        reloadedPrefab.player = player;
-        reloadedPrefab.buttons = buttons;
-        reloadedPrefab.StartMiniGame().Forget();
-        for (int i = 0; i < reloadedPrefab.buttons.transform.childCount; i++)
-        {
-            Transform buttonObject = reloadedPrefab.buttons.transform.GetChild(i);
-            if (buttonObject.name == "ResetButton")
-            {
-                Button button = buttonObject.GetComponent<Button>();
-                button.onClick.RemoveAllListeners();
-                button.onClick.AddListener(() => reloadedPrefab.ResetMiniGame());
-            }
+        gameState = GameState.Restarting;
+        GameObject reloadedPrefab = Instantiate(resetGame,
+            transform.position,
+            Quaternion.identity,
+            transform);
 
-            if (buttonObject.name == "CloseButton")
-            {
-                Button button = buttonObject.GetComponent<Button>();
-                button.onClick.RemoveAllListeners();
-                button.onClick.AddListener(() => reloadedPrefab.HideMiniGame());
-            }
-        }
+        Vector3 reloadedPrefabScale = reloadedPrefab.transform.localScale;
+
+        wall = reloadedPrefab.GetComponentInChildren<Wall>();
+
+        InitializeGame();
+
         Debug.Log("Made reset");
-        Destroy(gameObject, Time.deltaTime);
+        Destroy(transform.GetChild(0).gameObject, Time.deltaTime);
+        gameState = GameState.Started;
     }
 }
