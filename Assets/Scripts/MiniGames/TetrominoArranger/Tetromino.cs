@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,6 +12,10 @@ public class Tetromino : MonoBehaviour
     [SerializeField] private RectTransform placementPoint;
     private List<Vector2Int> cellPositions;
     [SerializeField] private TetrominoView tetrominoView;
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
+    private Vector3 initialPlacementPointPosition;
+
     public UnityEvent onBeginDrag => tetrominoView.onBeginDrag;
     public UnityEvent onDrag => tetrominoView.onDrag;
     public UnityEvent onEndDrag => tetrominoView.onEndDrag;
@@ -19,6 +24,10 @@ public class Tetromino : MonoBehaviour
     private void Start()
     {
         cellPositions = new List<Vector2Int>(tetrominoSO.cellPositions);
+
+        initialPosition = transform.localPosition;
+        initialRotation = transform.rotation;
+        initialPlacementPointPosition = placementPoint.localPosition;
     }
 
     public IEnumerable<Vector2Int> GetGridCellPositions(Vector2Int position)
@@ -56,4 +65,16 @@ public class Tetromino : MonoBehaviour
     public void RenderOutlineAbove() => tetrominoView.RenderOutlineAbove();
     public void RenderOutlineBelow() => tetrominoView.RenderOutlineBelow();
     public void SetColor(Color tetrominoColor) => tetrominoView.SetColor(tetrominoColor);
+
+    public void ResetRotation(float durationSeconds)
+    {
+        tetrominoView.ResetRotation(durationSeconds);
+        placementPoint.localPosition = initialPlacementPointPosition;
+        cellPositions = new List<Vector2Int>(tetrominoSO.cellPositions);
+    }
+
+    public void ResetPosition(float durationSeconds)
+    {
+        transform.DOLocalMove(initialPosition, durationSeconds);
+    }
 }

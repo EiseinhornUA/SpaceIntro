@@ -103,6 +103,8 @@ public class TetrominoGrid : MonoBehaviour
     {
         occupiedCells.RemoveAll(tp => tp.tetromino == tetromino);
     }
+
+    public void ResetCells() => occupiedCells.Clear();
 }
 
 public class TetrominoPositions
