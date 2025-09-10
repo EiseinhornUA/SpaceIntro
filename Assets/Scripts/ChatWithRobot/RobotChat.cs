@@ -27,7 +27,7 @@ public class RobotChat : MonoBehaviour
         string question = askView.GetQuestionText();
         if (!string.IsNullOrEmpty(question))
         {
-            SendChatRequest(question);
+            SendChatRequest(question).Forget();
         }
     }
 
@@ -48,7 +48,7 @@ public class RobotChat : MonoBehaviour
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
 
-        askView.SetResponse("Thinking...");
+        askView.SetResponse("...");
 
         await request.SendWebRequest();
 
@@ -61,6 +61,7 @@ public class RobotChat : MonoBehaviour
             {
                 askView.SetResponse(responseData.answer);
                 askView.ShowAskButton();
+                askView.ClearInput();
                 conversationHistory.Add(question);
                 conversationHistory.Add(responseData.answer);
             }
