@@ -1,3 +1,4 @@
+using Cinemachine;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System.Linq;
@@ -20,16 +21,16 @@ public class BoltMiniGame : MonoBehaviour
     [SerializeField] public float speedToSwapBolts = 6f;
     [SerializeField] public Ease boltSwapEase = Ease.InOutQuint;
     [SerializeField] private float plankGravityScale = 5f;
-    [SerializeField] private Camera currentCamera;
+    public CinemachineVirtualCamera virtualCamera;
     [SerializeField] private Vector3 miniGameOffset;
     [SerializeField] private bool showMiniGame = false;
-    [SerializeField] private Player player;
+    public Player player;
     [SerializeField] private bool isDebuging = false;
-    [SerializeField] private Button closeButton;
-    [SerializeField] private Button resetButton;
+    public Button closeButton;
+    public Button resetButton;
     [SerializeField] private GameObject resetGame;
     [SerializeField] private bool debugDontDestroyPlanks = false;
-    [SerializeField] private GameObject objectThatStartsGame;
+    public Interactable startGameInteractable;
 
     private enum GameState
     {
@@ -50,10 +51,10 @@ public class BoltMiniGame : MonoBehaviour
 
     private void Awake()
     {
-        InitializeGame();
+        //InitializeGame();
     }
 
-    private void InitializeGame()
+    public void InitializeGame()
     {
         holes = wall.holes;
         planks = wall.planks;
@@ -67,10 +68,7 @@ public class BoltMiniGame : MonoBehaviour
             rigidbody.gravityScale = avarageScale * plankGravityScale;
         }
 
-        foreach (Plank plank in planks)
-        {
-            plank.AttachAllBolts();
-        }
+        AttachAllBoltsToAllPlanks();
     }
 
     private void Update()
@@ -107,13 +105,13 @@ public class BoltMiniGame : MonoBehaviour
 
     private void AttachToCamera()
     {
-        transform.position = currentCamera.transform.position + currentCamera.transform.forward * miniGameOffset.z;
+        transform.position = virtualCamera.transform.position + virtualCamera.transform.forward * miniGameOffset.z;
         transform.GetChild(0).position = transform.position;
     }
 
     private void RemoveDetachedPlanks()
     {
-        const float DistanceToRemovePlanks = -3f;
+        const float DistanceToRemovePlanks = -5f;
         bool removedPlank = false;
         foreach (Plank plank in planks)
         {
@@ -150,11 +148,11 @@ public class BoltMiniGame : MonoBehaviour
         }
 
         if (holeFrom && holeTo)
-         {
+        {
              SwapBolts(holeFrom, holeTo).Forget();
              this.holeFrom = null;
              this.holeTo = null;
-         }
+        }
     }
 
     public async UniTask StartMiniGame()
@@ -168,6 +166,10 @@ public class BoltMiniGame : MonoBehaviour
     [ContextMenu("ShowMiniGame")]
     public void ShowMiniGame()
     {
+        transform.parent.GetComponent<BoltGameStarter>().initialCameraDampingTime = 
+            virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_HorizontalDamping;
+        virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_HorizontalDamping = 
+            transform.parent.GetComponent<BoltGameStarter>().cameraDampingTime;
         resetButton.gameObject.SetActive(true);
         closeButton.gameObject.SetActive(true);
         if (gameFinished == null)
@@ -179,12 +181,15 @@ public class BoltMiniGame : MonoBehaviour
 
     public void AddListenerToShowGame()
     {
-        objectThatStartsGame.GetComponent<Interactable>().onInteract.AddListener(ShowMiniGame);
+        startGameInteractable.onInteract.RemoveAllListeners();
+        startGameInteractable.onInteract.AddListener(ShowMiniGame);
     }
 
     [ContextMenu("HideMiniGame")]
     public void HideMiniGame()
-    {   
+    {
+        virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_HorizontalDamping =
+            transform.parent.GetComponent<BoltGameStarter>().initialCameraDampingTime;
         player.GetComponent<Collider2D>().enabled = true;
         Hud.Instance.ShowHud();
         showMiniGame = false;
@@ -240,7 +245,7 @@ public class BoltMiniGame : MonoBehaviour
             onGameFinished.Invoke();
             HideMiniGame();
             gameState = GameState.Finished;
-            objectThatStartsGame.GetComponent<Interactable>().isActive = false;
+            startGameInteractable.GetComponent<Interactable>().Deactivate();
         }
     }
 
@@ -271,5 +276,13 @@ public class BoltMiniGame : MonoBehaviour
         Debug.Log("Made reset");
         Destroy(transform.GetChild(0).gameObject, Time.deltaTime);
         gameState = GameState.Started;
+    }
+
+    public void AttachAllBoltsToAllPlanks()
+    {
+        foreach (Plank plank in planks)
+        {
+            plank.AttachAllBolts();
+        }
     }
 }

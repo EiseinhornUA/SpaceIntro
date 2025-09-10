@@ -12,6 +12,14 @@ public class Plank : MonoBehaviour
 
     public float plankHoleCheckThreshold;
 
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject)
+    //    {
+    //        Debug.Log("Plank collided with " + collision.gameObject.name);
+    //    }
+    //}
+
     public bool IsBlocking(Hole holeTo)
     {
         BoxCollider2D plankCollider = GetComponent<BoxCollider2D>();
@@ -68,6 +76,17 @@ public class Plank : MonoBehaviour
     {
         foreach (var hingeHole in hingeHoleList)
         {
+            PlankHole plankHole = hingeHole.hole;
+
+            //Bolt[] allBolts = FindObjectsOfType<Bolt>();
+            //foreach (Bolt bolt in allBolts)
+            //{
+            //    if (Vector2.Distance(bolt.transform.position, plankHole.transform.position) < 0.025f)
+            //    {
+            //        plankHole.PlaceBolt(bolt);
+            //    }
+            //}
+
             hingeHole.hingeJoint.enabled = false;
             if (hingeHole.hole.HasBolt())
             {
