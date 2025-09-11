@@ -31,6 +31,8 @@ public class BoltMiniGame : MonoBehaviour
     [SerializeField] private GameObject resetGame;
     [SerializeField] private bool debugDontDestroyPlanks = false;
     public Interactable startGameInteractable;
+    private float initialBoltSize;
+    private float scaledBoltSize;
 
     private enum GameState
     {
@@ -40,8 +42,9 @@ public class BoltMiniGame : MonoBehaviour
         Restarting
     }
 
-    [SerializeField]
-    private GameState gameState = GameState.NotStarted;
+    [SerializeField] private GameState gameState = GameState.NotStarted;
+    [SerializeField] private float scalePercent = 20f;
+    [SerializeField] private float timeToScale = 0.2f;
 
     [ContextMenu("DebugDontDestroyPlanksFalse")]
     public void DebugDontDestroyPlanksFalse()
@@ -51,7 +54,8 @@ public class BoltMiniGame : MonoBehaviour
 
     private void Awake()
     {
-        //InitializeGame();
+        initialBoltSize = FindAnyObjectByType<Bolt>().transform.localScale.x;
+        scaledBoltSize = initialBoltSize * (scalePercent / 100f + 1f);
     }
 
     public void InitializeGame()
@@ -131,20 +135,37 @@ public class BoltMiniGame : MonoBehaviour
     {
          if (!holeFrom)
          {
-             holeFrom = hole;
-             if (!holeFrom.HasBolt())
-             {
-                 holeFrom = null;
-                 holeTo = null;
-             }
-             return;
-        }
+            holeFrom = hole;
+            if (!holeFrom.HasBolt())
+            {
+                holeFrom = null;
+                holeTo = null;
+            }
+            else
+            {
+                ScaleBolt(holeFrom).Forget();
+            }
+            return;
+         }
 
         if (!holeTo)
         {
             holeTo = hole;
-            if (holeTo.HasBolt() && holeTo != holeFrom && IsAbleToPlace(holeTo))
+            if (holeFrom == holeTo)
+            {
+                UnScaleBolt(holeFrom).Forget();
+                holeFrom = null;
                 holeTo = null;
+                return;
+            }
+
+            if (holeTo.HasBolt())
+            {
+                UnScaleBolt(holeFrom).Forget();
+                holeFrom = holeTo;
+                ScaleBolt(holeFrom).Forget();
+                holeTo = null;
+            }
         }
 
         if (holeFrom && holeTo)
@@ -153,6 +174,20 @@ public class BoltMiniGame : MonoBehaviour
              this.holeFrom = null;
              this.holeTo = null;
         }
+    }
+
+    private async UniTask ScaleBolt(Hole hole)
+    {
+        if (Mathf.Abs(hole.GetBolt().transform.localScale.x - initialBoltSize) < 0.001)
+            await hole.GetBolt().transform.DOScale(hole.GetBolt().transform.localScale *
+                        (scalePercent / 100f + 1f), timeToScale).SetEase(Ease.InOutQuad);
+    }
+
+    private async UniTask UnScaleBolt(Hole hole)
+    {
+        if (Mathf.Abs(hole.GetBolt().transform.localScale.x - scaledBoltSize) < 0.001)
+            await hole.GetBolt().transform.DOScale(hole.GetBolt().transform.localScale /
+                        (scalePercent / 100f + 1f), timeToScale).SetEase(Ease.InOutQuad);
     }
 
     public async UniTask StartMiniGame()
@@ -228,6 +263,8 @@ public class BoltMiniGame : MonoBehaviour
 
         foreach (Plank plank in planks)
             plank.AttachToBolt(holeTo);
+
+        UnScaleBolt(holeTo).Forget();
 
         holeFrom.RemoveBolt();
     }

@@ -55,7 +55,7 @@ MonoBehaviour:
   speedToSwapBolts: 5
   boltSwapEase: 16
   plankGravityScale: 3.5
-  currentCamera: {fileID: 0}
+  virtualCamera: {fileID: 0}
   miniGameOffset: {x: 0, y: 0, z: 2.8}
   showMiniGame: 0
   player: {fileID: 0}
@@ -66,6 +66,8 @@ MonoBehaviour:
   debugDontDestroyPlanks: 0
   startGameInteractable: {fileID: 0}
   gameState: 0
+  scalePercent: 20
+  timeToScale: 0.2
 --- !u!1001 &4951292165790088227
 PrefabInstance:
   m_ObjectHideFlags: 0

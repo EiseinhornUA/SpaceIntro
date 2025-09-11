@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using Cinemachine;
+using Unity.VisualScripting;
 
 [System.Serializable]
 public class BoltMiniGameSerializes
@@ -18,7 +19,7 @@ public class BoltGameStarter : MonoBehaviour
     [SerializeField] private Button resetButton;
     [SerializeField] private Button closeButton;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
-    public float initialCameraDampingTime;
+    [DoNotSerialize] public float initialCameraDampingTime;
     [SerializeField] public float cameraDampingTime = 0.2f;
 
     private void Awake()
