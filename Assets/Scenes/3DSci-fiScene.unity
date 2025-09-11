@@ -5597,7 +5597,7 @@ GameObject:
   - component: {fileID: 410087042}
   - component: {fileID: 410087043}
   m_Layer: 0
-  m_Name: PointLight
+  m_Name: MainPointLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11388,11 +11388,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73acd940d4f3d424dba12e48c33b5f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!108 &864806078 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 8933063011275852528, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
-  m_PrefabInstance: {fileID: 1767369789}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &868882840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13439,6 +13434,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a083a4ff79c08a46a640dd45e05d424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <onInteract>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   isActive: 0
 --- !u!58 &1071753807
 CircleCollider2D:
@@ -16860,6 +16858,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a083a4ff79c08a46a640dd45e05d424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <onInteract>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1490343951}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   isActive: 0
 --- !u!58 &1309653107
 CircleCollider2D:
@@ -17127,6 +17140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a083a4ff79c08a46a640dd45e05d424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <onInteract>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   isActive: 0
 --- !u!58 &1324533536
 CircleCollider2D:
@@ -17569,137 +17585,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4191946380885736, guid: 0b03c1f3d292df04297c1f7bf41eb91c, type: 3}
   m_PrefabInstance: {fileID: 1359158141}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1364289605
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1364289608}
-  - component: {fileID: 1364289607}
-  - component: {fileID: 1364289606}
-  m_Layer: 0
-  m_Name: VisualScripting SceneVariables
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!114 &1364289606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364289605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 765181c9ef4b24d32a4f7cbd2ef370dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1364289607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364289605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"Kind":"Scene","collection":{"$content":[{"name":"CryoTerminal","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Robot","value":{"$content":1,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ToolBox","value":{"$content":2,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"AccessKey","value":{"$content":3,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorTerminal","value":{"$content":4,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Door","value":{"$content":5,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Screwdriver","value":{"$content":6,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorManual","value":null,"typeHandle":{"Identification":"Interactable,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"SolderingIron","value":{"$content":7,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DiagnosticTool","value":{"$content":8,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ProgrammingSpike","value":{"$content":9,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorSchematic","value":{"$content":10,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Lights","value":{"$content":11,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.Light,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"PlayerLight","value":{"$content":12,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.Light,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ElevatorInteractable","value":{"$content":13,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"ElevatorMultiInteractable,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"CryoDoor","value":{"$content":14,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"SlidingDoor,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"EngineeringDoor","value":{"$content":15,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorTerminalInteraction","value":null,"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"CryoGlassDoor","value":{"$content":16,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"PlayerCryoChamberEscape,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"RobotGameObject","value":{"$content":17,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorTerminalGameObject","value":{"$content":18,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"AskMenuButton","value":{"$content":19,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"EngineeringDoorTerminal","value":{"$content":20,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"SpaceSuit","value":{"$content":21,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Roots","value":{"$content":22,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Axe","value":{"$content":23,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"NumPad","value":{"$content":24,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"JoyStick","value":{"$content":25,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"NumPadUI","value":{"$content":26,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"RootsDestroyScript","value":{"$content":27,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Roots,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"RootsEscape","value":{"$content":28,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"TransitionPlayerToOutsideAnimation,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ElevatorRoom","value":null,"typeHandle":{"Identification":"PlayerInOutElevator,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"FadeOut","value":{"$content":29,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"FadeOut,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"
-      TetrominoArranger","value":{"$content":30,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"TetrominoGameView,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"BoltGameStarter","value":{"$content":31,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"BoltGameStarter,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"BoltGameCryoTerminal","value":{"$content":31,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"BoltMiniGame,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"HasScrewdriver","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences:
-    - {fileID: 5449569031936165082}
-    - {fileID: 1324533535}
-    - {fileID: 2805723067111348102}
-    - {fileID: 8626088110301444379}
-    - {fileID: 7826260819959180520}
-    - {fileID: 1558372308782450652}
-    - {fileID: 2435233390293410084}
-    - {fileID: 4483680551332970448}
-    - {fileID: 4953294178169090071}
-    - {fileID: 3435404068979985956}
-    - {fileID: 4908500988809365344}
-    - {fileID: 410087040}
-    - {fileID: 864806078}
-    - {fileID: 1444866253}
-    - {fileID: 1613792375}
-    - {fileID: 1886455279}
-    - {fileID: 990117457}
-    - {fileID: 1324533527}
-    - {fileID: 7826260819959180519}
-    - {fileID: 6515190839244314491}
-    - {fileID: 6678624693226620741}
-    - {fileID: 5923394880353780586}
-    - {fileID: 2136770010}
-    - {fileID: 56251189}
-    - {fileID: 696220232}
-    - {fileID: 1472943499}
-    - {fileID: 1490343951}
-    - {fileID: 2136770012}
-    - {fileID: 2136770015}
-    - {fileID: 413957495}
-    - {fileID: 201856109}
-    - {fileID: 735657799}
---- !u!4 &1364289608
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364289605}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1365491936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19648,6 +19533,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4153213541478216191, guid: fb3e62d6cae9e524d8d689ebbef4f32e, type: 3}
   m_PrefabInstance: {fileID: 1533075475}
   m_PrefabAsset: {fileID: 0}
+--- !u!108 &1533075477 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 3036454580532850962, guid: fb3e62d6cae9e524d8d689ebbef4f32e, type: 3}
+  m_PrefabInstance: {fileID: 1533075475}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1538554478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20482,6 +20372,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4108992571613320, guid: c64020e8da8f6e2438256a8d90965f45, type: 3}
   m_PrefabInstance: {fileID: 1685241614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1685469349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2762485621411129705, guid: 97f5c00f8fb9f8e44a3672d2ccc50281, type: 3}
+  m_PrefabInstance: {fileID: 5923394880353780584}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1686891151
 PrefabInstance:
@@ -21425,6 +21320,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5557697238969172983, guid: 393025d95827507499d2a98582418ada, type: 3}
   m_PrefabInstance: {fileID: 1754937010}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1754937012 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4451220871559325639, guid: 393025d95827507499d2a98582418ada, type: 3}
+  m_PrefabInstance: {fileID: 1754937010}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69ae581a437e3d49bb306ac31e6491d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1756221583
 GameObject:
   m_ObjectHideFlags: 0
@@ -28896,6 +28802,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a083a4ff79c08a46a640dd45e05d424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <onInteract>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   isActive: 0
 --- !u!58 &2136770014
 CircleCollider2D:
@@ -35199,6 +35108,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a083a4ff79c08a46a640dd45e05d424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <onInteract>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   isActive: 0
 --- !u!58 &2435233390293410085
 CircleCollider2D:
@@ -37725,6 +37637,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8607237514919010369, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
   m_PrefabInstance: {fileID: 3589495996001957452}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3589495996001957454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2563638071570994010, guid: 79bb71a43d0260845a847af0f7006846, type: 3}
+  m_PrefabInstance: {fileID: 3589495996001957452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3593783268249386471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37833,7 +37750,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.55
+  m_fontSize: 43.65
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -39799,7 +39716,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.55
+  m_fontSize: 43.65
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -40076,6 +39993,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a083a4ff79c08a46a640dd45e05d424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <onInteract>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   isActive: 0
 --- !u!58 &4483680551332970449
 CircleCollider2D:
@@ -40465,7 +40385,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.55
+  m_fontSize: 43.65
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -41190,6 +41110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a083a4ff79c08a46a640dd45e05d424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <onInteract>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   isActive: 0
 --- !u!58 &4908500988809365345
 CircleCollider2D:
@@ -41391,6 +41314,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a083a4ff79c08a46a640dd45e05d424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <onInteract>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   isActive: 0
 --- !u!58 &4953294178169090072
 CircleCollider2D:
@@ -41629,7 +41555,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 47.55
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -42021,6 +41947,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &5291059448444527212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8329862007442430218}
+  - component: {fileID: 7731521136915728419}
+  - component: {fileID: 8597997319213392142}
+  m_Layer: 0
+  m_Name: VisualScripting SceneVariables (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
 --- !u!224 &5309900452674790104
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42882,6 +42826,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a083a4ff79c08a46a640dd45e05d424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <onInteract>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   isActive: 0
 --- !u!114 &5449569031936165083
 MonoBehaviour:
@@ -44177,11 +44124,6 @@ PrefabInstance:
 --- !u!4 &5923394880353780585 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 591323406657748123, guid: 97f5c00f8fb9f8e44a3672d2ccc50281, type: 3}
-  m_PrefabInstance: {fileID: 5923394880353780584}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5923394880353780586 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2762485621411129705, guid: 97f5c00f8fb9f8e44a3672d2ccc50281, type: 3}
   m_PrefabInstance: {fileID: 5923394880353780584}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &5936300726731287187
@@ -45548,7 +45490,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.55
+  m_fontSize: 43.65
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -45983,6 +45925,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a083a4ff79c08a46a640dd45e05d424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <onInteract>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   isActive: 0
 --- !u!58 &6678624693226620742
 CircleCollider2D:
@@ -47242,7 +47187,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.55
+  m_fontSize: 46
   m_fontSizeBase: 46
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -48650,6 +48595,93 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7731521136915728419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5291059448444527212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"declarations":{"Kind":"Scene","collection":{"$content":[{"name":"CryoTerminal","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Robot","value":{"$content":1,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ToolBox","value":{"$content":2,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"AccessKey","value":{"$content":3,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorTerminal","value":{"$content":4,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Door","value":{"$content":5,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Screwdriver","value":{"$content":6,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorManual","value":{"$content":7,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"SolderingIron","value":{"$content":8,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DiagnosticTool","value":{"$content":9,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ProgrammingSpike","value":{"$content":10,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorSchematic","value":{"$content":11,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"MainPointLight","value":{"$content":12,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.Light,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"PlayerLight","value":{"$content":13,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.Light,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ElevatorInteractable","value":{"$content":14,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"ElevatorMultiInteractable,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"CryoDoor","value":{"$content":15,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"SlidingDoor,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"EngineeringDoor","value":{"$content":16,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorTerminalInteraction","value":{"$content":17,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"CryoGlassDoor","value":{"$content":18,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"PlayerCryoChamberEscape,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"RobotGameObject","value":{"$content":19,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DoorTerminalGameObject","value":{"$content":20,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"AskMenuButton","value":{"$content":21,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"EngineeringDoorTerminal","value":{"$content":22,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"SpaceSuit","value":{"$content":23,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Roots","value":{"$content":24,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Axe","value":{"$content":25,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"NumPad","value":{"$content":26,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"NumPadUI","value":{"$content":27,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"JoyStick","value":{"$content":28,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"RootsDestroyScript","value":{"$content":29,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Roots,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"RootsEscape","value":{"$content":30,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"TransitionPlayerToOutsideAnimation,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ElevatorRoom","value":{"$content":31,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"PlayerInOutElevator,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"FadeOut","value":{"$content":32,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"FadeOut,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"
+      TetrominoArranger","value":{"$content":33,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"TetrominoGameView,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"BoltGameStarter","value":{"$content":34,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"BoltGameStarter,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"HasScrewdriver","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 5449569031936165082}
+    - {fileID: 1324533535}
+    - {fileID: 2805723067111348102}
+    - {fileID: 8626088110301444379}
+    - {fileID: 7826260819959180520}
+    - {fileID: 1558372308782450652}
+    - {fileID: 2435233390293410084}
+    - {fileID: 4908500988809365344}
+    - {fileID: 4483680551332970448}
+    - {fileID: 4953294178169090071}
+    - {fileID: 3435404068979985956}
+    - {fileID: 4908500988809365344}
+    - {fileID: 410087040}
+    - {fileID: 1533075477}
+    - {fileID: 1444866253}
+    - {fileID: 1613792375}
+    - {fileID: 1886455279}
+    - {fileID: 7826260819959180519}
+    - {fileID: 990117457}
+    - {fileID: 1324533527}
+    - {fileID: 3589495996001957454}
+    - {fileID: 6515190839244314491}
+    - {fileID: 6678624693226620741}
+    - {fileID: 1685469349}
+    - {fileID: 2136770010}
+    - {fileID: 1071753806}
+    - {fileID: 696220232}
+    - {fileID: 1490343951}
+    - {fileID: 1472943499}
+    - {fileID: 2136770012}
+    - {fileID: 2136770015}
+    - {fileID: 1754937012}
+    - {fileID: 413957495}
+    - {fileID: 201856109}
+    - {fileID: 735657799}
 --- !u!1001 &7734202611549563111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48803,6 +48835,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a083a4ff79c08a46a640dd45e05d424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <onInteract>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   isActive: 0
 --- !u!58 &7826260819959180521
 CircleCollider2D:
@@ -49749,6 +49784,21 @@ Transform:
   - {fileID: 1804834885}
   m_Father: {fileID: 1131811419328709586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &8329862007442430218
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5291059448444527212}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8354877001199324146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50391,6 +50441,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17b0fd45f570237469afc9d8ef55dcad, type: 3}
+--- !u!114 &8597997319213392142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5291059448444527212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765181c9ef4b24d32a4f7cbd2ef370dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &8600593109816664785
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -50597,6 +50659,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a083a4ff79c08a46a640dd45e05d424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <onInteract>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   isActive: 0
 --- !u!58 &8626088110301444380
 CircleCollider2D:
@@ -52305,7 +52370,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.595, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 20, y: 0}
+  m_AnchoredPosition: {x: 19.999756, y: 0}
   m_SizeDelta: {x: 90, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &9194787359613709199
@@ -52397,7 +52462,7 @@ SceneRoots:
   - {fileID: 1790090975}
   - {fileID: 2051078660}
   - {fileID: 2051727650}
-  - {fileID: 1364289608}
+  - {fileID: 8329862007442430218}
   - {fileID: 1324533526}
   - {fileID: 1131811419328709586}
   - {fileID: 158709816613750856}

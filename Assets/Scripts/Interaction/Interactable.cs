@@ -10,7 +10,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CircleCollider2D))]
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] public UnityEvent onInteract { get; private set; } = new();
+    [field: SerializeField] public UnityEvent onInteract { get; private set; } = new();
     private InteractionView interactionView;
     private CircleCollider2D circleCollider;
     private UniTaskCompletionSource interactionTCS;
