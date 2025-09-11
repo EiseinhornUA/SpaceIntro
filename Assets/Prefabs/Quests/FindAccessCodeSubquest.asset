@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: FindAccessCodeSubquest
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[{"key":"Enter","label":null,"summary":null,"hideLabel":false}],"controlOutputDefinitions":[{"key":"Exit","label":null,"summary":null,"hideLabel":false}],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":"FindToolsSubquest","summary":null,"pan":{"x":736.3726,"y":-488.005},"zoom":1.0,"elements":[{"defaultValues":{},"position":{"x":-792.0,"y":-480.0},"guid":"129be6ff-9e0a-4ed5-841b-894e3157b149","$version":"A","$type":"Unity.VisualScripting.GraphInput","$id":"11"},{"defaultValues":{},"position":{"x":1176.0,"y":-420.0},"guid":"67f0cb03-809a-4cea-9542-c2029fad65cf","$version":"A","$type":"Unity.VisualScripting.GraphOutput","$id":"13"},{"specifyFallback":false,"kind":"Scene","defaultValues":{"name":{"$content":"AccessKey","$type":"System.String"}},"position":{"x":-350.0,"y":-330.0},"guid":"20a4fad0-3f6e-4263-b00d-ef09baf26c53","$version":"A","$type":"Unity.VisualScripting.GetVariable","$id":"15"},{"defaultValues":{"gameObject":null,"itemSO":{"$content":0,"$type":"UnityEngine.Object"}},"position":{"x":148.0,"y":-493.0},"guid":"b70c7e7d-bf33-411d-ad1d-5113e84eb0ee","$version":"A","$type":"PickupItemNode","$id":"17"},{"enter":{"unit":{"$ref":"19"}},"exit":{"unit":{"$ref":"19"}},"inputName":{"nullMeansSelf":false,"allowsNull":false,"unit":{"$ref":"19"}},"inputDescription":{"nullMeansSelf":false,"allowsNull":false,"unit":{"$ref":"19"}},"defaultValues":{"inputName":{"$content":"Find
+      the Code","$type":"System.String"},"inputDescription":{"$content":"The door
+      won\u2019t budge without an access code. Search the first floor to track it
+      down.","$type":"System.String"}},"position":{"x":-660.0,"y":-504.0},"guid":"93fca9a2-26b5-4a92-af48-a752bf42358d","$version":"A","$type":"SetCurrentTaskNode","$id":"19"},{"exitCount":1,"defaultValues":{"Dialogue
+      Prefab":{"$content":1,"$type":"UnityEngine.Object"}},"position":{"x":600.0,"y":-480.0},"guid":"10f25c74-54e1-4bbb-8ed3-42c6b56c412a","$version":"A","$type":"StartDialogueNode","$id":"25"},{"interactableCount":1,"defaultValues":{"Interactable
+      1":null,"Disable After Interaction":{"$content":true,"$type":"System.Boolean"}},"position":{"x":-200.0,"y":-506.0},"guid":"ed773dd4-534e-4fc3-9616-2ec93bc6f560","$version":"A","$type":"OnInteractNode","$id":"27"},{"sourceUnit":{"$ref":"27"},"sourceKey":"exit
+      1","destinationUnit":{"$ref":"17"},"destinationKey":"","guid":"34cfb7bc-4caf-40a7-be99-238a382cd087","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"exit","destinationUnit":{"$ref":"27"},"destinationKey":"enter","guid":"a6aa1961-cd2a-44cd-8cf7-7037a49a647b","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"25"},"sourceKey":"Exit
+      1","destinationUnit":{"$ref":"13"},"destinationKey":"Exit","guid":"006036a9-b84a-41f8-b2a9-53242c6cea2c","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"11"},"sourceKey":"Enter","destinationUnit":{"$ref":"19"},"destinationKey":"enter","guid":"654c4a40-32cf-4365-ad75-fa1ae7525bb9","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"17"},"sourceKey":"","destinationUnit":{"$ref":"25"},"destinationKey":"enter","guid":"7ddbf07c-a86d-4fe2-bc92-b1870ce02da3","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"value","destinationUnit":{"$ref":"27"},"destinationKey":"Interactable
+      1","guid":"eec82956-e56e-41c6-981c-3329918b5595","$type":"Unity.VisualScripting.ValueConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"value","destinationUnit":{"$ref":"17"},"destinationKey":"gameObject","guid":"876a022b-765f-4eb0-a571-f9a341567926","$type":"Unity.VisualScripting.ValueConnection"}],"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: 1a9e4057b3636b74e9a5575f0ad3d1c8, type: 2}
+    - {fileID: 8094446619255264078, guid: 6eb9ffa1b4e9f944d960118f11778c0d, type: 3}
