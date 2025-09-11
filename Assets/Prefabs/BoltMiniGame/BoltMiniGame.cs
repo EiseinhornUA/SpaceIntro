@@ -245,7 +245,7 @@ public class BoltMiniGame : MonoBehaviour
             onGameFinished.Invoke();
             HideMiniGame();
             gameState = GameState.Finished;
-            startGameInteractable.GetComponent<Interactable>().Deactivate();
+            startGameInteractable.Deactivate();
         }
     }
 
@@ -293,6 +293,6 @@ public class BoltMiniGame : MonoBehaviour
         onGameFinished.Invoke();
         HideMiniGame();
         gameState = GameState.Finished;
-        objectThatStartsGame.GetComponent<Interactable>().isActive = false;
+        startGameInteractable.Deactivate();
     }
 }
