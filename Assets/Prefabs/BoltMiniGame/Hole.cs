@@ -34,10 +34,12 @@ public class Hole : MonoBehaviour, IPointerClickHandler
 
     public async UniTask MoveBolt(Bolt bolt)
     {
-        var boltCollider = bolt.GetComponent<CircleCollider2D>();
-        boltCollider.enabled = false;
+        bolt.GetComponent<Rigidbody2D>().simulated = false;
+        Debug.Log($"Started move + {bolt.GetComponent<Rigidbody2D>().simulated}");
         await bolt.transform.DOMove(transform.position, speedToSwapBolts).SetSpeedBased().SetEase(boltSwapEase);
-        boltCollider.enabled = true;
+        Debug.Log($"Must be false + {bolt.GetComponent<Rigidbody2D>().simulated}");
+        bolt.GetComponent<Rigidbody2D>().simulated = true;
+        Debug.Log($"Finished move + {bolt.GetComponent<Rigidbody2D>().simulated}");
     }
 
     public void RemoveBolt()
