@@ -30,6 +30,7 @@ public class Interactable : MonoBehaviour
         return interactionTCS.Task;
     }
 
+    [ContextMenu("Interact")]
     public void OnInteract()
     {
         onInteract.Invoke();

@@ -272,4 +272,14 @@ public class BoltMiniGame : MonoBehaviour
         Destroy(transform.GetChild(0).gameObject, Time.deltaTime);
         gameState = GameState.Started;
     }
+
+    [ContextMenu("FinishGame")]
+    private void FinishGame()
+    {
+        gameFinished.TrySetResult();
+        onGameFinished.Invoke();
+        HideMiniGame();
+        gameState = GameState.Finished;
+        objectThatStartsGame.GetComponent<Interactable>().isActive = false;
+    }
 }
