@@ -226,8 +226,8 @@ public class BoltMiniGame : MonoBehaviour
             virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_HorizontalDamping;
         virtualCamera.GetCinemachineComponent<CinemachineComposer>().m_HorizontalDamping = 
             transform.parent.GetComponent<BoltGameStarter>().cameraDampingTime;
-        resetButton.gameObject.SetActive(true);
-        closeButton.gameObject.SetActive(true);
+        GameObject boltGameUI = closeButton.transform.parent.gameObject;
+        boltGameUI.SetActive(true);
         if (gameFinished == null)
             gameFinished = new UniTaskCompletionSource();
         player.GetComponent<Collider2D>().enabled = false;
@@ -250,8 +250,8 @@ public class BoltMiniGame : MonoBehaviour
         Hud.Instance.ShowHud();
         showMiniGame = false;
         transform.position += new Vector3(0f, 50f, 50f);
-        resetButton.gameObject.SetActive(false);
-        closeButton.gameObject.SetActive(false);
+        GameObject boltGameUI = closeButton.transform.parent.gameObject;
+        boltGameUI.SetActive(false);
     }
 
     [ContextMenu("SwapBolts")]

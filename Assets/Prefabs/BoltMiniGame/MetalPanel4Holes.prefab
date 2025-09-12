@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: d57e147c19e08ea43bd3120ebbe16faf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ad42ae02b1784c14189bca1c6f140dd9, type: 3}
   m_Color: {r: 0.21764861, g: 0.29896653, b: 0.6320754, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,7 +94,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 2
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &9075964555924482703
 Rigidbody2D:
@@ -157,9 +157,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.25, y: 0.25, z: 0.25, w: 0.25}
+    border: {x: 0.859375, y: 0.859375, z: 0.859375, w: 0.859375}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 4, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
@@ -311,11 +311,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5574154462055432958, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
       propertyPath: m_Name
-      value: AlphaHole (1)
+      value: PlankHole (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5574154462055432958, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
       propertyPath: m_Layer
       value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418878081147448629, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8569439892516785197, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -399,11 +403,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5574154462055432958, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
       propertyPath: m_Name
-      value: AlphaHole
+      value: PlankHole
       objectReference: {fileID: 0}
     - target: {fileID: 5574154462055432958, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
       propertyPath: m_Layer
       value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418878081147448629, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8569439892516785197, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -487,11 +495,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5574154462055432958, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
       propertyPath: m_Name
-      value: AlphaHole (2)
+      value: PlankHole (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5574154462055432958, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
       propertyPath: m_Layer
       value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418878081147448629, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8569439892516785197, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -575,11 +587,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5574154462055432958, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
       propertyPath: m_Name
-      value: AlphaHole (3)
+      value: PlankHole (3)
       objectReference: {fileID: 0}
     - target: {fileID: 5574154462055432958, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
       propertyPath: m_Layer
       value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418878081147448629, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8569439892516785197, guid: 741b01b8b6b158346b30f1012f26f87d, type: 3}
       propertyPath: m_LocalPosition.x
