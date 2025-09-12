@@ -33,6 +33,9 @@ public class BoltMiniGame : MonoBehaviour
     public Interactable startGameInteractable;
     private float initialBoltSize;
     private float scaledBoltSize;
+    [SerializeField] private float scalePercent = 20f;
+    [SerializeField] private float screwingTime = 0.25f;
+    [SerializeField] private int screwingRotation = 360;
 
     private enum GameState
     {
@@ -43,8 +46,6 @@ public class BoltMiniGame : MonoBehaviour
     }
 
     [SerializeField] private GameState gameState = GameState.NotStarted;
-    [SerializeField] private float scalePercent = 20f;
-    [SerializeField] private float timeToScale = 0.2f;
 
     [ContextMenu("DebugDontDestroyPlanksFalse")]
     public void DebugDontDestroyPlanksFalse()
@@ -143,7 +144,7 @@ public class BoltMiniGame : MonoBehaviour
             }
             else
             {
-                ScaleBolt(holeFrom).Forget();
+                UnscrewBolt(holeFrom);
             }
             return;
          }
@@ -153,7 +154,7 @@ public class BoltMiniGame : MonoBehaviour
             holeTo = hole;
             if (holeFrom == holeTo)
             {
-                UnScaleBolt(holeFrom).Forget();
+                ScrewBolt(holeFrom);
                 holeFrom = null;
                 holeTo = null;
                 return;
@@ -161,9 +162,9 @@ public class BoltMiniGame : MonoBehaviour
 
             if (holeTo.HasBolt())
             {
-                UnScaleBolt(holeFrom).Forget();
+                ScrewBolt(holeFrom);
                 holeFrom = holeTo;
-                ScaleBolt(holeFrom).Forget();
+                UnscrewBolt(holeFrom);
                 holeTo = null;
             }
         }
@@ -176,18 +177,38 @@ public class BoltMiniGame : MonoBehaviour
         }
     }
 
-    private async UniTask ScaleBolt(Hole hole)
+    private void UnscrewBolt(Hole hole)
     {
-        if (Mathf.Abs(hole.GetBolt().transform.localScale.x - initialBoltSize) < 0.001)
-            await hole.GetBolt().transform.DOScale(hole.GetBolt().transform.localScale *
-                        (scalePercent / 100f + 1f), timeToScale).SetEase(Ease.InOutQuad);
+        if (isScrewed(hole))
+        {
+            hole.GetBolt().transform.DOScale(hole.GetBolt().transform.localScale *
+                (scalePercent / 100f + 1f), screwingTime).SetEase(Ease.InOutQuad);
+            hole.GetBolt().transform
+                .DOLocalRotate(new Vector3(0f, 0f, -screwingRotation), screwingTime, RotateMode.FastBeyond360)
+                .SetEase(Ease.InOutQuad);
+        }
     }
 
-    private async UniTask UnScaleBolt(Hole hole)
+    private bool isScrewed(Hole hole)
     {
-        if (Mathf.Abs(hole.GetBolt().transform.localScale.x - scaledBoltSize) < 0.001)
-            await hole.GetBolt().transform.DOScale(hole.GetBolt().transform.localScale /
-                        (scalePercent / 100f + 1f), timeToScale).SetEase(Ease.InOutQuad);
+        return Mathf.Abs(hole.GetBolt().transform.localScale.x - initialBoltSize) < 0.001;
+    }
+
+    private void ScrewBolt(Hole hole)
+    {
+        if (isUnScrewed(hole))
+        {
+            hole.GetBolt().transform.DOScale(hole.GetBolt().transform.localScale /
+                 (scalePercent / 100f + 1f), screwingTime).SetEase(Ease.InOutQuad);
+            hole.GetBolt().transform
+                .DOLocalRotate(new Vector3(0f, 0f, screwingRotation), screwingTime, RotateMode.FastBeyond360)
+                .SetEase(Ease.InOutQuad);
+        }
+    }
+
+    private bool isUnScrewed(Hole hole)
+    {
+        return Mathf.Abs(hole.GetBolt().transform.localScale.x - scaledBoltSize) < 0.001;
     }
 
     public async UniTask StartMiniGame()
@@ -264,7 +285,7 @@ public class BoltMiniGame : MonoBehaviour
         foreach (Plank plank in planks)
             plank.AttachToBolt(holeTo);
 
-        UnScaleBolt(holeTo).Forget();
+        ScrewBolt(holeTo);
 
         holeFrom.RemoveBolt();
     }
