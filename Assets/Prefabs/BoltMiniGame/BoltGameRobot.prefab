@@ -68,6 +68,7 @@ MonoBehaviour:
   scalePercent: 20
   screwingTime: 0.25
   screwingRotation: 540
+  goalPopup: {fileID: 0}
   gameState: 0
 --- !u!1001 &6345308309606175273
 PrefabInstance:
@@ -77,14 +78,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6100857297593146963}
     m_Modifications:
-    - target: {fileID: 110438520766588819, guid: 71ba74cfbf5e6bd4989003530f7585d6, type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 110438520766588819, guid: 71ba74cfbf5e6bd4989003530f7585d6, type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2151530374262813147, guid: 71ba74cfbf5e6bd4989003530f7585d6, type: 3}
       propertyPath: m_Name
       value: ResetGameRobot
