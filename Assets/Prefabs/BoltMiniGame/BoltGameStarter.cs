@@ -21,6 +21,7 @@ public class BoltGameStarter : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [DoNotSerialize] public float initialCameraDampingTime;
     [SerializeField] public float cameraDampingTime = 0.2f;
+    [SerializeField] private GameObject goalPopup;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class BoltGameStarter : MonoBehaviour
             boltMiniGameSerializes.boltMiniGame.player = player;
             boltMiniGameSerializes.boltMiniGame.closeButton = closeButton;
             boltMiniGameSerializes.boltMiniGame.resetButton = resetButton;
+            boltMiniGameSerializes.boltMiniGame.goalPopup = goalPopup;
         }
     }
 
