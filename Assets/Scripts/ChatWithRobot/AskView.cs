@@ -11,7 +11,7 @@ public class AskView : MonoBehaviour
     [field: SerializeField] public Button askButton { get; private set;}
     [SerializeField] private TextMeshProUGUI responeText;
     [SerializeField] private Button closeButton;
-    [SerializeField] private Hud hud;
+
 
     private void Start()
     {
@@ -33,13 +33,13 @@ public class AskView : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
-        hud.HideHud();
+        Hud.Instance.HideHud();
     }
 
     public void Hide()
     {
         gameObject.SetActive(false);
-        hud.ShowHud();
+        Hud.Instance.ShowHud();
     }
 
     public void SetResponse(string response) => responeText.text = response;

@@ -443,7 +443,6 @@ MonoBehaviour:
   <askButton>k__BackingField: {fileID: 7536168929057416099}
   responeText: {fileID: 3004984900655914418}
   closeButton: {fileID: 2020263262889644991}
-  hud: {fileID: 0}
 --- !u!114 &2789680174846000449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +455,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e90f0d58770a14aad2a2548f634deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conversationHistory: []
+  robotChatHistoryView: {fileID: 0}
+  playerCharacter: {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
+  robotCharacter: {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
 --- !u!1 &3598438268532377782
 GameObject:
   m_ObjectHideFlags: 0
