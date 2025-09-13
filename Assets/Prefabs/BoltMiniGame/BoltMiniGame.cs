@@ -36,6 +36,7 @@ public class BoltMiniGame : MonoBehaviour
     [SerializeField] private float scalePercent = 20f;
     [SerializeField] private float screwingTime = 0.25f;
     [SerializeField] private int screwingRotation = 360;
+    [SerializeField] public GameObject goalPopup;
 
     private enum GameState
     {
@@ -304,6 +305,7 @@ public class BoltMiniGame : MonoBehaviour
             HideMiniGame();
             gameState = GameState.Finished;
             startGameInteractable.Deactivate();
+            goalPopup.SetActive(true);
         }
     }
 
