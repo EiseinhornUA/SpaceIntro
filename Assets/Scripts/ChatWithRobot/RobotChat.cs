@@ -1,7 +1,9 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 
 [RequireComponent(typeof(AskView))]
@@ -16,6 +18,8 @@ public class RobotChat : MonoBehaviour
     [Header("Characters")]
     [SerializeField] private DialogueCharacter playerCharacter;
     [SerializeField] private DialogueCharacter robotCharacter;
+
+    public Action<List<PhraseCharacterPair>> OnChatHistoryUpdated = delegate { };
 
     private void Start()
     {
@@ -77,6 +81,7 @@ public class RobotChat : MonoBehaviour
         conversationHistory.Add(new(question, playerCharacter));
         conversationHistory.Add(new(answer, robotCharacter));
         robotChatHistoryView.UpdateChatHistory(conversationHistory);
+        OnChatHistoryUpdated.Invoke(conversationHistory);
     }
 }
 
