@@ -1,29 +1,34 @@
 ﻿using Cysharp.Threading.Tasks;
 using Firebase.Auth;
 using Firebase.Database;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DatabaseManager : MonoBehaviour
 {
-    private SkillContainer skillContainer;
     private DatabaseReference userReference;
     private string userID;
 
-    private async void Awake()
+    private void Start()
     {
-        // Enable Firebase offline persistence (data is cached and syncs when online)
         FirebaseDatabase.DefaultInstance.SetPersistenceEnabled(true);
+
+        InitializeAsync().Forget();
     }
 
-    private async void Start()
+    private async UniTask InitializeAsync()
     {
         await Login();
         InitDatabase();
         await SaveName();
 
-        skillContainer = FindObjectOfType<SkillContainer>();
-        skillContainer.OnSkillLevelChanged += OnSkillLevelChanged;
+        FindObjectOfType<SkillContainer>(true).OnSkillLevelChanged += OnSkillLevelChanged;
+        FindObjectOfType<RobotChat>(true).OnChatHistoryUpdated += OnChatHistoryUpdated;
     }
+
 
     private async UniTask Login()
     {
@@ -40,10 +45,29 @@ public class DatabaseManager : MonoBehaviour
             .Child(userID);
     }
 
-    private async void OnSkillLevelChanged(Skill skill)
+    private void OnSkillLevelChanged(Skill skill)
     {
-        await SaveSkill(skill);
+        SaveSkill(skill).Forget();
     }
+    private void OnChatHistoryUpdated(List<PhraseCharacterPair> conversationHistory)
+    {
+        SaveChatHistory(conversationHistory).Forget();
+    }
+
+    private async UniTask SaveChatHistory(List<PhraseCharacterPair> conversationHistory)
+    {
+        try
+        {
+            var wrapper = new ChatHistoryWrapper(conversationHistory);
+            await userReference.Child("chatHistory").SetRawJsonValueAsync(JsonConvert.SerializeObject(wrapper));
+            Debug.Log("Saved chat history");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"SaveChatHistory failed: {e.Message}");
+        }
+    }
+
 
     private async UniTask SaveSkill(Skill skill)
     {
@@ -54,7 +78,7 @@ public class DatabaseManager : MonoBehaviour
                 .SetValueAsync(skill.level);
             Debug.Log($"Saved {skill.skillName}: {skill.level}");
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             Debug.LogError($"SaveSkill failed: {e.Message}");
         }
@@ -68,9 +92,31 @@ public class DatabaseManager : MonoBehaviour
             await userReference.Child("name").SetValueAsync(name);
             Debug.Log($"Saved name: {name}");
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             Debug.LogError($"SaveName failed: {e.Message}");
         }
+    }
+}
+
+[System.Serializable]
+public class ChatHistoryWrapper
+{
+    public List<DialogueLine> history;
+    public ChatHistoryWrapper(List<PhraseCharacterPair> history)
+    {
+        this.history = history.Select(h => new DialogueLine(h.character.GetName(), h.phrase)).ToList();
+    }
+}
+
+[Serializable]
+public class DialogueLine
+{
+    public string speaker;
+    public string text;
+    public DialogueLine(string speaker, string text)
+    {
+        this.speaker = speaker;
+        this.text = text;
     }
 }
