@@ -27,6 +27,7 @@ public class JournalView : MonoBehaviour
         tasks.Add(task);
         task.OnTaskSelected += OnTaskSelected;
         previousTask = task;
+        OnTaskSelected(task);
     }
 
     [ContextMenu("Add Example Task")]

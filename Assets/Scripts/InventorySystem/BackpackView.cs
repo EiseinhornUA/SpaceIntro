@@ -29,6 +29,7 @@ public class BackpackView : MonoBehaviour
         item.SetItem(inventoryItem);
         itemSlots.Add(item);
         item.OnItemSelected += OnItemSelect;
+        OnItemSelect(item);
     }
 
     private void ClearItems()
