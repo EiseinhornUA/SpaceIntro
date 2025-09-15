@@ -41,6 +41,8 @@ public class RobotFollow : MonoBehaviour
     [SerializeField] private float cameraOffsetY = -2f;
     [SerializeField] private Transform playerParent;
 
+    [SerializeField] private ReportContainerView reportContainerView;
+
     private void Awake()
     {
         robotColliderRadius = GetComponent<CircleCollider2D>().radius;
@@ -187,5 +189,12 @@ public class RobotFollow : MonoBehaviour
             0f,
             Mathf.Cos(Time.timeSinceLevelLoad * 2f * (float)Math.PI * frequency) * amplitude * Time.deltaTime,
             0f);
+    }
+
+    [ContextMenu("Add Reports")]
+    public void AddReports()
+    {
+        reportContainerView.AddReport("Robot", "The robot is a helpful companion that follows you around and can assist in various tasks.");
+        reportContainerView.AddReport("Report 01 — Population Status", "On board the intergalactic station “Athea” there are:\r\nColonists: 20,000 individuals in stasis.\r\nCrew: 457 specialists, including officers, engineers, and medics — also in cryosleep.\r\n The official mission goal is the transportation of colonists to the planet Eden-7, located 27 light years from Earth.\r\n All cryo-chambers are functioning in stable condition. No active system administrators are present.");
     }
 }
