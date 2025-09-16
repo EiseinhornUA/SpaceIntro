@@ -195,6 +195,60 @@ public class RobotFollow : MonoBehaviour
     public void AddReports()
     {
         reportContainerView.AddReport("Robot", "The robot is a helpful companion that follows you around and can assist in various tasks.");
-        reportContainerView.AddReport("Report 01 — Population Status", "On board the intergalactic station “Athea” there are:\r\nColonists: 20,000 individuals in stasis.\r\nCrew: 457 specialists, including officers, engineers, and medics — also in cryosleep.\r\n The official mission goal is the transportation of colonists to the planet Eden-7, located 27 light years from Earth.\r\n All cryo-chambers are functioning in stable condition. No active system administrators are present.");
+        reportContainerView.AddReport("Report 01 — Population Status", 
+            "On board the intergalactic station “Athea” there are:\r\n" +
+            "Colonists: 20,000 individuals in stasis.\r\n" +
+            "Crew: 457 specialists, including officers, engineers, and medics — also in cryosleep.\r\n " +
+            "The official mission goal is the transportation of colonists to the planet Eden-7, located 27 light years from Earth.\r\n " +
+            "All cryo-chambers are functioning in stable condition. No active system administrators are present.");
+        reportContainerView.AddReport("Report 02 — Navigation Log",
+            "The Athea station was launched with a projected flight duration of 96 Earth years.\r\n" +
+            " According to archives, the navigation system stopped responding 632 days ago.\r\n" +
+            "Current position: unknown.\r\n" +
+            "Remaining travel time: impossible to calculate.\r\n" +
+            " Black box records indicate a failure in the central navigation matrix.\r\n" +
+            " Recommended action: restart the system manually from the captain’s bridge.");
+        reportContainerView.AddReport("Report 03 — Structural Pathways", 
+            "Shortest route to the captain’s bridge:\r\n" +
+            "Technical corridor, sector B-1.\r\nEnergy distribution hall.\r\n" +
+            "Laboratory Alpha.\r\n" +
+            "Central gateway to the bridge.\r\n" +
+            "Access to these sections is possible only through service robot authorization or an emergency override code.");
+        reportContainerView.AddReport("Report 04 — System Integrity",
+            "Power supply: stable, operating on reserve circuits.\r\n" +
+            "Cryostasis: maintained automatically, no failures detected.\r\n" +
+            "Life support: parameters nominal, atmospheric regulators functional.\r\n" +
+            "Navigation: offline.\r\n " +
+            "Conclusion: the station is moving, but its vector of travel is unknown.\r\n" +
+            " Passengers and crew remain unaware of the situation.");
+        reportContainerView.AddReport("Report 05 — AI Core Access", 
+            "After activation of the service robot, partial access to the station’s memory was obtained.\r\n" +
+            "Colonist logs: locked.\r\n" +
+            "Navigation logs: error, archive corrupted.\r\n" +
+            "Internal route maps: accessible.\r\n" +
+            "Voice interface activated: the robot can accompany the colonist and record actions into the log.");
+        reportContainerView.AddReport("Report 06 — Security Anomalies",
+            "Recent system scans revealed irregularities in access protocols:\r\n" +
+            "Four bulkhead doors remain sealed despite no damage or system fault.\r\n" +
+            "Security logs show manual overrides registered 11 days after the navigation system failure.\r\n" +
+            "Attempts to open the doors via emergency codes have been unsuccessful.\r\n" +
+            " No record exists of which crew member initiated the overrides.\r\n" +
+            " Conclusion: sections of the station may have been deliberately locked down.");
+        reportContainerView.AddReport("Report 07 — Communication Records", 
+            "Long-range transmitters are operational, yet all outgoing channels are muted.\r\n" +
+            "Last successful transmission: 2.4 years ago to Earth Mission Command.\r\n" +
+            "Incoming messages: corrupted or erased.\r\n" +
+            "Automated beacon: disabled manually from the comms core.\r\n " +
+            "There is no explanation in mission protocols for disabling the beacon.\r\n " +
+            "Recommendation: restore access from the communications array on Deck C.\r\n" +
+            " Risk: unknown interference or intentional suppression of contact.");
+        reportContainerView.AddReport("Report 08 — Crew Activity Log", 
+            "Cross-referencing cryostasis monitoring with station logs shows discrepancies:\r\n" +
+            "457 official crew entries.\r\n" +
+            "Cryostasis scan detects 454 active pods.\r\n" +
+            " Three pods are missing from the registry.\r\n" +
+            " No matching entries were found in medical archives or system deletion logs.\r\n" +
+            " Status of the missing crew members: unknown.\r\n" +
+            " Advisory: Proceed with caution. Further anomalies may indicate human interference, not system error.");
     }
 }
