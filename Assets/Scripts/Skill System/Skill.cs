@@ -14,4 +14,10 @@ public class Skill
         skillName = skillSO.GetName();
         level = skillSO.GetLevel();
     }
+
+    public Skill(string skillName, float level)
+    {
+        this.skillName = skillName;
+        this.level = level;
+    }
 }

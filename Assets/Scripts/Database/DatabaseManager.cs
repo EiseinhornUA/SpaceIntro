@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DatabaseManager : MonoBehaviour
@@ -23,7 +24,7 @@ public class DatabaseManager : MonoBehaviour
     {
         await Login();
         InitDatabase();
-        await SaveName();
+        await SaveNameAsync();
 
         FindObjectOfType<SkillContainer>(true).OnSkillLevelChanged += OnSkillLevelChanged;
         FindObjectOfType<RobotChat>(true).OnChatHistoryUpdated += OnChatHistoryUpdated;
@@ -84,7 +85,7 @@ public class DatabaseManager : MonoBehaviour
         }
     }
 
-    private async UniTask SaveName()
+    private async UniTask SaveNameAsync()
     {
         try
         {
@@ -95,6 +96,25 @@ public class DatabaseManager : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError($"SaveName failed: {e.Message}");
+        }
+    }
+
+    public void SaveAssesment(List<Skill> skills, string assessmentName)
+    {
+        SaveAssesmentAsync(skills, assessmentName).Forget();
+    }
+
+    private async UniTask SaveAssesmentAsync(List<Skill> skills, string assessmentName)
+    {
+        try
+        {
+            await userReference.Child("assessments")
+                .Child(assessmentName)
+                .SetRawJsonValueAsync(JsonConvert.SerializeObject(skills.ToDictionary(s => s.skillName, v => v.level)));
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"SaveAssesment failed: {e.Message}");
         }
     }
 }
