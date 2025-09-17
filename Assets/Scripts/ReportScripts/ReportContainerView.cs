@@ -7,12 +7,16 @@ using UnityEngine.UI;
 public class ReportContainerView : MonoBehaviour
 {
     [SerializeField] private List<ReportView> reports;
+    //[SerializeField] private List<ReportSO> reportSOs;
     [SerializeField] private ReportView reportPrefab;
     [SerializeField] private Transform reportsParent;
     [SerializeField] private ReportDescriptionPanel reportDescriptionPanel;
     [SerializeField] private VerticalLayoutGroup reportsLayoutGroup;
     [SerializeField] private RectTransform reportsLayoutGroupRectTransform;
     private ReportView previousReport;
+
+    [SerializeField] private List<ReportSO> robotReports;
+    [SerializeField] private List<ReportSO> accessCodeReports;
 
     private void OnReportSelected(ReportView report)
     {
@@ -59,5 +63,23 @@ public class ReportContainerView : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(reportsLayoutGroupRectTransform);
 
         reportsLayoutGroup.enabled = true;
+    }
+
+    [ContextMenu("Add Robot Reports")]
+    public void AddRobotReports()
+    {
+        foreach (var report in robotReports)
+        {
+            AddReport(report.GetName(), report.GetDescription());
+        }
+    }
+
+    [ContextMenu("Add Access Code Reports")]
+    public void AddAccessCodeReports()
+    {
+        foreach(var report in accessCodeReports)
+        {
+            AddReport(report.GetName(), report.GetDescription());
+        }
     }
 }
