@@ -27,21 +27,21 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        if (backgroundPlaylist.Count > 0)
-        {
-            PlayNext();
-        }
+        //if (backgroundPlaylist.Count > 0)
+        //{
+        //    PlayNext();
+        //}
     }
 
     void Update()
     {
-        if (!musicSource.isPlaying)
+        if (!musicSource.isPlaying && backgroundPlaylist.Count > 0)
         {
             PlayNext();
         }
     }
 
-    void PlayNext()
+    private void PlayNext()
     {
         musicSource.clip = backgroundPlaylist[musicIndex];
         musicSource.Play();
