@@ -31,6 +31,7 @@ public class PlayerCryoChamberEscape : MonoBehaviour
         hud.HideHud();
 
         escapeParticles.Play();
+        gameObject.GetComponent<SoundPlayer>().Play();
         await cryoGlass.OpenAsync();
 
         RotatePlayerToExit();

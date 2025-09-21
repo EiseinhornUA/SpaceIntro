@@ -1,15 +1,15 @@
 using System;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundPlayer : MonoBehaviour
 {
     private AudioManager audioManager;
     private AudioSource SFXSource;
     private AudioSource musicSource;
-    //[SerializeField] private AudioClip clipToPlay;
+    [SerializeField] private AudioClip clipToPlay;
 
     private Vector3 lastPosition;
-    public Vector3 velocity;
+    private Vector3 velocity;
 
     private void Start()
     {
@@ -31,11 +31,14 @@ public class SoundManager : MonoBehaviour
         lastPosition = transform.position;
     }
 
-    private void Step()
+    //Called from animator
+    public void Step()
     {
         if (Math.Abs(velocity.x) > 0.1f)
         {
             PlaySound(audioManager.stepSounds[UnityEngine.Random.Range(0, audioManager.stepSounds.Count)]);
         }
     }
+
+    public void Play() => PlaySound(clipToPlay);
 }

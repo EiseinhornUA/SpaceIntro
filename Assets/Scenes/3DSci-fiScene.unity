@@ -792,7 +792,10 @@ PrefabInstance:
     - {fileID: 998489376099216077, guid: dc4dad41d4c48cf4a9d2e00cc9fe5a2e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 474457819850839492, guid: dc4dad41d4c48cf4a9d2e00cc9fe5a2e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1500669365}
   m_SourcePrefab: {fileID: 100100000, guid: dc4dad41d4c48cf4a9d2e00cc9fe5a2e, type: 3}
 --- !u!224 &75212225 stripped
 RectTransform:
@@ -804,7 +807,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2173290548216757254, guid: dc4dad41d4c48cf4a9d2e00cc9fe5a2e, type: 3}
   m_PrefabInstance: {fileID: 75212224}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1500669362}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32ff71a00e4359a439ba8f4b5170a3de, type: 3}
@@ -19505,6 +19508,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 543450652743735715}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1500669362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 474457819850839492, guid: dc4dad41d4c48cf4a9d2e00cc9fe5a2e, type: 3}
+  m_PrefabInstance: {fileID: 75212224}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1500669365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500669362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ab75c0fc94a134684d184c9864c09c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipToPlay: {fileID: 8300000, guid: 6bdc8db3e5d8b6e4d8ff7c4eed812d46, type: 3}
 --- !u!4 &1502667986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4694425858704872, guid: 226c67e957d036b4085a776c0b220240, type: 3}
@@ -37564,6 +37585,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
+      propertyPath: pickUpItem
+      value: 
+      objectReference: {fileID: 8300000, guid: 6bdc8db3e5d8b6e4d8ff7c4eed812d46, type: 3}
+    - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
+      propertyPath: cryoChamberOpened
+      value: 
+      objectReference: {fileID: 8300000, guid: 3787c519209d0da46b3a65d5d897fef6, type: 3}
     - target: {fileID: 1168424652102059940, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -51611,6 +51640,7 @@ GameObject:
   - component: {fileID: 990117457}
   - component: {fileID: 990117454}
   - component: {fileID: 8745115816982683095}
+  - component: {fileID: 8745115816982683096}
   m_Layer: 11
   m_Name: CryoChamberDoor
   m_TagString: Untagged
@@ -51640,6 +51670,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1280204112134479622, guid: 1e2503bb936c54047ae51566c75e42e7, type: 3}
+--- !u!114 &8745115816982683096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8745115816982683094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ab75c0fc94a134684d184c9864c09c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipToPlay: {fileID: 8300000, guid: 3787c519209d0da46b3a65d5d897fef6, type: 3}
 --- !u!1001 &8745803825766890791
 PrefabInstance:
   m_ObjectHideFlags: 0

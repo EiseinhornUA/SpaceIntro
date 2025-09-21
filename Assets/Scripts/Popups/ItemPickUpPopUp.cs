@@ -36,18 +36,23 @@ public class ItemPickUpPopUp : Popup
         CanvasScaler canvasScaler = this.GetComponentInParent<CanvasScaler>();
         Canvas canvas = this.GetComponentInParent<Canvas>();
 
-        startScreenPosition.x /= Screen.width / canvas.GetComponent<RectTransform>().sizeDelta.x;
-        startScreenPosition.y /= Screen.width / canvas.GetComponent<RectTransform>().sizeDelta.y;
+        Vector2 canvasSizeDelta = canvas.GetComponent<RectTransform>().sizeDelta;
+        startScreenPosition.x /= Screen.width / canvasSizeDelta.x;
+        startScreenPosition.y /= Screen.width / canvasSizeDelta.y;
 
         Vector2 pos = itemIconTransform.anchoredPosition;
         pos.x = startScreenPosition.x + offsetX;
         pos.y = startScreenPosition.y + offsetY;
         itemIconTransform.anchoredPosition = pos;
-        var targetScreenPosition = new Vector2(canvas.GetComponent<RectTransform>().sizeDelta.x + inventoryIconRectTransform.anchoredPosition.x,
-            canvas.GetComponent<RectTransform>().sizeDelta.y + inventoryIconRectTransform.anchoredPosition.y);
-        await itemIconTransform.DOAnchorPos(targetScreenPosition, moveToInventoryDuration).SetEase(Ease.InCubic);
+        var targetScreenPosition = new Vector2(canvasSizeDelta.x + inventoryIconRectTransform.anchoredPosition.x,
+            canvasSizeDelta.y + inventoryIconRectTransform.anchoredPosition.y);
+        await itemIconTransform.DOAnchorPos(targetScreenPosition, moveToInventoryDuration)
+            .SetEase(Ease.InCubic);
         FadeOut();
         var initialInventoryIconScale = inventoryIconRectTransform.localScale;
+
+        gameObject.GetComponent<SoundPlayer>().Play();
+
         await inventoryIconRectTransform.DOScale(new Vector3(inventoryIconScale, inventoryIconScale, inventoryIconScale),
             inventoryIconScaleDuration * 0.5f);
         await inventoryIconRectTransform.DOScale(initialInventoryIconScale, inventoryIconScaleDuration * 0.5f);
