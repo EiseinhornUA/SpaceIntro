@@ -57,9 +57,14 @@ public class RobotFollow : MonoBehaviour
         }
     }
 
-    public void TurnOnRobot()
+    public void TurnOnRobot() => TurnOnRobotAsync().Forget();
+
+    public async UniTask TurnOnRobotAsync()
     {
         isRobotOn = true;
+        gameObject.GetComponent<SoundPlayer>().Play();
+        await UniTask.WaitForSeconds(gameObject.GetComponent<SoundPlayer>().clipToPlay.length);
+        gameObject.GetComponent<AudioSource>().Play();
     }
 
     public void TurnOffRobot()

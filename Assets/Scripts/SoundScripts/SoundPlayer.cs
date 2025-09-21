@@ -6,12 +6,12 @@ public class SoundPlayer : MonoBehaviour
     private AudioManager audioManager;
     private AudioSource SFXSource;
     private AudioSource musicSource;
-    [SerializeField] private AudioClip clipToPlay;
+    [SerializeField] public AudioClip clipToPlay;
 
     private Vector3 lastPosition;
     private Vector3 velocity;
 
-    private void Start()
+    private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         SFXSource = audioManager.SFXSource;

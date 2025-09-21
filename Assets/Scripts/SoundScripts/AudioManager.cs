@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip pickUpItem;
 
     [Header("---Robot---")]
+    public AudioClip turnOnRobot;
     public AudioClip robotIdle;
 
     [Header("---Objects---")]
