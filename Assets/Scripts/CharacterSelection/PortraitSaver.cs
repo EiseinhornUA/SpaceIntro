@@ -4,7 +4,13 @@ using System.IO;
 public class PortraitSaver : MonoBehaviour
 {
     [SerializeField] private RenderTexture renderTexture;
+    [SerializeField] private CharacterSelector characterSelector;
     private const string fileName = "CharacterPortrait.png";
+
+    private void Start()
+    {
+        characterSelector.OnCharacterSelected.AddListener(SaveImage);
+    }
 
     public void SaveImage()
     {

@@ -5,13 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CharacterSelector : MonoBehaviour
+public class CharacterSelector : Popup
 {
     #region SerializeFields
     [SerializeField] private CharacterContainer characterContainer;
+    [SerializeField] private Transform characterParent;
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI characterDescriptionText;
     [SerializeField] private TMP_InputField characterNameInputField;
@@ -20,6 +22,7 @@ public class CharacterSelector : MonoBehaviour
     [SerializeField] private Button selectButton;
     [SerializeField] private Button changeHairColorButton;
     [SerializeField] private Button changeSkinColorButton;
+    [SerializeField] private Button backButton;
     [SerializeField] private HairColorChanger hairColorChanger;
     [SerializeField] private SkinChanger skinChanger;
     [SerializeField] private GameObject loadingText;
@@ -31,17 +34,24 @@ public class CharacterSelector : MonoBehaviour
 
     private int selectedIndex = 0;
 
+    public UnityEvent OnCharacterSelected { get; private set; } = new();
+    public UnityEvent OnBackButtonClicked { get; private set; } = new();
+
     private void Start()
     {
+        #region Listeners
         nextButton.onClick.AddListener(SelectNext);
         previousButton.onClick.AddListener(SelectPrevious);
         selectButton.onClick.AddListener(Select);
         changeHairColorButton.onClick.AddListener(HairChangeColor);
         changeSkinColorButton.onClick.AddListener(ChangeSkinColor);
+        characterNameInputField.onValueChanged.AddListener(OnNameChanged);
+        backButton.onClick.AddListener(() => OnBackButtonClicked.Invoke());
+        #endregion // Listeners
 
         foreach (var character in characterContainer.GetCharacters())
         {
-            GameObject instance = Instantiate(character, transform);
+            GameObject instance = Instantiate(character, characterParent);
             characters.Add(instance);
             instance.SetActive(false);
         }
@@ -51,20 +61,9 @@ public class CharacterSelector : MonoBehaviour
         SetDescription(roles[selectedIndex].GetDescription());
     }
 
-    private void Update()
+    private void OnNameChanged(string name)
     {
-        if (IsNameEmpty())
-        {
-            selectButton.gameObject.SetActive(false);
-            return;
-        }
-
-        selectButton.gameObject.SetActive(true);
-    }
-
-    private bool IsNameEmpty()
-    {
-        return string.IsNullOrWhiteSpace(characterNameInputField.text);
+        selectButton.gameObject.SetActive(!string.IsNullOrWhiteSpace(name));
     }
 
     private void HairChangeColor()
@@ -79,18 +78,18 @@ public class CharacterSelector : MonoBehaviour
 
     private void SelectNext()
     {
-        Hide(selectedIndex);
+        HideCharacter(selectedIndex);
         selectedIndex = (selectedIndex + 1) % characterContainer.Count;
-        Show(selectedIndex);
+        ShowCharacter(selectedIndex);
         SetCharacterName(roles[selectedIndex].GetName());
         SetDescription(roles[selectedIndex].GetDescription());
     }
 
     private void SelectPrevious()
     {
-        Hide(selectedIndex);
+        HideCharacter(selectedIndex);
         selectedIndex = (selectedIndex - 1 + characterContainer.Count) % characterContainer.Count;
-        Show(selectedIndex);
+        ShowCharacter(selectedIndex);
         SetCharacterName(roles[selectedIndex].GetName());
         SetDescription(roles[selectedIndex].GetDescription());
     }
@@ -102,28 +101,16 @@ public class CharacterSelector : MonoBehaviour
         PlayerPrefs.SetString("CharacterName", characterNameInputField.text);
         PlayerPrefs.SetInt("SelectedCharacter", selectedIndex);
 
-        FindObjectOfType<PortraitSaver>().SaveImage();
-        ShowLoadingScreen();
+        OnCharacterSelected?.Invoke();
+        
         await SceneManager.LoadSceneAsync("3DSci-fiScene");
         //CloseLoadingScreen();
-    }
-
-    private void ShowLoadingScreen()
-    {
-        loadingText.SetActive(true);
-        background.SetActive(true);
-    }
-
-    private void CloseLoadingScreen()
-    {
-        loadingText.SetActive(false);
-        background.SetActive(false);
     }
 
     private void SetCharacterName(string name) => characterNameText.text = name;
     private void SetDescription(string text) => characterDescriptionText.text = text;
 
 
-    private void Show(int index) => characters[index].SetActive(true);
-    private void Hide(int index) => characters[index].SetActive(false);
+    private void ShowCharacter(int index) => characters[index].SetActive(true);
+    private void HideCharacter(int index) => characters[index].SetActive(false);
 }
