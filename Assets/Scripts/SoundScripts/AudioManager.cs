@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] AudioSource musicSource;
-    [SerializeField] AudioSource SFXSource;
+    [SerializeField] public AudioSource musicSource;
+    [SerializeField] public AudioSource SFXSource;
 
     [Header("---Background---")]
     public List<AudioClip> backgroundPlaylist;
 
     [Header("---Player---")]
-    public AudioClip walking;
+    public List<AudioClip> stepSounds;
     public AudioClip pickUpItem;
 
     [Header("---Robot---")]
