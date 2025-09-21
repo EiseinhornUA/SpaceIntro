@@ -23,7 +23,7 @@ public class AudioManager : MonoBehaviour
     [Header("---UI---")]
     public AudioClip pdaOpen;
     public AudioClip pdaClose;
-    public int musicIndex = 0;
+    private int musicIndex = 0;
 
     private void Start()
     {
