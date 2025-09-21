@@ -77,6 +77,11 @@ public class Player : MonoBehaviour {
 				velocity.y = 0;
 			}
 		}
+
+		if (Mathf.Abs(velocityXSmoothing) < 0.1)
+		{
+            velocityXSmoothing = 0;
+        }
 	}
 
 	public void SetDirectionalInput (Vector2 input) {

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -9,11 +8,16 @@ public class SoundManager : MonoBehaviour
     private AudioSource musicSource;
     //[SerializeField] private AudioClip clipToPlay;
 
+    private Vector3 lastPosition;
+    public Vector3 velocity;
+
     private void Start()
     {
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         SFXSource = audioManager.SFXSource;
         musicSource = audioManager.musicSource;
+
+        lastPosition = transform.position;
     }
 
     public void PlaySound(AudioClip clip)
@@ -21,5 +25,17 @@ public class SoundManager : MonoBehaviour
         SFXSource.PlayOneShot(clip);
     }
 
-    private void Step() => PlaySound(audioManager.stepSounds[UnityEngine.Random.Range(0, audioManager.stepSounds.Count)]);
+    private void Update()
+    {
+        velocity = (transform.position - lastPosition) / Time.deltaTime;
+        lastPosition = transform.position;
+    }
+
+    private void Step()
+    {
+        if (Math.Abs(velocity.x) > 0.1f)
+        {
+            PlaySound(audioManager.stepSounds[UnityEngine.Random.Range(0, audioManager.stepSounds.Count)]);
+        }
+    }
 }
