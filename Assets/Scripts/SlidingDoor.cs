@@ -30,6 +30,7 @@ public class SlidingDoor : MonoBehaviour
         }
         if (!isOpen)
         {
+            gameObject.GetComponent<SoundPlayer>().Play();
             await doorMoveablePart.transform.DOLocalMoveY(openLength, duration);
             isOpen = true;
         }
@@ -47,6 +48,7 @@ public class SlidingDoor : MonoBehaviour
         }
         if (isOpen)
         {
+            gameObject.GetComponent<SoundPlayer>().Play();
             await doorMoveablePart.transform.DOLocalMoveY(localDoorPosition.y, duration);
             isOpen = false;
         }
