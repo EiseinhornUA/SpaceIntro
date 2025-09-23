@@ -6250,6 +6250,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1543695114780030, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1886455280}
+    - targetCorrespondingSourceObject: {fileID: 1543695114780030, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1886455285}
   m_SourcePrefab: {fileID: 100100000, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
 --- !u!4 &442142305 stripped
 Transform:
@@ -24331,6 +24334,19 @@ MonoBehaviour:
   duration: 0.5
   doorMoveablePart: {fileID: 1309923841}
   openPercent: 20
+--- !u!114 &1886455285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886455279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ab75c0fc94a134684d184c9864c09c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipToPlay: {fileID: 8300000, guid: 23a60b2f5b7901f41b594a11d3c8c333, type: 3}
 --- !u!1 &1886706796
 GameObject:
   m_ObjectHideFlags: 0
@@ -37707,6 +37723,10 @@ PrefabInstance:
       propertyPath: pickUpItem
       value: 
       objectReference: {fileID: 8300000, guid: 6bdc8db3e5d8b6e4d8ff7c4eed812d46, type: 3}
+    - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
+      propertyPath: doorOpening
+      value: 
+      objectReference: {fileID: 8300000, guid: ab8f9cda2766ea64a9e99a2204e6ef10, type: 3}
     - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
       propertyPath: turnOnRobot
       value: 
