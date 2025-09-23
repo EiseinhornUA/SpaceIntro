@@ -4,7 +4,7 @@ using UnityEngine;
 public class SoundPlayer : MonoBehaviour
 {
     private AudioManager audioManager;
-    private AudioSource SFXSource;
+    public AudioSource SFXSource;
     private AudioSource musicSource;
     [SerializeField] public AudioClip clipToPlay;
 

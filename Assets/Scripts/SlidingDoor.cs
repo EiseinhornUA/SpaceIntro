@@ -30,7 +30,8 @@ public class SlidingDoor : MonoBehaviour
         }
         if (!isOpen)
         {
-            gameObject.GetComponent<SoundPlayer>().Play();
+            if (!gameObject.GetComponent<SoundPlayer>().SFXSource.isPlaying)
+                gameObject.GetComponent<SoundPlayer>().Play();
             await doorMoveablePart.transform.DOLocalMoveY(openLength, duration);
             isOpen = true;
         }

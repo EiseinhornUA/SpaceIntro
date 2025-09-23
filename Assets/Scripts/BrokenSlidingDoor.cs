@@ -21,7 +21,8 @@ public class BrokenSlidingDoor : SlidingDoor
         }
         if (!isOpen)
         {
-            gameObject.GetComponent<SoundPlayer>().Play();
+            if (!gameObject.GetComponent<SoundPlayer>().SFXSource.isPlaying)
+                gameObject.GetComponent<SoundPlayer>().Play();
             await doorMoveablePart.transform.DOLocalMoveY(openLength * (openPercent / 100f), duration * (openPercent / 100f));
             isOpen = true;
         }
