@@ -19,7 +19,7 @@ public class RobotChat : MonoBehaviour
     [SerializeField] private DialogueCharacter playerCharacter;
     [SerializeField] private DialogueCharacter robotCharacter;
 
-    public Action<List<PhraseCharacterPair>> OnChatHistoryUpdated = delegate { };
+    public event Action<List<PhraseCharacterPair>> OnChatHistoryUpdated = delegate { };
 
     private void Start()
     {

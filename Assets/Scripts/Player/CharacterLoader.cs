@@ -1,5 +1,6 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CharacterLoader : MonoBehaviour
 {
@@ -9,12 +10,16 @@ public class CharacterLoader : MonoBehaviour
 
     private GameObject character;
 
+    public event Action<List<Skill>> OnCharacterLoaded = delegate { };
+
     private void Start()
     {
         ClearChildren();
 
         int index = PlayerPrefs.GetInt("SelectedCharacter", 0);
         character = Instantiate(characterContainer.GetCharacter(index), parentObject);
+
+        OnCharacterLoaded?.Invoke(characterContainer.GetInitialSkills(index));
 
         animator = character.GetComponent<Animator>();
     }

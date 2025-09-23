@@ -12,7 +12,7 @@ public class CharacterContainer : ScriptableObject
     public GameObject GetCharacter(int index) => characters[index].character;
     public List<GameObject> GetCharacters() => characters.Select(c => c.character).ToList();
     public List<CharacterRoleSO> GetRoles() => characters.Select(c => c.role).ToList();
-
+    public List<Skill> GetInitialSkills(int index) => characters[index].role.GetInitialSkills();
 }
 
 [Serializable]

@@ -5,19 +5,25 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DatabaseManager : MonoBehaviour
 {
+    [SerializeField] private CharacterLoader characterLoader;
+    
+    private const string InitialAssessmentName = "A0";
     private DatabaseReference userReference;
     private string userID;
+    private UniTask initializeTask;
 
-    private void Start()
+    private void Awake()
     {
         FirebaseDatabase.DefaultInstance.SetPersistenceEnabled(true);
 
-        InitializeAsync().Forget();
+        SubscribeToEvents();
+
+        initializeTask = InitializeAsync();
     }
 
     private async UniTask InitializeAsync()
@@ -25,11 +31,29 @@ public class DatabaseManager : MonoBehaviour
         await Login();
         InitDatabase();
         await SaveNameAsync();
+    }
 
-        FindObjectOfType<SkillContainer>(true).OnSkillLevelChanged += OnSkillLevelChanged;
+    private void SubscribeToEvents()
+    {
+        FindObjectOfType<SkillContainer>(true).OnSkillLevelChanged += SaveSkill;
+        characterLoader.OnCharacterLoaded += SaveInitialSkills;
         FindObjectOfType<RobotChat>(true).OnChatHistoryUpdated += OnChatHistoryUpdated;
     }
 
+    private void SaveInitialSkills(List<Skill> skills)
+    {
+        SaveInitialSkillsAsync(skills).Forget();
+    }
+
+    private async UniTask SaveInitialSkillsAsync(List<Skill> skills)
+    {
+        await initializeTask;
+        SaveAssesment(skills, InitialAssessmentName);
+        foreach (var skill in skills)
+        {
+            SaveSkillAsync(skill).Forget();
+        }
+    }
 
     private async UniTask Login()
     {
@@ -46,9 +70,9 @@ public class DatabaseManager : MonoBehaviour
             .Child(userID);
     }
 
-    private void OnSkillLevelChanged(Skill skill)
+    private void SaveSkill(Skill skill)
     {
-        SaveSkill(skill).Forget();
+        SaveSkillAsync(skill).Forget();
     }
     private void OnChatHistoryUpdated(List<PhraseCharacterPair> conversationHistory)
     {
@@ -70,7 +94,7 @@ public class DatabaseManager : MonoBehaviour
     }
 
 
-    private async UniTask SaveSkill(Skill skill)
+    private async UniTask SaveSkillAsync(Skill skill)
     {
         try
         {
