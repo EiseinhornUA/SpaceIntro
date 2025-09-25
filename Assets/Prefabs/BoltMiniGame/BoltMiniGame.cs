@@ -38,6 +38,10 @@ public class BoltMiniGame : MonoBehaviour
     [SerializeField] private int screwingRotation = 360;
     [SerializeField] public GameObject goalPopup;
 
+    public int numberOfTries = 0;
+    private float floatTimeUsedToFinish = 0;
+    public int timeUsedToFinish = 0;
+
     private enum GameState
     {
         NotStarted,
@@ -298,7 +302,7 @@ public class BoltMiniGame : MonoBehaviour
 
     public void CheckIfGameFinishes()
     {
-        if(IsGameFinished())
+        if (IsGameFinished())
         {
             gameFinished.TrySetResult();
             onGameFinished.Invoke();
@@ -306,6 +310,10 @@ public class BoltMiniGame : MonoBehaviour
             gameState = GameState.Finished;
             startGameInteractable.Deactivate();
             goalPopup.SetActive(true);
+        }
+        else {
+            floatTimeUsedToFinish += Time.deltaTime;
+            timeUsedToFinish = (int)floatTimeUsedToFinish;
         }
     }
 
@@ -321,6 +329,7 @@ public class BoltMiniGame : MonoBehaviour
 
     public void ResetMiniGame()
     {
+        numberOfTries += 1;
         gameState = GameState.Restarting;
         GameObject reloadedPrefab = Instantiate(resetGame,
             transform.position,

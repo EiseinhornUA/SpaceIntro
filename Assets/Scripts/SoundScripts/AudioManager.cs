@@ -11,19 +11,19 @@ public class AudioManager : MonoBehaviour
 
     [Header("---Player---")]
     public List<AudioClip> stepSounds;
-    public AudioClip pickUpItem;
+    //public AudioClip pickUpItem;
 
-    [Header("---Robot---")]
-    public AudioClip turnOnRobot;
-    public AudioClip robotIdle;
+    //[Header("---Robot---")]
+    //public AudioClip turnOnRobot;
+    //public AudioClip robotIdle;
 
-    [Header("---Objects---")]
-    public AudioClip cryoChamberOpened;
-    public AudioClip doorOpening;
+    //[Header("---Objects---")]
+    //public AudioClip cryoChamberOpened;
+    //public AudioClip doorOpening;
 
-    [Header("---UI---")]
-    public AudioClip pdaOpen;
-    public AudioClip pdaClose;
+    //[Header("---UI---")]
+    //public AudioClip pdaOpen;
+    //public AudioClip pdaClose;
     private int musicIndex = 0;
 
     private void Start()
