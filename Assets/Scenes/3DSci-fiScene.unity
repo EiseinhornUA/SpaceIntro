@@ -17835,6 +17835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab75c0fc94a134684d184c9864c09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXSource: {fileID: 0}
   clipToPlay: {fileID: 8300000, guid: 205d0a23aafc8e142ab8e16e71b0beda, type: 3}
 --- !u!82 &1324533541
 AudioSource:
@@ -19634,6 +19635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab75c0fc94a134684d184c9864c09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXSource: {fileID: 0}
   clipToPlay: {fileID: 8300000, guid: 6bdc8db3e5d8b6e4d8ff7c4eed812d46, type: 3}
 --- !u!4 &1502667986 stripped
 Transform:
@@ -24346,6 +24348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab75c0fc94a134684d184c9864c09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXSource: {fileID: 0}
   clipToPlay: {fileID: 8300000, guid: 23a60b2f5b7901f41b594a11d3c8c333, type: 3}
 --- !u!1 &1886706796
 GameObject:
@@ -37735,6 +37738,26 @@ PrefabInstance:
       propertyPath: cryoChamberOpened
       value: 
       objectReference: {fileID: 8300000, guid: 3787c519209d0da46b3a65d5d897fef6, type: 3}
+    - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
+      propertyPath: backgroundPlaylist.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
+      propertyPath: backgroundPlaylist.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 94851e770ad2f0f4fa6ce065465b51ca, type: 3}
+    - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
+      propertyPath: backgroundPlaylist.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 09c61f7ab59e14347b0209e544634014, type: 3}
+    - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
+      propertyPath: backgroundPlaylist.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 055f8c1f8c754954da6937d7181fa908, type: 3}
+    - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
+      propertyPath: backgroundPlaylist.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 67cd0e43fd0617c4daa7b05058943d56, type: 3}
     - target: {fileID: 1168424652102059940, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -51824,6 +51847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab75c0fc94a134684d184c9864c09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXSource: {fileID: 0}
   clipToPlay: {fileID: 8300000, guid: 3787c519209d0da46b3a65d5d897fef6, type: 3}
 --- !u!1001 &8745803825766890791
 PrefabInstance:
