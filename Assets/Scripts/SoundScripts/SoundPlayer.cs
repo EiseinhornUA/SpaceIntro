@@ -8,16 +8,11 @@ public class SoundPlayer : MonoBehaviour
     private AudioSource musicSource;
     [SerializeField] public AudioClip clipToPlay;
 
-    private Vector3 lastPosition;
-    private Vector3 velocity;
-
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         SFXSource = audioManager.SFXSource;
         musicSource = audioManager.musicSource;
-
-        lastPosition = transform.position;
     }
 
     public void PlaySound(AudioClip clip)
@@ -25,16 +20,10 @@ public class SoundPlayer : MonoBehaviour
         SFXSource.PlayOneShot(clip);
     }
 
-    private void Update()
-    {
-        velocity = (transform.position - lastPosition) / Time.deltaTime;
-        lastPosition = transform.position;
-    }
-
     //Called from animator
     public void Step()
     {
-        if (Math.Abs(velocity.x) > 0.1f)
+        if (Math.Abs(audioManager.playerVelocity.x) > 0.1f)
         {
             PlaySound(audioManager.stepSounds[UnityEngine.Random.Range(0, audioManager.stepSounds.Count)]);
         }
