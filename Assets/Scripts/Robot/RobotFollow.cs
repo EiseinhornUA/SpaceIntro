@@ -114,6 +114,7 @@ public class RobotFollow : MonoBehaviour
         KnockDownDoor();
         playerParent.GetComponent<Player>().EnableControls(true);
         await UniTask.Delay(System.TimeSpan.FromSeconds(disableTimeAfterHit));
+        doorTransform.gameObject.SetActive(false);
 
         await DisableRobotPhysic();
 
