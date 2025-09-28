@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEditor.Search;
 using UnityEngine;
 
 public class ScreenSelector : MonoBehaviour
@@ -40,6 +39,12 @@ public class ScreenSelector : MonoBehaviour
             HideAll();
             mainMenu.Show();
         });
+
+        if (GameStateProvider.IsGameCompleted())
+        {
+            HideAll();
+            profile.Show();
+        }
         //mainMenu.OnGameStarted.AddListener(() =>
         //{
         //    HideAll();

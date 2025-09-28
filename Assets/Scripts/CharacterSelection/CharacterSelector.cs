@@ -49,16 +49,21 @@ public class CharacterSelector : Popup
         backButton.onClick.AddListener(() => OnBackButtonClicked.Invoke());
         #endregion // Listeners
 
+        InstantiateCharacters();
+        roles.AddRange(characterContainer.GetRoles());
+        characters[selectedIndex].SetActive(true);
+        SetCharacterName(roles[selectedIndex].GetName());
+        SetDescription(roles[selectedIndex].GetDescription());
+    }
+
+    public void InstantiateCharacters()
+    {
         foreach (var character in characterContainer.GetCharacters())
         {
             GameObject instance = Instantiate(character, characterParent);
             characters.Add(instance);
             instance.SetActive(false);
         }
-        roles.AddRange(characterContainer.GetRoles());
-        characters[selectedIndex].SetActive(true);
-        SetCharacterName(roles[selectedIndex].GetName());
-        SetDescription(roles[selectedIndex].GetDescription());
     }
 
     private void OnNameChanged(string name)

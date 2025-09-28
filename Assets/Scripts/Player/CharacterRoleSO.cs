@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Dynamic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CharacterRole", menuName = "ScriptableObjects/CharacterRole", order = 1)]
