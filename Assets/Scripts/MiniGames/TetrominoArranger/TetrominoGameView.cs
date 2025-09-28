@@ -10,10 +10,11 @@ public class TetrominoGameView : Popup
     [SerializeField] private Color tetrominoColor = Color.white;
     [Range(0.1f, 5f)]
     [SerializeField] private float endGameDurationSeconds = 1f;
+    private UniTaskCompletionSource endGameTcs = new();
 
     private void Start()
     {
-        tetrominoGrid.onEndGame.AddListener(() => UniTask.Void(async () => await OnEndGame()));
+        tetrominoGrid.onEndGame.AddListener(EndGame);
         closeButton.onClick.AddListener(Hide);
         resetButton.onClick.AddListener(tetrominoDragHandler.ResetGame);
 
@@ -31,10 +32,22 @@ public class TetrominoGameView : Popup
     [ContextMenu("Change Tetrominos Color")]
     private void ChangeTetrominosColor() => ChangeTetrominosColor(tetrominoColor);
 
-    private async UniTask OnEndGame()
+    public async UniTask StartGameAsync()
+    {
+        Show();
+
+        await endGameTcs.Task;
+    }
+
+    private void EndGame() => EndGameAsync().Forget();
+
+    private async UniTask EndGameAsync()
     {
         await UniTask.Delay((int)(endGameDurationSeconds * 1000));
+
         Hide();
+        
+        endGameTcs?.TrySetResult();
     }
 }
 
