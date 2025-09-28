@@ -7,31 +7,25 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioSource SFXSource;
 
     [Header("---Background---")]
-    public List<AudioClip> backgroundPlaylist;
+    [SerializeField] public List<AudioClip> backgroundPlaylist;
 
     [Header("---Player---")]
-    public List<AudioClip> stepSounds;
-    //public AudioClip pickUpItem;
+    [SerializeField] public List<AudioClip> stepSounds;
 
-    //[Header("---Robot---")]
-    //public AudioClip turnOnRobot;
-    //public AudioClip robotIdle;
-
-    //[Header("---Objects---")]
-    //public AudioClip cryoChamberOpened;
-    //public AudioClip doorOpening;
-
-    //[Header("---UI---")]
-    //public AudioClip pdaOpen;
-    //public AudioClip pdaClose;
+    [Header("---Objects---")]
+    [SerializeField] private AudioSource pipeSteamTop;
+    [SerializeField] private AudioSource pipeSteamBottom;
+    
     private int musicIndex = 0;
 
-    private void Start()
+    [SerializeField] public Player player;
+    public Vector3 playerVelocity;
+    private Vector3 lastPosition;
+
+
+    private void Awake()
     {
-        //if (backgroundPlaylist.Count > 0)
-        //{
-        //    PlayNext();
-        //}
+        lastPosition = transform.position;
     }
 
     void Update()
@@ -40,6 +34,31 @@ public class AudioManager : MonoBehaviour
         {
             PlayNext();
         }
+
+        const int positionBetweenFloors = 8;
+        if (player.transform.position.y < positionBetweenFloors)
+        {
+            if (!pipeSteamBottom.loop)
+            {
+                pipeSteamTop.Stop();
+                pipeSteamTop.loop = false;
+                pipeSteamBottom.Play();
+                pipeSteamBottom.loop = true;
+            }
+        }
+        else
+        {
+            if (!pipeSteamTop.loop)
+            {
+                pipeSteamBottom.Stop();
+                pipeSteamBottom.loop = false;
+                pipeSteamTop.Play();
+                pipeSteamTop.loop = true;
+            }
+        }
+
+        playerVelocity = (player.transform.position - lastPosition) / Time.deltaTime;
+        lastPosition = player.transform.position;
     }
 
     private void PlayNext()

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -18,7 +19,10 @@ public class NumPad: MonoBehaviour
     [SerializeField] private TextMeshProUGUI symbolEntry;
     [SerializeField] private string password;
     [SerializeField] private UnityEvent onAccessGranted;
-    [SerializeField] private GameObject playerControls;
+
+    private UniTaskCompletionSource accessGranted;
+
+    [SerializeField] private GameObject numPadInteractable;
 
     private void Awake()
     {
@@ -31,6 +35,8 @@ public class NumPad: MonoBehaviour
     private void OnEnable()
     {
         Hud.Instance.HideHud();
+        if (accessGranted == null)
+            accessGranted = new UniTaskCompletionSource();
     }
 
     private void OnDisable()
@@ -45,16 +51,17 @@ public class NumPad: MonoBehaviour
             if (symbolEntry.text == password)
             {
                 symbolEntry.text = "SUCCESS";
-                await Cysharp.Threading.Tasks.UniTask.Delay(TimeSpan.FromSeconds(0.75f));
+                await UniTask.Delay(TimeSpan.FromSeconds(0.75f));
                 symbolEntry.text = "";
-                onAccessGranted.Invoke();
-                playerControls.SetActive(true);
+                numPadInteractable.GetComponent<Interactable>().Deactivate();
+                accessGranted.TrySetResult();
+                OnAccessGranted();
             }
 
             else if (symbolEntry.text != "SUCCESS")
             {
                 symbolEntry.text = "ERROR";
-                await Cysharp.Threading.Tasks.UniTask.Delay(TimeSpan.FromSeconds(0.75f));
+                await UniTask.Delay(TimeSpan.FromSeconds(0.75f));
                 symbolEntry.text = "";
             }
 
@@ -77,5 +84,21 @@ public class NumPad: MonoBehaviour
         }
 
         symbolEntry.text += symbol;
+    }
+
+    public void OnAccessGranted()
+    {
+        onAccessGranted.Invoke();
+        gameObject.SetActive(false);
+    }
+
+    public async UniTask WaitUntilFinished()
+    {
+        await accessGranted.Task;
+    }
+
+    public async UniTask StartNumpad()
+    {
+        await WaitUntilFinished();
     }
 }
