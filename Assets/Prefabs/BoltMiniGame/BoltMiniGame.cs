@@ -37,10 +37,13 @@ public class BoltMiniGame : MonoBehaviour
     [SerializeField] private float screwingTime = 0.25f;
     [SerializeField] private int screwingRotation = 360;
     [SerializeField] public GameObject goalPopup;
+    [SerializeField] public GameObject skipPopup;
 
     public int numberOfTries = 0;
     private float floatTimeUsedToFinish = 0;
     public int timeUsedToFinish = 0;
+    public bool isReadingPopup = false;
+    [SerializeField] private int timeToShowSkipPopup = 120;
 
     private enum GameState
     {
@@ -111,6 +114,12 @@ public class BoltMiniGame : MonoBehaviour
         RemoveDetachedPlanks();
 
         CheckIfGameFinishes();
+
+        if ((floatTimeUsedToFinish % timeToShowSkipPopup) < Time.deltaTime && timeUsedToFinish > 0)
+        {
+            isReadingPopup = true;
+            skipPopup.SetActive(true);
+        }
     }
 
     private void AttachToCamera()
@@ -312,8 +321,11 @@ public class BoltMiniGame : MonoBehaviour
             goalPopup.SetActive(true);
         }
         else {
-            floatTimeUsedToFinish += Time.deltaTime;
-            timeUsedToFinish = (int)floatTimeUsedToFinish;
+            if (!isReadingPopup)
+            {
+                floatTimeUsedToFinish += Time.deltaTime;
+                timeUsedToFinish = (int)floatTimeUsedToFinish;
+            }
         }
     }
 
@@ -356,7 +368,7 @@ public class BoltMiniGame : MonoBehaviour
     }
     
     [ContextMenu("FinishGame")]
-    private void FinishGame()
+    public void FinishGame()
     {
         gameFinished.TrySetResult();
         onGameFinished.Invoke();

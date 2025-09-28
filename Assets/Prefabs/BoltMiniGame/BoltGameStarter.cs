@@ -22,6 +22,7 @@ public class BoltGameStarter : MonoBehaviour
     [DoNotSerialize] public float initialCameraDampingTime;
     [SerializeField] public float cameraDampingTime = 0.2f;
     [SerializeField] private GameObject goalPopup;
+    [SerializeField] private GameObject skipPopup;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class BoltGameStarter : MonoBehaviour
             boltMiniGameSerializes.boltMiniGame.closeButton = closeButton;
             boltMiniGameSerializes.boltMiniGame.resetButton = resetButton;
             boltMiniGameSerializes.boltMiniGame.goalPopup = goalPopup;
+            boltMiniGameSerializes.boltMiniGame.skipPopup = skipPopup;
         }
     }
 
@@ -70,6 +72,30 @@ public class BoltGameStarter : MonoBehaviour
             if (boltMiniGameSerializes.boltMiniGame.gameObject.name == "BoltGameRobot")
             {
                 await StartGame(boltMiniGameSerializes);
+            }
+        }
+    }
+
+    public void SkipActiveGame()
+    {
+        foreach (var boltMiniGameSerializes in boltMiniGamesSerializes)
+        {
+            if (boltMiniGameSerializes.boltMiniGame.isActiveAndEnabled)
+            {
+                boltMiniGameSerializes.boltMiniGame.FinishGame();
+                boltMiniGameSerializes.boltMiniGame.isReadingPopup = false;
+                boltMiniGameSerializes.boltMiniGame.skipPopup.SetActive(false);
+            }
+        }
+    }
+
+    public void StopReadingPopup()
+    {
+        foreach (var boltMiniGameSerializes in boltMiniGamesSerializes)
+        {
+            if (boltMiniGameSerializes.boltMiniGame.isActiveAndEnabled)
+            {
+                boltMiniGameSerializes.boltMiniGame.isReadingPopup = false;
             }
         }
     }
