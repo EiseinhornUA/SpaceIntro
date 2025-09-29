@@ -36,6 +36,8 @@ public class TetrominoGameView : Popup
     {
         Show();
 
+        Hud.Instance.HideHud();
+
         await endGameTcs.Task;
     }
 
@@ -46,7 +48,8 @@ public class TetrominoGameView : Popup
         await UniTask.Delay((int)(endGameDurationSeconds * 1000));
 
         Hide();
-        
+        Hud.Instance.ShowHud();
+
         endGameTcs?.TrySetResult();
     }
 }

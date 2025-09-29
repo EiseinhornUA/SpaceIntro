@@ -5,8 +5,8 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class DatabaseManager : MonoBehaviour
 {
@@ -19,6 +19,8 @@ public class DatabaseManager : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
         FirebaseDatabase.DefaultInstance.SetPersistenceEnabled(true);
 
         SubscribeToEvents();
@@ -30,6 +32,7 @@ public class DatabaseManager : MonoBehaviour
     {
         await Login();
         InitDatabase();
+        await SaveAliasID();
         await SaveNameAsync();
     }
 
@@ -68,6 +71,20 @@ public class DatabaseManager : MonoBehaviour
             .RootReference
             .Child("users")
             .Child(userID);
+    }
+
+    private async UniTask SaveAliasID()
+    {
+        try
+        {
+            string userIDAlias = UIDGenerator.Generate6CharHash(userID);
+            await userReference.Child("UID").SetValueAsync(userIDAlias);
+            Debug.Log($"Saved aliasID: {userIDAlias}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"SaveAliasID failed: {e.Message}");
+        }
     }
 
     private void SaveSkill(Skill skill)
@@ -140,6 +157,51 @@ public class DatabaseManager : MonoBehaviour
         {
             Debug.LogError($"SaveAssesment failed: {e.Message}");
         }
+    }
+
+    public async UniTask<List<Skill>> GetSkillsAsync()
+    {
+        var skills = new List<Skill>();
+
+        try
+        {
+            var snapshot = await userReference.Child("metrics").GetValueAsync();
+
+            if (snapshot.Exists)
+            {
+                foreach (var child in snapshot.Children)
+                {
+                    string skillName = child.Key;
+                    float level = float.Parse(child.Value.ToString());
+
+                    skills.Add(new Skill(skillName, level));
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"GetSkills failed: {e.Message}");
+        }
+
+        return skills;
+    }
+
+    public async UniTask<string> GetAliasUserIDAsync()
+    {
+        try
+        {
+            var snapshot = await userReference.Child("UID").GetValueAsync();
+
+            if (snapshot.Exists)
+            {
+                return snapshot.Value.ToString();
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"GetAliasUserIDAsync failed: {e.Message}");
+        }
+        return default;
     }
 }
 

@@ -12,7 +12,9 @@ internal class MainMenu : Popup
 
     private void Start()
     {
-        startButton.onClick.AddListener(() => OnGameStarted.Invoke());
-        profileButton.onClick.AddListener(() => OnProfileButtonClicked.Invoke());
+        startButton.onClick.AddListener(OnGameStarted.Invoke);
+        profileButton.onClick.AddListener(OnProfileButtonClicked.Invoke);
+
+        profileButton.interactable = GameStateProvider.IsGameCompleted();
     }
 }

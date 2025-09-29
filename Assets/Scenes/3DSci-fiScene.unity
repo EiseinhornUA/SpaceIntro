@@ -2305,10 +2305,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4253174332680612863}
     m_Modifications:
-    - target: {fileID: 847474242554862277, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 45.379883
-      objectReference: {fileID: 0}
     - target: {fileID: 1152749685188436842, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
       propertyPath: m_Name
       value: TetrominoGame
@@ -2316,22 +2312,6 @@ PrefabInstance:
     - target: {fileID: 1152749685188436842, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2405111870636507355, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3196945151069060194, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3698095101806218952, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5087503072060506764, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7145864197449529957, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
       propertyPath: m_Pivot.x
@@ -5164,6 +5144,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4944680388452134, guid: 3deace0cd22ccd54b809b039e70ff8f6, type: 3}
   m_PrefabInstance: {fileID: 346708044}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &352123096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 352123098}
+  - component: {fileID: 352123097}
+  m_Layer: 0
+  m_Name: DatabaseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &352123097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352123096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c172cefd426f5847840e09e2e71e690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterLoader: {fileID: 1767369791}
+--- !u!4 &352123098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352123096}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 514.0687, y: 300.75812, z: -0.0035582448}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &354840327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23930,6 +23955,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
+--- !u!114 &1767369790 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5030280334681612359, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
+  m_PrefabInstance: {fileID: 1767369789}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06225ab69f56f784a90947368277b434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1767369791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8469179827740618700, guid: 399765eb2379fc3448cf30a031bed40f, type: 3}
+  m_PrefabInstance: {fileID: 1767369789}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a151d7bda37a5014c94b16d82965a5ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1774822747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51283,6 +51330,7 @@ MonoBehaviour:
       3.x","value":{"$content":37,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"CryoDoorNumPad","value":{"$content":38,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"CryoDoorNumPadUI","value":{"$content":39,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"NumPad,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"GameCompleter","value":{"$content":40,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"GameCompleter,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 5449569031936165082}
@@ -51325,6 +51373,7 @@ MonoBehaviour:
     - {fileID: 2125763303}
     - {fileID: 384813571}
     - {fileID: 1929782172}
+    - {fileID: 1767369790}
 --- !u!1001 &7734202611549563111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55273,3 +55322,4 @@ SceneRoots:
   - {fileID: 735657798}
   - {fileID: 1954874744}
   - {fileID: 3224320052876614724}
+  - {fileID: 352123098}
