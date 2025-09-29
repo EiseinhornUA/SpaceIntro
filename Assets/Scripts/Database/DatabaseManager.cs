@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class DatabaseManager : MonoBehaviour
@@ -31,6 +32,7 @@ public class DatabaseManager : MonoBehaviour
     {
         await Login();
         InitDatabase();
+        await SaveAliasID();
         await SaveNameAsync();
     }
 
@@ -69,6 +71,20 @@ public class DatabaseManager : MonoBehaviour
             .RootReference
             .Child("users")
             .Child(userID);
+    }
+
+    private async UniTask SaveAliasID()
+    {
+        try
+        {
+            string userIDAlias = UIDGenerator.Generate6CharHash(userID);
+            await userReference.Child("UID").SetValueAsync(userIDAlias);
+            Debug.Log($"Saved aliasID: {userIDAlias}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"SaveAliasID failed: {e.Message}");
+        }
     }
 
     private void SaveSkill(Skill skill)
@@ -170,6 +186,23 @@ public class DatabaseManager : MonoBehaviour
         return skills;
     }
 
+    public async UniTask<string> GetAliasUserIDAsync()
+    {
+        try
+        {
+            var snapshot = await userReference.Child("UID").GetValueAsync();
+
+            if (snapshot.Exists)
+            {
+                return snapshot.Value.ToString();
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"GetAliasUserIDAsync failed: {e.Message}");
+        }
+        return default;
+    }
 }
 
 [System.Serializable]

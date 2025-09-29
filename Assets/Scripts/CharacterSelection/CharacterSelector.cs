@@ -49,6 +49,7 @@ public class CharacterSelector : Popup
         backButton.onClick.AddListener(() => OnBackButtonClicked.Invoke());
         #endregion // Listeners
 
+        ClearCharacters();
         InstantiateCharacters();
         roles.AddRange(characterContainer.GetRoles());
         characters[selectedIndex].SetActive(true);
@@ -64,6 +65,15 @@ public class CharacterSelector : Popup
             characters.Add(instance);
             instance.SetActive(false);
         }
+    }
+
+    public void ClearCharacters()
+    {
+        foreach (Transform character in characterParent)
+        {
+            Destroy(character.gameObject);
+        }
+        characters.Clear();
     }
 
     private void OnNameChanged(string name)
@@ -107,7 +117,10 @@ public class CharacterSelector : Popup
         PlayerPrefs.SetInt("SelectedCharacter", selectedIndex);
 
         OnCharacterSelected?.Invoke();
-        
+
+        var previousDatabaseManager = FindObjectOfType<DatabaseManager>();
+        if (previousDatabaseManager) Destroy(previousDatabaseManager);
+
         await SceneManager.LoadSceneAsync("3DSci-fiScene");
         //CloseLoadingScreen();
     }

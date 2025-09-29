@@ -9,7 +9,7 @@ public class ScreenSelector : MonoBehaviour
     [SerializeField] private LoadingScreen loadingScreen;
     [SerializeField] private MainMenu mainMenu;
 
-    private void Start()
+    private void Awake()
     {
         HideAll();
         mainMenu.Show();
