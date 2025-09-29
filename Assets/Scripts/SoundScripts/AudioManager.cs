@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -22,6 +24,22 @@ public class AudioManager : MonoBehaviour
     public Vector3 playerVelocity;
     private Vector3 lastPosition;
 
+    [SerializeField] private List<AudioSource> soundsToPlayOnFirstFloor = new List<AudioSource>();
+    [SerializeField] private List<AudioSource> soundsToPlayOnSecondFloor = new List<AudioSource>();
+    [SerializeField] private List<AudioSource> soundsToPlayOnThirdFloor = new List<AudioSource>();
+
+    private enum FloorState
+    {
+        None,
+        OnFirstFloor,
+        OnSecondFloor,
+        OnThirdFloor
+    }
+
+    [SerializeField] private FloorState floorState = FloorState.None;
+    private FloorState previousFloorState = FloorState.None;
+    private float positionBetween1stAnd2ndFloor = 3.5f;
+    private float positionBetween2ndAnd3rdFloor = 8.5f;
 
     private void Awake()
     {
@@ -35,30 +53,55 @@ public class AudioManager : MonoBehaviour
             PlayNext();
         }
 
-        const int positionBetweenFloors = 8;
-        if (player.transform.position.y < positionBetweenFloors)
+        previousFloorState = floorState;
+        floorState = GetCurrentFloor();
+
+        if (floorState != previousFloorState)
         {
-            if (!pipeSteamBottom.loop)
-            {
-                pipeSteamTop.Stop();
-                pipeSteamTop.loop = false;
-                pipeSteamBottom.Play();
-                pipeSteamBottom.loop = true;
-            }
-        }
-        else
-        {
-            if (!pipeSteamTop.loop)
-            {
-                pipeSteamBottom.Stop();
-                pipeSteamBottom.loop = false;
-                pipeSteamTop.Play();
-                pipeSteamTop.loop = true;
-            }
+            OnFloorChanged(floorState);
         }
 
         playerVelocity = (player.transform.position - lastPosition) / Time.deltaTime;
         lastPosition = player.transform.position;
+    }
+
+    private void OnFloorChanged(FloorState floorState)
+    {
+        var soundsToPlay = GetSoundsToPlay(floorState);
+        foreach (var sound in soundsToPlay)
+        {
+            sound.loop = true;
+            sound.Play();
+        }
+        var previousSoundsToStop = GetSoundsToPlay(previousFloorState);
+        foreach (var sound in previousSoundsToStop)
+        {
+            sound.loop = false;
+            sound.Stop();
+        }
+    }
+
+    private IEnumerable<AudioSource> GetSoundsToPlay(FloorState floorState) => floorState switch
+    {
+        FloorState.OnFirstFloor => soundsToPlayOnFirstFloor,
+        FloorState.OnSecondFloor => soundsToPlayOnSecondFloor,
+        FloorState.OnThirdFloor => soundsToPlayOnThirdFloor,
+        _ => Enumerable.Empty<AudioSource>(),
+    };
+
+    private FloorState GetCurrentFloor()
+    {
+        if (player.transform.position.y < positionBetween1stAnd2ndFloor)
+        {
+            return FloorState.OnFirstFloor;       
+        }
+
+        if (player.transform.position.y < positionBetween2ndAnd3rdFloor)
+        {
+            return FloorState.OnSecondFloor;
+        }
+
+        return FloorState.OnThirdFloor;
     }
 
     private void PlayNext()
