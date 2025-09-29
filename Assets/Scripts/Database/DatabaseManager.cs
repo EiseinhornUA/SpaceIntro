@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DatabaseManager : MonoBehaviour
@@ -202,6 +203,46 @@ public class DatabaseManager : MonoBehaviour
             Debug.LogError($"GetAliasUserIDAsync failed: {e.Message}");
         }
         return default;
+    }
+
+    public void SaveMiniGameTime(int time, string gameName) => SaveMiniGameTimeAsync(time, gameName).Forget();
+
+    private async UniTask SaveMiniGameTimeAsync(int time, string gameName)
+    {
+        try {
+            await userReference.Child("miniGames").Child(gameName).Child("timeSeconds").SetValueAsync(time);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Saving Time in mini game failed: {e.Message}");
+        }
+    }
+
+    public void SaveMiniGameAttempts(int attemptsCount, string gameName) => SaveMiniGameAttemptsAsync(attemptsCount, gameName).Forget();
+
+    private async UniTask SaveMiniGameAttemptsAsync(int attemptsCount, string gameName)
+    {
+        try {
+        await userReference.Child("miniGames").Child(gameName).Child("attemptsCount").SetValueAsync(attemptsCount);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Saving Attempts in mini game failed: {e.Message}");
+        }
+    }
+
+    public void SaveMiniGameBoltMoves(int boltMovesCount, string gameName) => SaveMiniGameBoltMovesAsync(boltMovesCount, gameName).Forget();
+
+    private async UniTask SaveMiniGameBoltMovesAsync(int boltMovesCount, string gameName)
+    {
+        try
+        {
+            await userReference.Child("miniGames").Child(gameName).Child("movesCount").SetValueAsync(boltMovesCount);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Saving Bolt moves in mini game failed: {e.Message}");
+        }
     }
 }
 

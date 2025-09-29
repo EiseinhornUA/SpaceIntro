@@ -20760,6 +20760,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 735657798}
     m_Modifications:
+    - target: {fileID: 292163968406785725, guid: 736365822c5e32447871008ee1bcbc65, type: 3}
+      propertyPath: databaseManager
+      value: 
+      objectReference: {fileID: 352123097}
     - target: {fileID: 6100857297593146963, guid: 736365822c5e32447871008ee1bcbc65, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -24655,6 +24659,10 @@ PrefabInstance:
       propertyPath: currentCamera
       value: 
       objectReference: {fileID: 382567852}
+    - target: {fileID: 292163968406785725, guid: 0df78cdc91164504f892da6d4594b166, type: 3}
+      propertyPath: databaseManager
+      value: 
+      objectReference: {fileID: 352123097}
     - target: {fileID: 292163968406785725, guid: 0df78cdc91164504f892da6d4594b166, type: 3}
       propertyPath: startGameInteractable
       value: 
@@ -51331,6 +51339,7 @@ MonoBehaviour:
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"CryoDoorNumPad","value":{"$content":38,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Interactable,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"CryoDoorNumPadUI","value":{"$content":39,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"NumPad,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"GameCompleter","value":{"$content":40,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"GameCompleter,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"CryoTerminalSound","value":{"$content":41,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"SoundPlayer,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 5449569031936165082}
@@ -51374,6 +51383,7 @@ MonoBehaviour:
     - {fileID: 384813571}
     - {fileID: 1929782172}
     - {fileID: 1767369790}
+    - {fileID: 5449569031936165086}
 --- !u!1001 &7734202611549563111
 PrefabInstance:
   m_ObjectHideFlags: 0

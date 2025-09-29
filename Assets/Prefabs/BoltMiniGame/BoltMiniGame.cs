@@ -2,6 +2,8 @@ using Cinemachine;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System.Linq;
+using System.Threading.Tasks;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -40,10 +42,17 @@ public class BoltMiniGame : MonoBehaviour
     [SerializeField] public GameObject skipPopup;
 
     public int numberOfTries = 0;
+    [SerializeField] private int resetCooldown = 7;
+    public float resetTimer = 0f;
+
     private float floatTimeUsedToFinish = 0;
     public int timeUsedToFinish = 0;
     public bool isReadingPopup = false;
     [SerializeField] private int timeToShowSkipPopup = 120;
+
+    public int boltMoves = 0;
+
+    [SerializeField] private DatabaseManager databaseManager;
 
     private enum GameState
     {
@@ -119,6 +128,13 @@ public class BoltMiniGame : MonoBehaviour
         {
             isReadingPopup = true;
             skipPopup.SetActive(true);
+        }
+
+        if (resetTimer > 0f)
+        {
+            resetTimer -= Time.deltaTime;
+            if (resetTimer < 0f)
+                resetTimer = 0f;
         }
     }
 
@@ -302,6 +318,8 @@ public class BoltMiniGame : MonoBehaviour
         ScrewBolt(holeTo);
 
         holeFrom.RemoveBolt();
+
+        boltMoves += 1;
     }
 
     private bool IsAbleToPlace(Hole holeTo)
@@ -319,6 +337,9 @@ public class BoltMiniGame : MonoBehaviour
             gameState = GameState.Finished;
             startGameInteractable.Deactivate();
             goalPopup.SetActive(true);
+            databaseManager.SaveMiniGameTime(timeUsedToFinish, gameObject.name);
+            databaseManager.SaveMiniGameAttempts(numberOfTries, gameObject.name);
+            databaseManager.SaveMiniGameBoltMoves(boltMoves, gameObject.name);
         }
         else {
             if (!isReadingPopup)
@@ -341,7 +362,10 @@ public class BoltMiniGame : MonoBehaviour
 
     public void ResetMiniGame()
     {
-        numberOfTries += 1;
+        if (resetTimer == 0)
+            numberOfTries += 1;
+        resetTimer = resetCooldown;
+
         gameState = GameState.Restarting;
         GameObject reloadedPrefab = Instantiate(resetGame,
             transform.position,

@@ -29,5 +29,6 @@ public class SoundPlayer : MonoBehaviour
         }
     }
 
+    [ContextMenu("Play")]
     public void Play() => PlaySound(clipToPlay);
 }
