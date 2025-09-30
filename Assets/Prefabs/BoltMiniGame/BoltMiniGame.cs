@@ -399,5 +399,8 @@ public class BoltMiniGame : MonoBehaviour
         HideMiniGame();
         gameState = GameState.Finished;
         startGameInteractable.Deactivate();
+        databaseManager.SaveMiniGameTime(timeUsedToFinish, gameObject.name);
+        databaseManager.SaveMiniGameAttempts(numberOfTries, gameObject.name);
+        databaseManager.SaveMiniGameBoltMoves(boltMoves, gameObject.name);
     }
 }
