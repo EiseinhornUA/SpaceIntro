@@ -39,20 +39,8 @@ public class BoltMiniGame : MonoBehaviour
     [SerializeField] private float screwingTime = 0.25f;
     [SerializeField] private int screwingRotation = 360;
     [SerializeField] public GameObject goalPopup;
-    [SerializeField] public GameObject skipPopup;
 
-    public int numberOfTries = 0;
-    [SerializeField] private int resetCooldown = 7;
-    public float resetTimer = 0f;
-
-    private float floatTimeUsedToFinish = 0;
-    public int timeUsedToFinish = 0;
-    public bool isReadingPopup = false;
-    [SerializeField] private int timeToShowSkipPopup = 120;
-
-    public int boltMoves = 0;
-
-    [SerializeField] private DatabaseManager databaseManager;
+    private MiniGameDataSaver miniGameDataSaver;
 
     private enum GameState
     {
@@ -74,6 +62,7 @@ public class BoltMiniGame : MonoBehaviour
     {
         initialBoltSize = FindAnyObjectByType<Bolt>().transform.localScale.x;
         scaledBoltSize = initialBoltSize * (scalePercent / 100f + 1f);
+        miniGameDataSaver = GetComponent<MiniGameDataSaver>();
     }
 
     public void InitializeGame()
@@ -123,19 +112,6 @@ public class BoltMiniGame : MonoBehaviour
         RemoveDetachedPlanks();
 
         CheckIfGameFinishes();
-
-        if ((floatTimeUsedToFinish % timeToShowSkipPopup) < Time.deltaTime && timeUsedToFinish > 0)
-        {
-            isReadingPopup = true;
-            skipPopup.SetActive(true);
-        }
-
-        if (resetTimer > 0f)
-        {
-            resetTimer -= Time.deltaTime;
-            if (resetTimer < 0f)
-                resetTimer = 0f;
-        }
     }
 
     private void AttachToCamera()
@@ -245,8 +221,8 @@ public class BoltMiniGame : MonoBehaviour
     {
         gameState = GameState.Started;
         ShowMiniGame();
+        miniGameDataSaver.ActivateTimer();
         await WaitUntilFinished();
-
     }
 
     [ContextMenu("ShowMiniGame")]
@@ -319,7 +295,7 @@ public class BoltMiniGame : MonoBehaviour
 
         holeFrom.RemoveBolt();
 
-        boltMoves += 1;
+        miniGameDataSaver.amountOfMoves += 1;
     }
 
     private bool IsAbleToPlace(Hole holeTo)
@@ -337,16 +313,8 @@ public class BoltMiniGame : MonoBehaviour
             gameState = GameState.Finished;
             startGameInteractable.Deactivate();
             goalPopup.SetActive(true);
-            databaseManager.SaveMiniGameTime(timeUsedToFinish, gameObject.name);
-            databaseManager.SaveMiniGameAttempts(numberOfTries, gameObject.name);
-            databaseManager.SaveMiniGameBoltMoves(boltMoves, gameObject.name);
-        }
-        else {
-            if (!isReadingPopup)
-            {
-                floatTimeUsedToFinish += Time.deltaTime;
-                timeUsedToFinish = (int)floatTimeUsedToFinish;
-            }
+            miniGameDataSaver.DeactivateTimer();
+            miniGameDataSaver.SaveMiniGame(gameObject.name);
         }
     }
 
@@ -362,9 +330,7 @@ public class BoltMiniGame : MonoBehaviour
 
     public void ResetMiniGame()
     {
-        if (resetTimer == 0)
-            numberOfTries += 1;
-        resetTimer = resetCooldown;
+        miniGameDataSaver.TryToAddResetScore();
 
         gameState = GameState.Restarting;
         GameObject reloadedPrefab = Instantiate(resetGame,
@@ -399,8 +365,6 @@ public class BoltMiniGame : MonoBehaviour
         HideMiniGame();
         gameState = GameState.Finished;
         startGameInteractable.Deactivate();
-        databaseManager.SaveMiniGameTime(timeUsedToFinish, gameObject.name);
-        databaseManager.SaveMiniGameAttempts(numberOfTries, gameObject.name);
-        databaseManager.SaveMiniGameBoltMoves(boltMoves, gameObject.name);
+        miniGameDataSaver.SaveMiniGame(gameObject.name);
     }
 }
