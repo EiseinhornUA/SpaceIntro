@@ -35,7 +35,6 @@ public class BoltGameStarter : MonoBehaviour
             boltMiniGameSerializes.boltMiniGame.closeButton = closeButton;
             boltMiniGameSerializes.boltMiniGame.resetButton = resetButton;
             boltMiniGameSerializes.boltMiniGame.goalPopup = goalPopup;
-            boltMiniGameSerializes.boltMiniGame.skipPopup = skipPopup;
         }
     }
 
@@ -83,8 +82,7 @@ public class BoltGameStarter : MonoBehaviour
             if (boltMiniGameSerializes.boltMiniGame.isActiveAndEnabled)
             {
                 boltMiniGameSerializes.boltMiniGame.FinishGame();
-                boltMiniGameSerializes.boltMiniGame.isReadingPopup = false;
-                boltMiniGameSerializes.boltMiniGame.skipPopup.SetActive(false);
+                boltMiniGameSerializes.boltMiniGame.gameObject.GetComponent<MiniGameDataSaver>().HideSkipPopUp();
             }
         }
     }
@@ -95,7 +93,7 @@ public class BoltGameStarter : MonoBehaviour
         {
             if (boltMiniGameSerializes.boltMiniGame.isActiveAndEnabled)
             {
-                boltMiniGameSerializes.boltMiniGame.isReadingPopup = false;
+                boltMiniGameSerializes.boltMiniGame.gameObject.GetComponent<MiniGameDataSaver>().isReadingPopup = false;
             }
         }
     }

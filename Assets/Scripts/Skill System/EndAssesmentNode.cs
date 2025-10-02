@@ -37,7 +37,14 @@ public class EndAssessmentNode : Unit
 
         for (int i = 0; i < skillsDelta.Count; i++)
         {
-            skillsDelta[i] = new Skill(skillsDelta[i].skillName, skillContainer.GetSkills()[i].level - skills[i].level);
+            try
+            {
+                skillsDelta[i] = new Skill(skillsDelta[i].skillName, skillContainer.GetSkills()[i].level - skills[i].level);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"EndAssessmentNodeError: {skillsDelta[i].skillName}: {e.Message}");
+            }
         }
 
         databaseManager.SaveAssesment(skillsDelta, assessmentName);
