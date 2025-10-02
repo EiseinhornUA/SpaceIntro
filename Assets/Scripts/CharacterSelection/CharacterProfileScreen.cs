@@ -11,6 +11,8 @@ public class CharacterProfileScreen : Popup
     [SerializeField] private CharacterContainer characterContainer;
     [SerializeField] private Transform characterParent;
     [SerializeField] private TextMeshProUGUI userIdTMP;
+    [SerializeField] private TextMeshProUGUI reportTMP;
+    [SerializeField] private ReportFetcher reportFetcher;
     private GameObject characterInstance;
 
     public UnityEvent onBackButtonClicked { get; private set; } = new();
@@ -32,6 +34,8 @@ public class CharacterProfileScreen : Popup
         }
 
         userIdTMP.text = "UID: " + await databaseManager.GetAliasUserIDAsync();
+
+        reportTMP.text = await reportFetcher.FetchReportAsync(PlayerPrefs.GetString("CharacterName"), await databaseManager.GetSkillsAsync());
     }
 
     private void Start()
