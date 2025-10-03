@@ -17,6 +17,9 @@ public class TetrominoDragHandler : MonoBehaviour
     private Tetromino selectedTetromino;
     private bool isDragingTetromino;
 
+    public UnityEvent OnTetrominoMoved { get; set; } = new();
+    public UnityEvent OnReset { get; set; } = new();
+
     private void Start()
     {
         tetrominos = GetTetrominos().ToList();
@@ -108,6 +111,7 @@ public class TetrominoDragHandler : MonoBehaviour
 
         if (IsPossibleToPlaceAt(tetromino, position))
         {
+            OnTetrominoMoved?.Invoke();
             PlaceToGrid(tetromino, position);
             MoveToBack(tetromino);
         }
@@ -186,6 +190,7 @@ public class TetrominoDragHandler : MonoBehaviour
 
     public void ResetGame()
     {
+        OnReset?.Invoke();
         resetTetrominoPositions();
         resetTetrominoRotations();
         tetrominoGrid.ResetCells();

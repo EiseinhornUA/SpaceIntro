@@ -231,9 +231,9 @@ public class DatabaseManager : MonoBehaviour
         }
     }
 
-    public void SaveMiniGameBoltMoves(int boltMovesCount, string gameName) => SaveMiniGameBoltMovesAsync(boltMovesCount, gameName).Forget();
+    public void SaveMiniGameMoves(int movesCount, string gameName) => SaveMiniGameMovesAsync(movesCount, gameName).Forget();
 
-    private async UniTask SaveMiniGameBoltMovesAsync(int boltMovesCount, string gameName)
+    private async UniTask SaveMiniGameMovesAsync(int boltMovesCount, string gameName)
     {
         try
         {

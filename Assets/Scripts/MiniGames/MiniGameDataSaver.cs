@@ -18,6 +18,7 @@ public class MiniGameDataSaver : MonoBehaviour
     [SerializeField] private GameObject skipPopup;
 
     [SerializeField] private DatabaseManager databaseManager;
+    
 
     private void Update()
     {
@@ -76,6 +77,10 @@ public class MiniGameDataSaver : MonoBehaviour
     {
         databaseManager.SaveMiniGameTime(timeUsedToFinish, gameName);
         databaseManager.SaveMiniGameAttempts(numberOfTries, gameName);
-        databaseManager.SaveMiniGameBoltMoves(amountOfMoves, gameName);
+        databaseManager.SaveMiniGameMoves(amountOfMoves, gameName);
     }
+
+    //public void SaveTetrominoGame() => SaveMiniGame("Tetromino");
+    //public void SaveBoltCryoTerminalGame() => SaveMiniGame("BoltGameCryoTerminal");
+    //public void SaveBoltRobotGame() => SaveMiniGame("BoltGameRobot");
 }

@@ -2393,10 +2393,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8808885430286814334, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
+      propertyPath: gameEvents
+      value: 
+      objectReference: {fileID: 900061260}
+    - target: {fileID: 8808885430286814334, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
+      propertyPath: miniGameDataSaver
+      value: 
+      objectReference: {fileID: 2023143146}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1152749685188436842, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2023143146}
+    - targetCorrespondingSourceObject: {fileID: 1152749685188436842, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2023143149}
   m_SourcePrefab: {fileID: 100100000, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
 --- !u!224 &201856108 stripped
 RectTransform:
@@ -2408,7 +2422,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8808885430286814334, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
   m_PrefabInstance: {fileID: 201856107}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2023143143}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a86cface227cc264ab9fc3dd72442bb1, type: 3}
@@ -10638,7 +10652,6 @@ RectTransform:
   - {fileID: 692003952}
   - {fileID: 1096601687}
   - {fileID: 543316890}
-  - {fileID: 918929174}
   m_Father: {fileID: 4253174332680612863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -12787,6 +12800,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4608174180656258, guid: eb66ad65eb8ce2f4ba081ecbd8099a51, type: 3}
   m_PrefabInstance: {fileID: 879602072}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &900061257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900061259}
+  - component: {fileID: 900061260}
+  m_Layer: 0
+  m_Name: GameEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900061259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900061257}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.290483, y: 11.510107, z: 17.922235}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900061260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900061257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d74e182f5c9ef3f4cb6cfd2171131043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &901719365 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4790190688571470, guid: c6ca24f648280eb42aacc73b163e0f98, type: 3}
@@ -13057,7 +13114,7 @@ RectTransform:
   - {fileID: 1490130982}
   - {fileID: 398424530}
   - {fileID: 1456344284}
-  m_Father: {fileID: 748195814}
+  m_Father: {fileID: 4253174332680612863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -20771,6 +20828,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 735657798}
     m_Modifications:
     - target: {fileID: 292163968406785725, guid: 736365822c5e32447871008ee1bcbc65, type: 3}
+      propertyPath: gameEvents
+      value: 
+      objectReference: {fileID: 900061260}
+    - target: {fileID: 292163968406785725, guid: 736365822c5e32447871008ee1bcbc65, type: 3}
       propertyPath: databaseManager
       value: 
       objectReference: {fileID: 352123097}
@@ -20829,6 +20890,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6719926088452559124, guid: 736365822c5e32447871008ee1bcbc65, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1644179498}
+    - targetCorrespondingSourceObject: {fileID: 6719926088452559124, guid: 736365822c5e32447871008ee1bcbc65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1644179499}
   m_SourcePrefab: {fileID: 100100000, guid: 736365822c5e32447871008ee1bcbc65, type: 3}
 --- !u!4 &1504577198 stripped
 Transform:
@@ -22012,6 +22076,21 @@ MonoBehaviour:
   timeToShowSkipPopup: 120
   skipPopup: {fileID: 918929173}
   databaseManager: {fileID: 352123097}
+--- !u!114 &1644179499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378643710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36926bf38ccf16a438e623354f0e5b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameActions: {fileID: 900061260}
+  dataSaver: {fileID: 1644179498}
+  gameName: BoltGameCryoTerminal
 --- !u!4 &1649015485 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4790190688571470, guid: c6ca24f648280eb42aacc73b163e0f98, type: 3}
@@ -24683,6 +24762,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3331485954715403949}
     - target: {fileID: 292163968406785725, guid: 0df78cdc91164504f892da6d4594b166, type: 3}
+      propertyPath: gameEvents
+      value: 
+      objectReference: {fileID: 900061260}
+    - target: {fileID: 292163968406785725, guid: 0df78cdc91164504f892da6d4594b166, type: 3}
       propertyPath: closeButton
       value: 
       objectReference: {fileID: 0}
@@ -24769,6 +24852,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6719926088452559124, guid: 0df78cdc91164504f892da6d4594b166, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1818891910}
+    - targetCorrespondingSourceObject: {fileID: 6719926088452559124, guid: 0df78cdc91164504f892da6d4594b166, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1818891911}
   m_SourcePrefab: {fileID: 100100000, guid: 0df78cdc91164504f892da6d4594b166, type: 3}
 --- !u!114 &1818891908 stripped
 MonoBehaviour:
@@ -24808,6 +24894,21 @@ MonoBehaviour:
   timeToShowSkipPopup: 120
   skipPopup: {fileID: 918929173}
   databaseManager: {fileID: 352123097}
+--- !u!114 &1818891911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121283833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36926bf38ccf16a438e623354f0e5b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameActions: {fileID: 900061260}
+  dataSaver: {fileID: 1818891910}
+  gameName: BoltGameRobot
 --- !u!4 &1823899872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4824984152862614, guid: ba8c17098e39a004d8754f7823b7bcc7, type: 3}
@@ -29117,6 +29218,48 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2379808248858335618, guid: 5a2ab8162cd46ef46adf56a89d60254e, type: 3}
   m_PrefabInstance: {fileID: 2022080648}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2023143143 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1152749685188436842, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
+  m_PrefabInstance: {fileID: 201856107}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2023143146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023143143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00987dfa01c67404da55a9957e33db59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfTries: 0
+  resetCooldown: 7
+  resetTimer: 0
+  amountOfMoves: 0
+  timeUsedToFinish: 0
+  isTimerActive: 0
+  isReadingPopup: 0
+  timeToShowSkipPopup: 120
+  skipPopup: {fileID: 918929173}
+  databaseManager: {fileID: 352123097}
+--- !u!114 &2023143149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023143143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36926bf38ccf16a438e623354f0e5b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameActions: {fileID: 900061260}
+  dataSaver: {fileID: 2023143146}
+  gameName: Tetromino
 --- !u!1001 &2023871070
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42206,6 +42349,7 @@ RectTransform:
   - {fileID: 852456093467767878}
   - {fileID: 201856108}
   - {fileID: 748195814}
+  - {fileID: 918929174}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -55393,3 +55537,4 @@ SceneRoots:
   - {fileID: 1954874744}
   - {fileID: 3224320052876614724}
   - {fileID: 352123098}
+  - {fileID: 900061259}

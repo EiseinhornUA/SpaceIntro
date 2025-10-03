@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class TetrominoGameView : Popup
@@ -11,9 +12,16 @@ public class TetrominoGameView : Popup
     [Range(0.1f, 5f)]
     [SerializeField] private float endGameDurationSeconds = 1f;
     private UniTaskCompletionSource endGameTcs = new();
+    [SerializeField] private GameEvents gameEvents;
+
+    //public UnityEvent onTetrominoMoved { get; set; } = new();
+    //public UnityEvent onReset { get; set; } = new();
 
     private void Start()
     {
+        tetrominoDragHandler.OnTetrominoMoved.AddListener(gameEvents.OnMoveMade.Invoke);
+        tetrominoDragHandler.OnReset.AddListener(gameEvents.OnReset.Invoke);
+
         tetrominoGrid.onEndGame.AddListener(EndGame);
         closeButton.onClick.AddListener(Hide);
         resetButton.onClick.AddListener(tetrominoDragHandler.ResetGame);
@@ -32,15 +40,20 @@ public class TetrominoGameView : Popup
     [ContextMenu("Change Tetrominos Color")]
     private void ChangeTetrominosColor() => ChangeTetrominosColor(tetrominoColor);
 
+    [ContextMenu("Start Game")]
+    public void StartGame() => StartGameAsync().Forget();
     public async UniTask StartGameAsync()
     {
         Show();
+
+        gameEvents.OnGameStarted?.Invoke();
 
         Hud.Instance.HideHud();
 
         await endGameTcs.Task;
     }
 
+    [ContextMenu("Finish Game")]
     private void EndGame() => EndGameAsync().Forget();
 
     private async UniTask EndGameAsync()
@@ -49,6 +62,8 @@ public class TetrominoGameView : Popup
 
         Hide();
         Hud.Instance.ShowHud();
+
+        gameEvents.OnGameFinished?.Invoke();
 
         endGameTcs?.TrySetResult();
     }
