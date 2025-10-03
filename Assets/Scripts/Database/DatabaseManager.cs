@@ -243,6 +243,31 @@ public class DatabaseManager : MonoBehaviour
             Debug.LogError($"Saving Bolt moves in mini game failed: {e.Message}");
         }
     }
+
+    public void SaveDialogueTime(int time) => SaveDialogueTimeAsync(time).Forget();
+    private async UniTask SaveDialogueTimeAsync(int time)
+    {
+        try
+        {
+            await userReference.Child("dialogues").Child("timeSeconds").Child(gameObject.name).SetValueAsync(time);
+            //
+            //
+            //
+            //
+            //
+            //  DON'T FORGET ABOUT SAVE PATH WITH CORRECT NAME OF DIALOGUE
+            //
+            //
+            //
+            //
+            //
+            //
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Saving Time in mini game failed: {e.Message}");
+        }
+    }
 }
 
 [System.Serializable]
