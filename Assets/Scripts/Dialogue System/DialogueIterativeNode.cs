@@ -90,6 +90,12 @@ public class DialogueIterativeNode : WaitUnit
 
         var respondent = flow.GetValue<DialogueCharacter>(respondentInput);
 
+        if (skill != null)
+        {
+            skillContainer.AddSkillLevel(skills[0], 1);
+            Debug.Log($"Added 1 points to {skills[0]}");
+        }
+
         SetupDialogueView(message: choices[0], respondent);
 
         yield return view.WaitForClick().ToCoroutine();
@@ -103,5 +109,5 @@ public class DialogueIterativeNode : WaitUnit
         view.SetMessage(message);
     }
 
-    private int CalculateSkillPoints(int i) => choiceInputs.Count - 1 - i;
+    private int CalculateSkillPoints(int i) => choiceInputs.Count - i;
 }

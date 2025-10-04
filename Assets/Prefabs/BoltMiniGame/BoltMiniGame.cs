@@ -1,6 +1,7 @@
 using Cinemachine;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,8 +15,6 @@ public class BoltMiniGame : MonoBehaviour
     public Hole holeTo;
     private Plank[] planks;
     private UniTaskCompletionSource gameFinished;
-
-    public UnityEvent onGameFinished;
 
     [SerializeField] private float plankHoleCheckThreshold = 0.25f;
     [SerializeField] public float speedToSwapBolts = 6f;
@@ -38,7 +37,7 @@ public class BoltMiniGame : MonoBehaviour
     [SerializeField] private int screwingRotation = 360;
     [SerializeField] public GameObject goalPopup;
 
-    private MiniGameDataSaver miniGameDataSaver;
+    [SerializeField] private GameEvents gameEvents;
 
     private enum GameState
     {
@@ -60,7 +59,6 @@ public class BoltMiniGame : MonoBehaviour
     {
         initialBoltSize = FindAnyObjectByType<Bolt>().transform.localScale.x;
         scaledBoltSize = initialBoltSize * (scalePercent / 100f + 1f);
-        miniGameDataSaver = GetComponent<MiniGameDataSaver>();
     }
 
     public void InitializeGame()
@@ -219,7 +217,7 @@ public class BoltMiniGame : MonoBehaviour
     {
         gameState = GameState.Started;
         ShowMiniGame();
-        miniGameDataSaver.ActivateTimer();
+        gameEvents.OnGameStarted?.Invoke();
         await WaitUntilFinished();
     }
 
@@ -293,7 +291,7 @@ public class BoltMiniGame : MonoBehaviour
 
         holeFrom.RemoveBolt();
 
-        miniGameDataSaver.amountOfMoves += 1;
+        gameEvents.OnMoveMade?.Invoke();
     }
 
     private bool IsAbleToPlace(Hole holeTo)
@@ -306,13 +304,11 @@ public class BoltMiniGame : MonoBehaviour
         if (IsGameFinished())
         {
             gameFinished.TrySetResult();
-            onGameFinished.Invoke();
+            gameEvents.OnGameFinished?.Invoke();
             HideMiniGame();
             gameState = GameState.Finished;
             startGameInteractable.Deactivate();
             goalPopup.SetActive(true);
-            miniGameDataSaver.DeactivateTimer();
-            miniGameDataSaver.SaveMiniGame(gameObject.name);
         }
     }
 
@@ -328,7 +324,7 @@ public class BoltMiniGame : MonoBehaviour
 
     public void ResetMiniGame()
     {
-        miniGameDataSaver.TryToAddResetScore();
+        gameEvents.OnReset?.Invoke();
 
         gameState = GameState.Restarting;
         GameObject reloadedPrefab = Instantiate(resetGame,
@@ -359,10 +355,9 @@ public class BoltMiniGame : MonoBehaviour
     public void FinishGame()
     {
         gameFinished.TrySetResult();
-        onGameFinished.Invoke();
+        gameEvents.OnGameFinished.Invoke();
         HideMiniGame();
         gameState = GameState.Finished;
         startGameInteractable.Deactivate();
-        miniGameDataSaver.SaveMiniGame(gameObject.name);
     }
 }

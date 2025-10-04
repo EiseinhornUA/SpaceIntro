@@ -15,7 +15,8 @@ public class DatabaseManager : MonoBehaviour
     
     private const string InitialAssessmentName = "A0";
     private DatabaseReference userReference;
-    private string userID;
+    //UserID has serialize field to see it in the inspector not for assigning it
+    [SerializeField] private string userID;
     private UniTask initializeTask;
     private SkillContainer skillContainer;
 
@@ -248,9 +249,9 @@ public class DatabaseManager : MonoBehaviour
         }
     }
 
-    public void SaveMiniGameBoltMoves(int boltMovesCount, string gameName) => SaveMiniGameBoltMovesAsync(boltMovesCount, gameName).Forget();
+    public void SaveMiniGameMoves(int movesCount, string gameName) => SaveMiniGameMovesAsync(movesCount, gameName).Forget();
 
-    private async UniTask SaveMiniGameBoltMovesAsync(int boltMovesCount, string gameName)
+    private async UniTask SaveMiniGameMovesAsync(int boltMovesCount, string gameName)
     {
         try
         {
@@ -259,6 +260,31 @@ public class DatabaseManager : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError($"Saving Bolt moves in mini game failed: {e.Message}");
+        }
+    }
+
+    public void SaveDialogueTime(int time, string dialogueName) => SaveDialogueTimeAsync(time, dialogueName).Forget();
+    private async UniTask SaveDialogueTimeAsync(int time, string dialogueName)
+    {
+        try
+        {
+            await userReference.Child("dialogues").Child("timeSeconds").Child(dialogueName).SetValueAsync(time);
+            //
+            //
+            //
+            //
+            //
+            //  DON'T FORGET ABOUT SAVE PATH WITH CORRECT NAME OF DIALOGUE
+            //
+            //
+            //
+            //
+            //
+            //
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Saving Time in mini game failed: {e.Message}");
         }
     }
 }

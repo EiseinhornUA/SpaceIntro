@@ -15,16 +15,19 @@ public class DialogueManager : MonoBehaviour
     private Decision selectedDecision;
     public Action onDialogueStart = delegate {};
 
-
-
     public void StartDialogue(DialoguePrefab dialoguePrefab)
     {
         dialogueView.Show();
-
         dialogueInstance = dialoguePrefabs.Find(dialogue => dialogue.name == dialoguePrefab.name);
+        dialogueView.WaitForHide().ContinueWith(OnDialogueViewDisabled);
         dialogueInstance.StartDialogue();
 
         onDialogueStart?.Invoke();
+    }
+
+    private void OnDialogueViewDisabled()
+    {
+        dialogueInstance.gameObject.SetActive(false);
     }
 
     public async UniTask WaitForDialogueEnd()
@@ -38,4 +41,9 @@ public class DialogueManager : MonoBehaviour
 
     internal void SetSelectedDecision(Decision decision) => selectedDecision = decision;
     internal Decision GetSelectedDecision() => selectedDecision;
+
+    public string GetDialogueName()
+    {
+        return dialogueInstance.name;
+    }
 }
