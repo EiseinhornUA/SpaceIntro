@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class DatabaseManager : MonoBehaviour
@@ -16,6 +17,7 @@ public class DatabaseManager : MonoBehaviour
     private DatabaseReference userReference;
     private string userID;
     private UniTask initializeTask;
+    private SkillContainer skillContainer;
 
     private void Awake()
     {
@@ -38,9 +40,19 @@ public class DatabaseManager : MonoBehaviour
 
     private void SubscribeToEvents()
     {
-        FindObjectOfType<SkillContainer>(true).OnSkillLevelChanged += SaveSkill;
+        skillContainer = FindObjectOfType<SkillContainer>(true);
+        skillContainer.OnSkillLevelChanged += SaveSkills;
+
         characterLoader.OnCharacterLoaded += SaveInitialSkills;
         FindObjectOfType<RobotChat>(true).OnChatHistoryUpdated += OnChatHistoryUpdated;
+    }
+
+    private void SaveSkills()
+    {
+        foreach (var skill in skillContainer.GetSkills())
+        {
+            SaveSkill(skill);
+        }
     }
 
     private void SaveInitialSkills(List<Skill> skills)
@@ -50,11 +62,12 @@ public class DatabaseManager : MonoBehaviour
 
     private async UniTask SaveInitialSkillsAsync(List<Skill> skills)
     {
+        if (GameStateProvider.IsGameCompleted()) return;
         await initializeTask;
         SaveAssesment(skills, InitialAssessmentName);
         foreach (var skill in skills)
         {
-            SaveSkillAsync(skill).Forget();
+            skillContainer.AddSkillLevel(skill);
         }
     }
 
@@ -72,6 +85,11 @@ public class DatabaseManager : MonoBehaviour
             .Child("users")
             .Child(userID);
     }
+
+    //private List<Skill> GetTotalAssesmentsSkills()
+    //{
+
+    //}
 
     private async UniTask SaveAliasID()
     {
