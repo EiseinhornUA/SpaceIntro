@@ -10,9 +10,12 @@ public class SoundPlayer : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-        SFXSource = audioManager.SFXSource;
-        musicSource = audioManager.musicSource;
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager")?.GetComponent<AudioManager>();
+        if (audioManager)
+        {
+            SFXSource = audioManager.SFXSource;
+            musicSource = audioManager.musicSource;
+        }
     }
 
     public void PlaySound(AudioClip clip)
