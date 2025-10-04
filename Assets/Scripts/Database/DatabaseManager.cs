@@ -14,7 +14,8 @@ public class DatabaseManager : MonoBehaviour
     
     private const string InitialAssessmentName = "A0";
     private DatabaseReference userReference;
-    private string userID;
+    //UserID has serialize field to see it in the inspector not for assigning it
+    [SerializeField] private string userID;
     private UniTask initializeTask;
 
     private void Awake()
@@ -244,12 +245,12 @@ public class DatabaseManager : MonoBehaviour
         }
     }
 
-    public void SaveDialogueTime(int time) => SaveDialogueTimeAsync(time).Forget();
-    private async UniTask SaveDialogueTimeAsync(int time)
+    public void SaveDialogueTime(int time, string dialogueName) => SaveDialogueTimeAsync(time, dialogueName).Forget();
+    private async UniTask SaveDialogueTimeAsync(int time, string dialogueName)
     {
         try
         {
-            await userReference.Child("dialogues").Child("timeSeconds").Child(gameObject.name).SetValueAsync(time);
+            await userReference.Child("dialogues").Child("timeSeconds").Child(dialogueName).SetValueAsync(time);
             //
             //
             //

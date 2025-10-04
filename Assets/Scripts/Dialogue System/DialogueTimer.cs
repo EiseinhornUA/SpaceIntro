@@ -12,6 +12,7 @@ public class DialogueTimer : MonoBehaviour
     private bool isTimerActive = false;
 
     [SerializeField] private DatabaseManager databaseManager;
+    [SerializeField] private DialogueManager dialogueManager;
 
     private void Update()
     {
@@ -31,6 +32,6 @@ public class DialogueTimer : MonoBehaviour
     public void SaveTime()
     {
         isTimerActive = false;
-        databaseManager.SaveDialogueTime(timeUsedForDialogue);
+        databaseManager.SaveDialogueTime(timeUsedForDialogue, dialogueManager.GetDialogueName());
     }
 }
