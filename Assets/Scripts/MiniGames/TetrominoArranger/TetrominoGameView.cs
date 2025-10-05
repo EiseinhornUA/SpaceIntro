@@ -54,7 +54,7 @@ public class TetrominoGameView : Popup
     }
 
     [ContextMenu("Finish Game")]
-    private void EndGame() => EndGameAsync().Forget();
+    public void EndGame() => EndGameAsync().Forget();
 
     private async UniTask EndGameAsync()
     {
