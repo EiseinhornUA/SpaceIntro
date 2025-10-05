@@ -9,7 +9,7 @@ public class SkillContainer : MonoBehaviour
     [SerializeField] private List<SkillSO> skillSos;
     private List<Skill> skills;
 
-    public event Action<Skill> OnSkillLevelChanged;
+    public event Action OnSkillLevelChanged;
 
     private void Start()
     {
@@ -20,18 +20,25 @@ public class SkillContainer : MonoBehaviour
         return skills.Find(s => s.skillName == skill.GetName());
     }
 
-    public List<Skill> GetSkills() => skills;
+    public List<Skill> GetSkills() => new List<Skill>(skills);
 
     public void AddSkillLevel(SkillSO skill, float amount)
     {
         GetSkill(skill).level += amount;
-        OnSkillLevelChanged?.Invoke(GetSkill(skill));
+        OnSkillLevelChanged?.Invoke();
+    }
+
+    public void AddSkillLevel(Skill skill)
+    {
+        Skill originalSkill = skills.Find(s => s.skillName == skill.skillName);
+        originalSkill.level += skill.level;
+        OnSkillLevelChanged?.Invoke();
     }
 
     public void SubtractSkillLevel(SkillSO skill, float amount)
     {
         GetSkill(skill).level -= amount;
-        OnSkillLevelChanged?.Invoke(GetSkill(skill));
+        OnSkillLevelChanged?.Invoke();
     }
 
     [ContextMenu("Print Skills")]
