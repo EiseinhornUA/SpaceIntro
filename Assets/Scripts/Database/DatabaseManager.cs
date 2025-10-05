@@ -264,26 +264,14 @@ public class DatabaseManager : MonoBehaviour
     public void SaveDialogueTime(int time, string dialogueName) => SaveDialogueTimeAsync(time, dialogueName).Forget();
     private async UniTask SaveDialogueTimeAsync(int time, string dialogueName)
     {
-        try
-        {
+        //try
+        //{
             await userReference.Child("dialogues").Child("timeSeconds").Child(dialogueName).SetValueAsync(time);
-            //
-            //
-            //
-            //
-            //
-            //  DON'T FORGET ABOUT SAVE PATH WITH CORRECT NAME OF DIALOGUE
-            //
-            //
-            //
-            //
-            //
-            //
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Saving Time in mini game failed: {e.Message}");
-        }
+        //}
+        //catch (Exception e)
+        //{
+        //    Debug.LogError($"Saving Time in mini game failed: {e.Message}");
+        //}
     }
 }
 
