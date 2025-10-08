@@ -17,6 +17,8 @@ public class ReportContainerView : MonoBehaviour
 
     [SerializeField] private List<ReportSO> robotReports;
     [SerializeField] private List<ReportSO> accessCodeReports;
+    private bool hasRobotReports;
+    private bool hasAccessCodeReports;
 
     private void OnReportSelected(ReportView report)
     {
@@ -71,6 +73,7 @@ public class ReportContainerView : MonoBehaviour
         foreach (var report in robotReports)
         {
             AddReport(report.GetName(), report.GetDescription());
+            hasRobotReports = true;
         }
     }
 
@@ -80,6 +83,10 @@ public class ReportContainerView : MonoBehaviour
         foreach(var report in accessCodeReports)
         {
             AddReport(report.GetName(), report.GetDescription());
+            hasAccessCodeReports = true;
         }
     }
+
+    public bool HasRobotReports() => hasRobotReports;
+    public bool HasAccessCodeReports() => hasAccessCodeReports;
 }

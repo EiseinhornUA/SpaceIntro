@@ -11,7 +11,7 @@ public class SkillContainer : MonoBehaviour
 
     public event Action OnSkillLevelChanged;
 
-    private void Start()
+    private void Awake()
     {
         skills = skillSos.Select(skillSO => skillSO.AsSkill()).ToList();
     }
@@ -45,5 +45,27 @@ public class SkillContainer : MonoBehaviour
     public void PrintSkills()
     {
         Debug.Log(string.Join('\n', skills.Select(skill => $"{skill.skillName}: {skill.level}")));
+    }
+
+    public void SetLoadedSkills(Dictionary<string, float> loadedSkills)
+    {
+        foreach (var skill in loadedSkills)
+        {
+            Skill existingSkill = this.skills.Find(s => s.skillName == skill.Key);
+            if (existingSkill != null)
+            {
+                existingSkill.level = skill.Value;
+            }
+            else
+            {
+                Debug.LogError($"Skill '{skill.Key}' not found in SkillContainer.");
+            }
+        }
+        OnSkillLevelChanged?.Invoke();
+    }
+
+    internal Dictionary<string, float> GetDictionarySkills()
+    {
+        return skills.ToDictionary(skill => skill.skillName, skill => skill.level);
     }
 }

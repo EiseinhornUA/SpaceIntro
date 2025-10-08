@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Unity.VisualScripting;
+using System;
 
 
 public class ItemContainer : MonoBehaviour
@@ -10,6 +11,8 @@ public class ItemContainer : MonoBehaviour
 
     [SerializeField] private List<InventoryItem> items = new();
     [SerializeField] private BackpackView backpackView;
+    [Header("ItemsSOs")]
+    [SerializeField] private List<ItemSO> itemSOs = new();
 
     public void AddItem(ItemSO itemSO)
     {
@@ -42,9 +45,27 @@ public class ItemContainer : MonoBehaviour
         return items.Find(item => item.itemName == gameObject.name);
     }
 
+    public List<InventoryItem> GetItems()
+    {
+        return items;
+    }
+
     [ContextMenu("Print Items")]
     public void PrintItems()
     {
         Debug.Log(string.Join('\n', items.Select(item => $"{item.itemName}")));
+    }
+
+    public List<string> GetStoredItemNames()
+    {
+        return items.Select(i => i.itemName).ToList();
+    }
+
+    public void AddItemsByNames(List<string> itemNames)
+    {
+        foreach (string itemName in itemNames)
+        {
+            AddItem(itemSOs.Find(i => i.GetName() == itemName));
+        }
     }
 }

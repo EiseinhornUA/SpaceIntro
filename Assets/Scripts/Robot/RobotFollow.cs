@@ -191,4 +191,6 @@ public class RobotFollow : MonoBehaviour
             Mathf.Cos(Time.timeSinceLevelLoad * 2f * (float)Math.PI * frequency) * amplitude * Time.deltaTime,
             0f);
     }
+
+    public bool IsFixed() => isRobotOn;
 }

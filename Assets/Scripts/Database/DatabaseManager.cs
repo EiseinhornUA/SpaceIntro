@@ -40,14 +40,15 @@ public class DatabaseManager : MonoBehaviour
     private void SubscribeToEvents()
     {
         skillContainer = FindObjectOfType<SkillContainer>(true);
-        skillContainer.OnSkillLevelChanged += SaveSkills;
+        skillContainer.OnSkillLevelChanged += (() => SaveSkillsAsync().Forget());
 
         characterLoader.OnCharacterLoaded += SaveInitialSkills;
         FindObjectOfType<RobotChat>(true).OnChatHistoryUpdated += OnChatHistoryUpdated;
     }
 
-    private void SaveSkills()
+    private async UniTask SaveSkillsAsync()
     {
+        await initializeTask;
         foreach (var skill in skillContainer.GetSkills())
         {
             SaveSkill(skill);
@@ -62,6 +63,7 @@ public class DatabaseManager : MonoBehaviour
     private async UniTask SaveInitialSkillsAsync(List<Skill> skills)
     {
         if (GameStateProvider.IsGameCompleted()) return;
+        if (GameStateProvider.IsGameContinued()) return;
         await initializeTask;
         SaveAssesment(skills, InitialAssessmentName);
         foreach (var skill in skills)

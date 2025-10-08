@@ -16,7 +16,7 @@ public class DialogueView : Popup
     [SerializeField] private List<Button> choiceButtons;
     private UniTaskCompletionSource taskCompletionSource;
 
-    private void Start()
+    private void Awake()
     {
         Hide();
         foreach (var button in choiceButtons)

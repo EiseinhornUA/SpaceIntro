@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 
 public class CharacterLoader : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class CharacterLoader : MonoBehaviour
     private GameObject character;
 
     public event Action<List<Skill>> OnCharacterLoaded = delegate { };
+    public UniTaskCompletionSource OnCharacterLoadedTCS { get; private set; } = new();
 
     private void Start()
     {
@@ -20,6 +23,7 @@ public class CharacterLoader : MonoBehaviour
         character = Instantiate(characterContainer.GetCharacter(index), parentObject);
 
         OnCharacterLoaded?.Invoke(characterContainer.GetInitialSkills(index));
+        OnCharacterLoadedTCS.TrySetResult();
 
         animator = character.GetComponent<Animator>();
     }

@@ -10,6 +10,8 @@ public class SpaceSuit : MonoBehaviour
     [SerializeField] private GameObject helmet;
     [SerializeField] private Material suitMaterial;
 
+    private bool playerHasSuit = false;
+
     [ContextMenu("Set Space Suit Mesh")]
     public void PutSpaceSuitOn()
     {
@@ -23,6 +25,10 @@ public class SpaceSuit : MonoBehaviour
 
         characterMesh.materials = new Material[] { suitMaterial };
 
+        playerHasSuit = true;
+
         gameObject.SetActive(false);
     }
+
+    public bool PlayerHasSuit() => playerHasSuit;
 }

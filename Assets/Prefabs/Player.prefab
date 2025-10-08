@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 8312934731056210747}
   - component: {fileID: 8979759585530703437}
   - component: {fileID: 5030280334681612359}
+  - component: {fileID: 2793872696240605127}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -312,6 +313,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items: []
   backpackView: {fileID: 0}
+  itemSOs:
+  - {fileID: 11400000, guid: 1a9e4057b3636b74e9a5575f0ad3d1c8, type: 2}
+  - {fileID: 11400000, guid: fc75152554456c0458d08457fe328f92, type: 2}
+  - {fileID: 11400000, guid: 7add544c91f9306419b664e5a991fa43, type: 2}
+  - {fileID: 11400000, guid: ad801d689c4e15e41a8c52c8558c055a, type: 2}
+  - {fileID: 11400000, guid: d1e1b56e8f4dd0b40bd09820a0abcc5a, type: 2}
+  - {fileID: 11400000, guid: c80864c329df19747a74faf433c90c41, type: 2}
+  - {fileID: 11400000, guid: 75b48b1e3d785c347b6b49f4a8ecba40, type: 2}
+  - {fileID: 11400000, guid: df4bb4ab1810db9438d9bcebb96a8015, type: 2}
+  - {fileID: 11400000, guid: 86dc0ab03fc2195469bd964b9d0c98cc, type: 2}
 --- !u!114 &8979759585530703437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +348,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06225ab69f56f784a90947368277b434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2793872696240605127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4786370943020563665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b44c02a06e02ec743bacc32ce3a2629f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLight: {fileID: 7481285908892310366}
+  globalLight: {fileID: 0}
 --- !u!1 &6259789745513989407
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,4 +27,9 @@ public class OnTriggerEnter : MonoBehaviour
     {
         return collision.CompareTag("Player");
     }
+
+    public void AddListener(UnityAction action)
+    {
+        onTriggerEnter.AddListener(action);
+    }
 }

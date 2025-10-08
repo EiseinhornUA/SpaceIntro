@@ -19,6 +19,11 @@ public class ScreenSelector : MonoBehaviour
             HideAll();
             loadingScreen.Show();
         });
+        mainMenu.OnContinueButtonClicked.AddListener(() =>
+        {
+            HideAll();
+            loadingScreen.Show();
+        });
         mainMenu.OnGameStarted.AddListener(() =>
         {
             HideAll();
