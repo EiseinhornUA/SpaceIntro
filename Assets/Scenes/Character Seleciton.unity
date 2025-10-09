@@ -460,7 +460,6 @@ MonoBehaviour:
   settingsButton: {fileID: 1975643605}
   profileButton: {fileID: 803071396}
   newGamePopup: {fileID: 1917126100}
-  settingsPopup: {fileID: 1258027371}
   profileLockedPopup: {fileID: 4091912369170724166}
 --- !u!1 &273286459
 GameObject:
@@ -4547,6 +4546,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276070125}
   m_CullTransparentMesh: 0
+--- !u!1 &1280056628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1280056630}
+  - component: {fileID: 1280056629}
+  m_Layer: 0
+  m_Name: IOSAutorizationTracking
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1280056629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280056628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 360c6cafd7b33e148a3370d66743403a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1280056630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280056628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.399498, y: 8.349228, z: 30.995174}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1312891621
 GameObject:
   m_ObjectHideFlags: 0
@@ -10858,7 +10901,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.4505732, y: 1}
-  m_AnchoredPosition: {x: 25.008057, y: 75}
+  m_AnchoredPosition: {x: 25.008179, y: 75}
   m_SizeDelta: {x: -50, y: -250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5806599298107523125
@@ -12338,3 +12381,4 @@ SceneRoots:
   - {fileID: 27098757}
   - {fileID: 1399558501}
   - {fileID: 8906549760442770589}
+  - {fileID: 1280056630}
