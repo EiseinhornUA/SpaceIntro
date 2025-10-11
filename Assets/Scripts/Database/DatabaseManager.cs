@@ -15,7 +15,7 @@ public class DatabaseManager : MonoBehaviour
     private DatabaseReference userReference;
     //UserID has serialize field to see it in the inspector not for assigning it
     [SerializeField] private string userID;
-    private UniTask initializeTask;
+    private UniTaskCompletionSource initializeTCS = new();
     private SkillContainer skillContainer;
 
     private void Awake()
@@ -26,7 +26,7 @@ public class DatabaseManager : MonoBehaviour
 
         SubscribeToEvents();
 
-        initializeTask = InitializeAsync();
+        InitializeAsync().Forget();
     }
 
     private async UniTask InitializeAsync()
@@ -35,6 +35,7 @@ public class DatabaseManager : MonoBehaviour
         InitDatabase();
         await SaveAliasID();
         await SaveNameAsync();
+        initializeTCS?.TrySetResult();
     }
 
     private void SubscribeToEvents()
@@ -48,7 +49,7 @@ public class DatabaseManager : MonoBehaviour
 
     private async UniTask SaveSkillsAsync()
     {
-        await initializeTask;
+        await initializeTCS.Task;
         foreach (var skill in skillContainer.GetSkills())
         {
             SaveSkill(skill);
@@ -63,7 +64,7 @@ public class DatabaseManager : MonoBehaviour
     private async UniTask SaveInitialSkillsAsync(List<Skill> skills)
     {
         if (GameStateProvider.IsGameContinued()) return;
-        await initializeTask;
+        await initializeTCS.Task;
         SaveAssesment(skills, InitialAssessmentName);
         foreach (var skill in skills)
         {
