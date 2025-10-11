@@ -183,7 +183,7 @@ public class DatabaseManager : MonoBehaviour
 
         try
         {
-            var snapshot = await userReference.Child("metrics").GetValueAsync();
+            var snapshot = await userReference.Child("metricsSum").GetValueAsync();
 
             if (snapshot.Exists)
             {
@@ -273,6 +273,48 @@ public class DatabaseManager : MonoBehaviour
         //{
         //    Debug.LogError($"Saving Time in mini game failed: {e.Message}");
         //}
+    }
+
+    [ContextMenu("Calulate Assessments")]
+    public void CalculateSumOfAssessments()
+    {
+        CalculateAssessmentsAsync().Forget();
+    }
+
+    private async UniTask CalculateAssessmentsAsync()
+    {
+        try
+        {
+            var snapshot = await userReference.Child("assessments").GetValueAsync();
+
+            if (snapshot.Exists)
+            {
+                Dictionary<string, float> metricsSum = new Dictionary<string, float>();
+                foreach (var assessment in snapshot.Children)
+                {
+                    string assessmentName = assessment.Key;
+                    //Debug.Log($"assessmentName: {assessmentName} {assessment.Value}");
+                    foreach (var metric in assessment.Children)
+                    {
+                        //Debug.Log($"metric: {metric.Key} {metric.Value}");
+                        //if key doesn't exist in metrics sums set value 0 with this key
+                        if (!metricsSum.ContainsKey(metric.Key)) 
+                            metricsSum[metric.Key] = 0;
+                        metricsSum[metric.Key] += Convert.ToSingle(metric.Value);
+                    }
+                    
+                }
+                await userReference.Child("metricsSum")
+                    .SetRawJsonValueAsync(JsonConvert.SerializeObject(metricsSum));
+                //Debug.Log($"metricSums: {string.Join(" ", metricSums.Select(kv => $"{kv.Key}: {kv.Value}"))}");
+                //Debug.Log($"metricSums: {JsonConvert.SerializeObject(metricsSum)}");
+            }
+
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"GetAssessments failed: {e.Message}");
+        }
     }
 }
 
