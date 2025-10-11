@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+#if UNITY_IOS
+using Unity.Advertisement.IosSupport;
+#endif
 using UnityEngine;
 
-public class IOSA : MonoBehaviour
+public class IOSTrackingAuthorizationRequester : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
-    }
+#if UNITY_IOS
+        SkAdNetworkBinding.SkAdNetworkRegisterAppForNetworkAttribution();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // check with iOS to see if the user has accepted or declined tracking
+        var status = ATTrackingStatusBinding.GetAuthorizationTrackingStatus();
+
+        if (status == ATTrackingStatusBinding.AuthorizationTrackingStatus.NOT_DETERMINED)
+        {
+            Debug.Log("Unity iOS Support: Requesting iOS App Tracking Transparency native dialog.");
+            ATTrackingStatusBinding.RequestAuthorizationTracking();
+        }
+#endif
     }
 }
