@@ -32,15 +32,16 @@ public class PersistanceManager : MonoBehaviour
 
     private void Awake()
     {
-        if (GameStateProvider.IsGameCompleted())
-        {
-            return;
-        }
+        GameStateProvider.OnGameStateChanged += SaveGameState;
         if (GameStateProvider.IsMainMenu())
         {
-            GameStateProvider.SetState(LoadState());
             mainMenu = FindObjectOfType<MainMenu>();
             mainMenu.OnContinueButtonClicked.AddListener(LoadGameScene);
+            GameStateProvider.SetState(LoadState());
+        }
+        if (GameStateProvider.IsGameCompleted())
+        {
+            ResetProgress();
             return;
         }
         if (GameStateProvider.IsGameStarted())
@@ -49,6 +50,16 @@ public class PersistanceManager : MonoBehaviour
         }
 
         CacheSceneReferences();
+        if (!skillContainer) return;
+        skillContainer.OnSkillLevelChanged += SaveSkillsHistory;
+    }
+
+    private void SaveSkillsHistory()
+    {
+        save.skillsHistory.Add(skillContainer.GetDictionarySkills());
+        saveJson = JsonConvert.SerializeObject(save, Formatting.Indented);
+        PlayerPrefs.SetString(SaveDataKey, saveJson);
+        PlayerPrefs.Save();
     }
 
     public void ResetProgress()
@@ -58,6 +69,7 @@ public class PersistanceManager : MonoBehaviour
 
     private void LoadGameScene()
     {
+        GameStateProvider.SetContinued();
         SceneManager.LoadScene(GameSceneKey);
     }
 
@@ -110,7 +122,6 @@ public class PersistanceManager : MonoBehaviour
     {
         LoadSaveFromPrefs();
 
-        GameStateProvider.SetContinued();
         SaveCurrentGameState();
 
         if (!save.checkpoints.TryGetValue(save.checkpointNumber, out var checkpoint))
@@ -120,6 +131,14 @@ public class PersistanceManager : MonoBehaviour
         ApplyCheckpointData(checkpoint);
 
         await LoadSpaceSuit(checkpoint);
+    }
+
+    public void SaveGameState(GameStateProvider.GameState state)
+    {
+        save.gameState = state;
+        saveJson = JsonConvert.SerializeObject(save, Formatting.Indented);
+        PlayerPrefs.SetString(SaveDataKey, saveJson);
+        PlayerPrefs.Save();
     }
 
     public void SaveCurrentGameState()
@@ -151,7 +170,7 @@ public class PersistanceManager : MonoBehaviour
     private void ApplyCheckpointData(SaveCheckpoint cp)
     {
         player.transform.position = cp.playerPosition;
-        playerCamera.transform.position = cp.playerPosition;
+        playerCamera.transform.position = new Vector3(cp.playerPosition.x, cp.playerPosition.y, playerCamera.transform.position.z);
 
         if (cp.isRobotFixed)
         {
@@ -198,6 +217,8 @@ public class PersistanceManager : MonoBehaviour
         };
 
         SaveReports(cp);
+
+        GameStateProvider.SetContinued();
 
         save.checkpointNumber = checkpointNumber;
         save.checkpoints[checkpointNumber] = cp;
@@ -258,6 +279,8 @@ public class Save
 {
     public int checkpointNumber;
     public GameStateProvider.GameState gameState;
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public List<Dictionary<string, float>> skillsHistory = new();
     [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
     public Dictionary<int, SaveCheckpoint> checkpoints = new();
 }

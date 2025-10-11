@@ -39,7 +39,6 @@ internal class MainMenu : Popup
         {
             continueButton.gameObject.SetActive(false);
         }
-        continueButton.gameObject.SetActive(true);
         profileButton.interactable = GameStateProvider.IsGameCompleted();
     }
 }

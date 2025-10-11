@@ -8,7 +8,6 @@ public class GameCompleter : MonoBehaviour
     public void CompleteGame()
     {
         GameStateProvider.SetCompleted();
-        FindObjectOfType<PersistanceManager>()?.SaveCurrentGameState();
         SceneManager.LoadScene("Character Seleciton");
     }
 }

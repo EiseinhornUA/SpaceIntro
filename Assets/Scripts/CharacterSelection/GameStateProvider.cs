@@ -3,6 +3,7 @@
 public static class GameStateProvider
 {
     public static GameState State { get; private set; } = GameState.MainMenu;
+    public static event Action<GameState> OnGameStateChanged;
 
     public enum GameState : int
     {
@@ -12,9 +13,23 @@ public static class GameStateProvider
         Continued,
     }
 
-    public static void SetCompleted() => State = GameState.Completed;
-    public static void SetStarted() => State = GameState.Started;
-    public static void SetContinued() => State = GameState.Continued;
+    public static void SetCompleted()
+    {
+        State = GameState.Completed;
+        OnGameStateChanged?.Invoke(State);
+    }
+
+    public static void SetStarted()
+    {
+        State = GameState.Started;
+        OnGameStateChanged?.Invoke(State);
+    }
+
+    public static void SetContinued()
+    {
+        State = GameState.Continued;
+        OnGameStateChanged?.Invoke(State);
+    }
 
     public static bool IsGameCompleted()
     {

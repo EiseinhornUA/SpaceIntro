@@ -62,7 +62,6 @@ public class DatabaseManager : MonoBehaviour
 
     private async UniTask SaveInitialSkillsAsync(List<Skill> skills)
     {
-        if (GameStateProvider.IsGameCompleted()) return;
         if (GameStateProvider.IsGameContinued()) return;
         await initializeTask;
         SaveAssesment(skills, InitialAssessmentName);
