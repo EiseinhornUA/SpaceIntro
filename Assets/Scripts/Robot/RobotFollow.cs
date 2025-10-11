@@ -37,6 +37,7 @@ public class RobotFollow : MonoBehaviour
     [SerializeField] private Transform playerParent;
 
     [SerializeField] private ReportContainerView reportContainerView;
+    [SerializeField] private AudioSource audioSourceForBreakingDoor;
 
     private void Awake()
     {
@@ -161,6 +162,7 @@ public class RobotFollow : MonoBehaviour
 
     private void KnockDownDoor()
     {
+        audioSourceForBreakingDoor.Play();
         var doorRigidBody = doorTransform.AddComponent<Rigidbody>();
         const float RobotDampingFactor = 2f;
         gameObject.GetComponent<Rigidbody>().AddForce(

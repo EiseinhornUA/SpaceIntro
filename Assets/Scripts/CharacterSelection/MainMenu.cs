@@ -6,7 +6,8 @@ internal class MainMenu : Popup
 {
     [Header("Buttons")]
     [SerializeField] private Button continueButton;
-    [SerializeField] private Button startButton;
+    //[SerializeField] private Button startButton;
+    [SerializeField] private Button startWarningButton;
     [SerializeField] private Button settingsButton;
     [SerializeField] private Button profileButton;
 
@@ -23,7 +24,7 @@ internal class MainMenu : Popup
     private void Start()
     {
         continueButton.onClick.AddListener(OnContinueButtonClicked.Invoke);
-        startButton.onClick.AddListener(OnGameStarted.Invoke);
+        startWarningButton.onClick.AddListener(OnGameStarted.Invoke);
         settingsButton.onClick.AddListener(OnSettingsButtonClicked.Invoke);
         profileButton.onClick.AddListener(OnProfileButtonClicked.Invoke);
 
