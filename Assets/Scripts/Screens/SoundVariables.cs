@@ -8,6 +8,9 @@ public class SoundVariables : MonoBehaviour
     public float musicSliderValue;
     public float SFXSliderValue;
 
+    private float defaultMusicValue;
+    private float defaultSFXValue;
+
     private void SetMusicVolume(float value)
     {
         musicSliderValue = value;
@@ -18,10 +21,22 @@ public class SoundVariables : MonoBehaviour
         SFXSliderValue = value;
     }
 
+    public void SetDefaultValues()
+    {
+        musicSlider.value = defaultMusicValue;
+        SFXSlider.value = defaultSFXValue;
+        musicSliderValue = defaultMusicValue;
+        SFXSliderValue = defaultSFXValue;
+    }
+
     private void Awake()
     {
+        musicSliderValue = musicSlider.value;
+        SFXSliderValue = SFXSlider.value;
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         SFXSlider.onValueChanged.AddListener(SetSFXVolume);
+        defaultMusicValue = musicSliderValue;
+        defaultSFXValue = SFXSliderValue;
         DontDestroyOnLoad(gameObject);
     }
 }
