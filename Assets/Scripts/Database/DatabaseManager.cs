@@ -201,7 +201,7 @@ public class DatabaseManager : MonoBehaviour
         {
             Debug.LogError($"GetSkills failed: {e.Message}");
         }
-
+        await UniTask.Yield();
         return skills;
     }
 
@@ -279,10 +279,10 @@ public class DatabaseManager : MonoBehaviour
     [ContextMenu("Calulate Assessments")]
     public void CalculateSumOfAssessments()
     {
-        CalculateAssessmentsAsync().Forget();
+        CalculateSumOfAssessmentsAsync().Forget();
     }
 
-    private async UniTask CalculateAssessmentsAsync()
+    public async UniTask CalculateSumOfAssessmentsAsync()
     {
         try
         {
