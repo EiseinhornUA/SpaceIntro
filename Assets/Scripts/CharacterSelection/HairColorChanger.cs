@@ -8,19 +8,29 @@ public class HairColorChanger : MonoBehaviour
     [SerializeField] private ColorContainerSO hairColorContainer;
     private int currentIndex;
 
+    private const string HairColorKey = "HairColor";
+
     private void Start()
     {
-        ResetColor();
-    }
-
-    private void ResetColor()
-    {
-        hairMaterial.color = hairColorContainer.GetColor(0);
+        LoadColor();
     }
 
     internal void ChangeColor()
     {
         currentIndex = (currentIndex + 1) % hairColorContainer.colors.Count;
         hairMaterial.color = hairColorContainer.GetColor(currentIndex);
+        SaveColor(currentIndex);
+    }
+
+    private void SaveColor(int index)
+    {
+        PlayerPrefs.SetInt(HairColorKey, index);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadColor()
+    {
+        int index = PlayerPrefs.GetInt(HairColorKey, 0);
+        hairMaterial.color = hairColorContainer.GetColor(index);
     }
 }
