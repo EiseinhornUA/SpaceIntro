@@ -20,9 +20,9 @@ public class SettingsScreen : MonoBehaviour
         SFXSlider.onValueChanged.AddListener(SetSFXVolume);
 
         soundVariables = FindObjectOfType<SoundVariables>();
-        if (!soundVariables) return;
-        musicSlider.value = soundVariables.musicSliderValue;
-        SFXSlider.value = soundVariables.SFXSliderValue;
+        //if (!soundVariables) return;
+        //musicSlider.value = soundVariables.musicSliderValue;
+        //SFXSlider.value = soundVariables.SFXSliderValue;
     }
 
     private void SetMusicVolume(float value)

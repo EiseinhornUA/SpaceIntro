@@ -10,16 +10,11 @@ public class SkinChanger : MonoBehaviour
     [SerializeField] private SkinContainerSO skinContainer;
     private int currentIndex;
 
+    private const string SkinColorKey = "SkinColor";
+
     private void Start()
     {
-        ResetSkin();
-    }
-
-    private void ResetSkin()
-    {
-        skinMaterial.color = skinContainer.GetSkin(0).skinColor;
-        beardMaterial.color = skinContainer.GetSkin(0).beardColor;
-        lipsMaterial.color = skinContainer.GetSkin(0).lipsColor;
+        LoadSkin();
     }
 
     internal void ChangeColor()
@@ -29,5 +24,20 @@ public class SkinChanger : MonoBehaviour
         skinMaterial.color = skinContainer.GetSkin(currentIndex).skinColor;
         beardMaterial.color = skinContainer.GetSkin(currentIndex).beardColor;
         lipsMaterial.color = skinContainer.GetSkin(currentIndex).lipsColor;
+        SaveSkin(currentIndex);
+    }
+
+    private void SaveSkin(int index)
+    {
+        PlayerPrefs.SetInt(SkinColorKey, index);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadSkin()
+    {
+        int index = PlayerPrefs.GetInt(SkinColorKey, 0);
+        skinMaterial.color = skinContainer.GetSkin(index).skinColor;
+        beardMaterial.color = skinContainer.GetSkin(index).beardColor;
+        lipsMaterial.color = skinContainer.GetSkin(index).lipsColor;
     }
 }
