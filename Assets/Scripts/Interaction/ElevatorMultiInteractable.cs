@@ -74,4 +74,6 @@ public class ElevatorMultiInteractable : MonoBehaviour
         multiInteractionView.Hide();
         multiInteractionView.RemoveListeners();
     }
+
+    internal bool IsActive() => isActive;
 }

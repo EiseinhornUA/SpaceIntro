@@ -36,7 +36,11 @@ public class RobotChat : MonoBehaviour
 
     private async UniTask SendChatRequest(string question)
     {
-        if (string.IsNullOrEmpty(question)) return;
+        if (string.IsNullOrEmpty(question))
+        {
+            askView.ShowAskButton();
+            return;
+        }
 
         ChatRequest requestData = new ChatRequest
         {

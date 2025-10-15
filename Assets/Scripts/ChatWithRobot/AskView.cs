@@ -11,12 +11,20 @@ public class AskView : MonoBehaviour
     [field: SerializeField] public Button askButton { get; private set;}
     [SerializeField] private TextMeshProUGUI responeText;
     [SerializeField] private Button closeButton;
+    [SerializeField] private Button openChatButton;
+
+    private RobotFollow robot;
 
 
     private void Start()
     {
         closeButton.onClick.AddListener(Hide);
         askButton.onClick.AddListener(HideAskButton);
+    }
+
+    public void ShowChatButton()
+    {
+        openChatButton.gameObject.SetActive(true);
     }
 
     private void HideAskButton()

@@ -42619,30 +42619,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AskRobotUI
       objectReference: {fileID: 0}
-    - target: {fileID: 3355175184056476901, guid: cedccbc30929ead40ba80c0e9c7f7709, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4389977801138867918, guid: cedccbc30929ead40ba80c0e9c7f7709, type: 3}
-      propertyPath: hud
+      propertyPath: openChatButton
       value: 
-      objectReference: {fileID: 3028325128995464520}
-    - target: {fileID: 6648814209455165233, guid: cedccbc30929ead40ba80c0e9c7f7709, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 188.23486
-      objectReference: {fileID: 0}
-    - target: {fileID: 6648814209455165233, guid: cedccbc30929ead40ba80c0e9c7f7709, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -2.5007324
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657997501436947762, guid: cedccbc30929ead40ba80c0e9c7f7709, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 195.86182
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657997501436947762, guid: cedccbc30929ead40ba80c0e9c7f7709, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 277.29785
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2007332104205896422}
     - target: {fileID: 8055040020327511587, guid: cedccbc30929ead40ba80c0e9c7f7709, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -44403,6 +44383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a01c70104cf4e45a640fd858c7024a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elevator: {fileID: 1444866253}
   saveJson: 
 --- !u!1001 &3353822053019043604
 PrefabInstance:
@@ -45210,7 +45191,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.4
+  m_fontSize: 43.45
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -47182,7 +47163,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.4
+  m_fontSize: 43.45
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -47851,7 +47832,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.4
+  m_fontSize: 43.45
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -49022,7 +49003,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46.2
+  m_fontSize: 47.35
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -52869,7 +52850,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.4
+  m_fontSize: 43.45
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1

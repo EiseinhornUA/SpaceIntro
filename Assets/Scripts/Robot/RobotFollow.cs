@@ -39,6 +39,8 @@ public class RobotFollow : MonoBehaviour
     [SerializeField] private ReportContainerView reportContainerView;
     [SerializeField] private AudioSource audioSourceForBreakingDoor;
 
+    public event Action onRobotEnabled = delegate { };
+
     private void Awake()
     {
         robotColliderRadius = GetComponent<CircleCollider2D>().radius;
@@ -66,6 +68,10 @@ public class RobotFollow : MonoBehaviour
         gameObject.GetComponent<SoundPlayer>().Play();
         await UniTask.WaitForSeconds(gameObject.GetComponent<SoundPlayer>().clipToPlay.length);
         gameObject.GetComponent<AudioSource>().Play();
+
+        onRobotEnabled?.Invoke();
+
+        FindObjectOfType<AskView>(true).ShowChatButton();
     }
 
     public void TurnOffRobot()

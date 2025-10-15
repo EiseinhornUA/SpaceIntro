@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class PersistanceManager : MonoBehaviour
 {
     private const string SaveDataKey = "SaveData";
-    [SerializeField, TextArea(20, 30)] private string saveJson;
+    [SerializeField] private ElevatorMultiInteractable elevator;
 
     private Save save = new();
 
@@ -27,6 +27,8 @@ public class PersistanceManager : MonoBehaviour
     private DatabaseManager databaseManager;
 
     private MainMenu mainMenu;
+
+    [SerializeField, TextArea(20, 30)] private string saveJson;
 
     private string GameSceneKey = "3DSci-fiScene";
 
@@ -198,6 +200,9 @@ public class PersistanceManager : MonoBehaviour
         if (cp.elevatorTriggered)
             triggerSwitcher.DisableElevatorTriggers();
 
+        if (cp.elevatorEnabled)
+            elevator.Activate();
+
         triggerSwitcher.DisableInitial();
     }
 
@@ -213,7 +218,8 @@ public class PersistanceManager : MonoBehaviour
             hasSpaceSuit = spaceSuit.PlayerHasSuit(),
             collectedItems = itemContainer.GetStoredItemNames(),
             skills = skillContainer.GetDictionarySkills(),
-            elevatorTriggered = triggerSwitcher.AreElevatorTriggersDisabled()
+            elevatorTriggered = triggerSwitcher.AreElevatorTriggersDisabled(),
+            elevatorEnabled = elevator.IsActive()
         };
 
         SaveReports(cp);
@@ -266,6 +272,7 @@ public class SaveCheckpoint
     public bool hasAccessCodeReports;
     public bool hasSpaceSuit;
     public bool elevatorTriggered;
+    public bool elevatorEnabled;
 
     [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
     public List<string> collectedItems = new();
