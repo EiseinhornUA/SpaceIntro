@@ -28,7 +28,7 @@ public class HairColorChanger : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private void LoadColor()
+    public void LoadColor()
     {
         int index = PlayerPrefs.GetInt(HairColorKey, 0);
         hairMaterial.color = hairColorContainer.GetColor(index);

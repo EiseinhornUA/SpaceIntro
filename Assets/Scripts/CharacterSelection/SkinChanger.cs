@@ -33,7 +33,7 @@ public class SkinChanger : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private void LoadSkin()
+    public void LoadSkin()
     {
         int index = PlayerPrefs.GetInt(SkinColorKey, 0);
         skinMaterial.color = skinContainer.GetSkin(index).skinColor;

@@ -39,6 +39,12 @@ public class PersistanceManager : MonoBehaviour
         {
             mainMenu = FindObjectOfType<MainMenu>();
             mainMenu.OnContinueButtonClicked.AddListener(LoadGameScene);
+
+            HairColorChanger hairColorChanger = FindObjectOfType<HairColorChanger>(true);
+            if(hairColorChanger) hairColorChanger.LoadColor();
+            SkinChanger skinChanger = FindObjectOfType<SkinChanger>(true);
+            if (skinChanger) skinChanger.LoadSkin();
+
             GameStateProvider.SetState(LoadState());
         }
         if (GameStateProvider.IsGameCompleted())
