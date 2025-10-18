@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -35,7 +36,9 @@ public class CharacterProfileScreen : Popup
 
         userIdTMP.text = "UID: " + await databaseManager.GetAliasUserIDAsync();
 
-        reportTMP.text = await reportFetcher.FetchReportAsync(PlayerPrefs.GetString("CharacterName"), await databaseManager.GetSkillsAsync());
+        List<Skill> normalizedSkills = NormalizeSkills(await databaseManager.GetSkillsAsync());
+
+        reportTMP.text = await reportFetcher.FetchReportAsync(PlayerPrefs.GetString("CharacterName"), normalizedSkills);
     }
 
     private void Start()
@@ -49,7 +52,21 @@ public class CharacterProfileScreen : Popup
     {
         return (level - min) / (max - min);
     }
+    private List<Skill> NormalizeSkills(List<Skill> skills)
+    {
+        List<Skill> skillsNormalized = new();
+        foreach (var skill in skills)
+        {
+            SkillSO skillSO = skillBars.Find(sb => sb.skillSO.GetName() == skill.skillName)?.skillSO;
+            
+            if (!skillSO) continue;
+            
+            skill.level = NormalizeSkillLevel(skill.level, skillSO.GetMinLevel(), skillSO.GetMaxLevel());
 
+            skillsNormalized.Add(skill);
+        }
+        return skillsNormalized;
+    }
 
     [System.Serializable]
     public class SliderSkillSOPair
