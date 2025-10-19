@@ -8,6 +8,7 @@ public class ScreenSelector : MonoBehaviour
     [SerializeField] private CharacterProfileScreen profile;
     [SerializeField] private LoadingScreen loadingScreen;
     [SerializeField] private MainMenu mainMenu;
+    [SerializeField] private CreditsScreen creditsScreen; 
 
     private void Awake()
     {
@@ -34,12 +35,22 @@ public class ScreenSelector : MonoBehaviour
             HideAll();
             profile.Show();
         });
+        mainMenu.OnCreditsButtonClicked.AddListener(() =>
+        {
+            HideAll();
+            creditsScreen.Show();
+        });
         profile.onBackButtonClicked.AddListener(() =>
         {
             HideAll();
             mainMenu.Show();
         });
         characterSelector.OnBackButtonClicked.AddListener(() =>
+        {
+            HideAll();
+            mainMenu.Show();
+        });
+        creditsScreen.OnBackButtonClicked.AddListener(() =>
         {
             HideAll();
             mainMenu.Show();
