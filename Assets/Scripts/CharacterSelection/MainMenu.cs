@@ -10,6 +10,7 @@ internal class MainMenu : Popup
     [SerializeField] private Button startWarningButton;
     [SerializeField] private Button settingsButton;
     [SerializeField] private Button profileButton;
+    [SerializeField] private Button creditsButton;
 
     [Header("Popups")]
     [SerializeField] private PopupView newGamePopup;
@@ -20,6 +21,7 @@ internal class MainMenu : Popup
     public UnityEvent OnGameStarted { get; private set; } = new();
     public UnityEvent OnSettingsButtonClicked { get; private set; } = new();
     public UnityEvent OnProfileButtonClicked { get; private set; } = new();
+    public UnityEvent OnCreditsButtonClicked { get; private set; } = new();
 
     private void Start()
     {
@@ -27,6 +29,7 @@ internal class MainMenu : Popup
         startWarningButton.onClick.AddListener(OnGameStarted.Invoke);
         settingsButton.onClick.AddListener(OnSettingsButtonClicked.Invoke);
         profileButton.onClick.AddListener(OnProfileButtonClicked.Invoke);
+        creditsButton.onClick.AddListener(OnCreditsButtonClicked.Invoke);
 
         //OnSettingsButtonClicked.AddListener(settingsPopup.Show);
 
