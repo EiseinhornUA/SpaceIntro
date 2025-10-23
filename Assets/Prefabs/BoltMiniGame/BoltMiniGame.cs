@@ -234,6 +234,7 @@ public class BoltMiniGame : MonoBehaviour
             gameFinished = new UniTaskCompletionSource();
         player.GetComponent<Collider2D>().enabled = false;
         Hud.Instance.HideHud();
+        player.StopMovement();
         showMiniGame = true;
     }
 
