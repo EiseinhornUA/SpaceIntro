@@ -75,5 +75,6 @@ public class ScreenSelector : MonoBehaviour
         profile.Hide();
         loadingScreen.Hide();
         mainMenu.Hide();
+        creditsScreen.Hide();
     }
 }
