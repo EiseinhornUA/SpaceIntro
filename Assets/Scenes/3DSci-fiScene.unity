@@ -28619,6 +28619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35df78917783b9848af03db5dc64ce89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 1479959198}
 --- !u!1001 &1834238666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58647,6 +58648,14 @@ PrefabInstance:
     - target: {fileID: 8054532303936929774, guid: f0e68675672e0ad48ae871b11060e334, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054532304626714846, guid: f0e68675672e0ad48ae871b11060e334, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -230
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054532304626714846, guid: f0e68675672e0ad48ae871b11060e334, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -115
       objectReference: {fileID: 0}
     - target: {fileID: 8143284619342384342, guid: f0e68675672e0ad48ae871b11060e334, type: 3}
       propertyPath: m_AnchorMax.y
