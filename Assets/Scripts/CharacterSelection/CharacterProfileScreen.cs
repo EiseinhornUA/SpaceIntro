@@ -14,15 +14,14 @@ public class CharacterProfileScreen : Popup
     [SerializeField] private TextMeshProUGUI userIdTMP;
     [SerializeField] private TextMeshProUGUI reportTMP;
     [SerializeField] private ReportFetcher reportFetcher;
+    [SerializeField] private ProfileDataFetcher profileDataFetcher;
     private GameObject characterInstance;
 
     public UnityEvent onBackButtonClicked { get; private set; } = new();
 
     private async void OnEnable()
     {
-        var databaseManager = FindObjectOfType<DatabaseManager>(true);
-        
-        var skills = await databaseManager.GetSkillsAsync();
+        var skills = await profileDataFetcher.GetSkillsAsync();
 
         foreach (var skillBar in skillBars)
         {
@@ -34,16 +33,26 @@ public class CharacterProfileScreen : Popup
             }
         }
 
-        userIdTMP.text = "UID: " + await databaseManager.GetAliasUserIDAsync();
+        userIdTMP.text = "UID: " + await profileDataFetcher.GetAliasUserIDAsync();
 
-        List<Skill> normalizedSkills = NormalizeSkills(await databaseManager.GetSkillsAsync());
+        List<Skill> normalizedSkills = NormalizeSkills(await profileDataFetcher.GetSkillsAsync());
 
-        reportTMP.text = await reportFetcher.FetchReportAsync(PlayerPrefs.GetString("CharacterName"), normalizedSkills);
+        reportTMP.text = await reportFetcher.FetchReportAsync(PlayerPrefs.GetString("CharacterName", "Player"), normalizedSkills);
+    }
+
+    private List<Skill> NormalizeSkills(object v)
+    {
+        throw new NotImplementedException();
     }
 
     private void Start()
     {
         backButton.onClick.AddListener(onBackButtonClicked.Invoke);
+        LoadCharacter();
+    }
+
+    private void LoadCharacter()
+    {
         GameObject selectedCharacter = characterContainer.GetCharacter(PlayerPrefs.GetInt("SelectedCharacter"));
         characterInstance = Instantiate(selectedCharacter, characterParent);
     }

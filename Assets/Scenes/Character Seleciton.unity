@@ -1640,7 +1640,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.35, y: 1}
-  m_AnchoredPosition: {x: 25.000366, y: 75}
+  m_AnchoredPosition: {x: 25.000244, y: 75}
   m_SizeDelta: {x: -49.99997, y: -250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &570148820
@@ -2522,6 +2522,7 @@ MonoBehaviour:
   userIdTMP: {fileID: 1943397301}
   reportTMP: {fileID: 1869340357}
   reportFetcher: {fileID: 699311048}
+  profileDataFetcher: {fileID: 1016180385}
 --- !u!114 &699311048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2606,8 +2607,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Yevhenii Kereya\r\n\r\nDaniel Beliaiev\r\nStanislav Beliaiev\r\n\nVitalii\r\n\r\nElena
-    Savchenko\r\nAnton Kurapov\r\n\r\nDenys Beliaiev\n\nTetiana Kereia\r"
+  m_text: "Yevhenii Kereya\r\n\r\nDaniel Beliaiev\r\nStanislav Beliaiev\r\n\nVitalii
+    Terziiev\n\r\nElena Savchenko\r\nAnton Kurapov\r\n\r\nDenys Beliaiev\n\nTetiana
+    Kereia\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38aecd77a18d544bfb836befe83883b7, type: 2}
   m_sharedMaterial: {fileID: 6434564289584660316, guid: 38aecd77a18d544bfb836befe83883b7, type: 2}
@@ -4275,6 +4277,50 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!1 &1016180384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1016180386}
+  - component: {fileID: 1016180385}
+  m_Layer: 0
+  m_Name: ProfileDataFetcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1016180385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016180384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460f46a304227ed41bf9f7ddacc505b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1016180386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016180384}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 949.8754, y: 517.78284, z: -0.02703903}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1025139578
 GameObject:
   m_ObjectHideFlags: 0
@@ -12727,7 +12773,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.4505732, y: 1}
-  m_AnchoredPosition: {x: 25.011108, y: 75}
+  m_AnchoredPosition: {x: 25.01062, y: 75}
   m_SizeDelta: {x: -50, y: -250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5806599298107523125
@@ -14208,3 +14254,4 @@ SceneRoots:
   - {fileID: 1399558501}
   - {fileID: 8906549760442770589}
   - {fileID: 1280056630}
+  - {fileID: 1016180386}

@@ -35,14 +35,13 @@ internal class MainMenu : Popup
 
         OnGameStarted.AddListener(GameStateProvider.SetStarted);
 
-        if (GameStateProvider.IsGameStarted() || GameStateProvider.IsGameContinued())
-        {
-            continueButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            continueButton.gameObject.SetActive(false);
-        }
+        continueButton.gameObject.SetActive(IsContinueAvaliable());
+        
         profileButton.interactable = GameStateProvider.IsGameCompleted();
+    }
+
+    private static bool IsContinueAvaliable()
+    {
+        return GameStateProvider.IsGameStarted() || GameStateProvider.IsGameContinued();
     }
 }

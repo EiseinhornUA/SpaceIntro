@@ -49,12 +49,13 @@ public class PersistanceManager : MonoBehaviour
         }
         if (GameStateProvider.IsGameCompleted())
         {
-            ResetProgress();
+            ResetSave();
+            SaveCurrentGameState();
             return;
         }
         if (GameStateProvider.IsGameStarted())
         {
-            ResetProgress();
+            ResetSave();
         }
 
         CacheSceneReferences();
@@ -70,7 +71,7 @@ public class PersistanceManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void ResetProgress()
+    public void ResetSave()
     {
         PlayerPrefs.DeleteKey(SaveDataKey);
     }

@@ -118,9 +118,6 @@ public class CharacterSelector : Popup
 
         OnCharacterSelected?.Invoke();
 
-        var previousDatabaseManager = FindObjectOfType<DatabaseManager>();
-        if (previousDatabaseManager) Destroy(previousDatabaseManager);
-
         await SceneManager.LoadSceneAsync("3DSci-fiScene");
         //CloseLoadingScreen();
     }
