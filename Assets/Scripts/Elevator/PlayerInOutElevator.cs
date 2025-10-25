@@ -56,6 +56,7 @@ public class PlayerInOutElevator : MonoBehaviour
         Hud.Instance.HideHud();
         //player.SetGravityEnabled(true);
         player.EnableControls(false);
+        player.StopMovement();
         await GetCurrentElevatorPanel(floorFrom).CallElevator();
 
         await MoveRobotToElevator();

@@ -14,6 +14,7 @@ public class Interactable : MonoBehaviour
     private InteractionView interactionView;
     private CircleCollider2D circleCollider;
     private UniTaskCompletionSource interactionTCS;
+    private Player player;
 
     [SerializeField] private bool isActive = false;
 
@@ -22,6 +23,7 @@ public class Interactable : MonoBehaviour
         interactionView = FindObjectOfType<InteractionView>(includeInactive: true);
         circleCollider = GetComponent<CircleCollider2D>();
         circleCollider.isTrigger = true;
+        player = FindObjectOfType<Player>();
     }
 
     public UniTask WaitForInteraction()
@@ -35,6 +37,7 @@ public class Interactable : MonoBehaviour
     {
         onInteract.Invoke();
         interactionView.Hide();
+        player.StopMovement();
 
         interactionTCS?.TrySetResult(); // Resume WaitForInteraction
     }
