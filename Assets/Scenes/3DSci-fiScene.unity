@@ -24370,6 +24370,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 843488683}
     m_Modifications:
+    - target: {fileID: 3069285635721439477, guid: fb3e62d6cae9e524d8d689ebbef4f32e, type: 3}
+      propertyPath: m_Name
+      value: ElevatorExit
+      objectReference: {fileID: 0}
     - target: {fileID: 3074189030669242236, guid: fb3e62d6cae9e524d8d689ebbef4f32e, type: 3}
       propertyPath: buttonAmount
       value: 2
@@ -24438,14 +24442,35 @@ PrefabInstance:
       propertyPath: player_animator
       value: 
       objectReference: {fileID: 2109241224}
+    - target: {fileID: 7718558100046168451, guid: fb3e62d6cae9e524d8d689ebbef4f32e, type: 3}
+      propertyPath: playersPointElevatorExit
+      value: 
+      objectReference: {fileID: 1533075478}
+    - target: {fileID: 7718558100046168451, guid: fb3e62d6cae9e524d8d689ebbef4f32e, type: 3}
+      propertyPath: playersPointOutsideElevator
+      value: 
+      objectReference: {fileID: 1822969951}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3104184501752279814, guid: fb3e62d6cae9e524d8d689ebbef4f32e, type: 3}
+      insertIndex: 9
+      addedObject: {fileID: 1822969951}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb3e62d6cae9e524d8d689ebbef4f32e, type: 3}
 --- !u!4 &1533075476 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4153213541478216191, guid: fb3e62d6cae9e524d8d689ebbef4f32e, type: 3}
+  m_PrefabInstance: {fileID: 1533075475}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1533075477 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3104184501752279814, guid: fb3e62d6cae9e524d8d689ebbef4f32e, type: 3}
+  m_PrefabInstance: {fileID: 1533075475}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1533075478 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5006787717991964169, guid: fb3e62d6cae9e524d8d689ebbef4f32e, type: 3}
   m_PrefabInstance: {fileID: 1533075475}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1538554478
@@ -26178,6 +26203,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4824984152862614, guid: ba8c17098e39a004d8754f7823b7bcc7, type: 3}
   m_PrefabInstance: {fileID: 8707768444616759759}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1713925326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1713925327}
+  m_Layer: 9
+  m_Name: ElevatorPlayerExit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1713925327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713925326}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.5, y: 0.03, z: 7.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1754937013}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1719610669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26761,6 +26817,10 @@ PrefabInstance:
       propertyPath: player_animator
       value: 
       objectReference: {fileID: 2109241224}
+    - target: {fileID: 4451220871559325639, guid: 393025d95827507499d2a98582418ada, type: 3}
+      propertyPath: playersPointElevatorExit
+      value: 
+      objectReference: {fileID: 1713925327}
     - target: {fileID: 5557697238969172983, guid: 393025d95827507499d2a98582418ada, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -26801,6 +26861,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7320972669699800327, guid: 393025d95827507499d2a98582418ada, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.125
+      objectReference: {fileID: 0}
     - target: {fileID: 8167607862769007402, guid: 393025d95827507499d2a98582418ada, type: 3}
       propertyPath: m_Name
       value: CryoElevators
@@ -26811,7 +26875,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 667527236734722466, guid: 393025d95827507499d2a98582418ada, type: 3}
+      insertIndex: 10
+      addedObject: {fileID: 1713925327}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 393025d95827507499d2a98582418ada, type: 3}
 --- !u!4 &1754937011 stripped
@@ -26830,6 +26897,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69ae581a437e3d49bb306ac31e6491d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1754937013 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 667527236734722466, guid: 393025d95827507499d2a98582418ada, type: 3}
+  m_PrefabInstance: {fileID: 1754937010}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1755872490
 GameObject:
   m_ObjectHideFlags: 0
@@ -28383,6 +28455,37 @@ MonoBehaviour:
   gameActions: {fileID: 900061260}
   dataSaver: {fileID: 1818891910}
   gameName: BoltGameRobot
+--- !u!1 &1822969950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1822969951}
+  m_Layer: 9
+  m_Name: ElevatorOutside
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1822969951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822969950}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.5, y: 0.03, z: 5.125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1533075477}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1823899872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4824984152862614, guid: ba8c17098e39a004d8754f7823b7bcc7, type: 3}
