@@ -3,8 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using System.Collections;
+using System.Threading.Tasks;
 
 public class PlayerInOutElevator : MonoBehaviour
 {
@@ -15,8 +14,9 @@ public class PlayerInOutElevator : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private RobotFollow robot;
     [SerializeField] private Animator player_animator;
-    [SerializeField] private Transform playersPointOutsideElevator;
+    [SerializeField] private Transform playersPointElevatorExit;
     [SerializeField] private Transform playersPointInsideElevator;
+    [SerializeField] private Transform playersPointOutsideElevator;
     [SerializeField] private Transform robotsPointOutsideElevator;
     [SerializeField] private Transform robotsPointInsideElevator;
     [SerializeField] private float robotFlyingSpeed = 20f;
@@ -26,13 +26,24 @@ public class PlayerInOutElevator : MonoBehaviour
     private Transform modelTransform;
     private int currentFloorIndex;
 
-    public async UniTask RotatePlayerTowardsElevator()
+    public async UniTask RotatePlayerTowardsOutsideElevator()
+    {
+        modelTransform = player.GetModelTransform();
+
+        Vector3 direction = (playersPointOutsideElevator.position - modelTransform.transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        await modelTransform
+            .DORotateQuaternion(targetRotation, 0.25f)
+            .AsyncWaitForCompletion();
+    }
+
+    public async UniTask RotatePlayerTowardsInsideElevator()
     {
         modelTransform = player.GetModelTransform();
 
         Vector3 direction = (playersPointInsideElevator.position - modelTransform.transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction);
-        //targetRotation *= Quaternion.Euler(0, 0f, 0);
 
         await modelTransform
             .DORotateQuaternion(targetRotation, 0.25f)
@@ -41,7 +52,7 @@ public class PlayerInOutElevator : MonoBehaviour
 
     public async UniTask RotatePlayerTowardExitOfElevator()
     {
-        Vector3 direction = (playersPointOutsideElevator.position - modelTransform.transform.position).normalized;
+        Vector3 direction = (playersPointElevatorExit.position - modelTransform.transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         targetRotation *= Quaternion.Euler(0, 0f, 0);
 
@@ -56,19 +67,17 @@ public class PlayerInOutElevator : MonoBehaviour
         Hud.Instance.HideHud();
         //player.SetGravityEnabled(true);
         player.EnableControls(false);
+        player.StopMovement();
         await GetCurrentElevatorPanel(floorFrom).CallElevator();
 
         await MoveRobotToElevator();
 
-        await RotatePlayerTowardsElevator();
+        await RotatePlayerTowardsOutsideElevator();
 
         StartPlayerWalkingAnimation();
-
-        //player.SetGravityEnabled(false);
-
-        Vector3 playerPositionInsideElevator = playersPointInsideElevator.position;
-
-        await player.transform.DOMove(playerPositionInsideElevator, playerWalkingDuration);
+        await MovePlayerToElevatorEntrance();
+        RotatePlayerTowardsInsideElevator().Forget();
+        await MovePlayerToElevatorCenter();
 
         await RotatePlayerTowardExitOfElevator();
 
@@ -76,7 +85,7 @@ public class PlayerInOutElevator : MonoBehaviour
         MakeRobotFollowElevator();
 
         //player.SetGravityEnabled(true);
-        
+
         StopPlayerWalkingAnimation();
 
         await elevatorButtonsInside.ElevateToFloor(floorTo);
@@ -88,7 +97,7 @@ public class PlayerInOutElevator : MonoBehaviour
 
         StartPlayerWalkingAnimation();
 
-        Vector3 destinationOutSideElevator = playersPointOutsideElevator.position;
+        Vector3 destinationOutSideElevator = playersPointElevatorExit.position;
         await player.transform.DOMove(destinationOutSideElevator, playerWalkingDuration).AsyncWaitForCompletion();
 
         //player.SetGravityEnabled(true);
@@ -98,6 +107,16 @@ public class PlayerInOutElevator : MonoBehaviour
         player.EnableControls(true);
 
         Hud.Instance.ShowHud();
+    }
+
+    private async UniTask MovePlayerToElevatorCenter()
+    {
+        await player.transform.DOMove(playersPointInsideElevator.position, playerWalkingDuration / 2f).SetEase(Ease.OutSine);
+    }
+
+    private async UniTask MovePlayerToElevatorEntrance()
+    {
+        await player.transform.DOMove(playersPointOutsideElevator.position, playerWalkingDuration / 2f).SetEase(Ease.InSine);
     }
 
     private void StopRobotFolowingElevator()
@@ -219,7 +238,7 @@ public class PlayerInOutElevator : MonoBehaviour
     [ContextMenu("RotateTowardsElevator")]
     private void RotateTowardsElevator()
     {
-        RotatePlayerTowardsElevator().Forget();
+        RotatePlayerTowardsOutsideElevator().Forget();
     }
 
     public void GoToFloor(int from, int to)
