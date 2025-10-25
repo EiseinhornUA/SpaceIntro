@@ -39,5 +39,4 @@ public class RobotChatHistoryView : MonoBehaviour
             messages.Add(messageView);
         }
     }
-
 }

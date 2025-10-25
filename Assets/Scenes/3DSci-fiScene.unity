@@ -42612,6 +42612,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4253174332680612863}
     m_Modifications:
+    - target: {fileID: 2789680174846000449, guid: cedccbc30929ead40ba80c0e9c7f7709, type: 3}
+      propertyPath: robotChatHistoryView
+      value: 
+      objectReference: {fileID: 8890908068460993249}
     - target: {fileID: 3355175184056476901, guid: cedccbc30929ead40ba80c0e9c7f7709, type: 3}
       propertyPath: m_Name
       value: AskRobotUI
@@ -45264,7 +45268,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.25
+  m_fontSize: 40.05
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -47236,7 +47240,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.25
+  m_fontSize: 40.05
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -47905,7 +47909,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.25
+  m_fontSize: 40.05
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -49076,7 +49080,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46.05
+  m_fontSize: 43.7
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -52923,7 +52927,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.25
+  m_fontSize: 40.05
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -54511,7 +54515,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46
+  m_fontSize: 43.45
   m_fontSizeBase: 46
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -58722,6 +58726,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0e68675672e0ad48ae871b11060e334, type: 3}
+--- !u!114 &8890908068460993249 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 682739115568538022, guid: f0e68675672e0ad48ae871b11060e334, type: 3}
+  m_PrefabInstance: {fileID: 8890908068460993248}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a911876685c26d545a40744a77a0ad0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8898844088258238796
 PrefabInstance:
   m_ObjectHideFlags: 0

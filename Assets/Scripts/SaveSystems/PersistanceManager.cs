@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +24,7 @@ public class PersistanceManager : MonoBehaviour
     private ReportContainerView reportContainer;
     private SkillContainer skillContainer;
     private TriggerSwitcher triggerSwitcher;
+    private RobotChat robotChat;
 
     private DatabaseManager databaseManager;
 
@@ -101,6 +103,7 @@ public class PersistanceManager : MonoBehaviour
         reportContainer = FindObjectOfType<ReportContainerView>(true);
         skillContainer = FindObjectOfType<SkillContainer>();
         triggerSwitcher = FindObjectOfType<TriggerSwitcher>();
+        robotChat = FindObjectOfType<RobotChat>(true);
     }
 
     #region Context Menu Actions
@@ -140,6 +143,8 @@ public class PersistanceManager : MonoBehaviour
         ApplyCheckpointData(checkpoint);
 
         await LoadSpaceSuit(checkpoint);
+
+        await LoadRobotChatHistory(checkpoint);
     }
 
     public void SaveGameState(GameStateProvider.GameState state)
@@ -165,6 +170,13 @@ public class PersistanceManager : MonoBehaviour
 
         if (checkpoint.hasSpaceSuit)
             spaceSuit.PutSpaceSuitOn();
+    }
+
+
+    private async UniTask LoadRobotChatHistory(SaveCheckpoint checkpoint)
+    {
+        await UniTask.Yield();
+        robotChat.SetChatHistory(checkpoint.conversationHistoryList);
     }
 
     private void LoadSaveFromPrefs()
@@ -226,7 +238,8 @@ public class PersistanceManager : MonoBehaviour
             collectedItems = itemContainer.GetStoredItemNames(),
             skills = skillContainer.GetDictionarySkills(),
             elevatorTriggered = triggerSwitcher.AreElevatorTriggersDisabled(),
-            elevatorEnabled = elevator.IsActive()
+            elevatorEnabled = elevator.IsActive(),
+            conversationHistoryList = robotChat.GetChatHistory()
         };
 
         SaveReports(cp);
@@ -286,6 +299,9 @@ public class SaveCheckpoint
 
     [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
     public Dictionary<string, float> skills = new();
+
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public List<(string phrase, string characterName)> conversationHistoryList = new();
 }
 
 [Serializable]

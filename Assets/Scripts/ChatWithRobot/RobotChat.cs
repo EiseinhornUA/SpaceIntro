@@ -1,10 +1,12 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
+using static Cinemachine.CinemachineFreeLook;
 
 [RequireComponent(typeof(AskView))]
 public class RobotChat : MonoBehaviour
@@ -13,7 +15,7 @@ public class RobotChat : MonoBehaviour
     [SerializeField] private List<PhraseCharacterPair> conversationHistory = new();
 
     private AskView askView;
-    private RobotChatHistoryView robotChatHistoryView;
+    [SerializeField] private RobotChatHistoryView robotChatHistoryView;
     
     [Header("Characters")]
     [SerializeField] private DialogueCharacter playerCharacter;
@@ -24,7 +26,6 @@ public class RobotChat : MonoBehaviour
     private void Start()
     {
         askView = GetComponent<AskView>();
-        robotChatHistoryView = FindObjectOfType<RobotChatHistoryView>(true);
         askView.askButton.onClick.AddListener(OnAskButtonClicked);
     }
 
@@ -75,7 +76,7 @@ public class RobotChat : MonoBehaviour
                 SaveQuestionAnswer(question, responseData.answer);
                 return;
             }
-            askView.SetResponse("Try again");
+            askView.SetResponse("Try again.");
             Debug.LogError("No response received from the server.");
         }
     }
@@ -86,6 +87,25 @@ public class RobotChat : MonoBehaviour
         conversationHistory.Add(new(answer, robotCharacter));
         robotChatHistoryView.UpdateChatHistory(conversationHistory);
         OnChatHistoryUpdated.Invoke(conversationHistory);
+    }
+
+    public List<(string phrase, string characterName)> GetChatHistory()
+    {
+        return conversationHistory.Select(pair => (pair.phrase, pair.character.GetName())).ToList();
+    }
+
+    public void SetChatHistory(List<(string phrase, string characterName)> conversation)
+    {
+        conversationHistory = conversation.Select(kvp => new PhraseCharacterPair(phrase: kvp.phrase, character: GetCharacter(kvp.characterName))).ToList();
+        robotChatHistoryView.UpdateChatHistory(conversationHistory);
+        OnChatHistoryUpdated.Invoke(conversationHistory);
+    }
+
+    private DialogueCharacter GetCharacter(string name)
+    {
+        if (name == playerCharacter.GetName()) return playerCharacter;
+
+        return robotCharacter;
     }
 }
 
