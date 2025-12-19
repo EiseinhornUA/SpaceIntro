@@ -20,6 +20,9 @@ public class ReportContainerView : MonoBehaviour
     private bool hasRobotReports;
     private bool hasAccessCodeReports;
 
+    [Header("Tab")]
+    [SerializeField] private Tab tab;
+
     private void OnReportSelected(ReportView report)
     {
         reportDescriptionPanel.Show();
@@ -34,6 +37,7 @@ public class ReportContainerView : MonoBehaviour
         report.OnReportSelected += OnReportSelected;
         previousReport = report;
         OnReportSelected(report);
+        tab.EnableIndicator();
     }
 
     [ContextMenu("Add Example Report")]

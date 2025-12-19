@@ -12,9 +12,11 @@ public class BackpackView : MonoBehaviour
     [SerializeField] private Transform itemsParent;
     
     [SerializeField] private ItemDescriptionPanel descriptionPanel;
-
     
     private List<ItemSlot> itemSlots = new List<ItemSlot>();
+
+    [Header("Tab")]
+    [SerializeField] private Tab tab;
 
     private void OnItemSelect(ItemSlot selectedItem)
     {
@@ -30,6 +32,7 @@ public class BackpackView : MonoBehaviour
         itemSlots.Add(item);
         item.OnItemSelected += OnItemSelect;
         OnItemSelect(item);
+        tab.EnableIndicator();
     }
 
     private void ClearItems()
