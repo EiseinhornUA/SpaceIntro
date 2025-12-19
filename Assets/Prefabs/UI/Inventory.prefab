@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 608.4262, y: -70}
-  m_SizeDelta: {x: 170.97893, y: 83}
+  m_AnchoredPosition: {x: 826.7038, y: -70}
+  m_SizeDelta: {x: 233.34395, y: 83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8626554862782480104
 CanvasRenderer:
@@ -310,8 +310,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageViewPrefab: {fileID: 6915766790694978790, guid: 714ba454d0b5a0d46887b8fcb110941a, type: 3}
   messagesParent: {fileID: 3904260954524028239}
-  player: {fileID: 11400000, guid: 52590835bc94700458ac194086922c6b, type: 2}
-  robot: {fileID: 11400000, guid: 2ee97894fbdb671409f8324dbc0e1b92, type: 2}
 --- !u!1 &760340489960161053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,8 +1408,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 890.3841, y: -70}
-  m_SizeDelta: {x: 170.97893, y: 83}
+  m_AnchoredPosition: {x: 1233.3917, y: -70}
+  m_SizeDelta: {x: 233.34395, y: 83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &685405460305238898
 CanvasRenderer:
@@ -1516,9 +1514,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Journal
-
-'
+  m_text: Tasks
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d9b454495b7d24a7a933eb61bdfa0607, type: 2}
   m_sharedMaterial: {fileID: 7409485994217783921, guid: d9b454495b7d24a7a933eb61bdfa0607, type: 2}
@@ -1837,8 +1833,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 749.40515, y: -70}
-  m_SizeDelta: {x: 170.97893, y: 128}
+  m_AnchoredPosition: {x: 1030.0477, y: -70}
+  m_SizeDelta: {x: 233.34395, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2976945329906567387
 MonoBehaviour:
@@ -2994,7 +2990,7 @@ GameObject:
   - component: {fileID: 8054532303326688588}
   - component: {fileID: 1137261789472364017}
   m_Layer: 5
-  m_Name: Journal
+  m_Name: Tasks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3199,10 +3195,10 @@ RectTransform:
   m_Children:
   - {fileID: 8054532303532875060}
   - {fileID: 8143284617837402901}
-  - {fileID: 8054532303491845257}
   - {fileID: 8054532303326688588}
-  - {fileID: 539058946611295985}
   - {fileID: 3861921814914143667}
+  - {fileID: 8054532303491845257}
+  - {fileID: 539058946611295985}
   - {fileID: 8865332874292496776}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3622,7 +3618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: 0}
+  m_AnchoredPosition: {x: -1.06, y: 0}
   m_SizeDelta: {x: 3, y: 64.756226}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8143284617798416124
@@ -3695,13 +3691,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8143284619720447209}
-  - {fileID: 8143284619342384342}
   - {fileID: 8438173272631202247}
+  - {fileID: 8143284619342384342}
+  - {fileID: 421713116090766757}
   - {fileID: 122816143771668664}
   - {fileID: 4099847218571847080}
   - {fileID: 1887344508664393856}
-  - {fileID: 421713116090766757}
+  - {fileID: 8143284619720447209}
   m_Father: {fileID: 8054532303936929774}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -3786,10 +3782,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tabs:
-  - {fileID: 6551809883795012059}
   - {fileID: 5058418777771491958}
-  - {fileID: 6669140101143499210}
   - {fileID: 3541098750276154033}
+  - {fileID: 6551809883795012059}
+  - {fileID: 6669140101143499210}
   initialTabIndex: 0
 --- !u!1 &8143284619038090627
 GameObject:
@@ -3962,8 +3958,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 326.46838, y: -70}
-  m_SizeDelta: {x: 170.97893, y: 83}
+  m_AnchoredPosition: {x: 420.0159, y: -70}
+  m_SizeDelta: {x: 233.34395, y: 83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8143284619342384340
 CanvasRenderer:
@@ -4041,8 +4037,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 185.48947, y: -70}
-  m_SizeDelta: {x: 170.97893, y: 128}
+  m_AnchoredPosition: {x: 1436.7357, y: -70}
+  m_SizeDelta: {x: 233.34395, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &308463402836938651
 MonoBehaviour:
@@ -4498,8 +4494,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1031.363, y: -70}
-  m_SizeDelta: {x: 170.97893, y: 128}
+  m_AnchoredPosition: {x: 623.35986, y: -70}
+  m_SizeDelta: {x: 233.34395, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3350776389029880592
 MonoBehaviour:
@@ -4885,7 +4881,7 @@ GameObject:
   - component: {fileID: 7298779068091425232}
   - component: {fileID: 2259856234730589200}
   m_Layer: 5
-  m_Name: Journal
+  m_Name: Tasks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4909,8 +4905,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 467.44733, y: -70}
-  m_SizeDelta: {x: 170.97893, y: 128}
+  m_AnchoredPosition: {x: 216.67197, y: -70}
+  m_SizeDelta: {x: 233.34395, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1681199450043153687
 MonoBehaviour:
