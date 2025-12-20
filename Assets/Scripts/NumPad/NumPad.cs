@@ -19,6 +19,7 @@ public class NumPad: MonoBehaviour
     [SerializeField] private TextMeshProUGUI symbolEntry;
     [SerializeField] private string password;
     [SerializeField] private UnityEvent onAccessGranted;
+    [SerializeField] private UnityEvent onErrorGranted;
 
     private UniTaskCompletionSource accessGranted;
 
@@ -63,6 +64,7 @@ public class NumPad: MonoBehaviour
                 symbolEntry.text = "ERROR";
                 await UniTask.Delay(TimeSpan.FromSeconds(0.75f));
                 symbolEntry.text = "";
+                onErrorGranted.Invoke();
             }
 
             return;
