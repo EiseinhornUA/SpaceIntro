@@ -17,7 +17,8 @@ public class AudioManager : MonoBehaviour
     [Header("---Objects---")]
     [SerializeField] private AudioSource pipeSteamTop;
     [SerializeField] private AudioSource pipeSteamBottom;
-    
+    [SerializeField] private AudioSource electricityEnabled;
+
     private int musicIndex = 0;
 
     [SerializeField] public Player player;

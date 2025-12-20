@@ -36,6 +36,7 @@ public class BoltMiniGame : MonoBehaviour
     [SerializeField] private float screwingTime = 0.25f;
     [SerializeField] private int screwingRotation = 360;
     [SerializeField] public GameObject goalPopup;
+    [SerializeField] private SoundPlayer electricityEnabled;
 
     [SerializeField] private GameEvents gameEvents;
 
@@ -310,6 +311,8 @@ public class BoltMiniGame : MonoBehaviour
             gameState = GameState.Finished;
             startGameInteractable.Deactivate();
             goalPopup.SetActive(true);
+            if (electricityEnabled != null)
+                electricityEnabled.Play();
         }
     }
 
