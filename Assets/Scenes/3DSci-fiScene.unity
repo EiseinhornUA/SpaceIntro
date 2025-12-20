@@ -23977,6 +23977,10 @@ PrefabInstance:
       propertyPath: databaseManager
       value: 
       objectReference: {fileID: 352123097}
+    - target: {fileID: 292163968406785725, guid: 736365822c5e32447871008ee1bcbc65, type: 3}
+      propertyPath: electricityEnabled
+      value: 
+      objectReference: {fileID: 5449569031936165086}
     - target: {fileID: 6100857297593146963, guid: 736365822c5e32447871008ee1bcbc65, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -44449,6 +44453,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 3787c519209d0da46b3a65d5d897fef6, type: 3}
     - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
+      propertyPath: electricityEnabled
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
       propertyPath: soundsToPlayOnFirstFloor.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -50767,8 +50775,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab75c0fc94a134684d184c9864c09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SFXSource: {fileID: 0}
-  clipToPlay: {fileID: 8300000, guid: 24fb9585905588a4f80ee5c513759ae9, type: 3}
+  SFXSource: {fileID: 3224320052876614726}
+  clipToPlay: {fileID: 8300000, guid: c52fc65ff4f015f4eaa055b1a248f0c6, type: 3}
 --- !u!114 &5476452533725463758
 MonoBehaviour:
   m_ObjectHideFlags: 0
