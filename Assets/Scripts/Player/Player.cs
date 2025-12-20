@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
+using Cysharp.Threading.Tasks;
 
 [RequireComponent (typeof (Controller2D), (typeof (AnimationHandler)))]
 public class Player : MonoBehaviour {
     public float maxJumpHeight = 4;
 	public float minJumpHeight = 1;
 	public float timeToJumpApex = .4f;
-	float accelerationTimeAirborne = .2f;
-	float accelerationTimeGrounded = .1f;
-	[SerializeField] private float moveSpeed = 6;
+	private float accelerationTimeAirborne = .2f;
+	private float accelerationTimeGrounded = .1f;
+	[SerializeField] private float moveSpeed = 3;
+	[SerializeField] private float runMultiplier = 2;
+    [SerializeField] private float timeToRun = 2;
+    private float startMovingTime;
+    private bool isRunning;
 
 	public Vector2 wallJumpClimb;
 	public Vector2 wallJumpOff;
@@ -58,7 +63,8 @@ public class Player : MonoBehaviour {
 		//OnPlayerJump();
 
         controller.Move(velocity * Time.deltaTime, directionalInput);
-        animationHandler.SetHorizontalSpeed(velocity.x);
+        float normalizedSpeed = velocity.x / (moveSpeed * runMultiplier);
+        animationHandler.SetHorizontalSpeed(normalizedSpeed);
 
 		if (playerRotator)
 		{
@@ -152,8 +158,10 @@ public class Player : MonoBehaviour {
 	}
 
 	void CalculateVelocity() {
-		float targetVelocityX = directionalInput.x * moveSpeed;
-		velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirborne);
+        float targetVelocityX = directionalInput.x * moveSpeed;
+		if (isRunning)
+			targetVelocityX *= runMultiplier;
+        velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirborne);
 		velocity.y += gravity * Time.deltaTime;
 	}
 
@@ -169,8 +177,27 @@ public class Player : MonoBehaviour {
 
 	private void OnPlayerMove()
 	{
-		directionalInput.x = (joystick.Horizontal == 0) ? 0 : Mathf.Sign(joystick.Horizontal)  * -1;
-    }
+		if (ShouldRun())
+		{
+			isRunning = true;
+        }
+        if (joystick.Horizontal == 0)
+		{
+			isRunning = false;
+			OnStartedMoving();
+		}
+		directionalInput.x = (joystick.Horizontal == 0) ? 0 : Mathf.Sign(joystick.Horizontal) * -1;
+	}		
+
+	private void OnStartedMoving()
+	{
+		startMovingTime = Time.realtimeSinceStartup;
+	}
+
+	private bool ShouldRun()
+	{
+		return Time.realtimeSinceStartup - startMovingTime > timeToRun;
+	}
 
 	//   public void OnPlayerJump(InputAction.CallbackContext context)
 	//{
