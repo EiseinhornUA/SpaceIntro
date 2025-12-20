@@ -15,8 +15,7 @@ public class BackpackView : MonoBehaviour
     
     private List<ItemSlot> itemSlots = new List<ItemSlot>();
 
-    [Header("Tab")]
-    [SerializeField] private Tab tab;
+    public event Action onItemAdded = delegate { };
 
     private void OnItemSelect(ItemSlot selectedItem)
     {
@@ -32,7 +31,7 @@ public class BackpackView : MonoBehaviour
         itemSlots.Add(item);
         item.OnItemSelected += OnItemSelect;
         OnItemSelect(item);
-        tab.EnableIndicator();
+        onItemAdded.Invoke();
     }
 
     private void ClearItems()

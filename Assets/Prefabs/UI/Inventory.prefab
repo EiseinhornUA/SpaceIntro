@@ -33,9 +33,9 @@ RectTransform:
   - {fileID: 7875164071053348699}
   m_Father: {fileID: 8143284619720447209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -32, y: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 24, y: 0}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &730903454576795281
@@ -386,7 +386,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageViewPrefab: {fileID: 6915766790694978790, guid: 714ba454d0b5a0d46887b8fcb110941a, type: 3}
   messagesParent: {fileID: 3904260954524028239}
-  tab: {fileID: 6669140101143499210}
 --- !u!1 &760340489960161053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,7 +1585,6 @@ MonoBehaviour:
   accessCodeReports:
   - {fileID: 11400000, guid: 2825c4c1f62b6b8479bbd6f2c7fced7a, type: 2}
   - {fileID: 11400000, guid: 5caa381967cd17547a34a68a90a06e50, type: 2}
-  tab: {fileID: 3541098750276154033}
 --- !u!1 &3113034021386576859
 GameObject:
   m_ObjectHideFlags: 0
@@ -2802,9 +2800,9 @@ RectTransform:
   - {fileID: 6244576440794181526}
   m_Father: {fileID: 421713116090766757}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -16, y: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2055131422503755598
@@ -2878,9 +2876,9 @@ RectTransform:
   - {fileID: 6489830697747411744}
   m_Father: {fileID: 8438173272631202247}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -16, y: 0}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7902517700175547761
@@ -3652,9 +3650,9 @@ RectTransform:
   - {fileID: 6267164990494913217}
   m_Father: {fileID: 4099847218571847080}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 24, y: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -32, y: 0}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3936979028953336885
@@ -3752,7 +3750,6 @@ MonoBehaviour:
   taskDescriptionPanel: {fileID: 358834436728418002}
   tasksLayoutGroup: {fileID: 3682011310832939581}
   tasksLayoutGroupRectTransform: {fileID: 5483772537440939186}
-  tab: {fileID: 5058418777771491958}
 --- !u!1 &8054532303491845256
 GameObject:
   m_ObjectHideFlags: 0
@@ -3806,7 +3803,6 @@ MonoBehaviour:
   itemSlotPrefab: {fileID: 5522110982241735093, guid: add71722a54a4204a81b3f970d71f4a9, type: 3}
   itemsParent: {fileID: 8054532305372370127}
   descriptionPanel: {fileID: 284064833744105138}
-  tab: {fileID: 6551809883795012059}
 --- !u!1 &8054532303532875063
 GameObject:
   m_ObjectHideFlags: 0
@@ -3892,6 +3888,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8054532303936929774}
   - component: {fileID: 2744811189934684343}
+  - component: {fileID: 6155204568563187405}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -3938,6 +3935,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeButton: {fileID: 8865332874292496783}
+--- !u!114 &6155204568563187405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8054532303936929769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b71ef7504f87740a51a6cbc822137e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryIndicator: {fileID: 0}
+  tasksIndicator: {fileID: 5067293375514339956}
+  reportsIndicator: {fileID: 5001580967615299346}
+  backpackIndicator: {fileID: 846837921843621}
+  chatIndicator: {fileID: 7673865068906584634}
+  tasksTab: {fileID: 5058418777771491958}
+  reportsTab: {fileID: 3541098750276154033}
+  backpackTab: {fileID: 6551809883795012059}
+  chatTab: {fileID: 6669140101143499210}
+  journalView: {fileID: 1137261789472364017}
+  reportsView: {fileID: 4814826993574715853}
+  backpackView: {fileID: 4113445014467013054}
+  chatView: {fileID: 682739115568538022}
 --- !u!1 &8054532304456710357
 GameObject:
   m_ObjectHideFlags: 0
@@ -4413,9 +4435,9 @@ RectTransform:
   - {fileID: 8143284619342384342}
   - {fileID: 421713116090766757}
   - {fileID: 122816143771668664}
-  - {fileID: 4099847218571847080}
-  - {fileID: 1887344508664393856}
   - {fileID: 8143284619720447209}
+  - {fileID: 1887344508664393856}
+  - {fileID: 4099847218571847080}
   m_Father: {fileID: 8054532303936929774}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
