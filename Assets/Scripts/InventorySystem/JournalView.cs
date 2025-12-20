@@ -13,9 +13,8 @@ public class JournalView : MonoBehaviour
     [SerializeField] private TaskDescriptionPanel taskDescriptionPanel;
     [SerializeField] private VerticalLayoutGroup tasksLayoutGroup;
     [SerializeField] private RectTransform tasksLayoutGroupRectTransform;
+    public event Action onTaskAdded = delegate { };
 
-    [Header("Tab")]
-    [SerializeField] private Tab tab;
     private TaskView previousTask;
 
     private void OnTaskSelected(TaskView task)
@@ -31,7 +30,7 @@ public class JournalView : MonoBehaviour
         task.OnTaskSelected += OnTaskSelected;
         previousTask = task;
         OnTaskSelected(task);
-        tab.EnableIndicator();
+        onTaskAdded.Invoke();
     }
 
     [ContextMenu("Add Example Task")]

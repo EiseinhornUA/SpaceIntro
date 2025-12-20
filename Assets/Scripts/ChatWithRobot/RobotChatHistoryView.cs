@@ -12,8 +12,7 @@ public class RobotChatHistoryView : MonoBehaviour
     private List<MessageView> messages = new();
     private List<PhraseCharacterPair> conversationHistory = new();
 
-    [Header("Tab")]
-    [SerializeField] private Tab tab;
+    public event Action onMessageAdded = delegate { };
 
     private void OnEnable()
     {
@@ -41,6 +40,6 @@ public class RobotChatHistoryView : MonoBehaviour
 
             messages.Add(messageView);
         }
-        tab.EnableIndicator();
+        onMessageAdded.Invoke();
     }
 }
