@@ -14,7 +14,9 @@ public class Player : MonoBehaviour {
 	[SerializeField] private float runMultiplier = 2;
     [SerializeField] private float timeToRun = 2;
 	[SerializeField] private AnimationCurve runAccelerationCurve;
+	[SerializeField] private AnimationCurve decelerationCurve;
     private float startMovingTime;
+    private float stoppedMovingTime;
     private bool isRunning;
 
 	public Vector2 wallJumpClimb;
@@ -57,10 +59,11 @@ public class Player : MonoBehaviour {
 	}
 
 	void Update() {
+		OnPlayerMove();
+
 		CalculateVelocity ();
 		HandleWallSliding ();
 
-		OnPlayerMove();
 		//OnPlayerJump();
 
         controller.Move(velocity * Time.deltaTime, directionalInput);
@@ -162,59 +165,66 @@ public class Player : MonoBehaviour {
 		if (isRunning)
 			targetVelocityX *= runMultiplier;
 */		//velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirborne);
-		timeRunningSeconds = Time.realtimeSinceStartup - startMovingTime; 
-		velocity.x = runAccelerationCurve.Evaluate(timeRunningSeconds) * directionalInput.x;
-		velocity.y += gravity * Time.deltaTime;
-	}
 
-	//public void OnPlayerMove(InputAction.CallbackContext context)
-	//{
-	//	directionalInput.x = context.ReadValue<Vector2>().x * -1;
-	//	//if ((directionalInput.x != previousDirectionInput) && (directionalInput.x != 0 || previousDirectionInput != 0))
-	//	//{
-	//	//	animationHandler.Turn();
-	//	//          previousDirectionInput = directionalInput.x;
-	//	//      }
-	//}
+        velocity.y += gravity * Time.deltaTime;
+		
 
-	private void OnPlayerMove()
-	{
-		if (ShouldRun())
+		if (isWalking)
 		{
-			isRunning = true;
+            timeRunningSeconds = Time.realtimeSinceStartup - startMovingTime;
+            velocity.x = runAccelerationCurve.Evaluate(timeRunningSeconds) * directionalInput.x;
+			return;
         }
+
+		float timeSinceStop = Time.realtimeSinceStartup - stoppedMovingTime; 
+        velocity.x = decelerationCurve.Evaluate(timeSinceStop) * velocity.x;
+
+
+    }
+
+    //public void OnPlayerMove(InputAction.CallbackContext context)
+    //{
+    //	directionalInput.x = context.ReadValue<Vector2>().x * -1;
+    //	//if ((directionalInput.x != previousDirectionInput) && (directionalInput.x != 0 || previousDirectionInput != 0))
+    //	//{
+    //	//	animationHandler.Turn();
+    //	//          previousDirectionInput = directionalInput.x;
+    //	//      }
+    //}
+
+    private void OnPlayerMove()
+	{
         if (joystick.Horizontal == 0)
 		{
-			isRunning = false;
-			OnStartedMoving();
+			startMovingTime = Time.realtimeSinceStartup;
+
+			if (isWalking)
+                stoppedMovingTime = Time.realtimeSinceStartup;
+
+            isWalking = false;
 		}
-		directionalInput.x = (joystick.Horizontal == 0) ? 0 : Mathf.Sign(joystick.Horizontal) * -1;
-	}		
+		else
+		{
+            isWalking = true;
+        }
 
-	private void OnStartedMoving()
-	{
-		startMovingTime = Time.realtimeSinceStartup;
+        directionalInput.x = (joystick.Horizontal == 0) ? 0 : Mathf.Sign(joystick.Horizontal) * -1;
 	}
 
-	private bool ShouldRun()
-	{
-		return Time.realtimeSinceStartup - startMovingTime > timeToRun;
-	}
+    //   public void OnPlayerJump(InputAction.CallbackContext context)
+    //{
+    //	if (context.performed)
+    //	{
+    //		OnJumpInputDown();
+    //		animationHandler.Jump();
+    //	}
+    //	if (context.canceled)
+    //	{
+    //		OnJumpInputUp();
+    //	}
+    //}
 
-	//   public void OnPlayerJump(InputAction.CallbackContext context)
-	//{
-	//	if (context.performed)
-	//	{
-	//		OnJumpInputDown();
-	//		animationHandler.Jump();
-	//	}
-	//	if (context.canceled)
-	//	{
-	//		OnJumpInputUp();
-	//	}
-	//}
-
-	private void OnPlayerJump()
+    private void OnPlayerJump()
 	{
 		if (joystick.Vertical >= jumpThreshold)
 			OnJumpInputDown();
@@ -225,6 +235,7 @@ public class Player : MonoBehaviour {
     private float originalGravity;
     private float originalTimeToJumpApex;
     private float timeRunningSeconds;
+    private bool isWalking;
 
     public void SetGravityEnabled(bool enabled)
     {
