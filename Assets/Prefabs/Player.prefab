@@ -209,6 +209,39 @@ MonoBehaviour:
   moveSpeed: 3
   runMultiplier: 2
   timeToRun: 2
+  runAccelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 14.083041
+      outSlope: 14.083041
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.080385186
+    - serializedVersion: 3
+      time: 0.5
+      value: 3
+      inSlope: 1.644413
+      outSlope: 1.644413
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.13144177
+      outWeight: 0.06666994
+    - serializedVersion: 3
+      time: 2
+      value: 5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   wallJumpClimb: {x: 4, y: 4}
   wallJumpOff: {x: 4, y: 4}
   wallLeap: {x: 4, y: 4}

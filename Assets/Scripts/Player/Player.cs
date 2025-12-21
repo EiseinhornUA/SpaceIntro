@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
 	[SerializeField] private float moveSpeed = 3;
 	[SerializeField] private float runMultiplier = 2;
     [SerializeField] private float timeToRun = 2;
+	[SerializeField] private AnimationCurve runAccelerationCurve;
     private float startMovingTime;
     private bool isRunning;
 
@@ -63,8 +64,7 @@ public class Player : MonoBehaviour {
 		//OnPlayerJump();
 
         controller.Move(velocity * Time.deltaTime, directionalInput);
-        float normalizedSpeed = velocity.x / (moveSpeed * runMultiplier);
-        animationHandler.SetHorizontalSpeed(normalizedSpeed);
+        animationHandler.SetHorizontalSpeed(velocity.x);
 
 		if (playerRotator)
 		{
@@ -158,10 +158,12 @@ public class Player : MonoBehaviour {
 	}
 
 	void CalculateVelocity() {
-        float targetVelocityX = directionalInput.x * moveSpeed;
+/*        float targetVelocityX = directionalInput.x * moveSpeed;
 		if (isRunning)
 			targetVelocityX *= runMultiplier;
-        velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirborne);
+*/		//velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirborne);
+		timeRunningSeconds = Time.realtimeSinceStartup - startMovingTime; 
+		velocity.x = runAccelerationCurve.Evaluate(timeRunningSeconds) * directionalInput.x;
 		velocity.y += gravity * Time.deltaTime;
 	}
 
@@ -222,6 +224,7 @@ public class Player : MonoBehaviour {
 
     private float originalGravity;
     private float originalTimeToJumpApex;
+    private float timeRunningSeconds;
 
     public void SetGravityEnabled(bool enabled)
     {
