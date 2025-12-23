@@ -42,6 +42,7 @@ public class MiniGameDataSaver : MonoBehaviour
         {
             isReadingPopup = true;
             skipPopup.SetActive(true);
+            floatTimeUsedToFinish += Time.deltaTime;
         }
     }
 
