@@ -10,6 +10,9 @@ public class AxeCodeTrigger : MonoBehaviour
     [SerializeField] private NumPad numPad;
     [SerializeField] private int errorCounter;
     [SerializeField] private BoxCollider2D trigger;
+    [SerializeField] private DialogueManager dialogueManager;
+    [SerializeField] private DialoguePrefab firstAxeHint;
+    private bool hintTriggered = false;
 
     private void Start()
     {
@@ -21,5 +24,14 @@ public class AxeCodeTrigger : MonoBehaviour
         errorCounter++;
         if (errorCounter >= numberOfTriesUntilTriggerActivates)
             trigger.enabled = true;
+    }
+
+    public void TryToStartHint()
+    {
+        if (errorCounter >= numberOfTriesUntilTriggerActivates && hintTriggered == false)
+        {
+            dialogueManager.StartDialogue(firstAxeHint);
+            hintTriggered = true;
+        }
     }
 }
