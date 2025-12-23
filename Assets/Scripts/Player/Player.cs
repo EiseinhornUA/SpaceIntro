@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.InputSystem;
 using Cysharp.Threading.Tasks;
+using System;
 
 [RequireComponent (typeof (Controller2D), (typeof (AnimationHandler)))]
 public class Player : MonoBehaviour {
@@ -285,5 +286,15 @@ public class Player : MonoBehaviour {
 	public void StopMovement()
 	{
 		joystick.OnPointerUp(null);
+    }
+
+    internal void StartRunningAnimation()
+    {
+		GetAnimationHandler().StartRunning();
+    }
+
+    internal void StopRunningAnimation()
+    {
+		GetAnimationHandler().StopRunning();
     }
 }

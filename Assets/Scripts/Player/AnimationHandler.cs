@@ -47,4 +47,14 @@ public class AnimationHandler : MonoBehaviour
     {
         animator.SetBool("IsWalking", false);
     }
+
+    internal void StartRunning()
+    {
+        animator.SetBool("IsRunning", true);
+    }
+
+    internal void StopRunning()
+    {
+        animator.SetBool("IsRunning", false);
+    }
 }

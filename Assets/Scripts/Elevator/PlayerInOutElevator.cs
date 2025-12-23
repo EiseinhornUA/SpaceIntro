@@ -137,12 +137,12 @@ public class PlayerInOutElevator : MonoBehaviour
 
     private void StopPlayerWalkingAnimation()
     {
-        player.GetAnimationHandler().SetHorizontalSpeed(0f);
+        player.StopRunningAnimation();
     }
 
     private void StartPlayerWalkingAnimation()
     {
-        player.GetAnimationHandler().SetHorizontalSpeed(3f);
+        player.StartRunningAnimation();
     }
 
     public async UniTask MoveRobotToElevator()

@@ -33,14 +33,14 @@ public class TransitionPlayerToOutsideAnimation : MonoBehaviour
 
         await modelTransform.DORotate(new Vector3(0f, 180f, 0f), 0.75f);
 
-        player.GetAnimationHandler().SetHorizontalSpeed(1f);
+        player.StartRunningAnimation();
 
         await player.transform.DOMove(new Vector3(
             player.transform.position.x, 
             player.transform.position.y, 
             player.transform.position.z + shiftDistance), shiftDuration);
 
-        player.GetAnimationHandler().SetHorizontalSpeed(0f);
+        player.StopRunningAnimation();
         //playerMethod.EnablePlayerControls(true);
     }
 }
