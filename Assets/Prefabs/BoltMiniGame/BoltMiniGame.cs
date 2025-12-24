@@ -36,9 +36,10 @@ public class BoltMiniGame : MonoBehaviour
     [SerializeField] private float screwingTime = 0.25f;
     [SerializeField] private int screwingRotation = 360;
     [SerializeField] public GameObject goalPopup;
-    [SerializeField] private SoundPlayer electricityEnabled;
 
     [SerializeField] private GameEvents gameEvents;
+    public SoundPlayer screwingSound;
+    public SoundPlayer unscrewingSound;
 
     private enum GameState
     {
@@ -184,6 +185,7 @@ public class BoltMiniGame : MonoBehaviour
     {
         if (isScrewed(hole))
         {
+            unscrewingSound.Play();
             hole.GetBolt().transform.DOScale(hole.GetBolt().transform.localScale *
                 (scalePercent / 100f + 1f), screwingTime).SetEase(Ease.InOutQuad);
             hole.GetBolt().transform
@@ -201,6 +203,7 @@ public class BoltMiniGame : MonoBehaviour
     {
         if (isUnScrewed(hole))
         {
+            screwingSound.Play();
             hole.GetBolt().transform.DOScale(hole.GetBolt().transform.localScale /
                  (scalePercent / 100f + 1f), screwingTime).SetEase(Ease.InOutQuad);
             hole.GetBolt().transform
@@ -311,8 +314,6 @@ public class BoltMiniGame : MonoBehaviour
             gameState = GameState.Finished;
             startGameInteractable.Deactivate();
             goalPopup.SetActive(true);
-            if (electricityEnabled != null)
-                electricityEnabled.Play();
         }
     }
 
