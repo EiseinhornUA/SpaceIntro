@@ -12059,6 +12059,8 @@ Transform:
   m_Children:
   - {fileID: 1504577198}
   - {fileID: 1818891909}
+  - {fileID: 2038506828}
+  - {fileID: 1123146380}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &735657799
@@ -12086,6 +12088,8 @@ MonoBehaviour:
   cameraDampingTime: 0.2
   goalPopup: {fileID: 543316891}
   skipPopup: {fileID: 918929173}
+  screwingSound: {fileID: 2038506829}
+  unscrewingSound: {fileID: 1123146381}
 --- !u!1 &736121155
 GameObject:
   m_ObjectHideFlags: 0
@@ -18111,6 +18115,52 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6719926088452559124, guid: 0df78cdc91164504f892da6d4594b166, type: 3}
   m_PrefabInstance: {fileID: 1818891907}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1123146379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1123146380}
+  - component: {fileID: 1123146381}
+  m_Layer: 0
+  m_Name: Unscrew
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1123146380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123146379}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 735657798}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1123146381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123146379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ab75c0fc94a134684d184c9864c09c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXSource: {fileID: 0}
+  clipToPlay: {fileID: 8300000, guid: df057a29eba6b3c40b7d683044f55445, type: 3}
 --- !u!1001 &1125709835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24040,9 +24090,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 900061260}
     - target: {fileID: 292163968406785725, guid: 736365822c5e32447871008ee1bcbc65, type: 3}
+      propertyPath: screwingSound
+      value: 
+      objectReference: {fileID: 2038506829}
+    - target: {fileID: 292163968406785725, guid: 736365822c5e32447871008ee1bcbc65, type: 3}
       propertyPath: databaseManager
       value: 
       objectReference: {fileID: 352123097}
+    - target: {fileID: 292163968406785725, guid: 736365822c5e32447871008ee1bcbc65, type: 3}
+      propertyPath: unscrewingSound
+      value: 
+      objectReference: {fileID: 1123146381}
     - target: {fileID: 292163968406785725, guid: 736365822c5e32447871008ee1bcbc65, type: 3}
       propertyPath: electricityEnabled
       value: 
@@ -28753,9 +28811,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 382567852}
     - target: {fileID: 292163968406785725, guid: 0df78cdc91164504f892da6d4594b166, type: 3}
+      propertyPath: screwingSound
+      value: 
+      objectReference: {fileID: 2038506829}
+    - target: {fileID: 292163968406785725, guid: 0df78cdc91164504f892da6d4594b166, type: 3}
       propertyPath: databaseManager
       value: 
       objectReference: {fileID: 352123097}
+    - target: {fileID: 292163968406785725, guid: 0df78cdc91164504f892da6d4594b166, type: 3}
+      propertyPath: unscrewingSound
+      value: 
+      objectReference: {fileID: 1123146381}
     - target: {fileID: 292163968406785725, guid: 0df78cdc91164504f892da6d4594b166, type: 3}
       propertyPath: startGameInteractable
       value: 
@@ -34235,6 +34301,52 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8054532303936929774, guid: f0e68675672e0ad48ae871b11060e334, type: 3}
   m_PrefabInstance: {fileID: 8890908068460993248}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2038506827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2038506828}
+  - component: {fileID: 2038506829}
+  m_Layer: 0
+  m_Name: Screw
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2038506828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038506827}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 735657798}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2038506829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038506827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ab75c0fc94a134684d184c9864c09c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXSource: {fileID: 0}
+  clipToPlay: {fileID: 8300000, guid: a53fe6d649cd5794a8f4bc373a630df2, type: 3}
 --- !u!4 &2040319647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4021296802695634, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
@@ -56685,6 +56797,7 @@ MonoBehaviour:
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DatabaseManager","value":{"$content":43,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"DatabaseManager,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"SpaceSuitSound","value":{"$content":44,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"SoundPlayer,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"RootsSound","value":{"$content":45,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"SoundPlayer,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"LightsOnSound","value":{"$content":46,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"SoundPlayer,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 5449569031936165082}
@@ -56733,6 +56846,7 @@ MonoBehaviour:
     - {fileID: 352123097}
     - {fileID: 5923394880353780586}
     - {fileID: 2136770019}
+    - {fileID: 5449569031936165086}
 --- !u!1001 &7734202611549563111
 PrefabInstance:
   m_ObjectHideFlags: 0

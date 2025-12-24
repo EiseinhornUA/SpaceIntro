@@ -23,6 +23,8 @@ public class BoltGameStarter : MonoBehaviour
     [SerializeField] public float cameraDampingTime = 0.2f;
     [SerializeField] private GameObject goalPopup;
     [SerializeField] private GameObject skipPopup;
+    [SerializeField] private SoundPlayer screwingSound;
+    [SerializeField] private SoundPlayer unscrewingSound;
 
     private void Awake()
     {
@@ -35,6 +37,8 @@ public class BoltGameStarter : MonoBehaviour
             boltMiniGameSerializes.boltMiniGame.closeButton = closeButton;
             boltMiniGameSerializes.boltMiniGame.resetButton = resetButton;
             boltMiniGameSerializes.boltMiniGame.goalPopup = goalPopup;
+            boltMiniGameSerializes.boltMiniGame.screwingSound = screwingSound;
+            boltMiniGameSerializes.boltMiniGame.unscrewingSound = unscrewingSound;
         }
     }
 
