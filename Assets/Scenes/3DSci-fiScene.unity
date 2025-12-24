@@ -36719,6 +36719,7 @@ GameObject:
   - component: {fileID: 2136770018}
   - component: {fileID: 2136770017}
   - component: {fileID: 2136770016}
+  - component: {fileID: 2136770019}
   m_Layer: 0
   m_Name: Roots
   m_TagString: Untagged
@@ -36893,6 +36894,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136770010}
   m_Mesh: {fileID: 754529906}
+--- !u!114 &2136770019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136770010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ab75c0fc94a134684d184c9864c09c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXSource: {fileID: 0}
+  clipToPlay: {fileID: 8300000, guid: 251eec68619debc48b2cfe9eb206bef8, type: 3}
 --- !u!4 &2139159438 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4750162829005410, guid: 7cfdac9897d75ff46b48feabe9881f12, type: 3}
@@ -56669,6 +56684,7 @@ MonoBehaviour:
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DialogueTimer","value":{"$content":42,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"DialogueTimer,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"DatabaseManager","value":{"$content":43,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"DatabaseManager,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"SpaceSuitSound","value":{"$content":44,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"SoundPlayer,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"RootsSound","value":{"$content":45,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"SoundPlayer,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 5449569031936165082}
@@ -56716,6 +56732,7 @@ MonoBehaviour:
     - {fileID: 1300348533}
     - {fileID: 352123097}
     - {fileID: 5923394880353780586}
+    - {fileID: 2136770019}
 --- !u!1001 &7734202611549563111
 PrefabInstance:
   m_ObjectHideFlags: 0
