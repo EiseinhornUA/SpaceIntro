@@ -51,6 +51,10 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         lastPosition = transform.position;
+    }
+
+    private void OnEnable()
+    {
         TetrominoView.onBeginDragStatic += OnBeginTetrominoDrag;
         TetrominoView.onTetrominoMovedStatic += OnTetrominoMoved;
         TetrominoView.onRotateStatic += OnTetrominoRotate;
