@@ -379,7 +379,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3523909178761703236, guid: 3f618c1537d85d845a6163c795ab4881, type: 3}
       insertIndex: 2
       addedObject: {fileID: 1159545474}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 176994845375332387, guid: 3f618c1537d85d845a6163c795ab4881, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 10608544}
   m_SourcePrefab: {fileID: 100100000, guid: 3f618c1537d85d845a6163c795ab4881, type: 3}
 --- !u!224 &10608539 stripped
 RectTransform:
@@ -391,6 +394,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 176994845375332387, guid: 3f618c1537d85d845a6163c795ab4881, type: 3}
   m_PrefabInstance: {fileID: 10608538}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &10608544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10608540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d665d650ef4120a419e67b7a4924d7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popUpOkText: {fileID: 308011505}
+  button: {fileID: 1159545473}
 --- !u!1001 &24712129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4789,7 +4806,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Got it, let\u2019s talk"
+  m_text: "Got it, let\u2019s talk\n(5)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38aecd77a18d544bfb836befe83883b7, type: 2}
   m_sharedMaterial: {fileID: 6434564289584660316, guid: 38aecd77a18d544bfb836befe83883b7, type: 2}
@@ -44895,6 +44912,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3331485954715403949}
     - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
       propertyPath: robotIdle
       value: 
       objectReference: {fileID: 8300000, guid: b1163354b30f8684fa8429b56b3deb64, type: 3}
@@ -60664,7 +60685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.595, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 19.999542, y: 0}
+  m_AnchoredPosition: {x: 19.999481, y: 0}
   m_SizeDelta: {x: 90, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &9194787359613709199
