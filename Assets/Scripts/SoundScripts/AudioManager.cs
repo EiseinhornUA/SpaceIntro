@@ -19,6 +19,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource pipeSteamBottom;
     [SerializeField] private AudioSource electricityEnabled;
 
+    [Header("---MiniGames---")]
+    [SerializeField] private AudioClip placeSound;
+    [SerializeField] private AudioClip takeOutSound;
+    [SerializeField] private AudioClip rotateSound;
+    [SerializeField] private AudioClip resetSound;
+
     private int musicIndex = 0;
 
     [SerializeField] public Player player;
@@ -45,6 +51,29 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         lastPosition = transform.position;
+        TetrominoView.onBeginDragStatic += OnBeginTetrominoDrag;
+        TetrominoView.onTetrominoMovedStatic += OnTetrominoMoved;
+        TetrominoView.onRotateStatic += OnTetrominoRotate;
+    }
+
+    private void OnTetrominoRotate(TetrominoView view)
+    {
+        SFXSource.PlayOneShot(rotateSound);
+    }
+
+    private void OnTetrominoMoved(TetrominoView handler)
+    {
+        SFXSource.PlayOneShot(placeSound);
+    }
+
+    private void OnBeginTetrominoDrag(TetrominoView view)
+    {
+        SFXSource.PlayOneShot(takeOutSound);
+    }
+
+    public void PlayMiniGameResetSound()
+    {
+        SFXSource.PlayOneShot(resetSound);
     }
 
     void Update()

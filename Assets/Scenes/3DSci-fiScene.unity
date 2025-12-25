@@ -2889,6 +2889,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 308
       objectReference: {fileID: 0}
+    - target: {fileID: 2250526205143498509, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3224320052876614725}
     - target: {fileID: 2628477574914085472, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 1056
@@ -2921,6 +2925,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 307.99994
       objectReference: {fileID: 0}
+    - target: {fileID: 4810884283521683464, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
+      propertyPath: placeSound
+      value: 
+      objectReference: {fileID: 201856112}
+    - target: {fileID: 4810884283521683464, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
+      propertyPath: takeOutSound
+      value: 
+      objectReference: {fileID: 201856111}
     - target: {fileID: 5104620403434060763, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 1328
@@ -3059,6 +3071,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1152749685188436842, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2023143149}
+    - targetCorrespondingSourceObject: {fileID: 2843655555222182950, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 201856112}
+    - targetCorrespondingSourceObject: {fileID: 2843655555222182950, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 201856111}
   m_SourcePrefab: {fileID: 100100000, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
 --- !u!224 &201856108 stripped
 RectTransform:
@@ -3076,6 +3094,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a86cface227cc264ab9fc3dd72442bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &201856110 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2843655555222182950, guid: b6b39257c67af804d8d8d58f304f1300, type: 3}
+  m_PrefabInstance: {fileID: 201856107}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &201856111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201856110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ab75c0fc94a134684d184c9864c09c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXSource: {fileID: 0}
+  clipToPlay: {fileID: 8300000, guid: cf177fa421942b54fa8ed48d8bdcba32, type: 3}
+--- !u!114 &201856112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201856110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ab75c0fc94a134684d184c9864c09c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXSource: {fileID: 0}
+  clipToPlay: {fileID: 8300000, guid: a5aab85b9fe1c53419d18677e9b936dc, type: 3}
 --- !u!1001 &206258252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11867,7 +11918,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 692003953}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3224320052876614725}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayMiniGameResetSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &695169382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44840,9 +44903,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 6bdc8db3e5d8b6e4d8ff7c4eed812d46, type: 3}
     - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
+      propertyPath: placeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: a5aab85b9fe1c53419d18677e9b936dc, type: 3}
+    - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
+      propertyPath: resetSound
+      value: 
+      objectReference: {fileID: 8300000, guid: bda197087ac597142abab07da6d260ed, type: 3}
+    - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
       propertyPath: doorOpening
       value: 
       objectReference: {fileID: 8300000, guid: ab8f9cda2766ea64a9e99a2204e6ef10, type: 3}
+    - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
+      propertyPath: rotateSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ddeda22e6cdd3ea408bec8e2c76ca700, type: 3}
     - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
       propertyPath: turnOnRobot
       value: 
@@ -44851,6 +44926,10 @@ PrefabInstance:
       propertyPath: pipeSteamTop
       value: 
       objectReference: {fileID: 736121157}
+    - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
+      propertyPath: takeOutSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cf177fa421942b54fa8ed48d8bdcba32, type: 3}
     - target: {fileID: 791397890623393441, guid: 53d5767c3f3b7eb4290bf586abd8df10, type: 3}
       propertyPath: pipeSteamBottom
       value: 

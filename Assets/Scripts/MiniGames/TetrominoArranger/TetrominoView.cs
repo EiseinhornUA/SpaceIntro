@@ -14,12 +14,16 @@ public class TetrominoView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     private RectTransform rectTransform;
     public UnityEvent onBeginDrag { get; set; } = new();
+    public static event Action<TetrominoView> onBeginDragStatic = delegate { };
     public UnityEvent onDrag { get; set; } = new();
     public UnityEvent onEndDrag { get; set; } = new();
+    public static event Action<TetrominoView> onTetrominoMovedStatic = delegate { };
     public UnityEvent onClick { get; set; } = new();
 
     private TweenerCore<Quaternion, Vector3, QuaternionOptions> rotationTween;
     private TweenerCore<Quaternion, Vector3, QuaternionOptions> outlineRotationTween;
+
+    public static event Action<TetrominoView> onRotateStatic = delegate { };
 
     private void Start()
     {
@@ -29,6 +33,7 @@ public class TetrominoView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData eventData)
     {
         onBeginDrag.Invoke();
+        onBeginDragStatic.Invoke(this);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -39,6 +44,7 @@ public class TetrominoView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnEndDrag(PointerEventData eventData)
     {
         onEndDrag.Invoke();
+        onTetrominoMovedStatic.Invoke(this);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -50,6 +56,7 @@ public class TetrominoView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         rotationTween?.Complete();
         outlineRotationTween?.Complete();
+        onRotateStatic.Invoke(this);
 
         rotationTween = rectTransform.DORotate(rectTransform.rotation.eulerAngles + new Vector3(0, 0, -90), rotationDurationSeconds);
         outlineRotationTween = outline.DORotate(outline.rotation.eulerAngles + new Vector3(0, 0, -90), rotationDurationSeconds);
