@@ -14,7 +14,8 @@ public class ReadCarefullyPopup : MonoBehaviour
 
     private void OnEnable()
     {
-        button.GetComponent<Image>().color = new Color(0.784f, 0.784f, 0.784f, 1f);
+        Color disabledColor = new Color(0.784f, 0.784f, 0.784f, 1f);
+        button.GetComponent<Image>().color = disabledColor;
         button.GetComponent<Button>().enabled = false;
         StartTimer();
     }
@@ -34,7 +35,7 @@ public class ReadCarefullyPopup : MonoBehaviour
 
     private void OnTimerExpired()
     {
-        button.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+        button.GetComponent<Image>().color = Color.white;
         button.GetComponent<Button>().enabled = true;
     }
 
