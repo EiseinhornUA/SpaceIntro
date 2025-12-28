@@ -343,7 +343,11 @@ public class DialogueEditorWindow : EditorWindow
         foreach (var kvp in updates)
         {
             string dlgName = kvp.Key;
-            if (!dialogues.TryGetValue(dlgName, out var data)) continue;
+            if (!dialogues.TryGetValue(dlgName, out var data))
+            {
+                Debug.LogError($"Dialogue '{dlgName}' not found. Skipping updates.");
+                continue;
+            }
 
             try
             {
@@ -355,7 +359,7 @@ public class DialogueEditorWindow : EditorWindow
 
                 foreach (var upd in kvp.Value)
                 {
-                    string targetField = NormalizeFieldName(upd.field);
+                    string targetField = upd.field;
 
                     var node = elements.FirstOrDefault(e => e["$id"]?.Value<string>() == upd.nodeId);
                     if (node == null) continue;
@@ -364,25 +368,63 @@ public class DialogueEditorWindow : EditorWindow
                     if (defaults == null) continue;
 
                     JToken token = defaults[targetField];
-                    if (token == null) continue;
+                    if (token == null)
+                    {
+                        Debug.LogWarning($"Field '{targetField}' not found in node ({upd.nodeId}) of '{dlgName}'");
+                        Debug.LogError(defaults.ToString());
+                        continue;
+                    }
 
-                    string current = null;
+                    string currentValue = null;
 
+                    // Case 1: Structured object with $content
                     if (token is JObject obj && obj["$content"] != null)
-                        current = obj["$content"].Value<string>();
+                    {
+                        currentValue = obj["$content"]?.Value<string>() ?? obj["$content"]?.ToString();
+
+                        if (currentValue != upd.value)
+                        {
+                            Debug.Log($"SAFE UPDATE: {dlgName} → node {upd.nodeId} → {targetField} → '{currentValue}' → '{upd.value}'");
+
+                            // IMPORTANT: Only update $content, keep $type and other properties!
+                            obj["$content"] = upd.value;
+                            modified = true;
+                        }
+                    }
+                    // Case 2: Direct string value
                     else if (token.Type == JTokenType.String)
-                        current = token.Value<string>();
+                    {
+                        currentValue = token.Value<string>();
 
-                    if (current == null || current == upd.value) continue;
-
-                    Debug.Log($"Updating {dlgName} / node {upd.nodeId} / {targetField}: '{current}' → '{upd.value}'");
-
-                    if (token is JObject obj2 && obj2["$content"] != null)
-                        obj2["$content"] = upd.value;
-                    else if (token.Type == JTokenType.String)
-                        defaults[targetField] = upd.value;
-
-                    modified = true;
+                        if (currentValue != upd.value)
+                        {
+                            Debug.Log($"UPDATE direct string: {dlgName} → node {upd.nodeId} → {targetField} → '{currentValue}' → '{upd.value}'");
+                            defaults[targetField] = upd.value;
+                            modified = true;
+                        }
+                    }
+                    // Case 3: Numeric value (e.g. Character as int)
+                    else if (token.Type == JTokenType.Integer || token.Type == JTokenType.Float)
+                    {
+                        if (int.TryParse(upd.value, out int newInt))
+                        {
+                            int oldInt = token.Value<int>();
+                            if (oldInt != newInt)
+                            {
+                                Debug.Log($"UPDATE numeric: {dlgName} → node {upd.nodeId} → {targetField} → {oldInt} → {newInt}");
+                                defaults[targetField] = newInt;
+                                modified = true;
+                            }
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"Cannot parse '{upd.value}' as int for numeric field {targetField} in {dlgName}");
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Unsupported token type for field {targetField} in node {upd.nodeId}: {token.Type}");
+                    }
                 }
 
                 if (modified)
@@ -411,23 +453,6 @@ public class DialogueEditorWindow : EditorWindow
     }
 
     // ── Helpers ─────────────────────────────────────────────────────────────
-
-    private string NormalizeFieldName(string input)
-    {
-        if (string.IsNullOrEmpty(input)) return input;
-
-        string cleaned = input.Trim().Replace(" ", "").ToLowerInvariant();
-
-        return cleaned switch
-        {
-            "dialogueline" or "dialogue_line" => "Dialogue Line",
-            "text1" or "text 1" => "Text1",
-            "text2" or "text 2" => "Text2",
-            "text3" or "text 3" => "Text3",
-            "text4" or "text 4" => "Text4",
-            _ => input
-        };
-    }
 
     private static string GetValueSafe(JToken token, string subKey)
     {
