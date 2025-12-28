@@ -25,6 +25,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip rotateSound;
     [SerializeField] private AudioClip resetSound;
 
+    [Header("---Radio---")]
+    [SerializeField] public List<AudioClip> radioPlaylist;
+
     private int musicIndex = 0;
 
     [SerializeField] public Player player;

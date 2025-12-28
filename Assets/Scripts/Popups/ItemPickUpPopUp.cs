@@ -68,11 +68,10 @@ public class ItemPickUpPopUp : Popup
         await taskCompletionSource.Task;
     }
 
-    public void ShowPickedUpItem(Flow flow, ValueInput itemInput, ValueInput gameObjectInput)
+    public void ShowPickedUpItem(ItemSO item, Transform itemPosition)
     {
-        Sprite icon = flow.GetValue<ItemSO>(itemInput).icon;
-        itemIcon.sprite = icon;
-        MoveIconToPosition(flow.GetValue<GameObject>(gameObjectInput).transform).Forget();
+        itemIcon.sprite = item.icon;
+        MoveIconToPosition(itemPosition).Forget();
     }
 
     public override void Show()
