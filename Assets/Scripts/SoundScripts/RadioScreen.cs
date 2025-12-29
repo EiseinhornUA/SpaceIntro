@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,9 +11,11 @@ public class RadioScreen : MonoBehaviour
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private AudioManager audioManager;
     [SerializeField] private AudioSource radioSource;
+    [SerializeField] private TextMeshProUGUI radioClipName;
     private List<AudioClip> radioPlaylist;
     private int playlistIndex = 0;
     private bool radioTurnedOn;
+    private AudioClip previousRadioClip;
 
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Button setDefaultValuesButton;
@@ -22,6 +25,8 @@ public class RadioScreen : MonoBehaviour
     {
         radioPlaylist = audioManager.radioPlaylist;
         radioSource.clip = radioPlaylist[0];
+        radioClipName.text = $"Now playing:\r\n{radioSource.clip.name}";
+        previousRadioClip = radioPlaylist[0];
         volumeSlider.onValueChanged.AddListener(SetRadioVolume);
     }
     private void SetRadioVolume(float value)
@@ -34,6 +39,12 @@ public class RadioScreen : MonoBehaviour
         if (radioTurnedOn && radioSource.timeSamples >= radioSource.clip.samples - 1)
         {
             AutoPlayNext();
+        }
+        if (radioSource.clip.name != previousRadioClip.name)
+        {
+            radioClipName.text = $"Now playing:\r\n{radioSource.clip.name}";
+
+            previousRadioClip = radioSource.clip;
         }
     }
 
