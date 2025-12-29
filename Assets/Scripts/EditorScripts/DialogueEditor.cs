@@ -108,7 +108,6 @@ public class DialogueEditorWindow : EditorWindow
             if (data.foldout)
             {
                 EditorGUI.indentLevel++;
-                EditorGUILayout.LabelField("JSON Data:", EditorStyles.boldLabel);
 
                 EditorGUI.BeginChangeCheck();
                 var json = data.jsonDataParsed;
@@ -124,12 +123,18 @@ public class DialogueEditorWindow : EditorWindow
                     {
                         string dialogueLine = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
                         EditorGUILayout.LabelField(nodeType, EditorStyles.boldLabel);
+
+                        EditorGUILayout.LabelField("Original Text:", EditorStyles.boldLabel);
+                        EditorGUILayout.LabelField(dialogueLine);
+
                         EditorGUILayout.TextArea(dialogueLine);
                     }
                     if (nodeType == "DialogueChoiceNode")
                     {
                         string dialogueLine = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
                         EditorGUILayout.LabelField(nodeType, EditorStyles.boldLabel);
+                        EditorGUILayout.LabelField("Original Text:", EditorStyles.boldLabel);
+                        EditorGUILayout.LabelField(dialogueLine);
                         EditorGUILayout.TextArea(dialogueLine);
                         string text1 = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
                         for (int i = 1; i <= 4; i++)
@@ -139,6 +144,8 @@ public class DialogueEditorWindow : EditorWindow
                             if (!string.IsNullOrEmpty(text))
                             {
                                 EditorGUILayout.LabelField($"Choice {i}:");
+                                EditorGUILayout.LabelField("Original Text:", EditorStyles.boldLabel);
+                                EditorGUILayout.LabelField(dialogueLine);
                                 EditorGUILayout.TextArea(text);
                             }
                         }
@@ -147,6 +154,8 @@ public class DialogueEditorWindow : EditorWindow
                     {
                         string dialogueLine = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
                         EditorGUILayout.LabelField(nodeType, EditorStyles.boldLabel);
+                        EditorGUILayout.LabelField("Original Text:", EditorStyles.boldLabel);
+                        EditorGUILayout.LabelField(dialogueLine);
                         EditorGUILayout.TextArea(dialogueLine);
                         string text1 = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
                         for (int i = 1; i <= 4; i++)
@@ -156,6 +165,8 @@ public class DialogueEditorWindow : EditorWindow
                             if (!string.IsNullOrEmpty(text))
                             {
                                 EditorGUILayout.LabelField($"Choice {i}:");
+                                EditorGUILayout.LabelField("Original Text:", EditorStyles.boldLabel);
+                                EditorGUILayout.LabelField(dialogueLine);
                                 EditorGUILayout.TextArea(text);
                             }
                         }
