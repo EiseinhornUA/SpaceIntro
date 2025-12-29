@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
 using Newtonsoft.Json.Linq;
+using System.Text;
 
 public class DialogueEditorWindow : EditorWindow
 {
@@ -17,6 +18,7 @@ public class DialogueEditorWindow : EditorWindow
     {
         public string name;
         public string jsonData;
+        public JObject jsonDataParsed;
         public ScriptGraphAsset asset;
         public bool foldout = true;
     }
@@ -50,6 +52,7 @@ public class DialogueEditorWindow : EditorWindow
                 {
                     name = asset.name,
                     jsonData = json,
+                    jsonDataParsed = JObject.Parse(json),
                     asset = asset
                 };
             }
@@ -106,12 +109,63 @@ public class DialogueEditorWindow : EditorWindow
             if (data.foldout)
             {
                 EditorGUI.indentLevel++;
-                EditorGUILayout.LabelField("JSON Data:", EditorStyles.boldLabel);
-
                 EditorGUI.BeginChangeCheck();
-                data.jsonData = EditorGUILayout.TextArea(data.jsonData, GUILayout.Height(200));
+
+                var json = data.jsonDataParsed;
+                JArray elements = json["graph"]?["elements"] as JArray;
+                if (elements == null) continue;
+
+                foreach (JObject node in elements)
+                {
+                    string nodeType = node["$type"]?.Value<string>() ?? "";
+
+                    if (nodeType == "DialogueNode")
+                    {
+                        string dialogueLine = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
+                        EditorGUILayout.LabelField(nodeType, EditorStyles.boldLabel);
+
+                        // Make the text field editable and capture changes
+                        string newText = EditorGUILayout.TextArea(dialogueLine);
+                        if (newText != dialogueLine)
+                        {
+                            SetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content", newText);
+                        }
+                    }
+
+                    if (nodeType == "DialogueChoiceNode" || nodeType == "DialogueIterativeNode")
+                    {
+                        string dialogueLine = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
+                        EditorGUILayout.LabelField(nodeType, EditorStyles.boldLabel);
+
+                        string newDialogueLine = EditorGUILayout.TextArea(dialogueLine);
+                        if (newDialogueLine != dialogueLine)
+                        {
+                            SetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content", newDialogueLine);
+                        }
+
+                        for (int i = 1; i <= 4; i++)
+                        {
+                            string key = $"Text{i}";
+                            string text = GetValueSafe(node["defaultValues"]?[key], "$content") ?? "";
+                            if (!string.IsNullOrEmpty(text))
+                            {
+                                EditorGUILayout.LabelField($"Choice {i}:", EditorStyles.miniBoldLabel);
+
+                                string newText = EditorGUILayout.TextArea(text);
+                                if (newText != text)
+                                {
+                                    SetValueSafe(node["defaultValues"]?[key], "$content", newText);
+                                }
+                            }
+                        }
+                    }
+                }
+
                 if (EditorGUI.EndChangeCheck())
+                {
+                    data.jsonData = json.ToString();
                     dialogues[kvp.Key] = data;
+                }
 
                 if (GUILayout.Button($"Save {data.name}"))
                     SaveDialogue(data);
@@ -124,6 +178,14 @@ public class DialogueEditorWindow : EditorWindow
         }
 
         EditorGUILayout.EndScrollView();
+    }
+
+    private void SetValueSafe(JToken token, string propertyName, string value)
+    {
+        if (token != null && token is JObject obj)
+        {
+            obj[propertyName] = value;
+        }
     }
 
     private void SaveDialogue(DialogueData data)
@@ -148,6 +210,188 @@ public class DialogueEditorWindow : EditorWindow
             SaveDialogue(data);
 
         Debug.Log("All dialogues saved");
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    // Pipe CSV Export / Import
+    // ──────────────────────────────────────────────────────────────
+
+    private void ExportToPipeCsv()
+    {
+        string path = EditorUtility.SaveFilePanel("Export Dialogues to CSV", "", "dialogues.csv", "csv");
+        if (string.IsNullOrEmpty(path)) return;
+
+        StringBuilder csv = new StringBuilder();
+        // Header
+        csv.AppendLine("DialogueFile|NodeType|FieldType|OriginalText|TranslatedText");
+
+        foreach (var kvp in dialogues)
+        {
+            string dialogueName = kvp.Key;
+            DialogueData data = kvp.Value;
+            var json = data.jsonDataParsed;
+            JArray elements = json["graph"]?["elements"] as JArray;
+            if (elements == null) continue;
+
+            foreach (JObject node in elements)
+            {
+                string nodeType = node["$type"]?.Value<string>() ?? "";
+
+                if (nodeType == "DialogueNode")
+                {
+                    string dialogueLine = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
+                    csv.AppendLine($"{EscapeCsv(dialogueName)}|{nodeType}|Dialogue Line|{EscapeCsv(dialogueLine)}|{EscapeCsv(dialogueLine)}");
+                }
+                else if (nodeType == "DialogueChoiceNode" || nodeType == "DialogueIterativeNode")
+                {
+                    string dialogueLine = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
+                    csv.AppendLine($"{EscapeCsv(dialogueName)}|{nodeType}|Dialogue Line|{EscapeCsv(dialogueLine)}|{EscapeCsv(dialogueLine)}");
+
+                    for (int i = 1; i <= 4; i++)
+                    {
+                        string key = $"Text{i}";
+                        string text = GetValueSafe(node["defaultValues"]?[key], "$content") ?? "";
+                        if (!string.IsNullOrEmpty(text))
+                        {
+                            csv.AppendLine($"{EscapeCsv(dialogueName)}|{nodeType}|{key}|{EscapeCsv(text)}|{EscapeCsv(text)}");
+                        }
+                    }
+                }
+            }
+        }
+
+        File.WriteAllText(path, csv.ToString(), Encoding.UTF8);
+        Debug.Log($"Exported dialogues to: {path}");
+    }
+
+    private void ImportFromPipeCsv()
+    {
+        string path = EditorUtility.OpenFilePanel("Import Dialogues from CSV", "", "csv");
+        if (string.IsNullOrEmpty(path)) return;
+
+        string[] lines = File.ReadAllLines(path, Encoding.UTF8);
+        if (lines.Length < 2)
+        {
+            Debug.LogError("CSV file is empty or invalid");
+            return;
+        }
+
+        // Skip header
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string line = lines[i];
+            if (string.IsNullOrWhiteSpace(line)) continue;
+
+            string[] parts = SplitCsvLine(line);
+            if (parts.Length < 5) continue;
+
+            string dialogueName = parts[0];
+            string nodeType = parts[1];
+            string fieldType = parts[2];
+            string originalText = parts[3];
+            string translatedText = parts[4];
+
+            if (!dialogues.ContainsKey(dialogueName))
+            {
+                Debug.LogWarning($"Dialogue '{dialogueName}' not found, skipping line {i + 1}");
+                continue;
+            }
+
+            DialogueData data = dialogues[dialogueName];
+            var json = data.jsonDataParsed;
+            JArray elements = json["graph"]?["elements"] as JArray;
+            if (elements == null) continue;
+
+            bool found = false;
+            foreach (JObject node in elements)
+            {
+                string currentNodeType = node["$type"]?.Value<string>() ?? "";
+                if (currentNodeType != nodeType) continue;
+
+                if (fieldType == "Dialogue Line")
+                {
+                    string currentText = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
+                    if (currentText == originalText)
+                    {
+                        SetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content", translatedText);
+                        found = true;
+                        break;
+                    }
+                }
+                else if (fieldType.StartsWith("Text"))
+                {
+                    string currentText = GetValueSafe(node["defaultValues"]?[fieldType], "$content") ?? "";
+                    if (currentText == originalText)
+                    {
+                        SetValueSafe(node["defaultValues"]?[fieldType], "$content", translatedText);
+                        found = true;
+                        break;
+                    }
+                }
+            }
+
+            if (found)
+            {
+                data.jsonData = json.ToString();
+                dialogues[dialogueName] = data;
+            }
+        }
+
+        Debug.Log("CSV import completed. Don't forget to save!");
+    }
+
+    private string EscapeCsv(string text)
+    {
+        if (string.IsNullOrEmpty(text)) return "";
+
+        // Replace pipe with escaped version and handle newlines
+        text = text.Replace("|", "\\|");
+        text = text.Replace("\r\n", "\\n");
+        text = text.Replace("\n", "\\n");
+        text = text.Replace("\r", "\\n");
+
+        return text;
+    }
+
+    private string[] SplitCsvLine(string line)
+    {
+        // Simple split that handles escaped pipes
+        List<string> parts = new List<string>();
+        StringBuilder current = new StringBuilder();
+
+        for (int i = 0; i < line.Length; i++)
+        {
+            if (line[i] == '\\' && i + 1 < line.Length)
+            {
+                char next = line[i + 1];
+                if (next == '|')
+                {
+                    current.Append('|');
+                    i++;
+                }
+                else if (next == 'n')
+                {
+                    current.Append('\n');
+                    i++;
+                }
+                else
+                {
+                    current.Append(line[i]);
+                }
+            }
+            else if (line[i] == '|')
+            {
+                parts.Add(current.ToString());
+                current.Clear();
+            }
+            else
+            {
+                current.Append(line[i]);
+            }
+        }
+        parts.Add(current.ToString());
+
+        return parts.ToArray();
     }
 
     // ──────────────────────────────────────────────────────────────
@@ -218,237 +462,6 @@ public class DialogueEditorWindow : EditorWindow
         {
             EditorUtility.DisplayDialog("Import Failed", e.Message, "OK");
             Debug.LogError(e);
-        }
-    }
-
-    // ──────────────────────────────────────────────────────────────
-    // Pipe-delimited CSV Export (no Character column)
-    // ──────────────────────────────────────────────────────────────
-
-    private void ExportToPipeCsv()
-    {
-        string path = EditorUtility.SaveFilePanel("Export to Pipe CSV", "", "dialogues_pipe.csv", "csv");
-        if (string.IsNullOrEmpty(path)) return;
-
-        using (var writer = new StreamWriter(path))
-        {
-            writer.WriteLine("DialogueName|NodeId|NodeType|Field|Value");
-
-            foreach (var kvp in dialogues)
-            {
-                string dlgName = kvp.Key;
-                try
-                {
-                    JObject json = JObject.Parse(kvp.Value.jsonData);
-                    JArray elements = json["graph"]?["elements"] as JArray;
-                    if (elements == null) continue;
-
-                    foreach (JObject node in elements)
-                    {
-                        string nodeType = node["$type"]?.Value<string>() ?? "";
-                        if (!nodeType.Contains("Dialogue")) continue;
-
-                        string nodeId = node["$id"]?.Value<string>() ?? "";
-
-                        var defaults = node["defaultValues"] as JObject;
-                        if (defaults == null) continue;
-
-                        // Main dialogue line (always use "Dialogue Line" with space)
-                        string mainLine = GetValueSafe(defaults["Dialogue Line"], "$content")
-                                       ?? GetValueSafe(defaults["Dialogue Line"], null)
-                                       ?? GetValueSafe(defaults["DialogueLine"], "$content")
-                                       ?? GetValueSafe(defaults["DialogueLine"], null) ?? "";
-
-                        if (!string.IsNullOrEmpty(mainLine))
-                        {
-                            string escaped = EscapeCsvValue(mainLine);
-                            writer.WriteLine($"{dlgName}|{nodeId}|{nodeType}|Dialogue Line|{escaped}");
-                        }
-
-                        // Choice/iterative texts
-                        for (int i = 1; i <= 8; i++)
-                        {
-                            string key = $"Text{i}";
-                            string text = GetValueSafe(defaults[key], "$content")
-                                       ?? GetValueSafe(defaults[key], null) ?? "";
-
-                            if (!string.IsNullOrEmpty(text))
-                            {
-                                string escaped = EscapeCsvValue(text);
-                                writer.WriteLine($"{dlgName}|{nodeId}|{nodeType}|{key}|{escaped}");
-                            }
-                        }
-                    }
-                }
-                catch (System.Exception ex)
-                {
-                    Debug.LogWarning($"Export failed for {dlgName}: {ex.Message}");
-                }
-            }
-        }
-
-        Debug.Log($"CSV exported (without Character): {path}");
-    }
-
-    // ──────────────────────────────────────────────────────────────
-    // Pipe-delimited CSV Import - Robust version
-    // ──────────────────────────────────────────────────────────────
-
-    private void ImportFromPipeCsv()
-    {
-        string path = EditorUtility.OpenFilePanel("Import Pipe CSV", "", "csv");
-        if (string.IsNullOrEmpty(path)) return;
-
-        var updates = new Dictionary<string, List<(string nodeId, string field, string value)>>();
-
-        string[] lines = File.ReadAllLines(path);
-        int parsed = 0, skipped = 0;
-
-        for (int i = 1; i < lines.Length; i++)
-        {
-            string raw = lines[i].Trim();
-            if (string.IsNullOrWhiteSpace(raw)) continue;
-
-            var parts = SplitWithEscape(raw, '|');
-            if (parts.Count < 5)
-            {
-                skipped++;
-                continue;
-            }
-
-            string dlgName = parts[0].Trim();
-            string nodeId = parts[1].Trim();
-            string field = parts[3].Trim();
-
-            // Take only the value column (ignore anything after)
-            string rawValue = string.Join("|", parts.GetRange(4, parts.Count - 4));
-            string value = UnescapeCsvValue(rawValue.TrimEnd('|', ' ', '-').Trim());
-
-            if (string.IsNullOrWhiteSpace(value)) continue;
-
-            if (!updates.TryGetValue(dlgName, out var list))
-            {
-                list = new List<(string, string, string)>();
-                updates[dlgName] = list;
-            }
-
-            list.Add((nodeId, field, value));
-            parsed++;
-        }
-
-        Debug.Log($"CSV parsed: {parsed} valid lines, {skipped} skipped");
-
-        int updatedCount = 0;
-
-        foreach (var kvp in updates)
-        {
-            string dlgName = kvp.Key;
-            if (!dialogues.TryGetValue(dlgName, out var data))
-            {
-                Debug.LogError($"Dialogue '{dlgName}' not found. Skipping updates.");
-                continue;
-            }
-
-            try
-            {
-                JObject json = JObject.Parse(data.jsonData);
-                JArray elements = json["graph"]?["elements"] as JArray;
-                if (elements == null) continue;
-
-                bool modified = false;
-
-                foreach (var upd in kvp.Value)
-                {
-                    string targetField = upd.field;
-
-                    var node = elements.FirstOrDefault(e => e["$id"]?.Value<string>() == upd.nodeId);
-                    if (node == null) continue;
-
-                    var defaults = node["defaultValues"] as JObject;
-                    if (defaults == null) continue;
-
-                    JToken token = defaults[targetField];
-                    if (token == null)
-                    {
-                        Debug.LogWarning($"Field '{targetField}' not found in node ({upd.nodeId}) of '{dlgName}'");
-                        Debug.LogError(defaults.ToString());
-                        continue;
-                    }
-
-                    string currentValue = null;
-
-                    // Case 1: Structured object with $content
-                    if (token is JObject obj && obj["$content"] != null)
-                    {
-                        currentValue = obj["$content"]?.Value<string>() ?? obj["$content"]?.ToString();
-
-                        if (currentValue != upd.value)
-                        {
-                            Debug.Log($"SAFE UPDATE: {dlgName} → node {upd.nodeId} → {targetField} → '{currentValue}' → '{upd.value}'");
-
-                            // IMPORTANT: Only update $content, keep $type and other properties!
-                            obj["$content"] = upd.value;
-                            modified = true;
-                        }
-                    }
-                    // Case 2: Direct string value
-                    else if (token.Type == JTokenType.String)
-                    {
-                        currentValue = token.Value<string>();
-
-                        if (currentValue != upd.value)
-                        {
-                            Debug.Log($"UPDATE direct string: {dlgName} → node {upd.nodeId} → {targetField} → '{currentValue}' → '{upd.value}'");
-                            defaults[targetField] = upd.value;
-                            modified = true;
-                        }
-                    }
-                    // Case 3: Numeric value (e.g. Character as int)
-                    else if (token.Type == JTokenType.Integer || token.Type == JTokenType.Float)
-                    {
-                        if (int.TryParse(upd.value, out int newInt))
-                        {
-                            int oldInt = token.Value<int>();
-                            if (oldInt != newInt)
-                            {
-                                Debug.Log($"UPDATE numeric: {dlgName} → node {upd.nodeId} → {targetField} → {oldInt} → {newInt}");
-                                defaults[targetField] = newInt;
-                                modified = true;
-                            }
-                        }
-                        else
-                        {
-                            Debug.LogWarning($"Cannot parse '{upd.value}' as int for numeric field {targetField} in {dlgName}");
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"Unsupported token type for field {targetField} in node {upd.nodeId}: {token.Type}");
-                    }
-                }
-
-                if (modified)
-                {
-                    data.jsonData = json.ToString(Newtonsoft.Json.Formatting.None);
-                    updatedCount++;
-                }
-            }
-            catch (System.Exception ex)
-            {
-                Debug.LogWarning($"Failed to process {dlgName}: {ex.Message}");
-            }
-        }
-
-        Debug.Log($"Import complete. Updated {updatedCount} dialogues.");
-
-        if (updatedCount > 0)
-        {
-            if (EditorUtility.DisplayDialog("Import Done",
-                $"Modified {updatedCount} dialogues.\nSave now?",
-                "Save", "Later"))
-            {
-                SaveAllDialogues();
-            }
         }
     }
 
