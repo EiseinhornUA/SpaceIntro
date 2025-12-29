@@ -108,10 +108,9 @@ public class DialogueEditorWindow : EditorWindow
             if (data.foldout)
             {
                 EditorGUI.indentLevel++;
-
                 EditorGUI.BeginChangeCheck();
-                var json = data.jsonDataParsed;
 
+                var json = data.jsonDataParsed;
                 JArray elements = json["graph"]?["elements"] as JArray;
                 if (elements == null) continue;
 
@@ -124,60 +123,48 @@ public class DialogueEditorWindow : EditorWindow
                         string dialogueLine = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
                         EditorGUILayout.LabelField(nodeType, EditorStyles.boldLabel);
 
-                        EditorGUILayout.LabelField("Original Text:", EditorStyles.boldLabel);
-                        EditorGUILayout.LabelField(dialogueLine);
-
-                        EditorGUILayout.TextArea(dialogueLine);
+                        // Make the text field editable and capture changes
+                        string newText = EditorGUILayout.TextArea(dialogueLine);
+                        if (newText != dialogueLine)
+                        {
+                            SetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content", newText);
+                        }
                     }
-                    if (nodeType == "DialogueChoiceNode")
+
+                    if (nodeType == "DialogueChoiceNode" || nodeType == "DialogueIterativeNode")
                     {
                         string dialogueLine = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
                         EditorGUILayout.LabelField(nodeType, EditorStyles.boldLabel);
-                        EditorGUILayout.LabelField("Original Text:", EditorStyles.boldLabel);
-                        EditorGUILayout.LabelField(dialogueLine);
-                        EditorGUILayout.TextArea(dialogueLine);
-                        string text1 = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
+
+                        string newDialogueLine = EditorGUILayout.TextArea(dialogueLine);
+                        if (newDialogueLine != dialogueLine)
+                        {
+                            SetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content", newDialogueLine);
+                        }
+
                         for (int i = 1; i <= 4; i++)
                         {
                             string key = $"Text{i}";
                             string text = GetValueSafe(node["defaultValues"]?[key], "$content") ?? "";
                             if (!string.IsNullOrEmpty(text))
                             {
-                                EditorGUILayout.LabelField($"Choice {i}:");
-                                EditorGUILayout.LabelField("Original Text:", EditorStyles.boldLabel);
-                                EditorGUILayout.LabelField(dialogueLine);
-                                EditorGUILayout.TextArea(text);
+                                EditorGUILayout.LabelField($"Choice {i}:", EditorStyles.miniBoldLabel);
+
+                                string newText = EditorGUILayout.TextArea(text);
+                                if (newText != text)
+                                {
+                                    SetValueSafe(node["defaultValues"]?[key], "$content", newText);
+                                }
                             }
                         }
                     }
-                    if (nodeType == "DialogueIterativeNode")
-                    {
-                        string dialogueLine = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
-                        EditorGUILayout.LabelField(nodeType, EditorStyles.boldLabel);
-                        EditorGUILayout.LabelField("Original Text:", EditorStyles.boldLabel);
-                        EditorGUILayout.LabelField(dialogueLine);
-                        EditorGUILayout.TextArea(dialogueLine);
-                        string text1 = GetValueSafe(node["defaultValues"]?["Dialogue Line"], "$content") ?? "";
-                        for (int i = 1; i <= 4; i++)
-                        {
-                            string key = $"Text{i}";
-                            string text = GetValueSafe(node["defaultValues"]?[key], "$content") ?? "";
-                            if (!string.IsNullOrEmpty(text))
-                            {
-                                EditorGUILayout.LabelField($"Choice {i}:");
-                                EditorGUILayout.LabelField("Original Text:", EditorStyles.boldLabel);
-                                EditorGUILayout.LabelField(dialogueLine);
-                                EditorGUILayout.TextArea(text);
-                            }
-                        }
-                    }
-
-
                 }
 
-                //data.jsonData = EditorGUILayout.TextArea(data.jsonData, GUILayout.Height(100));
                 if (EditorGUI.EndChangeCheck())
+                {
+                    data.jsonData = json.ToString();
                     dialogues[kvp.Key] = data;
+                }
 
                 if (GUILayout.Button($"Save {data.name}"))
                     SaveDialogue(data);
@@ -190,6 +177,14 @@ public class DialogueEditorWindow : EditorWindow
         }
 
         EditorGUILayout.EndScrollView();
+    }
+
+    private void SetValueSafe(JToken token, string propertyName, string value)
+    {
+        if (token != null && token is JObject obj)
+        {
+            obj[propertyName] = value;
+        }
     }
 
     private void SaveDialogue(DialogueData data)
