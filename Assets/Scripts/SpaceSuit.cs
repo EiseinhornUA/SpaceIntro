@@ -15,6 +15,8 @@ public class SpaceSuit : MonoBehaviour
     [ContextMenu("Set Space Suit Mesh")]
     public void PutSpaceSuitOn()
     {
+        player.isSpaceSuited = true;
+        player.StartFlyingAnimation();
         Transform characterModelGameObject = player.GetModelTransform();
         SkinnedMeshRenderer characterMesh = characterModelGameObject.GetComponentInChildren<SkinnedMeshRenderer>(false);
         characterMesh.sharedMesh = suitMesh;

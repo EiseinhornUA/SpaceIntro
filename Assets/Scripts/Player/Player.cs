@@ -18,7 +18,7 @@ public class Player : MonoBehaviour {
 	[SerializeField] private AnimationCurve decelerationCurve;
     private float startMovingTime;
     private float stoppedMovingTime;
-    private bool isRunning;
+    public bool isSpaceSuited = false;
 
 	public Vector2 wallJumpClimb;
 	public Vector2 wallJumpOff;
@@ -47,7 +47,8 @@ public class Player : MonoBehaviour {
     [SerializeField] private float jumpThreshold = .8f;
 
     void Start() {
-		controller = GetComponent<Controller2D> ();
+        isSpaceSuited = false;
+        controller = GetComponent<Controller2D> ();
         animationHandler = GetComponent<AnimationHandler>();
         playerRotator = GetComponent<PlayerRotator>();
         joystick = FindObjectOfType<Joystick>(includeInactive: true);
@@ -173,8 +174,11 @@ public class Player : MonoBehaviour {
 		if (isWalking)
 		{
             timeRunningSeconds = Time.realtimeSinceStartup - startMovingTime;
-            velocity.x = runAccelerationCurve.Evaluate(timeRunningSeconds) * directionalInput.x;
-			return;
+			if (isSpaceSuited)
+                velocity.x = runAccelerationCurve.Evaluate(timeRunningSeconds) * directionalInput.x;
+			else
+				velocity.x = Math.Clamp(runAccelerationCurve.Evaluate(timeRunningSeconds), 0f, 5f) * directionalInput.x;
+            return;
         }
 
 		float timeSinceStop = Time.realtimeSinceStartup - stoppedMovingTime; 
@@ -296,5 +300,15 @@ public class Player : MonoBehaviour {
     internal void StopRunningAnimation()
     {
 		GetAnimationHandler().StopRunning();
+    }
+
+	public void StartFlyingAnimation()
+	{
+		GetAnimationHandler().StartFlying();
+	}
+
+    public void StopFlyingAnimation()
+    {
+        GetAnimationHandler().StopFlying();
     }
 }
