@@ -881,8 +881,8 @@ GameObject:
   m_Component:
   - component: {fileID: 294441690}
   - component: {fileID: 294441692}
-  - component: {fileID: 294441691}
   - component: {fileID: 294441693}
+  - component: {fileID: 294441691}
   - component: {fileID: 294441694}
   m_Layer: 5
   m_Name: Text (TMP)
@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e65759e4c0c77f4392190f11d81b75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: new game
+  <key>k__BackingField: start
 --- !u!114 &294441694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,8 +1165,8 @@ GameObject:
   m_Component:
   - component: {fileID: 327972251}
   - component: {fileID: 327972253}
-  - component: {fileID: 327972252}
   - component: {fileID: 327972254}
+  - component: {fileID: 327972252}
   - component: {fileID: 327972255}
   m_Layer: 5
   m_Name: Text (TMP)
@@ -1303,7 +1303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e65759e4c0c77f4392190f11d81b75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: continue
+  <key>k__BackingField: continue
 --- !u!114 &327972255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1988,7 +1988,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.35, y: 1}
-  m_AnchoredPosition: {x: 25.001831, y: 75}
+  m_AnchoredPosition: {x: 25.001587, y: 75}
   m_SizeDelta: {x: -49.99997, y: -250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &570148820
@@ -2352,8 +2352,8 @@ GameObject:
   m_Component:
   - component: {fileID: 644372539}
   - component: {fileID: 644372541}
-  - component: {fileID: 644372540}
   - component: {fileID: 644372542}
+  - component: {fileID: 644372540}
   - component: {fileID: 644372543}
   m_Layer: 5
   m_Name: Text (TMP)
@@ -2492,7 +2492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e65759e4c0c77f4392190f11d81b75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: profile
+  <key>k__BackingField: profile
 --- !u!114 &644372543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8961,15 +8961,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonTranslationPairList:
   - button: {fileID: 1525683878}
-    translation: {fileID: 11400000, guid: d16b57a569aeeee4fabdf29e51383321, type: 2}
+    translation: 10
   - button: {fileID: 1276616120}
-    translation: {fileID: 11400000, guid: 7d15eb9a4d3189742bc005b764b82912, type: 2}
+    translation: 38
   - button: {fileID: 955885306}
-    translation: {fileID: 0}
+    translation: 30
   - button: {fileID: 1864371087}
-    translation: {fileID: 0}
+    translation: 28
   - button: {fileID: 326217175}
-    translation: {fileID: 0}
+    translation: 34
+  localizationTable: {fileID: 11400000, guid: 7d15eb9a4d3189742bc005b764b82912, type: 2}
 --- !u!1 &1564794229
 GameObject:
   m_ObjectHideFlags: 0
@@ -9888,8 +9889,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1776065971}
   - component: {fileID: 1776065973}
-  - component: {fileID: 1776065972}
   - component: {fileID: 1776065974}
+  - component: {fileID: 1776065972}
   - component: {fileID: 1776065975}
   m_Layer: 5
   m_Name: Text (TMP)
@@ -10028,7 +10029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e65759e4c0c77f4392190f11d81b75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: settings
+  <key>k__BackingField: settings
 --- !u!114 &1776065975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11504,8 +11505,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1978175928}
   - component: {fileID: 1978175930}
-  - component: {fileID: 1978175929}
   - component: {fileID: 1978175931}
+  - component: {fileID: 1978175929}
   - component: {fileID: 1978175932}
   m_Layer: 5
   m_Name: Text (TMP)
@@ -11644,7 +11645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e65759e4c0c77f4392190f11d81b75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: credits
+  <key>k__BackingField: credits
 --- !u!114 &1978175932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14100,7 +14101,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.4505732, y: 1}
-  m_AnchoredPosition: {x: 25.009277, y: 75}
+  m_AnchoredPosition: {x: 25.009033, y: 75}
   m_SizeDelta: {x: -50, y: -250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5806599298107523125

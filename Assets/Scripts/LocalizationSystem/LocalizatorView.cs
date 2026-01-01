@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class LocalizatorView : MonoBehaviour
 {
     [SerializeField] private List<ButtonTranslationPair> buttonTranslationPairList;
+    [SerializeField] private LocalizationTableSO localizationTable;
 
     private void Awake()
     {
@@ -14,7 +15,7 @@ public class LocalizatorView : MonoBehaviour
         {
             var button = pair.button;
             var translation = pair.translation;
-            button.onClick.AddListener(() => LocalizationManager.Instance.ChangeLanguage(translation));
+            button.onClick.AddListener(() => LocalizationManager.Instance.ChangeLanguage(localizationTable, translation));
         }
     }
 }
@@ -23,5 +24,5 @@ public class LocalizatorView : MonoBehaviour
 public class ButtonTranslationPair
 {
     public Button button; 
-    public TranslationSO translation;
+    public SystemLanguage translation;
 }

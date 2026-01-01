@@ -6,6 +6,7 @@ public  class LocalizationManager
 {
     private List<LocalizedTMP> texts = new();
     private static LocalizationManager _instance;
+    private static SystemLanguage currentLanguage;
 
     public static LocalizationManager Instance
     {
@@ -22,10 +23,14 @@ public  class LocalizationManager
         texts.Add(t);
     }
 
-    public void ChangeLanguage(TranslationSO so)
+    public void ChangeLanguage(LocalizationTableSO table, SystemLanguage language)
     {
-        //currentTranslation = so;
         foreach (var t in texts)
-            t.Apply(so);
+            t.Apply(table, language);
+        currentLanguage = language;
     }
+
+    public SystemLanguage GetCurrentLanguage() => currentLanguage;
+
+    public void SetCurrentLanguage(SystemLanguage language) => currentLanguage = language;
 }

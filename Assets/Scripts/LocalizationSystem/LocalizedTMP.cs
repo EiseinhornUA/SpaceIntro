@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class LocalizedTMP : MonoBehaviour
 {
-    public string key;
+    [field: SerializeField] public string key { get; private set; }
     private TextMeshProUGUI text;
 
     void Awake()
@@ -13,8 +13,8 @@ public class LocalizedTMP : MonoBehaviour
         LocalizationManager.Instance.Register(this);
     }
 
-    public void Apply(TranslationSO so)
+    public void Apply(LocalizationTableSO table, SystemLanguage language)
     {
-        text.text = so.Get(key);
+        text.text = table.Get(key, language);
     }
 }
