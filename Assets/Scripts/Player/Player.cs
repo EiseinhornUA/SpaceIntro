@@ -31,7 +31,7 @@ public class Player : MonoBehaviour {
 	float gravity;
 	float maxJumpVelocity;
 	float minJumpVelocity;
-	Vector3 velocity;
+	public Vector3 velocity;
 	[SerializeField] private float velocityXSmoothing = 4;
 
 	Controller2D controller;

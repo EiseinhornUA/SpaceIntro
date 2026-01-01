@@ -234,7 +234,7 @@ public class PersistanceManager : MonoBehaviour
             isRobotFixed = robot.IsFixed(),
             isLightFixed = lightSwitcher.isGlobalLightFixed(),
             isEngineeringDoorOpened = doorDeactivator.IsDoorOpened(),
-            hasSpaceSuit = spaceSuit.PlayerHasSuit(),
+            hasSpaceSuit = spaceSuit.HasPlayerSuit(),
             collectedItems = itemContainer.GetStoredItemNames(),
             skills = skillContainer.GetDictionarySkills(),
             elevatorTriggered = triggerSwitcher.AreElevatorTriggersDisabled(),
