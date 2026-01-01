@@ -6,6 +6,7 @@ using UnityEngine;
 public class SpaceSuit : MonoBehaviour
 {
     private const float particlePositionOffsetX = 0.4f;
+    private const float particlePositionOffsetZ = 0.025f;
     private const float particleRotationZ = 90f;
     private const float playerMaxRunningSpeed = 5.5f;
     [SerializeField] private Player player;
@@ -68,13 +69,15 @@ public class SpaceSuit : MonoBehaviour
 
         suitTrailLGameObject = Instantiate(
             spaceSuitTrailPrefab,
-            new Vector3(playerElbowL.position.x - particlePositionOffsetX, playerElbowL.position.y, playerElbowL.position.z),
+            new Vector3(playerElbowL.position.x - particlePositionOffsetX, 
+                playerElbowL.position.y, playerElbowL.position.z + particlePositionOffsetZ),
             playerElbowL.localRotation * Quaternion.Euler(0f, 0f, -particleRotationZ),
             playerElbowL
         );
         suitTrailRGameObject = Instantiate(
             spaceSuitTrailPrefab,
-            new Vector3(playerElbowR.position.x + particlePositionOffsetX, playerElbowR.position.y, playerElbowR.position.z),
+            new Vector3(playerElbowR.position.x + particlePositionOffsetX, 
+                playerElbowR.position.y, playerElbowR.position.z - particlePositionOffsetZ),
             playerElbowR.localRotation * Quaternion.Euler(0f, 0f, particleRotationZ),
             playerElbowR
         );
