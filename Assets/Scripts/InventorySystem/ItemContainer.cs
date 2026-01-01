@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using Unity.VisualScripting;
 using System;
+using Tayx.Graphy.Utils;
 
 
 public class ItemContainer : MonoBehaviour
@@ -13,6 +14,7 @@ public class ItemContainer : MonoBehaviour
     [SerializeField] private BackpackView backpackView;
     [Header("ItemsSOs")]
     [SerializeField] private List<ItemSO> itemSOs = new();
+    private List<ItemGameObject> itemGameObjects = new();
 
     public void AddItem(ItemSO itemSO)
     {
@@ -22,7 +24,14 @@ public class ItemContainer : MonoBehaviour
         }
         items.Add(itemSO.AsInventoryItem());
         backpackView.AddItem(itemSO.AsInventoryItem());
+        itemGameObjects.Find(igo => igo.GetSO() == itemSO).gameObject.SetActive(false);
     }
+
+    private void Awake()
+    {
+        itemGameObjects = FindObjectsOfType<ItemGameObject>().ToList();
+    }
+
 
     internal bool HasItem(string name)
     {

@@ -57,4 +57,14 @@ public class AnimationHandler : MonoBehaviour
     {
         animator.SetBool("IsRunning", false);
     }
+
+    internal void StartFlying()
+    {
+        animator.SetBool("IsFlying", true);
+    }
+
+    internal void StopFlying()
+    {
+        animator.SetBool("IsFlying", false);
+    }
 }

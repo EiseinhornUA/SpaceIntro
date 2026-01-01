@@ -239,6 +239,15 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0
+    - serializedVersion: 3
+      time: 2.5
+      value: 7
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -266,11 +275,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  isSpaceSuited: 0
   wallJumpClimb: {x: 4, y: 4}
   wallJumpOff: {x: 4, y: 4}
   wallLeap: {x: 4, y: 4}
   wallSlideSpeedMax: 2
   wallStickTime: 0.25
+  velocity: {x: 0, y: 0, z: 0}
   velocityXSmoothing: 4
   jumpThreshold: 0.8
 --- !u!114 &2797205918139180764
@@ -382,6 +393,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 75b48b1e3d785c347b6b49f4a8ecba40, type: 2}
   - {fileID: 11400000, guid: df4bb4ab1810db9438d9bcebb96a8015, type: 2}
   - {fileID: 11400000, guid: 86dc0ab03fc2195469bd964b9d0c98cc, type: 2}
+  - {fileID: 11400000, guid: 3f8df742b24c2ad4cafe4b6aa45658c3, type: 2}
 --- !u!114 &8979759585530703437
 MonoBehaviour:
   m_ObjectHideFlags: 0
