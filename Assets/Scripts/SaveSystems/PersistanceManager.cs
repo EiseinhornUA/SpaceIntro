@@ -25,6 +25,7 @@ public class PersistanceManager : MonoBehaviour
     private SkillContainer skillContainer;
     private TriggerSwitcher triggerSwitcher;
     private RobotChat robotChat;
+    private RadioScreen radio;
 
     private DatabaseManager databaseManager;
 
@@ -104,6 +105,7 @@ public class PersistanceManager : MonoBehaviour
         skillContainer = FindObjectOfType<SkillContainer>();
         triggerSwitcher = FindObjectOfType<TriggerSwitcher>();
         robotChat = FindObjectOfType<RobotChat>(true);
+        radio = FindObjectOfType<RadioScreen>(true);
     }
 
     #region Context Menu Actions
@@ -222,6 +224,9 @@ public class PersistanceManager : MonoBehaviour
         if (cp.elevatorEnabled)
             elevator.Activate();
 
+        if (cp.IsRadioScreenShown)
+            radio.ShowRadioButton();
+
         triggerSwitcher.DisableInitial();
     }
 
@@ -239,7 +244,8 @@ public class PersistanceManager : MonoBehaviour
             skills = skillContainer.GetDictionarySkills(),
             elevatorTriggered = triggerSwitcher.AreElevatorTriggersDisabled(),
             elevatorEnabled = elevator.IsActive(),
-            conversationHistoryList = robotChat.GetChatHistory()
+            conversationHistoryList = robotChat.GetChatHistory(),
+            IsRadioScreenShown = radio.IsRadioScreenShown()
         };
 
         SaveReports(cp);
@@ -293,6 +299,7 @@ public class SaveCheckpoint
     public bool hasSpaceSuit;
     public bool elevatorTriggered;
     public bool elevatorEnabled;
+    public bool IsRadioScreenShown;
 
     [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
     public List<string> collectedItems = new();

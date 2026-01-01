@@ -2407,6 +2407,7 @@ MonoBehaviour:
   radioClipName: {fileID: 976564696}
   musicSlider: {fileID: 1293442334}
   setDefaultValuesButton: {fileID: 2128559513}
+  radioButton: {fileID: 684605260}
 --- !u!4 &142027224 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4922360073657162, guid: 63b720d79e0ec314aab6730b2cf19a77, type: 3}
@@ -6920,6 +6921,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 141259298}
+        m_TargetAssemblyTypeName: RadioScreen, Assembly-CSharp
+        m_MethodName: SetRadioScreenBoolTrue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

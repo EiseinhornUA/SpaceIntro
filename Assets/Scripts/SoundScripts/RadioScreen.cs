@@ -21,6 +21,20 @@ public class RadioScreen : MonoBehaviour
     [SerializeField] private Button setDefaultValuesButton;
     private float musicSliderValue = 0;
 
+    [SerializeField] private GameObject radioButton;
+    private bool isRadioScreenShown = false;
+    public bool IsRadioScreenShown() => isRadioScreenShown;
+
+    public void SetRadioScreenBoolTrue()
+    {
+        isRadioScreenShown = true;
+    }
+    public void ShowRadioButton()
+    {
+        radioButton.SetActive(true);
+        radioButton.transform.GetChild(1).gameObject.SetActive(false);
+    }
+
     private void Awake()
     {
         radioPlaylist = audioManager.radioPlaylist;
