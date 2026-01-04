@@ -7,14 +7,17 @@ public class LocalizedTMP : MonoBehaviour
     [field: SerializeField] public string key { get; private set; }
     private TextMeshProUGUI text;
 
-    void Awake()
+/*    void Awake()
     {
         text = GetComponent<TextMeshProUGUI>();
         LocalizationManager.Instance.Register(this);
     }
-
+*/
     public void Apply(LocalizationTableSO table, SystemLanguage language)
     {
+        text = GetComponent<TextMeshProUGUI>();
         text.text = table.Get(key, language);
     }
+
+    public void SetKey(string newKey) => key = newKey;
 }

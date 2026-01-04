@@ -3,14 +3,70 @@ using UnityEngine;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using TMPro;
 
 [CustomEditor(typeof(LocalizationTableSO))]
 public class LocalizationTableSOEditor : Editor
 {
+    List<TextMeshProUGUI> foundTexts;
+    Dictionary<TextMeshProUGUI, bool> toggles = new();
+
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
+        RenderCSVButtons();
+        RenderFindLocalizedTMPsButton();
+
+        GUILayout.Space(10);
+        GUILayout.Label("TMP Auto Localization", EditorStyles.boldLabel);
+
+        if (GUILayout.Button("Scan Scene TextMeshProUGUI"))
+            ScanScene();
+
+        if (foundTexts == null || foundTexts.Count == 0)
+            return;
+
+        GUILayout.Space(5);
+        GUILayout.Label("Scene Texts", EditorStyles.miniBoldLabel);
+
+        foreach (var tmp in foundTexts)
+        {
+            if (tmp == null) continue;
+
+            if (!toggles.ContainsKey(tmp))
+                toggles[tmp] = tmp.GetComponent<LocalizedTMP>() != null;
+
+            EditorGUILayout.BeginHorizontal();
+
+            toggles[tmp] = EditorGUILayout.Toggle(toggles[tmp], GUILayout.Width(18));
+
+            if (GUILayout.Button($"\"{tmp.text}\"", EditorStyles.label))
+            {
+                Selection.activeObject = tmp.gameObject;
+                EditorGUIUtility.PingObject(tmp.gameObject);
+            }
+
+            EditorGUILayout.EndHorizontal();
+        }
+
+        GUILayout.Space(5);
+
+        if (GUILayout.Button("Apply Selection"))
+            ApplySelection();
+    }
+
+    private void RenderFindLocalizedTMPsButton()
+    {
+        GUILayout.Space(10);
+        GUILayout.Label("Scene Utilities", EditorStyles.boldLabel);
+
+        if (GUILayout.Button("Find LocalizedTMPs in Scene → Add Keys"))
+            AddKeysFromScene((LocalizationTableSO)target);
+    }
+
+    private void RenderCSVButtons()
+    {
         GUILayout.Space(10);
         GUILayout.Label("CSV Import / Export", EditorStyles.boldLabel);
 
@@ -19,12 +75,6 @@ public class LocalizationTableSOEditor : Editor
 
         if (GUILayout.Button("Import Pipe CSV"))
             ImportCSV((LocalizationTableSO)target);
-
-        GUILayout.Space(10);
-        GUILayout.Label("Scene Utilities", EditorStyles.boldLabel);
-
-        if (GUILayout.Button("Find LocalizedTMPs in Scene → Add Keys"))
-            AddKeysFromScene((LocalizationTableSO)target);
     }
 
     private void ExportCSV(LocalizationTableSO table)
@@ -152,6 +202,40 @@ public class LocalizationTableSOEditor : Editor
         EditorUtility.SetDirty(table);
 
         Debug.Log($"Added {newEntries.Count} new localization keys.");
+    }
+
+    void ScanScene()
+    {
+        foundTexts = FindObjectsOfType<TextMeshProUGUI>(true).ToList();
+        toggles.Clear();
+
+        foreach (var tmp in foundTexts)
+            toggles[tmp] = tmp.GetComponent<LocalizedTMP>() != null;
+    }
+
+    void ApplySelection()
+    {
+        foreach (var pair in toggles)
+        {
+            var tmp = pair.Key;
+            var shouldHave = pair.Value;
+
+            if (tmp == null) continue;
+
+            var loc = tmp.GetComponent<LocalizedTMP>();
+
+            if (shouldHave && loc == null)
+            {
+                Undo.AddComponent<LocalizedTMP>(tmp.gameObject);
+                loc = tmp.GetComponent<LocalizedTMP>();
+                loc.SetKey(tmp.text);
+                EditorUtility.SetDirty(loc);
+            }
+            else if (!shouldHave && loc != null)
+            {
+                Undo.DestroyObjectImmediate(loc);
+            }
+        }
     }
 }
 
