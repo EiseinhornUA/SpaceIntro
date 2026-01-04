@@ -1925,7 +1925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.35, y: 1}
-  m_AnchoredPosition: {x: 25.001587, y: 75}
+  m_AnchoredPosition: {x: 25.001709, y: 75}
   m_SizeDelta: {x: -49.99997, y: -250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &570148820
@@ -3194,6 +3194,8 @@ GameObject:
   - component: {fileID: 778071965}
   - component: {fileID: 778071967}
   - component: {fileID: 778071966}
+  - component: {fileID: 778071969}
+  - component: {fileID: 778071968}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -3271,7 +3273,7 @@ MonoBehaviour:
   m_fontSize: 48
   m_fontSizeBase: 48
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 64
   m_fontStyle: 0
@@ -3318,6 +3320,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778071964}
   m_CullTransparentMesh: 1
+--- !u!114 &778071968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778071964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a34da60024df484db05fbd8bbcac1ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &778071969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778071964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e65759e4c0c77f4392190f11d81b75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <key>k__BackingField: 
 --- !u!1 &801876931
 GameObject:
   m_ObjectHideFlags: 0
@@ -3811,7 +3838,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -11038,6 +11065,7 @@ MonoBehaviour:
   characterParent: {fileID: 819124890}
   characterNameText: {fileID: 1007824465}
   characterDescriptionText: {fileID: 778071966}
+  characterDescriptionTranslator: {fileID: 778071968}
   characterNameInputField: {fileID: 1855564362}
   nextButton: {fileID: 1170676923}
   previousButton: {fileID: 383069746}
@@ -13562,7 +13590,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.4505732, y: 1}
-  m_AnchoredPosition: {x: 25.008545, y: 75}
+  m_AnchoredPosition: {x: 25.008972, y: 75}
   m_SizeDelta: {x: -50, y: -250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5806599298107523125

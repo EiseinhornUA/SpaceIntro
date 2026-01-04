@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEditor;
 
-public  class LocalizationManager
+public class LocalizationManager
 {
     private List<LocalizedTMP> texts = new();
     private static LocalizationManager _instance;
-    private static SystemLanguage currentLanguage;
+    public static LocalizationTableSO localizationTable { get; private set; }
+    public static SystemLanguage currentLanguage { get; private set; }
 
     public static LocalizationManager Instance
     {
@@ -27,6 +28,7 @@ public  class LocalizationManager
     {
         foreach (var t in texts)
             t.Apply(table, language);
+        localizationTable = table;
         currentLanguage = language;
     }
 
