@@ -14,7 +14,7 @@ public class LocalizationTableSO : ScriptableObject
     [System.Serializable]
     public struct Entry
     {
-        public string key;
+        [TextArea] public string key;
         public List<LanguageValue> translations;
     }
 

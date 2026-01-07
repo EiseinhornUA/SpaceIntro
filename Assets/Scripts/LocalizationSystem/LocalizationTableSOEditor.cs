@@ -104,13 +104,19 @@ public class LocalizationTableSOEditor : Editor
         // Rows
         foreach (var entry in table.entries)
         {
-            writer.Write(entry.key);
+            var safeKey = entry.key.Replace("\"", "\"\"");
+            writer.Write("\"" + safeKey + "\"");
+
             foreach (var lang in languages)
             {
                 var v = entry.translations
                     .FirstOrDefault(t => t.language == lang).value ?? "";
-                writer.Write("|" + v.Replace("\n", "\\n"));
+
+                // CSV-safe: quotes + escape quotes
+                v = v.Replace("\"", "\"\"");
+                writer.Write("|\"" + v + "\"");
             }
+
             writer.WriteLine();
         }
 
@@ -122,34 +128,35 @@ public class LocalizationTableSOEditor : Editor
         var path = EditorUtility.OpenFilePanel("Import Localization CSV", "", "csv");
         if (string.IsNullOrEmpty(path)) return;
 
-        var lines = File.ReadAllLines(path);
-        if (lines.Length < 2) return;
+        var csv = File.ReadAllText(path);
+        var rows = ParsePipeCSV(csv);
 
-        var headers = lines[0].Split('|');
-        var languages = headers
+        if (rows.Count < 2) return;
+
+        var languages = rows[0]
             .Skip(1)
             .Select(h => (SystemLanguage)System.Enum.Parse(typeof(SystemLanguage), h))
             .ToList();
 
         var entries = new List<LocalizationTableSO.Entry>();
 
-        for (int i = 1; i < lines.Length; i++)
+        for (int i = 1; i < rows.Count; i++)
         {
-            if (string.IsNullOrWhiteSpace(lines[i])) continue;
+            var row = rows[i];
+            if (row.Count == 0 || string.IsNullOrWhiteSpace(row[0])) continue;
 
-            var cells = lines[i].Split('|');
             var entry = new LocalizationTableSO.Entry
             {
-                key = cells[0],
+                key = row[0],
                 translations = new List<LocalizationTableSO.LanguageValue>()
             };
 
-            for (int j = 1; j < cells.Length && j <= languages.Count; j++)
+            for (int j = 1; j < row.Count && j <= languages.Count; j++)
             {
                 entry.translations.Add(new LocalizationTableSO.LanguageValue
                 {
                     language = languages[j - 1],
-                    value = cells[j].Replace("\\n", "\n")
+                    value = row[j]
                 });
             }
 
@@ -206,7 +213,7 @@ public class LocalizationTableSOEditor : Editor
 
     void ScanScene()
     {
-        foundTexts = FindObjectsOfType<TextMeshProUGUI>(true).ToList();
+        foundTexts = FindObjectsOfType<TextMeshProUGUI>(true).Where(t => t.text.Length > 1).ToList();
         toggles.Clear();
 
         foreach (var tmp in foundTexts)
@@ -224,11 +231,16 @@ public class LocalizationTableSOEditor : Editor
 
             var loc = tmp.GetComponent<LocalizedTMP>();
 
-            if (shouldHave && loc == null)
+            if (shouldHave)
             {
+                if (loc != null) Undo.DestroyObjectImmediate(loc);
+
                 Undo.AddComponent<LocalizedTMP>(tmp.gameObject);
                 loc = tmp.GetComponent<LocalizedTMP>();
+
                 loc.SetKey(tmp.text);
+
+                EditorUtility.SetDirty(tmp);
                 EditorUtility.SetDirty(loc);
             }
             else if (!shouldHave && loc != null)
@@ -237,5 +249,59 @@ public class LocalizationTableSOEditor : Editor
             }
         }
     }
+
+    private List<List<string>> ParsePipeCSV(string csv)
+    {
+        var rows = new List<List<string>>();
+        var row = new List<string>();
+        var cell = "";
+        bool inQuotes = false;
+
+        for (int i = 0; i < csv.Length; i++)
+        {
+            char c = csv[i];
+
+            if (c == '"')
+            {
+                if (inQuotes && i + 1 < csv.Length && csv[i + 1] == '"')
+                {
+                    cell += '"'; // escaped quote
+                    i++;
+                }
+                else
+                {
+                    inQuotes = !inQuotes;
+                }
+                continue;
+            }
+
+            if (c == '|' && !inQuotes)
+            {
+                row.Add(cell);
+                cell = "";
+                continue;
+            }
+
+            if ((c == '\n' || c == '\r') && !inQuotes)
+            {
+                if (cell.Length > 0 || row.Count > 0)
+                {
+                    row.Add(cell);
+                    rows.Add(row);
+                    row = new List<string>();
+                    cell = "";
+                }
+                continue;
+            }
+
+            cell += c;
+        }
+
+        row.Add(cell);
+        rows.Add(row);
+
+        return rows;
+    }
+
 }
 

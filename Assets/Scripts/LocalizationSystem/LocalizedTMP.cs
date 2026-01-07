@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class LocalizedTMP : MonoBehaviour
 {
-    [field: SerializeField] public string key { get; private set; }
+    [field: SerializeField, TextArea] public string key { get; private set; }
     private TextMeshProUGUI text;
 
 /*    void Awake()

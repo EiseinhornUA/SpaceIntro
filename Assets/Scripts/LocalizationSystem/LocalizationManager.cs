@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEditor;
+using System;
+using System.Linq;
 
 public class LocalizationManager
 {
+    private const string LanguageKey = "Language";
     private List<LocalizedTMP> texts = new();
     private static LocalizationManager _instance;
     public static LocalizationTableSO localizationTable { get; private set; }
-    public static SystemLanguage currentLanguage { get; private set; }
+    private static SystemLanguage currentLanguage;
 
     public static LocalizationManager Instance
     {
@@ -27,12 +30,41 @@ public class LocalizationManager
     public void ChangeLanguage(LocalizationTableSO table, SystemLanguage language)
     {
         foreach (var t in texts)
+        {
+            if (!t) continue;
+            if (!table.entries.Select(e => e.key).Contains(t.key))
+            {
+                Debug.LogError($"key '{t.key}' not found in localization table");
+                continue;
+            }
+
             t.Apply(table, language);
+        }
+
         localizationTable = table;
         currentLanguage = language;
+        SaveCurrentLanguage();
     }
 
-    public SystemLanguage GetCurrentLanguage() => currentLanguage;
+    private void SaveCurrentLanguage()
+    {
+        PlayerPrefs.SetInt(LanguageKey, ((int)currentLanguage));
+    }
 
-    public void SetCurrentLanguage(SystemLanguage language) => currentLanguage = language;
+    public void LoadCurrentLanguage(LocalizationTableSO table)
+    {
+        if (table is null)
+        {
+            throw new ArgumentNullException(nameof(table));
+        }
+
+        ChangeLanguage(table, GetCurrentLanguage());
+    }
+
+    public static SystemLanguage GetCurrentLanguage()
+    {
+        int langValue = PlayerPrefs.GetInt(LanguageKey, (int)SystemLanguage.English);
+
+        return (SystemLanguage)langValue;
+    }
 }

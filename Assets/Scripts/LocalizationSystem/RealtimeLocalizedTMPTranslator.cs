@@ -11,6 +11,6 @@ public class RealtimeLocalizedTMPTranslator : MonoBehaviour
         var textTMP = GetComponent<TextMeshProUGUI>();
 
         localizedTMP.SetKey(textTMP.text);
-        localizedTMP.Apply(LocalizationManager.localizationTable, LocalizationManager.currentLanguage);
+        localizedTMP.Apply(LocalizationManager.localizationTable, LocalizationManager.GetCurrentLanguage());
     }
 }
