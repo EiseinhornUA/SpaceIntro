@@ -1689,7 +1689,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 329.13, y: 175.97}
+  m_SizeDelta: {x: 329.13, y: 181.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &516987502
 MonoBehaviour:
@@ -3194,7 +3194,6 @@ GameObject:
   - component: {fileID: 778071967}
   - component: {fileID: 778071966}
   - component: {fileID: 778071969}
-  - component: {fileID: 778071968}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -3319,18 +3318,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778071964}
   m_CullTransparentMesh: 1
---- !u!114 &778071968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 778071964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a34da60024df484db05fbd8bbcac1ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &778071969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3457,7 +3444,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 683.84, y: 175.97}
+  m_SizeDelta: {x: 683.84, y: 181.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &803071396
 MonoBehaviour:
@@ -6737,7 +6724,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 374.64, y: 175.97}
+  m_SizeDelta: {x: 374.64, y: 181.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1362941377
 MonoBehaviour:
@@ -10660,8 +10647,7 @@ MonoBehaviour:
   characterContainer: {fileID: 11400000, guid: 58147d5465213874887e93ca4818c5be, type: 2}
   characterParent: {fileID: 819124890}
   characterNameText: {fileID: 1007824465}
-  characterDescriptionText: {fileID: 778071966}
-  characterDescriptionTranslator: {fileID: 778071968}
+  characterDescriptionText: {fileID: 778071969}
   characterNameInputField: {fileID: 1855564362}
   nextButton: {fileID: 1170676923}
   previousButton: {fileID: 383069746}
@@ -10711,7 +10697,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 356.84, y: 175.97}
+  m_SizeDelta: {x: 356.84, y: 181.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1975643605
 MonoBehaviour:

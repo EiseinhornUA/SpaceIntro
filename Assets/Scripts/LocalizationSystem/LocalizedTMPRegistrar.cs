@@ -15,9 +15,6 @@ public class LocalizedTMPRegistrar : MonoBehaviour
     {
         foreach (var localizedTMP in FindObjectsOfType<LocalizedTMP>(includeInactive: true))
         {
-            if (localizedTMP.gameObject.GetComponent<RealtimeLocalizedTMPTranslator>() != null)
-                continue;
-
             LocalizationManager.Instance.Register(localizedTMP);
         }
     }

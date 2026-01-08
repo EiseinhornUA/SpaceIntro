@@ -1390,6 +1390,7 @@ GameObject:
   - component: {fileID: 4822876299443821332}
   - component: {fileID: 5788389701387951946}
   - component: {fileID: 6124695827260185751}
+  - component: {fileID: 898663004994181288}
   m_Layer: 5
   m_Name: TaskDescription
   m_TagString: Untagged
@@ -1516,6 +1517,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &898663004994181288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571427272988033737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e65759e4c0c77f4392190f11d81b75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <key>k__BackingField: 
 --- !u!1 &2895822327624311594
 GameObject:
   m_ObjectHideFlags: 0
@@ -2765,7 +2779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59620419467e39c4591553126a24bd1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskDescription: {fileID: 6124695827260185751}
+  taskDescription: {fileID: 898663004994181288}
 --- !u!1 &5001580967615299346
 GameObject:
   m_ObjectHideFlags: 0
@@ -3461,7 +3475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7a5cf743651bf4dbe15ad9c007f1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskNameText: {fileID: 5906558142019434210}
+  taskNameText: {fileID: 0}
   taskImage: {fileID: 5877022915793553821}
   button: {fileID: 5694099782772112965}
 --- !u!114 &579990796348930282
@@ -3708,7 +3722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8054532303326688588
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4192,7 +4206,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -878.5239}
+  m_SizeDelta: {x: 0, y: -706.3914}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &8054532305372370124
 MonoBehaviour:

@@ -15,8 +15,7 @@ public class CharacterSelector : Popup
     [SerializeField] private CharacterContainer characterContainer;
     [SerializeField] private Transform characterParent;
     [SerializeField] private TextMeshProUGUI characterNameText;
-    [SerializeField] private TextMeshProUGUI characterDescriptionText;
-    [SerializeField] private RealtimeLocalizedTMPTranslator characterDescriptionTranslator;
+    [SerializeField] private LocalizedTMP characterDescriptionText;
     [SerializeField] private TMP_InputField characterNameInputField;
     [SerializeField] private Button nextButton;
     [SerializeField] private Button previousButton;
@@ -126,8 +125,7 @@ public class CharacterSelector : Popup
     private void SetCharacterName(string name) => characterNameText.text = name;
     private void SetDescription(string text)
     {
-        characterDescriptionText.text = text;
-        characterDescriptionTranslator.Translate();
+        characterDescriptionText.SetTextAndKey(text);
     }
 
     private void ShowCharacter(int index) => characters[index].SetActive(true);

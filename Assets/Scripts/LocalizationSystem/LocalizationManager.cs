@@ -29,6 +29,11 @@ public class LocalizationManager
 
     public void ChangeLanguage(LocalizationTableSO table, SystemLanguage language)
     {
+        localizationTable = table;
+
+        currentLanguage = language;
+        SaveCurrentLanguage();
+
         foreach (var t in texts)
         {
             if (!t) continue;
@@ -38,12 +43,9 @@ public class LocalizationManager
                 continue;
             }
 
-            t.Apply(table, language);
+            t.Translate();
         }
 
-        localizationTable = table;
-        currentLanguage = language;
-        SaveCurrentLanguage();
     }
 
     private void SaveCurrentLanguage()
@@ -53,7 +55,7 @@ public class LocalizationManager
 
     public void LoadCurrentLanguage(LocalizationTableSO table)
     {
-        if (table is null)
+        if (!table)
         {
             throw new ArgumentNullException(nameof(table));
         }

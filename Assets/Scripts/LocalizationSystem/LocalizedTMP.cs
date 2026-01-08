@@ -1,23 +1,42 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
+[RequireComponent(typeof(TextMeshProUGUI))]
 public class LocalizedTMP : MonoBehaviour
 {
     [field: SerializeField, TextArea] public string key { get; private set; }
-    private TextMeshProUGUI text;
 
-/*    void Awake()
+    public void Translate()
     {
-        text = GetComponent<TextMeshProUGUI>();
-        LocalizationManager.Instance.Register(this);
-    }
-*/
-    public void Apply(LocalizationTableSO table, SystemLanguage language)
-    {
-        text = GetComponent<TextMeshProUGUI>();
-        text.text = table.Get(key, language);
+        var textTMP = GetComponent<TextMeshProUGUI>();
+
+        LocalizationTableSO table = LocalizationManager.localizationTable;
+
+        if (!table)
+        {
+            throw new ArgumentNullException(nameof(table));
+        }
+
+        textTMP.text = table.Get(key, LocalizationManager.GetCurrentLanguage());
     }
 
     public void SetKey(string newKey) => key = newKey;
+    public void SetTextAndKey(string text)
+    {
+        var tmp = GetComponent<TextMeshProUGUI>();
+        tmp.text = text;
+        SetKey(tmp.text);
+        Translate();
+    }
+
+    public void SetTextWithoutKey(string text)
+    {
+        var tmp = GetComponent<TextMeshProUGUI>();
+        tmp.text = text;
+    }
+
+    public string GetText() => GetComponent<TextMeshProUGUI>().text;
+
+    public void SetColor(Color color) => GetComponent<TextMeshProUGUI>().color = color;
 }
