@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -16,6 +18,11 @@ public class LocalizedTMP : MonoBehaviour
         if (!table)
         {
             throw new ArgumentNullException(nameof(table));
+        }
+
+        if (!table.Contains(key))
+        {
+            Debug.LogError($"key '{key}' of '{gameObject.name}' not found in localization table");
         }
 
         textTMP.text = table.Get(key, LocalizationManager.GetCurrentLanguage());

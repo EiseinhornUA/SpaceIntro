@@ -69,4 +69,9 @@ public class LocalizationManager
 
         return (SystemLanguage)langValue;
     }
+
+    public static string Translate(string text)
+    {
+        return localizationTable.Get(text.Replace("\r\n", "\n"), GetCurrentLanguage());
+    }
 }

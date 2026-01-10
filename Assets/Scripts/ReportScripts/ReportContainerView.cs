@@ -30,7 +30,7 @@ public class ReportContainerView : MonoBehaviour
 
     public void AddReport(string name, string description)
     {
-        ReportView report = ReportView.Create(reportPrefab, reportsParent, name, description);
+        ReportView report = ReportView.Create(reportPrefab, reportsParent, name.Translate(), description.Translate());
         reports.Add(report);
         report.OnReportSelected += OnReportSelected;
         previousReport = report;
