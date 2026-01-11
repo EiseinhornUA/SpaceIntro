@@ -4,46 +4,75 @@ using TMPro;
 
 public class TMPFontChanger : EditorWindow
 {
-    private TMP_FontAsset newFont;
+    TMP_FontAsset newFont;
 
-    [MenuItem("Tools/TMP Font Changer")]
-    public static void ShowWindow()
+    [MenuItem("Tools/TMP Font Changer (Scene + Prefabs)")]
+    static void Open() => GetWindow<TMPFontChanger>("TMP Font Changer");
+
+    void OnGUI()
     {
-        GetWindow<TMPFontChanger>("TMP Font Changer");
-    }
+        EditorGUILayout.LabelField("Change TMP Fonts Everywhere", EditorStyles.boldLabel);
+        newFont = (TMP_FontAsset)EditorGUILayout.ObjectField(
+            "New TMP Font", newFont, typeof(TMP_FontAsset), false);
 
-    private void OnGUI()
-    {
-        GUILayout.Label("Change TMP Fonts in Scene", EditorStyles.boldLabel);
-        newFont = (TMP_FontAsset)EditorGUILayout.ObjectField("New Font", newFont, typeof(TMP_FontAsset), false);
+        GUILayout.Space(10);
 
-        if (GUILayout.Button("Change All TMP Fonts"))
+        if (GUILayout.Button("Change Fonts in Scene + Prefabs"))
         {
-            if (newFont != null)
+            if (newFont == null)
             {
-                ChangeAllFonts();
+                Debug.LogWarning("Assign a TMP Font Asset first.");
+                return;
             }
-            else
-            {
-                Debug.LogWarning("Please assign a new TMP Font!");
-            }
+
+            ChangeSceneFonts();
+            ChangePrefabFonts();
+            AssetDatabase.SaveAssets();
+            Debug.Log("TMP font replacement finished.");
         }
     }
 
-    private void ChangeAllFonts()
+    void ChangeSceneFonts()
     {
-        // Find all TextMeshProUGUI components in the scene
-        TextMeshProUGUI[] tmpComponents = FindObjectsOfType<TextMeshProUGUI>(true);
+        var texts = Object.FindObjectsOfType<TextMeshProUGUI>(true);
 
-        int count = 0;
-        foreach (TextMeshProUGUI tmp in tmpComponents)
+        foreach (var tmp in texts)
         {
-            Undo.RecordObject(tmp, "Change TMP Font"); // Allow undo
+            Undo.RecordObject(tmp, "Change TMP Font");
             tmp.font = newFont;
-            count++;
+            EditorUtility.SetDirty(tmp);
         }
 
-        Debug.Log($"Changed font on {count} TextMeshProUGUI components.");
+        Debug.Log($"Scene: updated {texts.Length} TMP components.");
+    }
+
+    void ChangePrefabFonts()
+    {
+        string[] prefabGuids = AssetDatabase.FindAssets("t:Prefab");
+        int count = 0;
+
+        foreach (string guid in prefabGuids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            GameObject prefab = PrefabUtility.LoadPrefabContents(path);
+
+            bool modified = false;
+            var tmps = prefab.GetComponentsInChildren<TextMeshProUGUI>(true);
+
+            foreach (var tmp in tmps)
+            {
+                tmp.font = newFont;
+                modified = true;
+                count++;
+            }
+
+            if (modified)
+                PrefabUtility.SaveAsPrefabAsset(prefab, path);
+
+            PrefabUtility.UnloadPrefabContents(prefab);
+        }
+
+        Debug.Log($"Prefabs: updated {count} TMP components.");
     }
 }
 
