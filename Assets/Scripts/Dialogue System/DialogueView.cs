@@ -24,7 +24,7 @@ public class DialogueView : Popup
             button.gameObject.SetActive(false);
     }
 
-    public void SetMessage(string messageText) => message.text = messageText;
+    public void SetMessage(string messageText) => message.text = messageText.Translate();
     public void SetCharacterName(string name)
     {
         characterName.text = (name == "Player") ? PlayerPrefs.GetString("CharacterName", "Player") : name;
@@ -59,7 +59,7 @@ public class DialogueView : Popup
         for (int i = 0; i < choiceMessages.Count; i++)
         {
             choiceButtons[i].gameObject.SetActive(true);
-            choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = choiceMessages[i];
+            choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = choiceMessages[i].Translate();
         }
         nextButton.gameObject.SetActive(false);
     }

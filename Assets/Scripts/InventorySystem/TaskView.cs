@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TaskView : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI taskNameText;
+    [SerializeField] private LocalizedTMP taskNameText;
     [SerializeField] private Image taskImage;
     [SerializeField] private Button button;
     private string description;
@@ -19,15 +19,15 @@ public class TaskView : MonoBehaviour
 
     public void Complete()
     {
-        taskNameText.text = "<s>" + taskNameText.text + "</s>";
-        taskNameText.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+        taskNameText.SetTextWithoutKey("<s>" + taskNameText.GetText() + "</s>");
+        taskNameText.SetColor(new Color(0.5f, 0.5f, 0.5f, 1f));
         taskImage.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
     }
 
     public static TaskView Create(TaskView taskPrefab, Transform parent, string taskName, string description)
     {
         TaskView task = Instantiate(taskPrefab, parent);
-        task.taskNameText.text = taskName;
+        task.taskNameText.SetTextAndKey(taskName);
         task.description = description;
         return task;
     }

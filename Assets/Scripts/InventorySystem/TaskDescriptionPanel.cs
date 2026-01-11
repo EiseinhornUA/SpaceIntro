@@ -3,16 +3,16 @@ using UnityEngine;
 
 internal class TaskDescriptionPanel : Popup
 {
-    [SerializeField] private TextMeshProUGUI taskDescription;
+    [SerializeField] private LocalizedTMP taskDescription;
 
     public void SetDescription(string description)
     {
         if (taskDescription == null)
         {
-            taskDescription.text = "No Description";
+            taskDescription.SetTextAndKey("No Description");
             Debug.LogError("TaskDescription is not assigned in the TaskDescriptionPanel.");
             return;
         }
-        taskDescription.text = description;
+        taskDescription.SetTextAndKey(description);
     }
 }
