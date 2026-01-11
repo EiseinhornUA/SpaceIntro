@@ -45,7 +45,7 @@ public class LocalizationTableSO : ScriptableObject
                 if (!char.IsLetter(cr) && !char.IsDigit(cr)) continue;
                 if (cl != cr)
                 {
-                    Debug.LogError($"StringComparer: '{left}' != '{right}' at char '{cl}' != '{cr}' at position {i}");
+                    //Debug.LogError($"StringComparer: '{left}' != '{right}' at char '{cl}' != '{cr}' at position {i}");
                     return false;
                 }
             }
