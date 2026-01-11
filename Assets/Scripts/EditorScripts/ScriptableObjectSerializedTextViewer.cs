@@ -9,6 +9,7 @@ public class ScriptableObjectSerializedTextViewer : EditorWindow
     Vector2 scroll;
     string findText = "";
     string replaceText = "";
+    bool exportNames = false;
 
     void OnGUI()
     {
@@ -62,13 +63,16 @@ public class ScriptableObjectSerializedTextViewer : EditorWindow
 
         EditorGUILayout.EndScrollView();
 
+        exportNames = EditorGUILayout.ToggleLeft(
+            "Export ScriptableObject names",
+            exportNames
+        );
+
         if (GUILayout.Button("Save All"))
             AssetDatabase.SaveAssets();
 
         if (GUILayout.Button("Export | CSV"))
-        {
             ExportPipeCsv();
-        }
     }
 
     void DrawFindReplaceBar()
@@ -140,6 +144,9 @@ public class ScriptableObjectSerializedTextViewer : EditorWindow
         {
             if (obj is not ScriptableObject so) continue;
 
+            if (exportNames)
+                writer.WriteLine(Escape(so.name));
+
             var serialized = new SerializedObject(so);
             var prop = serialized.GetIterator();
 
@@ -162,6 +169,5 @@ public class ScriptableObjectSerializedTextViewer : EditorWindow
 
         return "\"" + s.Replace("\"", "\"\"") + "\"";
     }
-
 }
 

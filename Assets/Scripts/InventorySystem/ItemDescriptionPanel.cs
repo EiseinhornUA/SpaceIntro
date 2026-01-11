@@ -9,11 +9,11 @@ public class ItemDescriptionPanel : Popup
 
     public void SetItemName(ItemSlot itemSlot)
     {
-        itemNameTMP.text = itemSlot.GetItem().itemName;
+        itemNameTMP.text = itemSlot.GetItem().itemName.Translate();
     }
 
     public void SetItemDescription(ItemSlot itemSlot)
     {
-        itemDescriptionTMP.text = itemSlot.GetItem().description;
+        itemDescriptionTMP.text = itemSlot.GetItem().description.Translate();
     }
 }
