@@ -36,8 +36,6 @@ public class NumPad: MonoBehaviour
     private void OnEnable()
     {
         Hud.Instance.HideHud();
-        if (accessGranted == null)
-            accessGranted = new UniTaskCompletionSource();
     }
 
     private void OnDisable()
@@ -55,7 +53,8 @@ public class NumPad: MonoBehaviour
                 await UniTask.Delay(TimeSpan.FromSeconds(0.75f));
                 symbolEntry.text = "";
                 numPadInteractable.GetComponent<Interactable>().Deactivate();
-                accessGranted.TrySetResult();
+                if (accessGranted != null)
+                    accessGranted.TrySetResult();
                 OnAccessGranted();
             }
 
@@ -96,6 +95,8 @@ public class NumPad: MonoBehaviour
 
     public async UniTask WaitUntilFinished()
     {
+        if (accessGranted == null)
+            accessGranted = new UniTaskCompletionSource();
         await accessGranted.Task;
     }
 

@@ -13,14 +13,14 @@ public class OnInteractNode : WaitUnit
     [Range(1, 10)]
     public int interactableCount = 1;
 
-    private new ControlInput enter;
+    private new ControlInput enterPort;
     private List<ValueInput> interactables = new();
     private List<ControlOutput> exits = new();
     private ValueInput disableAfterInteraction;
 
     protected override void Definition()
     {
-        enter = ControlInputCoroutine("enter", Await);
+        enterPort = ControlInputCoroutine("enter", Await);
 
 
         for (int i = 0; i < interactableCount; i++)
@@ -31,12 +31,12 @@ public class OnInteractNode : WaitUnit
             var output = ControlOutput($"exit {i + 1}");
             exits.Add(output);
 
-            Succession(enter, output);
+            Succession(enterPort, output);
         }
 
         disableAfterInteraction = ValueInput<bool>("Disable After Interaction", true);
 
-        Requirement(disableAfterInteraction, enter);
+        Requirement(disableAfterInteraction, enterPort);
     }
 
     protected override IEnumerator Await(Flow flow)

@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,6 +18,7 @@ public class Interactable : MonoBehaviour
     private Player player;
 
     [SerializeField] private bool isActive = false;
+    private static Interactable currentInteractable;
 
     private void Awake()
     {
@@ -25,6 +27,11 @@ public class Interactable : MonoBehaviour
         circleCollider.isTrigger = true;
         player = FindObjectOfType<Player>();
     }
+
+    //private void Update()
+    //{
+    //    player.colliderToPlayerDistances.Clear();
+    //}
 
     public UniTask WaitForInteraction()
     {
@@ -44,16 +51,47 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!isActive) return;
+        if (!isActive) {
+            player.collidedInteractions.Remove(this);
+            return;
+        }
         if (!IsPlayer(collision)) return;
 
-        if(!interactionView.gameObject.activeSelf)
+        if (!player.collidedInteractions.Contains(this) && gameObject.activeInHierarchy)
+            player.collidedInteractions.Add(this);
+
+        float currentDist = Vector2.Distance(transform.position, player.transform.position);
+
+        float minDist = float.MaxValue;
+        Interactable closest = null;
+
+        foreach (var collidedInteraction in player.collidedInteractions)
         {
-            interactionView.SetPosition(GetViewPosition());
-            interactionView.Show();
-            interactionView.AddListener(OnInteract);
+            if (collidedInteraction == null) continue;
+            if (!collidedInteraction.isActive) continue;
+
+            float dist = Vector2.Distance(collidedInteraction.transform.position, player.transform.position);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                closest = collidedInteraction;
+            }
         }
 
+        if (closest != this)
+        {
+            return;
+        }
+
+        if (currentInteractable != this || !interactionView.isActiveAndEnabled)
+        {
+            currentInteractable = this;
+            
+            interactionView.SetPosition(GetViewPosition());
+            interactionView.Show();
+            interactionView.RemoveAllListeners();
+            interactionView.AddListener(OnInteract);
+        }
     }
 
     private Vector3 GetViewPosition()
@@ -65,8 +103,13 @@ public class Interactable : MonoBehaviour
     {
         if (!isActive) return;
         if (!IsPlayer(collision)) return;
-        interactionView.Hide();
-        interactionView.RemoveListener(OnInteract);
+
+        if (currentInteractable == this)
+        {
+            currentInteractable = null;
+            interactionView.Hide();
+            interactionView.RemoveAllListeners();
+        }
     }
 
     private static bool IsPlayer(Collider2D collision)

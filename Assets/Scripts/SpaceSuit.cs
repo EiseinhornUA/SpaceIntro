@@ -70,7 +70,7 @@ public class SpaceSuit : MonoBehaviour
         suitTrailLGameObject = Instantiate(
             spaceSuitTrailPrefab,
             new Vector3(playerElbowL.position.x - particlePositionOffsetX, 
-                playerElbowL.position.y, playerElbowL.position.z + particlePositionOffsetZ),
+                playerElbowL.position.y, playerElbowL.position.z - particlePositionOffsetZ),
             playerElbowL.localRotation * Quaternion.Euler(0f, 0f, -particleRotationZ),
             playerElbowL
         );

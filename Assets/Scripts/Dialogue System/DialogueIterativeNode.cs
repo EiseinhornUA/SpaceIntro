@@ -81,7 +81,7 @@ public class DialogueIterativeNode : WaitUnit
             if (skill != null)
             {
                 skillContainer.AddSkillLevel(skill, skillPoints);
-                Debug.Log($"Added {skillPoints} points to {skill.name}");
+                //Debug.Log($"Added {skillPoints} points to {skill.name}");
             }
 
             choices.Remove(choices[selectedIndex]);

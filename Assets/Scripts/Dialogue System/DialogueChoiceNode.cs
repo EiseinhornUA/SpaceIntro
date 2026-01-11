@@ -20,7 +20,7 @@ public class DialogueChoiceNode : WaitUnit
     private List<ControlOutput> exits = new();
 
     private DialogueView view;
-    private new ControlInput enter;
+    private new ControlInput enterPort;
 
     protected override void Definition()
     {
@@ -29,7 +29,7 @@ public class DialogueChoiceNode : WaitUnit
 
         messageInput = ValueInput<string>("Dialogue Line", "");
         characterInput = ValueInput<DialogueCharacter>("Character", null);
-        enter = ControlInputCoroutine("enter", Await);
+        enterPort = ControlInputCoroutine("enter", Await);
 
         for (int i = 0; i < choiceCount; i++)
         {
@@ -39,7 +39,7 @@ public class DialogueChoiceNode : WaitUnit
             choiceInputs.Add(input);
             exits.Add(exit);
 
-            Succession(enter, exit);
+            Succession(enterPort, exit);
         }
     }
 
@@ -71,7 +71,6 @@ public class DialogueChoiceNode : WaitUnit
         int selectedIndex = -1;
         UniTask<int> task = view.WaitForChoice();
         yield return task.ContinueWith(i => selectedIndex = i).ToCoroutine();
-
         yield return exits[selectedIndex];
     }
 }

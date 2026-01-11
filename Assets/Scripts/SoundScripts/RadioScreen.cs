@@ -31,6 +31,7 @@ public class RadioScreen : MonoBehaviour
     }
     public void ShowRadioButton()
     {
+        SetRadioScreenBoolTrue();
         radioButton.SetActive(true);
         radioButton.transform.GetChild(1).gameObject.SetActive(false);
     }

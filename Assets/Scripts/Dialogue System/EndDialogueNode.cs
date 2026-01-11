@@ -53,8 +53,7 @@ public class EndDialogueNode : Unit
             dialogueManager.SetSelectedDecision(new Decision(decisionName, index));
         }
 
-        GameObject.FindObjectOfType<DialogueView>().gameObject.SetActive(false);
+        DialogueView.Instance.gameObject.SetActive(false);
         return exit;
     }
-
 }

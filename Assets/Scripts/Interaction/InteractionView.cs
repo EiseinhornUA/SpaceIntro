@@ -25,6 +25,8 @@ public class InteractionView : Popup
         interactionButton.onClick.RemoveListener(onInteract);
     }
 
+    internal void RemoveAllListeners() => interactionButton.onClick.RemoveAllListeners();
+
     public void SetPosition(Vector3 position) => this.worldPosition = position;
 
     public void UpdatePosition()

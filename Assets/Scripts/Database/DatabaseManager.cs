@@ -137,7 +137,7 @@ public class DatabaseManager : MonoBehaviour
             await userReference.Child("metrics")
                 .Child(skill.skillName)
                 .SetValueAsync(skill.level);
-            Debug.Log($"Saved {skill.skillName}: {skill.level}");
+            //Debug.Log($"Saved {skill.skillName}: {skill.level}");
         }
         catch (Exception e)
         {

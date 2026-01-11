@@ -10,7 +10,7 @@ public class CheckpointLoaderNode : WaitUnit
 {
     [DoNotSerialize]
     [PortLabelHidden]
-    public ControlInput enter;
+    public ControlInput enterPort;
 
     [DoNotSerialize]
     public List<ControlOutput> exits = new();
@@ -24,7 +24,7 @@ public class CheckpointLoaderNode : WaitUnit
     {
         exits.Clear();
 
-        enter = ControlInputCoroutine("enter", Await);
+        enterPort = ControlInputCoroutine("enter", Await);
 
         for (int i = 0; i < exitCount; i++)
         {
@@ -33,7 +33,7 @@ public class CheckpointLoaderNode : WaitUnit
         }
 
         foreach (var e in exits)
-            Succession(enter, e);
+            Succession(enterPort, e);
     }
 
     protected override IEnumerator Await(Flow flow)

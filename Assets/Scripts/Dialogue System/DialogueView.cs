@@ -14,15 +14,14 @@ public class DialogueView : Popup
     [SerializeField] private Image characterPortrait;
     [SerializeField] private Button nextButton;
     [SerializeField] private List<Button> choiceButtons;
-    private UniTaskCompletionSource taskCompletionSource;
+    public static DialogueView Instance { get; private set; }
 
     private void Awake()
     {
+        Instance = this;
         Hide();
         foreach (var button in choiceButtons)
-        {
             button.gameObject.SetActive(false);
-        }
     }
 
     public void SetMessage(string messageText) => message.text = messageText;
@@ -65,14 +64,19 @@ public class DialogueView : Popup
         nextButton.gameObject.SetActive(false);
     }
 
+    private List<UniTaskCompletionSource> completionSources = new();
+
     internal async UniTask WaitForHide()
     {
-        taskCompletionSource = new UniTaskCompletionSource();
+        if (!gameObject.activeInHierarchy) return;
+        var taskCompletionSource = new UniTaskCompletionSource();
+        completionSources.Add(taskCompletionSource);
         await taskCompletionSource.Task;
     }
 
     private void OnDisable()
     {
-        taskCompletionSource?.TrySetResult();
+        completionSources.ForEach(tcs => tcs.TrySetResult());
+        completionSources.Clear();
     }
 }

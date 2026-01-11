@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.InputSystem;
 using Cysharp.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 
 [RequireComponent (typeof (Controller2D), (typeof (AnimationHandler)))]
 public class Player : MonoBehaviour {
@@ -46,7 +47,10 @@ public class Player : MonoBehaviour {
 	private Joystick joystick;
     [SerializeField] private float jumpThreshold = .8f;
 
-    void Start() {
+	public List<Interactable> collidedInteractions = new();
+	public List<float> colliderToPlayerDistances = new();
+
+	void Start() {
         isSpaceSuited = false;
         controller = GetComponent<Controller2D> ();
         animationHandler = GetComponent<AnimationHandler>();

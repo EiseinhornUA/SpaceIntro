@@ -60,6 +60,7 @@ public class AnimationHandler : MonoBehaviour
 
     internal void StartFlying()
     {
+        animator = characterParent.GetChild(0).GetComponent<Animator>();
         animator.SetBool("IsFlying", true);
     }
 

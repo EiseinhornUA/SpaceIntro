@@ -21,7 +21,7 @@ public class DialogueNode : WaitUnit
 
     protected override IEnumerator Await(Flow flow)
     {
-        view = GameObject.FindObjectOfType<DialogueView>();
+        view = DialogueView.Instance;
 
         var message = flow.GetValue<string>(messageInput);
         var character = flow.GetValue<DialogueCharacter>(characterInput);

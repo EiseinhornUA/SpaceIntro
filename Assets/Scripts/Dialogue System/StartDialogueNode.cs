@@ -11,7 +11,7 @@ public class StartDialogueNode : WaitUnit
 {
     private ValueInput dialogueInput;
     //private List<ValueInput> nameInputs = new();
-    private ControlInput enter;
+    private ControlInput enterPort;
     private List<ControlOutput> exits = new();
 
     [UnitHeaderInspectable("Exit Count")]
@@ -22,14 +22,14 @@ public class StartDialogueNode : WaitUnit
     {
         dialogueInput = ValueInput<DialoguePrefab>("Dialogue Prefab", default);
 
-        enter = ControlInputCoroutine("enter", Await);
+        enterPort = ControlInputCoroutine("enter", Await);
 
         for (int i = 0; i < exitCount; i++)
         {
             //nameInputs.Add(ValueInput<string>($"Name {i + 1}", $"Option Name {i + 1}"));
             var exit = ControlOutput($"Exit {i + 1}");
             exits.Add(exit);
-            Succession(enter, exit);
+            Succession(enterPort, exit);
         }
     }
 
