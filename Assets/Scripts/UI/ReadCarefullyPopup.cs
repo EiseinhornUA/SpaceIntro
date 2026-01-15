@@ -41,8 +41,7 @@ public class ReadCarefullyPopup : MonoBehaviour
 
     private void WriteTimeInOkText(int seconds)
     {
-        string text = (timeUntilOkAllowed - seconds == 0) ? "" :
-            $"\r\n({timeUntilOkAllowed - seconds})";
-        popUpOkText.text = $"Got it, let’s talk{text}";
+        string text = (timeUntilOkAllowed - seconds == 0) ? "Ok".Translate() : $"({timeUntilOkAllowed - seconds})";
+        popUpOkText.text = $"{text}";
     }
 }
