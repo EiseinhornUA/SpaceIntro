@@ -40,7 +40,7 @@ public class RadioScreen : MonoBehaviour
     {
         radioPlaylist = audioManager.radioPlaylist;
         radioSource.clip = radioPlaylist[0];
-        radioClipName.text = $"Now playing:\r\n{radioSource.clip.name}";
+        radioClipName.text = $"{radioSource.clip.name}";
         previousRadioClip = radioPlaylist[0];
         volumeSlider.onValueChanged.AddListener(SetRadioVolume);
     }
@@ -57,7 +57,7 @@ public class RadioScreen : MonoBehaviour
         }
         if (radioSource.clip.name != previousRadioClip.name)
         {
-            radioClipName.text = $"Now playing:\r\n{radioSource.clip.name}";
+            radioClipName.text = $"{radioSource.clip.name}";
 
             previousRadioClip = radioSource.clip;
         }
