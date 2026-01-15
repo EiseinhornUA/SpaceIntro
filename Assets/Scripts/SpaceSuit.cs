@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class SpaceSuit : MonoBehaviour
 {
-    private const float particlePositionOffsetX = 0.4f;
-    private const float particlePositionOffsetZ = 0.025f;
+    [SerializeField] private float particlePositionOffsetX = 0.4f;
+    [SerializeField] private float particlePositionOffsetZ = 0.025f;
     private const float particleRotationZ = 90f;
     private const float playerMaxRunningSpeed = 5.5f;
     [SerializeField] private Player player;
