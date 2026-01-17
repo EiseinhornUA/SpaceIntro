@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -37,7 +38,50 @@ public class CharacterProfileScreen : Popup
 
         List<Skill> normalizedSkills = NormalizeSkills(await profileDataFetcher.GetSkillsAsync());
 
-        reportTMP.text = await reportFetcher.FetchReportAsync(PlayerPrefs.GetString("CharacterName", "Player"), normalizedSkills);
+        reportTMP.text = await reportFetcher.FetchReportAsync(PlayerPrefs.GetString("CharacterName", "Player"),
+                                                              normalizedSkills,
+                                                              ConvertLanguage(LocalizationManager.GetCurrentLanguage()));
+    }
+
+    private string ConvertLanguage(SystemLanguage language)
+    {
+        return language switch
+        {
+            SystemLanguage.English => "EN",
+            SystemLanguage.Ukrainian => "UA",
+            SystemLanguage.Portuguese => "PT",
+            SystemLanguage.Spanish => "ES",
+            _ => "EN",
+        };
+    }
+
+    [ContextMenu("Send Debug Request")]
+
+    private void SendDebugRequest() => SendDebugRequestAsync().Forget();
+    private async UniTaskVoid SendDebugRequestAsync()
+    {
+        List<Skill> skills = new();
+        skills.Add(new Skill("AE", 1));
+        skills.Add(new Skill("AR", 2));
+        skills.Add(new Skill("CR", 3));
+        skills.Add(new Skill("EI", 4));
+        skills.Add(new Skill("SC", 5));
+
+        foreach (var skillBar in skillBars)
+        {
+            var skill = skills.Find(s => s.skillName == skillBar.skillSO.GetName());
+
+            if (skill != null)
+            {
+                skillBar.slider.value = NormalizeSkillLevel(skill.level, skillBar.skillSO.GetMinLevel(), skillBar.skillSO.GetMaxLevel());
+            }
+        }
+
+        userIdTMP.text = "UID: " + await profileDataFetcher.GetAliasUserIDAsync();
+
+        reportTMP.text = await reportFetcher.FetchReportAsync(PlayerPrefs.GetString("CharacterName", "Player"),
+                                                              skills,
+                                                              ConvertLanguage(LocalizationManager.GetCurrentLanguage()));
     }
 
     private List<Skill> NormalizeSkills(object v)
