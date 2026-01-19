@@ -5,7 +5,7 @@ using System.Linq;
 
 public class LocalizationManager
 {
-    private const string LanguageKey = "Language";
+    public const string LanguageKey = "Language";
     private List<LocalizedTMP> texts = new();
     private static LocalizationManager _instance;
     public static LocalizationTableSO localizationTable { get; private set; }

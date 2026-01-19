@@ -1078,9 +1078,9 @@ MonoBehaviour:
   m_fontSize: 48
   m_fontSizeBase: 48
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 48
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1367,6 +1367,14 @@ PrefabInstance:
     - target: {fileID: 1167651870558315677, guid: 1781a9dc39676af4d82bc28d68a557a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828378285961241356, guid: 1781a9dc39676af4d82bc28d68a557a9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828378285961241356, guid: 1781a9dc39676af4d82bc28d68a557a9, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3334120684213682698, guid: 1781a9dc39676af4d82bc28d68a557a9, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2827,7 +2835,7 @@ MonoBehaviour:
   audioManager: {fileID: 3224320052876614725}
   radioSource: {fileID: 1592713194}
   radioClipName: {fileID: 976564696}
-  musicSlider: {fileID: 1293442334}
+  musicSlider: {fileID: 71866111}
   setDefaultValuesButton: {fileID: 2128559513}
   radioButton: {fileID: 1894684534}
 --- !u!4 &142027224 stripped
@@ -12710,9 +12718,9 @@ MonoBehaviour:
   m_fontSize: 48
   m_fontSizeBase: 48
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 48
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -12858,9 +12866,9 @@ MonoBehaviour:
   m_fontSize: 48
   m_fontSizeBase: 48
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 48
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -15591,7 +15599,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789707392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1157.6678}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34053,7 +34061,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894684534}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.5469166}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -37207,7 +37215,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991382971}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.5469167}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -40902,9 +40910,9 @@ MonoBehaviour:
   m_fontSize: 48
   m_fontSizeBase: 48
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 48
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -44136,7 +44144,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1112068847015809277}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.5469167}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -48568,7 +48576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6648814209455165233, guid: cedccbc30929ead40ba80c0e9c7f7709, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -5.0582275
+      value: -5.0582886
       objectReference: {fileID: 0}
     - target: {fileID: 6845915863416793091, guid: cedccbc30929ead40ba80c0e9c7f7709, type: 3}
       propertyPath: m_fontAsset
@@ -48600,7 +48608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7444116721048806495, guid: cedccbc30929ead40ba80c0e9c7f7709, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.8100586
+      value: -3.8101196
       objectReference: {fileID: 0}
     - target: {fileID: 7657997501436947762, guid: cedccbc30929ead40ba80c0e9c7f7709, type: 3}
       propertyPath: m_AnchorMax.x
@@ -61271,7 +61279,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6515190839244314491}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1159.2147}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -9,7 +9,7 @@ public class ReportFetcher : MonoBehaviour
 {
     private const string apiUrl = "https://e-spaceintroai-chatbot.onrender.com/report";
 
-    public async UniTask<string> FetchReportAsync(string name, List<Skill> skills, string playerId = "", bool useLLM = false)
+    public async UniTask<string> FetchReportAsync(string name, List<Skill> skills, string language, string playerId = "", bool useLLM = false)
     {
         // Convert skills list into dictionary
         var scoresDict = new Dictionary<string, float>();
@@ -24,7 +24,8 @@ public class ReportFetcher : MonoBehaviour
             name = name,
             player_id = playerId,
             scores = scoresDict,
-            use_llm = useLLM
+            use_llm = useLLM,
+            language = language
         };
 
         // Serialize to JSON (dictionary works here)
@@ -57,6 +58,7 @@ public class ReportFetcher : MonoBehaviour
         public string player_id { get; set; }
         public Dictionary<string, float> scores { get; set; }
         public bool use_llm { get; set; }
+        public string language { get; set; }
     }
 
     private class ReportResponse
