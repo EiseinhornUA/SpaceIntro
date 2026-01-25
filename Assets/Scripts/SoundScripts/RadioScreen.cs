@@ -51,7 +51,7 @@ public class RadioScreen : MonoBehaviour
 
     void Update()
     {
-        if (radioTurnedOn && radioSource.timeSamples >= radioSource.clip.samples - 1)
+        if (isMusicStopped())
         {
             AutoPlayNext();
         }
@@ -63,13 +63,19 @@ public class RadioScreen : MonoBehaviour
         }
     }
 
+    private bool isMusicStopped()
+    {
+        return radioTurnedOn && radioSource.timeSamples >= radioSource.clip.samples - 1;
+    }
+
     public void Play()
     {
-        if (radioTurnedOn == false)
+        if (!radioTurnedOn)
         {
             radioSource.Play();
             musicSliderValue = musicSlider.value;
             musicSlider.enabled = false;
+            Debug.Log(">>> Disabling music slider");
             setDefaultValuesButton.enabled = false;
             musicSlider.value = 0;
         }
@@ -78,7 +84,7 @@ public class RadioScreen : MonoBehaviour
 
     public void Stop()
     {
-        if (radioTurnedOn == true)
+        if (radioTurnedOn)
         {
             musicSlider.value = musicSliderValue;
             musicSlider.enabled = true;

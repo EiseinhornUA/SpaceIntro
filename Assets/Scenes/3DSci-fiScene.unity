@@ -1343,7 +1343,7 @@ PrefabInstance:
     - target: {fileID: 1167651870558315677, guid: 1781a9dc39676af4d82bc28d68a557a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 71866109}
+      objectReference: {fileID: 475933993}
     - target: {fileID: 1167651870558315677, guid: 1781a9dc39676af4d82bc28d68a557a9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -1374,6 +1374,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1828378285961241356, guid: 1781a9dc39676af4d82bc28d68a557a9, type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460935439671093934, guid: 1781a9dc39676af4d82bc28d68a557a9, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3334120684213682698, guid: 1781a9dc39676af4d82bc28d68a557a9, type: 3}
@@ -1429,6 +1433,10 @@ PrefabInstance:
       value: SettingsScreen
       objectReference: {fileID: 0}
     - target: {fileID: 3755898176199763398, guid: 1781a9dc39676af4d82bc28d68a557a9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183663838256545932, guid: 1781a9dc39676af4d82bc28d68a557a9, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -9096,6 +9104,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73acd940d4f3d424dba12e48c33b5f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &475933993 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2460935439671093934, guid: 1781a9dc39676af4d82bc28d68a557a9, type: 3}
+  m_PrefabInstance: {fileID: 71866108}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &479878927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4944680388452134, guid: 3deace0cd22ccd54b809b039e70ff8f6, type: 3}
@@ -15092,7 +15105,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 71866109}
+      - m_Target: {fileID: 475933993}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
