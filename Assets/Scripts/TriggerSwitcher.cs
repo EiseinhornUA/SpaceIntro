@@ -15,6 +15,10 @@ public class TriggerSwitcher : MonoBehaviour
         {
             areElevatorTriggersDisabled = true;
         });
+        elevatorTriggerBelow.AddListener(() =>
+        {
+            areElevatorTriggersDisabled = true;
+        });
     }
 
     public void DisableInitial() => initialTrigger.gameObject.SetActive(false);
