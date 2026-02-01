@@ -42,6 +42,9 @@ public class AskView : MonoBehaviour
     {
         gameObject.SetActive(true);
         Hud.Instance.HideHud();
+
+        Player player = FindObjectOfType<Player>();
+        if (player) player.StopMovement();
     }
 
     public void Hide()
